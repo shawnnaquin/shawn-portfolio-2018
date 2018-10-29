@@ -1,51 +1,57 @@
 <template>
   <div id="app">
-    <header>
-      <nav id="nav">
-        <ul>
-          <li>
-            <router-link to="/">Home</router-link>
-          </li>
-          <li>
-            <router-link to="/about">About</router-link>
-          </li>
-        </ul>
-      <router-view/>
-      </nav>
-    </header>
+    <Nav />
+    <Header />
+    <router-view/>
   </div>
 </template>
 
-<style lang="scss" scoped>
-  li {
-    display:inline-block;
-    padding:8px;
-    text-align:center;
+<script>
+  // @ is an alias to /src
+import Header from "@/components/Header.vue";
+import Nav from "@/components/Nav.vue";
+
+export default {
+  name: "home",
+  components: {
+    Header,
+    Nav
   }
-</style>
+};
+</script>
 
 <style lang="scss">
-body {
-  box-sizing:border-box;
-}
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
+
+  body {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  #app {
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align:left;
     color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+  }
+
+  ul {
+    padding-left: 0;
+  }
+
+  .push {
+    margin-left:10%;
+    width:90%;
+  }
+
+  @media only screen and (min-width:1400px) {
+    #app {
+      text-align:center;
+    }
+    .push {
+      margin-left:0;
+      width:100%;
     }
   }
-}
-ul {
-  padding-left:0;
-}
+
 </style>
