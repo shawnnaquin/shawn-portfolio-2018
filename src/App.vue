@@ -1,14 +1,33 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <header>
+      <nav id="nav">
+        <ul>
+          <li>
+            <router-link to="/">Home</router-link>
+          </li>
+          <li>
+            <router-link to="/about">About</router-link>
+          </li>
+        </ul>
+      <router-view/>
+      </nav>
+    </header>
   </div>
 </template>
 
+<style lang="scss" scoped>
+  li {
+    display:inline-block;
+    padding:8px;
+    text-align:center;
+  }
+</style>
+
 <style lang="scss">
+body {
+  box-sizing:border-box;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,5 +44,8 @@
       color: #42b983;
     }
   }
+}
+ul {
+  padding-left:0;
 }
 </style>
