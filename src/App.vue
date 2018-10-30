@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <Nav />
-    <Header />
+    <div :class="'flex-column'">
+      <Nav />
+      <Header />
+    </div>
     <router-view/>
   </div>
 </template>
@@ -21,6 +23,8 @@ export default {
 </script>
 
 <style lang="scss">
+  
+  //  GENERAL
 
   body {
     box-sizing: border-box;
@@ -44,14 +48,24 @@ export default {
     width:90%;
   }
 
+  .flex-column {
+    display: flex;
+    flex-direction: column;
+    margin-bottom:48px;
+  }
+  
   @media only screen and (min-width:1400px) {
+    
     #app {
       text-align:center;
     }
+    
     .push {
       margin-left:0;
       width:100%;
     }
+
+
   }
 
 </style>

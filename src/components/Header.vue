@@ -27,6 +27,9 @@
       isHome() {
         return this.$route.name == 'home';
       }
+    },
+    methods: {
+      
     }
   }
 </script>
@@ -35,6 +38,7 @@
 
   video {
     width:100%;
+    display:block;
   }
 
   h1 span::before {
@@ -56,6 +60,7 @@
   @media only screen and (min-width:1400px) {
     video {
       width:55%;
+      display:inline-block;
     }
   }
 
