@@ -28,6 +28,12 @@ export default new Router({
       name: "marketing",
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/Portfolio.vue")
-    }
+    },
+    {
+      path: "/interactive",
+      name: "interactive",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/Portfolio.vue")
+    },
   ]
 });

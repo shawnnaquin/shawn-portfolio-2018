@@ -5,9 +5,11 @@
     <small>Project Type:</small>
 
     <ul>
+      <transition name="fade">
       <li v-if="$route.name !== 'home'">
-        <router-link to="/">Video</router-link>
+        <router-link to="/">H</router-link>
       </li>
+      </transition>
       <li>
         <router-link to="/website">Website</router-link>
       </li>

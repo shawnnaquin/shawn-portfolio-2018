@@ -19,7 +19,6 @@ export default new Vuex.Store({
   mutations: {
 
     addProject(state, payload) {
-      console.log('added!');
       Vue.set( state.projects, payload.name, payload.response.data);
     }
 
@@ -33,7 +32,7 @@ export default new Vuex.Store({
           const response = await axios.get( `./json/${name}.json` );
           commit('addProject', {'name': name, 'response': response } );
         } catch (error) {
-          console.log(error);
+          // console.log(error);
         }
       }
     }

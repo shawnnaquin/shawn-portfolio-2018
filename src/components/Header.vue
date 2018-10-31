@@ -6,13 +6,14 @@
       <h1>Shawn Naquin <span>Front-End-Portfolio</span></h1>
       <h3>October 2018</h3>
     </div>
-    
+    <transition name="fade" appear >
     <video 
       :class="" 
       v-if=" isHome "
       poster="https://via.placeholder.com/1920x1080?text=Video"
     >
     </video>
+    </transition>
 
   </header>
 
