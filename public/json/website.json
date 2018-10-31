@@ -1,0 +1,26 @@
+[
+    {
+      "link": "one-website",
+      "title": "One Website",
+      "image": "https://via.placeholder.com/400x600.png?text=Portfolio%20Image",
+      "content": [
+
+      ]
+    },
+    {
+      "link": "two-website",
+      "title": "Two Website",
+      "image": "https://via.placeholder.com/400x600.png?text=Portfolio%20Image",
+      "content": [
+
+      ]
+    },
+    {
+      "link": "three-website",
+      "title": "Three Website",
+      "image": "https://via.placeholder.com/400x600.png?text=Portfolio%20Image",
+      "content": [
+
+      ]
+    }
+]

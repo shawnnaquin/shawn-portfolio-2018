@@ -6,7 +6,7 @@
 
 		<div :class="[ 'portfolio' ]">
 
-			<template v-for="project in projects">
+			<template v-for="project in projects($route.name)">
 				<figure>
 					<img :src="project.image" :alt="project.title" />
 					<figcaption>{{project.title}}</figcaption>
@@ -20,8 +20,29 @@
 </template>
 
 <script>
+
+	import { mapGetters } from 'vuex';
+
 	export default {
-		props: ['projects'],
+
+		computed: {
+			...mapGetters([
+				`projects`
+			])
+		},
+		watch: {
+			'$route'(newa) {
+				this.dispatchProjects(newa.name);
+			},
+		},
+		mounted() {
+			this.dispatchProjects(this.$route.name);
+		},
+		methods: {
+			dispatchProjects(name) {
+				this.$store.dispatch('setProjects', name);
+			} 
+		}
 	}
 </script>
 
