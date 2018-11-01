@@ -12,10 +12,10 @@
 				aF: false,
 				bracketArray: [ '/', '-', '\\', "&", "a", "#", "?", "9", "@", "$", "~", "<", "{", "+", "l", "%", "//" ],
 				stop: false,
-				fps: 20, 
-				startTime: 0, 
-				now: 0, 
-				then: 0, 
+				fps: 20,
+				startTime: 0,
+				now: 0,
+				then: 0,
 				elapsed: 0
 			}
 		},
@@ -55,7 +55,7 @@
 				window.cancelAnimationFrame( this.aF );
 			},
 			animate() {
-				// request another frame				
+				// request another frame
 				if ( !this.go ) {
 					this.stopAnimate();
 					return;
