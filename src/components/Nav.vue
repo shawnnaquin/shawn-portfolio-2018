@@ -34,7 +34,7 @@
     order: 1;
     margin-bottom:48px;
 
-    @media only screen and (min-width:1400px) {
+    @media only screen and (min-width:1000px) {
       order: 0;
     }
 
@@ -104,7 +104,7 @@
 
   }
 
-  @media only screen and ( min-width: 1400px ) { 
+  @media only screen and ( min-width: 1000px ) { 
     ul {
       justify-content:center;
     }
