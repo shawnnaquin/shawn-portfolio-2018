@@ -2,7 +2,7 @@
 
 	<div>
 
-		<transition name="fade">
+		<transition name="fade" mode="out-in">
 			<h1 :key="$route.name" style="color:Purple" class="push">
 				{{$route.name}} Projects
 				<transition name="fade" >
@@ -49,7 +49,7 @@
 		computed: {
 			...mapGetters([
 				`projects`
-			])
+			]),
 		},
 		watch: {
 			'$route'(newa) {
@@ -71,7 +71,8 @@
 				this.$store.dispatch('setProjects', name);
 			}
 		}
-	}
+	};
+
 </script>
 
 <style lang="scss" scoped>
@@ -100,7 +101,7 @@
 		position:absolute;
 		left:50%;
 		transform:translateX(-50%);
-		@media only screen and (max-width:1400px) {
+		@media only screen and (max-width:1000px) {
 			left:10%;
 			transform:translateX(0);
 		}
