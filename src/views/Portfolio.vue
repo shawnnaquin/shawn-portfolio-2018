@@ -15,7 +15,7 @@
 
 		<div style="position:relative;">
 			<transition name="fade" appear >
-				<p v-if="!projects($route.name)" :class="[ 'loading' ]">LOADING <Loader :go=" ( projects($route.name) != true ) " /> </p>
+				<p v-if="!projects($route.name)" :class="[ 'loading' ]">LOADING <Loader :go=" ( !projects($route.name) ) " /> </p>
 			</transition>
 
 			<transition name="fade" appear >
@@ -60,6 +60,13 @@
 			this.dispatchProjects(this.$route.name);
 		},
 		methods: {
+			killIt() {
+				// simple test for the loader to check reactivity;
+				setTimeout( ()=> {
+					this.$set( this.$store.state, 'projects', {} ); // you shouldn't do this!
+					console.log( 'killed projects: ', this.projects(this.$route.name) );
+				}, 5000 );
+			},
 			dispatchProjects(name) {
 				this.$store.dispatch('setProjects', name);
 			}

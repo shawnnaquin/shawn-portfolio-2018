@@ -30,7 +30,9 @@ export default new Vuex.Store({
       if( !state.projects[name] ) {
         try {
           const response = await axios.get( `./json/${name}.json` );
-          commit('addProject', {'name': name, 'response': response } );
+          // setTimeout( ()=> { // test for loader
+            commit('addProject', {'name': name, 'response': response } )
+          // }, 5000 );
         } catch (error) {
           // console.log(error);
         }
