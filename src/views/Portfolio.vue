@@ -3,7 +3,7 @@
 	<div>
 
 		<transition name="fade">
-			<h1 :key="$route" style="color:Purple" class="push">
+			<h1 :key="$route.name" style="color:Purple" class="push">
 				{{$route.name}} Projects
 				<transition name="fade" >
 					<span v-if="!projects($route.name)" >
@@ -15,7 +15,7 @@
 
 		<div style="position:relative;">
 			<transition name="fade" appear >
-				<p v-if="!projects($route.name)" :class="[ 'loading' ]">LOADING <span>{{ bracket }}</span> </p>
+				<p v-if="!projects($route.name)" :class="[ 'loading' ]">LOADING <Loader :go=" ( projects($route.name) != true ) " /> </p>
 			</transition>
 
 			<transition name="fade" appear >
@@ -40,13 +40,11 @@
 <script>
 
 	import { mapGetters } from 'vuex';
+	import Loader from "@/components/Loader.vue";
 
 	export default {
-		data() {
-			return {
-				bracket: false,
-				bracketArray: [ '/', '--', '\\' ]
-			}
+		components: {
+			Loader
 		},
 		computed: {
 			...mapGetters([
@@ -56,20 +54,10 @@
 		watch: {
 			'$route'(newa) {
 				this.dispatchProjects(newa.name);
-
 			},
 		},
 		mounted() {
-
 			this.dispatchProjects(this.$route.name);
-
-			let b = 0;
-
-			window.setInterval( ()=> {
-				b += 1;
-				this.bracket = this.bracketArray[b%3];
-			}, 100 );
-
 		},
 		methods: {
 			dispatchProjects(name) {
