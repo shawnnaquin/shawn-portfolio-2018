@@ -56,7 +56,7 @@ export default {
     margin-bottom:48px;
   }
   
-  @media only screen and (min-width:1400px) {
+  @media only screen and (min-width:1000px) {
     
     #app {
       text-align:center;
