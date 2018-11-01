@@ -21,18 +21,12 @@
 
 <script>
   export default {
-    data: function () {
-      return {}
-    },
     computed: {
       isHome() {
         return this.$route.name == 'home';
       }
-    },
-    methods: {
-      
     }
-  }
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -46,7 +40,7 @@
     content:'// ';
     color: lighten( black, 75% );
   }
-  
+
   @media only screen and (max-width:630px) {
     h1 span {
       display:block;
@@ -58,7 +52,7 @@
     }
   }
 
-  @media only screen and (min-width:1400px) {
+  @media only screen and (min-width:1000px) {
     video {
       width:55%;
       display:inline-block;
