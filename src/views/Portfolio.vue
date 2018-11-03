@@ -22,13 +22,12 @@
 				<div v-if="projects($route.name)" :class="[ 'portfolio' ]">
 
 					<template v-for="project in projects($route.name)">
-						<a 
-							:to="project.link"
+						<router-link 
+							:to="`${$route.name}/${project.link}`"
 						>
 							<figure>
 
 								<picture>
-
 									<source
 										media="(min-width: 900px)"
 										:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_1x.webp 1x, ./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_2x.webp 2x` "
@@ -56,12 +55,12 @@
 								</picture>
 
 								<figcaption> 
-									<h3>{{ project.mainImage.title }}</h3>
-									<p>{{ project.mainImage.caption }} </p>
+									<h3>{{ project.mainImage.title }} Title </h3>
+									<p>{{ project.mainImage.caption }} This is a caption; </p>
 								</figcaption>
 
 							</figure>
-						</a>
+						</router-link>
 					</template>
 
 				</div>
@@ -115,6 +114,7 @@
   		display: grid;
 		grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) );
 		grid-gap: 2rem;
+		transition: grid-template-columns 5s ease;
 	}
 
 	h1, .loading {
@@ -143,13 +143,45 @@
 	h1 span {
 		right: -36px;
 	}
+/*	
+router-link
+	figure
+		picture
+			source
+			img
+		figcaption
+			h3
+			p
+*/
+	a {
+		position:relative;
+		width:100%;
+		padding-bottom:125%;
+		background:gray;
+	}
 
 	figure {
-		overflow:hidden;
+		position:absolute;
+		left:0;
+		top:0;
+		width:100%;
+		height:100%;
 		margin:0;
 	}
-	img {
+	figcaption {
+		position:absolute;
+		bottom:0;
+		left:0;
 		width:100%;
-		// max-height:300px;
+		z-index:1;
+		height:auto;
+		background: rgba(white, 0.75);
 	}
+
+	source, img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+
 </style>
