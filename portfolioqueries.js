@@ -1,37 +1,48 @@
-const testFolder = './public/img/portfolio/marketing/';
-const srcFolder = './src/assets/portfolio/marketing/';
+
 const fs = require('fs');
+const dir = ['marketing', 'interactive', 'website' ];
 
-const json = JSON.parse( fs.readFileSync( './public/json/marketing.json', 'utf8') );
+dir.forEach( (d)=> {
 
+	const testFolder = `./public/img/portfolio/${d}/`;
+	const srcFolder = `./src/assets/portfolio/${d}/`;
+	const json = JSON.parse( fs.readFileSync( `./public/json/${d}.json`, `utf8`) );
 
-fs.readdir( srcFolder, (err, files)=>{
+	fs.readdir( srcFolder, (err, files)=>{
 
-	files.forEach(file => {
+		files.forEach(file => {
 
-		let name = file.split('.').slice(0, -1);
+			// let name = file.split('.').slice(0, -1);
+			const nameA = file.split('.');
+			const projectName = nameA[ nameA.length-2 ];
+			const prefix = nameA[ 0 ];
+			const path =  nameA.slice(0, -1).join('.');
 
-		if ( name[0] == 'main' ) {
-			json[ name[1] ].mainImage.path = name.join('.');
-		} else {
+			if ( prefix == 'main' ) {
+				
+				json[ projectName ].mainImage.path = path;
 
-			const aa = json[ name[1] ].content.images;
-			let pos = null;
+			} else {
 
-			aa.forEach( (image,i)=> {
-				if ( image.path == name.join('.') ) {
-					pos = i;
+				const aa = json[ projectName ].content.images;
+				let pos = null;
+
+				aa.forEach( (image,i)=> {
+					if ( image.path == path ) {
+						pos = i;
+					}
+				});
+
+				if ( pos === null ) {
+					aa.push( { path: path } );
 				}
-			});
-
-			if ( pos === null ) {
-				aa.push( { path: name.join('.') } );
 			}
-		}
+
+		});
+
+		fs.writeFileSync(`./public/json/${d}.json`, JSON.stringify(json) );
 
 	});
-
-	fs.writeFileSync('./public/json/marketing.json', JSON.stringify(json) );
 
 });
 

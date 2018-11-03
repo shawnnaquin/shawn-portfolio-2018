@@ -22,11 +22,46 @@
 				<div v-if="projects($route.name)" :class="[ 'portfolio' ]">
 
 					<template v-for="project in projects($route.name)">
-						{{project.mainImage.path}}
-						<!-- <figure>
-							<img src="@/assets/interactive/main.halloween.png" :alt="'hello'" />
-							<figcaption></figcaption>
-						</figure> -->
+						<a 
+							:to="project.link"
+						>
+							<figure>
+
+								<picture>
+
+									<source
+										media="(min-width: 900px)"
+										:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_1x.webp 1x, ./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_2x.webp 2x` "
+										type="image/webp" 
+									>
+
+									<source
+										media="(min-width: 601px)"
+										:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-md_1x.webp 1x, ./img/portfolio/${ $route.name }/${project.mainImage.path}-md_2x.webp 2x` "
+										type="image/webp" 
+									>
+
+									<source
+										:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-sm_1x.webp 1x, ./img/portfolio/${ $route.name }/${project.mainImage.path}-sm_2x.webp 2x` "
+										type="image/webp" 
+									>
+
+									<img 
+										:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-sm_1x.jpg 600w, ./img/portfolio/${ $route.name }/${project.mainImage.path}-md_1x.jpg 900w, ./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_1x.jpg 1440w` "
+										:src=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_1x.jpg` "
+										type="image/jpeg"
+										:alt=" project.mainImage.alt "
+									/>
+
+								</picture>
+
+								<figcaption> 
+									<h3>{{ project.mainImage.title }}</h3>
+									<p>{{ project.mainImage.caption }} </p>
+								</figcaption>
+
+							</figure>
+						</a>
 					</template>
 
 				</div>
