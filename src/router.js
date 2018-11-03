@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
+
 const Portfolio = () => import(/* webpackChunkName: "portfolio" */ "./views/Portfolio.vue");
 const Project = () => import(/* webpackChunkName: "project" */ "./views/Project.vue");
 
@@ -24,7 +25,7 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       // man I love this feature of vue!
-      component: Portfolio
+      component: Portfolio,
     },
 
     {

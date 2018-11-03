@@ -22,10 +22,11 @@
 				<div v-if="projects($route.name)" :class="[ 'portfolio' ]">
 
 					<template v-for="project in projects($route.name)">
-						<figure>
-							<img :src="project.image" :alt="project.title" />
-							<figcaption>{{project.title}}</figcaption>
-						</figure>
+						{{project.mainImage.path}}
+						<!-- <figure>
+							<img src="@/assets/interactive/main.halloween.png" :alt="'hello'" />
+							<figcaption></figcaption>
+						</figure> -->
 					</template>
 
 				</div>
@@ -46,29 +47,26 @@
 		components: {
 			Loader
 		},
+		props: ['images'],
 		computed: {
 			...mapGetters([
 				`projects`
-			]),
+			])
 		},
 		watch: {
-			'$route'(newa) {
-				this.dispatchProjects(newa.name);
+			'$route'(routeName) {
+				this.startApp(routeName.name);
 			},
 		},
 		mounted() {
-			this.dispatchProjects(this.$route.name);
+			this.startApp();
 		},
 		methods: {
-			killIt() {
-				// simple test for the loader to check reactivity;
-				setTimeout( ()=> {
-					this.$set( this.$store.state, 'projects', {} ); // you shouldn't do this!
-					console.log( 'killed projects: ', this.projects(this.$route.name) );
-				}, 5000 );
+			startApp( routeName = this.$route.name ) {
+				this.dispatchProjects(routeName);
 			},
-			dispatchProjects(name) {
-				this.$store.dispatch('setProjects', name);
+			dispatchProjects(routeName) {
+				this.$store.dispatch('setProjects', routeName);
 			}
 		}
 	};

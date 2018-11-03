@@ -7,7 +7,7 @@
 
   	<div :class=" 'images' " >
   		<template v-for="image in cats">
-  			<img :src="'//www.lorempixel.com/' + image[0] + '/' + image[1] + '/cats' " alt="cats" />
+  			<img src="" alt="cats" />
   		</template>
   	</div>
 
@@ -24,13 +24,13 @@
 	export default {
 		data() {
 			return {
-				cats: [],
+				imageDir: '../public/img/icons/',
+				imgs: {}
 			}
 		},
-		mounted() {
-			this.setCats();
-		},
+		mounted() {},
 		methods: {
+
 			getRandomSize(min, max) {
 				return Math.round( Math.random() * (max - min) + min );
 			},
