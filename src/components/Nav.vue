@@ -2,7 +2,7 @@
 
   <nav id="nav" class="">
 
-    <small>Project Type:</small>
+    <!-- <small>Project Type:</small> -->
 
     <ul>
       <transition name="fade">
