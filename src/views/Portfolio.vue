@@ -3,10 +3,10 @@
 	<div>
 
 		<transition name="fade" mode="out-in">
-			<h1 :key="$route.name" style="color:Purple" class="push">
-				{{$route.name}} Projects
+			<h1 :key="$route.params.type" class="push">
+				{{$route.params.type}} Projects
 				<transition name="fade" >
-					<span v-if="!projects($route.name)" >
+					<span v-if="!projects($route.params.type)" >
 						&hellip;
 					</span>
 				</transition>
@@ -15,15 +15,15 @@
 
 		<div style="position:relative;">
 			<transition name="fade" appear >
-				<p v-if="!projects($route.name)" :class="[ 'loading' ]">LOADING <Loader :go=" ( !projects($route.name) ) " /> </p>
+				<p v-if="!projects($route.params.type)" :class="[ 'loading' ]">LOADING <Loader :go=" ( !projects($route.params.type) ) " /> </p>
 			</transition>
 
 			<transition name="fade" appear >
-				<div v-if="projects($route.name)" :class="[ 'portfolio' ]">
+				<div v-if="projects($route.params.type)" :class="[ 'portfolio' ]">
 
-					<template v-for="project in projects($route.name)">
+					<template v-for="project in projects($route.params.type)">
 						<router-link 
-							:to="`${$route.name}/${project.link}`"
+							:to="`${$route.params.type}/${project.link}`"
 							:class="[ 'link' ]" 
 						>
 							<div :class="[ 'main-description' ]" >
@@ -32,41 +32,14 @@
 							</div>
 
 							<div :class="'image'" >
-								<figure>
-
-									<picture>
-										<source
-											media="(min-width: 900px)"
-											:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_1x.webp 1x, ./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_2x.webp 2x` "
-											type="image/webp" 
-										>
-
-										<source
-											media="(min-width: 601px)"
-											:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-md_1x.webp 1x, ./img/portfolio/${ $route.name }/${project.mainImage.path}-md_2x.webp 2x` "
-											type="image/webp" 
-										>
-
-										<source
-											:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-sm_1x.webp 1x, ./img/portfolio/${ $route.name }/${project.mainImage.path}-sm_2x.webp 2x` "
-											type="image/webp" 
-										>
-
-										<img 
-											:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-sm_1x.jpg 600w, ./img/portfolio/${ $route.name }/${project.mainImage.path}-md_1x.jpg 900w, ./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_1x.jpg 1440w` "
-											:src=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_1x.jpg` "
-											type="image/jpeg"
-											:alt=" project.mainImage.alt "
-										/>
-
-									</picture>
-
-									<figcaption> 
-										<h3>{{ project.title }} Title </h3>
-										<p>{{ project.mainImage.caption }} This is a caption; </p>
-									</figcaption>
-
-								</figure>
+								<picture-query 
+									:type="$route.params.type" 
+									:path="project.mainImage.path" 
+									:alt="project.mainImage.alt" 
+								>
+									<h3>{{ project.title }} Title </h3>
+									<p>{{ project.mainImage.caption }} This is a caption; </p>
+								</picture-query>
 							</div>
 						</router-link>
 					</template>
@@ -84,10 +57,12 @@
 
 	import { mapGetters } from 'vuex';
 	import Loader from "@/components/Loader.vue";
+	import Picture from '@/components/Picture.vue';
 
 	export default {
 		components: {
-			Loader
+			Loader,
+			'picture-query': Picture
 		},
 		props: ['images'],
 		computed: {
@@ -97,14 +72,14 @@
 		},
 		watch: {
 			'$route'(routeName) {
-				this.startApp(routeName.name);
+				this.startApp(routeName.params.type);
 			},
 		},
 		mounted() {
 			this.startApp();
 		},
 		methods: {
-			startApp( routeName = this.$route.name ) {
+			startApp( routeName = this.$route.params.type ) {
 				this.dispatchProjects(routeName);
 			},
 			dispatchProjects(routeName) {
@@ -115,6 +90,12 @@
 
 </script>
 
+<style lang="scss" >
+	.portfolio {
+
+	}
+</style>
+
 <style lang="scss" scoped>
 
 	.portfolio {
@@ -123,6 +104,10 @@
 		grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) );
 		grid-gap: 2rem;
 		transition: grid-template-columns 5s ease;
+	}
+
+	h1 {
+		text-align:left;
 	}
 
 	h1, .loading {
@@ -151,6 +136,7 @@
 	h1 span {
 		right: -36px;
 	}
+
 /*	
 router-link
 	figure
@@ -168,8 +154,9 @@ router-link
 		border:1px solid rgba(black, 0.1);
 		transition: border-color 200ms ease;
 		transition-property: border-color, border-size;
+		background: white;
 		&:hover {
-			border-color:black;
+			border-color:rgba(black, 0.4);
 			border-size:2;
 		}
 	}
@@ -191,36 +178,6 @@ router-link
 		padding-right: 16px;
 		padding-bottom: 16px;
 		font-size:16px;
-	}
-
-	figure, picture {
-		position:absolute;
-		left:0;
-		top:0;
-		width:100%;
-		height:100%;
-		margin:0;
-	}
-
-	figcaption {
-		position:absolute;
-		bottom:0;
-		left:0;
-		width:calc( 100% - 32px );
-		z-index:1;
-		height:auto;
-		font-size:12px;
-		padding: 16px;
-		color: darken( white, 20%);
-		background:rgba(black,0.9);
-		border-top-right-radius:16px;
-		border-top-left-radius:8px;
-	}
-
-	source, img {
-		object-fit: cover;
-		width: 100%;
-		height: 100%;
 	}
 
 </style>
