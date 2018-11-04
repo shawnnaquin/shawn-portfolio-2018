@@ -31,6 +31,7 @@ export default {
   body {
     box-sizing: border-box;
     margin: 0;
+    background: darken(white,2%);
   }
 
   #app {
