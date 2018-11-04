@@ -32,6 +32,10 @@
             "alt": ""
         },
         "content": {
+            "article": "",
+            "tech": "",
+            "layout": "mix",
+            "behance": "",
             "images": [
                 {
                     "path": "eight.drm"
