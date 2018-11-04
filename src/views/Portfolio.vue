@@ -24,42 +24,50 @@
 					<template v-for="project in projects($route.name)">
 						<router-link 
 							:to="`${$route.name}/${project.link}`"
+							:class="[ 'link' ]" 
 						>
-							<figure>
+							<div :class="[ 'main-description' ]" >
+								<h3>{{ project.title }}</h3>
+								<small>{{ project.projectDescription }}</small>
+							</div>
 
-								<picture>
-									<source
-										media="(min-width: 900px)"
-										:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_1x.webp 1x, ./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_2x.webp 2x` "
-										type="image/webp" 
-									>
+							<div :class="'image'" >
+								<figure>
 
-									<source
-										media="(min-width: 601px)"
-										:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-md_1x.webp 1x, ./img/portfolio/${ $route.name }/${project.mainImage.path}-md_2x.webp 2x` "
-										type="image/webp" 
-									>
+									<picture>
+										<source
+											media="(min-width: 900px)"
+											:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_1x.webp 1x, ./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_2x.webp 2x` "
+											type="image/webp" 
+										>
 
-									<source
-										:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-sm_1x.webp 1x, ./img/portfolio/${ $route.name }/${project.mainImage.path}-sm_2x.webp 2x` "
-										type="image/webp" 
-									>
+										<source
+											media="(min-width: 601px)"
+											:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-md_1x.webp 1x, ./img/portfolio/${ $route.name }/${project.mainImage.path}-md_2x.webp 2x` "
+											type="image/webp" 
+										>
 
-									<img 
-										:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-sm_1x.jpg 600w, ./img/portfolio/${ $route.name }/${project.mainImage.path}-md_1x.jpg 900w, ./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_1x.jpg 1440w` "
-										:src=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_1x.jpg` "
-										type="image/jpeg"
-										:alt=" project.mainImage.alt "
-									/>
+										<source
+											:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-sm_1x.webp 1x, ./img/portfolio/${ $route.name }/${project.mainImage.path}-sm_2x.webp 2x` "
+											type="image/webp" 
+										>
 
-								</picture>
+										<img 
+											:srcset=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-sm_1x.jpg 600w, ./img/portfolio/${ $route.name }/${project.mainImage.path}-md_1x.jpg 900w, ./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_1x.jpg 1440w` "
+											:src=" `./img/portfolio/${ $route.name }/${project.mainImage.path}-lg_1x.jpg` "
+											type="image/jpeg"
+											:alt=" project.mainImage.alt "
+										/>
 
-								<figcaption> 
-									<h3>{{ project.mainImage.title }} Title </h3>
-									<p>{{ project.mainImage.caption }} This is a caption; </p>
-								</figcaption>
+									</picture>
 
-							</figure>
+									<figcaption> 
+										<h3>{{ project.title }} Title </h3>
+										<p>{{ project.mainImage.caption }} This is a caption; </p>
+									</figcaption>
+
+								</figure>
+							</div>
 						</router-link>
 					</template>
 
@@ -154,13 +162,38 @@ router-link
 			p
 */
 	a {
-		position:relative;
-		width:100%;
-		padding-bottom:125%;
-		background:gray;
+		text-decoration: none;
+		color:black;
+		text-align:left;
+		border:1px solid rgba(black, 0.1);
+		transition: border-color 200ms ease;
+		transition-property: border-color, border-size;
+		&:hover {
+			border-color:black;
+			border-size:2;
+		}
+	}
+	.link {
+		display: flex;
+		flex-flow: wrap;
+		align-content: space-between;
 	}
 
-	figure {
+	.image {
+		position:relative;
+		width:100%;
+		padding-bottom:200%;
+	}
+
+	.main-description {
+		margin: 8px auto;
+		padding-left:16px;
+		padding-right: 16px;
+		padding-bottom: 16px;
+		font-size:16px;
+	}
+
+	figure, picture {
 		position:absolute;
 		left:0;
 		top:0;
@@ -168,14 +201,20 @@ router-link
 		height:100%;
 		margin:0;
 	}
+
 	figcaption {
 		position:absolute;
 		bottom:0;
 		left:0;
-		width:100%;
+		width:calc( 100% - 32px );
 		z-index:1;
 		height:auto;
-		background: rgba(white, 0.75);
+		font-size:12px;
+		padding: 16px;
+		color: darken( white, 20%);
+		background:rgba(black,0.9);
+		border-top-right-radius:16px;
+		border-top-left-radius:8px;
 	}
 
 	source, img {
