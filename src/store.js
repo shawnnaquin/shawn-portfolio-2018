@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 
   state: {
-  	projects: {}
+      projects: {}
   },
 
   getters: {
@@ -26,7 +26,7 @@ export default new Vuex.Store({
 
   actions: {
 
-  	async setProjects( {context,commit,state}, name ) {
+      async setProjects( {context,commit,state}, name ) {
       if( !state.projects[name] ) {
         try {
           const response = await axios.get( `./json/${name}.json` );

@@ -6,9 +6,9 @@
 
     <ul>
       <transition name="fade">
-      <li v-if="$route.name !== 'home'">
-        <router-link to="/">H</router-link>
-      </li>
+        <li v-if="$route.name !== 'home'">
+          <router-link to="/">Home</router-link>
+        </li>
       </transition>
       <li>
         <router-link to="/website">Website</router-link>
@@ -39,6 +39,8 @@
     }
 
     a {
+      display:inline-block;
+      padding: 0.75rem 4rem;
       font-weight: bold;
       color: #2c3e50;
       &.router-link-exact-active {
@@ -56,8 +58,6 @@
   }
 
   li {
-
-    padding: 0.75rem 4rem;
     text-align: center;
     background:darken(white, 5%);
     list-style:none;
