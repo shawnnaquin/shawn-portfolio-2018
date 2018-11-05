@@ -1,43 +1,68 @@
 <template>
 
-  <article class="project" v-if="project" >
+	<article class="project"  >
 
-  	<div :class="[ 'article-header' ]" >
-	  	<h1>{{project.title}}</h1>
-	  	<h3>{{project.projectDescription}}</h3>
-	  	<button>Visit (external site)</button>
+		<transition name="fade" appear mode="out-in">
 
-	  	<p :class="['description']"> {{ project.content.article }} Minim aute adipisicing officia excepteur veniam dolor exercitation consequat occaecat aute dolor nostrud laborum in veniam in veniam sunt id sit proident sit cillum laboris dolor excepteur officia esse nostrud dolore ad labore deserunt incididunt non aliqua proident est incididunt do commodo incididunt laborum qui ad minim labore ut dolor reprehenderit fugiat qui reprehenderit ut enim et nisi minim dolore dolore sed dolore quis ad aliqua eu reprehenderit ea culpa ea sunt ea nisi laboris qui duis sunt anim enim ad dolore officia eiusmod do ea ullamco sit consequat adipisicing do fugiat officia irure sit consequat velit incididunt enim dolor sint eu eiusmod reprehenderit deserunt cupidatat sed enim ut dolore in ut cupidatat dolore qui duis nulla ut ex do fugiat minim in sit et nulla veniam dolore.</p>
+			<p
+				v-if="!project"
+				:class="[ 'loading' ]"
+			>
+				LOADING
+				<Loader :go=" !project " />
+			</p>
 
-	</div>
-  		<div v-if="images.mobile.length" :class="[ 'mobile', 'grid' ]" >
-  			<template v-for="image in images.mobile" >
-  				<div style="position:relative;">
-				<picture-query
-					:type=" $route.params.type "
-					:path=" image.path "
-					:alt=" '' "
-				>
-					<!-- <p>some text.</p> -->
+		  	<div v-else :class="[ 'article-header' ]" >
+			  	<h1>{{project.title}}</h1>
+			  	<h3>{{project.projectDescription}}</h3>
+			  	<button>Visit (external site)</button>
+			  	<p :class="['description']">
+			  		{{ project.content.article }} Minim aute adipisicing officia excepteur veniam dolor exercitation consequat occaecat aute dolor nostrud laborum in veniam in veniam sunt id sit proident sit cillum laboris dolor excepteur officia esse nostrud dolore ad labore deserunt incididunt non aliqua proident est incididunt do commodo incididunt laborum qui ad minim labore ut dolor reprehenderit fugiat qui reprehenderit ut enim et nisi minim dolore dolore sed dolore quis ad aliqua eu reprehenderit ea culpa ea sunt ea nisi laboris qui duis sunt anim enim ad dolore officia eiusmod do ea ullamco sit consequat adipisicing do fugiat officia irure sit consequat velit incididunt enim dolor sint eu eiusmod reprehenderit deserunt cupidatat sed enim ut dolore in ut cupidatat dolore qui duis nulla ut ex do fugiat minim in sit et nulla veniam dolore.
+			  	</p>
+			</div>
 
-				</picture-query>
+		</transition>
 
+  		<div v-if="images.mobile && images.mobile.length" >
+
+  			<transition-group
+  			  name="staggered-fade"
+  			  tag="div"
+  			  v-bind:css="false"
+  			  v-on:before-enter="beforeEnter"
+  			  v-on:enter="enter"
+  			  v-on:leave="leave"
+  			  :class="[ 'mobile', 'grid' ]"
+  			>
+
+	  			<div
+	  				v-for=" (image,i) in images.mobile"
+	  				style="position:relative;"
+	  				:data-index="i"
+	  				v-bind:key="image.path"
+	  				v-if="phoneVertLoaded"
+	  			>
+					<picture-query
+						:type=" $route.params.type "
+						:path=" image.path "
+						:alt=" '' "
+					>
+					</picture-query>
 				</div>
-  			</template>
+	  		</transition-group>
+
   		</div>
 
-		<div v-if="images.horiz.length" :class="[ 'horiz', 'grid' ]" >
-			<template v-for="image in images.horiz" >
-				<div style="position:relative;">
-			<picture-query
-				:type=" $route.params.type "
-				:path=" image.path "
-				:alt=" '' "
-			>
-				<!-- <p>some text.</p> -->
-
-			</picture-query>
-			</div>
+<!-- 		<div v-if="images.horiz.length" :class="[ 'horiz', 'grid' ]" >
+			<template v-for="image in images.horiz" transition="fade" stagger="1250">
+				<div style="position:relative;" v-if="phoneHorizLoaded" >
+					<picture-query
+						:type=" $route.params.type "
+						:path=" image.path "
+						:alt=" '' "
+					>
+					</picture-query>
+				</div>
 			</template>
 		</div>
 
@@ -50,11 +75,10 @@
   					:path=" image.path "
   					:alt=" '' "
   				>
-  					<!-- <p>some text.</p> -->
   				</picture-query>
 	  			</div>
   			</template>
-  		</div>
+  		</div> -->
 
   </article>
 
@@ -63,13 +87,19 @@
 <script>
 	import { mapGetters } from 'vuex';
 	import Picture from '@/components/Picture.vue';
+	import Loader from "@/components/Loader.vue";
+	import PhoneVert from '@/assets/ui/mobile.vert.png';
+	import PhoneHoriz from '@/assets/ui/mobile.horiz.png';
 
 	export default {
 		components: {
+			Loader,
 			'picture-query': Picture
 		},
 		data() {
 			return {
+				phoneHorizLoaded: false,
+				phoneVertLoaded: false
 			}
 		},
 		computed: {
@@ -111,7 +141,58 @@
 			if ( !this.project ) {
 				this.$store.dispatch('setProjects', this.type );
 			}
+			this.checkPhone();
 
+		},
+
+		methods: {
+			checkPhone() {
+				let imgVert = new Image();
+				imgVert.src = PhoneVert;
+				imgVert.onload = () => {
+					this.phoneVertLoaded = true;
+					return;
+				};
+
+				let imgHoriz = new Image();
+				imgHoriz.src = PhoneHoriz;
+				imgHoriz.onload = () => {
+					this.phoneHorizLoaded = true;
+					return;
+				}
+
+			},
+
+			beforeEnter: function (el) {
+			  el.style.opacity = 0;
+			  el.style.height = 0;
+			},
+			enter: function (el, done) {
+
+			  let delay = el.dataset.index * 200;
+
+			  setTimeout( () => {
+
+			  	let f = 0;
+			  	let p = requestAnimationFrame( t );
+
+			  	function t() {
+			  		if ( el.style.opacity != 1 )  {
+			  			requestAnimationFrame(t);
+			  			el.style.opacity = f += 0.08;
+			  		} else {
+			  			cancelAnimationFrame(p);
+			  			done;
+			  			return;
+			  		}
+			  	}
+
+			  }, delay );
+
+			},
+			leave: function (el, done) {
+				done;
+			}
 		}
 
 	};

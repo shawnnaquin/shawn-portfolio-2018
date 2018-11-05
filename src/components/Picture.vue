@@ -1,6 +1,10 @@
 <template>
 	<figure>
 
+		<transition name="fade" appear >
+			<p :class=" 'loader' " >Loading <span><Loader :go=" showLoader " /></span></p>
+		</transition>
+
 		<picture>
 			<source
 				media="(min-width: 900px)"
@@ -19,16 +23,17 @@
 				type="image/webp" 
 			>
 
-			<img 
+			<v-lazy-image
 				:srcset=" `/img/portfolio/${ type }/${ path }-sm_1x.jpg 600w, /img/portfolio/${ type }/${ path }-md_1x.jpg 900w, /img/portfolio/${ type }/${ path }-lg_1x.jpg 1440w` "
 				:src=" `/img/portfolio/${ type }/${ path }-lg_1x.jpg` "
 				type="image/jpeg"
 				:alt=" alt "
+				@load="setShowLoader"
 			/>
 
 		</picture>
 
-		<figcaption> 
+		<figcaption>
 			<slot />
 		</figcaption>
 
@@ -37,7 +42,25 @@
 </template>
 
 <script>
+	import VLazyImage from "v-lazy-image";
+	import Loader from "@/components/Loader";
+
 	export default {
+
+		components: {
+			Loader,
+			VLazyImage
+		},
+		data() {
+			return {
+				showLoader: true
+			}
+		},
+		methods:{
+			setShowLoader() {
+				this.showLoader = !this.showLoader;
+			}
+		},
 		props: {
 			path: {
 				required: true,
@@ -55,6 +78,32 @@
 	};
 </script>
 <style lang="scss" scoped>
+	.loader {
+		color:white;
+		text-transform:capitalize;
+		display:inline-block;
+		width:auto;
+		position:relative;
+		margin-top:50%;
+		span {
+			position: absolute;
+			right: -8px;
+			bottom: 0px;
+		}
+	}
+	.v-lazy-image {
+	  filter: blur(10px);
+	  transition-property: filter;
+	  transition-duration: 0.3s;
+	  transition-delay: 0.3s;
+	  transition-timing-function: ease-out;
+	}
+
+	.v-lazy-image-loaded {
+	  filter: blur(0);
+	  transition-timing-function: ease-in;
+	}
+
 	figure, picture {
 		position:absolute;
 		left:0;
@@ -62,6 +111,9 @@
 		width:100%;
 		height:100%;
 		margin:0;
+	}
+
+	figure {
 	}
 
 	figcaption {
