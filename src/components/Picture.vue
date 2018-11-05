@@ -2,7 +2,7 @@
 	<figure>
 
 		<transition name="fade" appear >
-			<p :class=" 'loader' " >Loading <span><Loader :go=" showLoader " /></span></p>
+			<p :class=" 'loader' " v-if="showLoader"  >Loading <span><Loader :go=" showLoader " /></span></p>
 		</transition>
 
 		<picture>
@@ -58,7 +58,7 @@
 		},
 		methods:{
 			setShowLoader() {
-				this.showLoader = !this.showLoader;
+				this.showLoader = false;
 			}
 		},
 		props: {
@@ -78,6 +78,9 @@
 	};
 </script>
 <style lang="scss" scoped>
+.portfolio .loader {
+	color:black;
+}
 	.loader {
 		color:white;
 		text-transform:capitalize;
@@ -85,6 +88,7 @@
 		width:auto;
 		position:relative;
 		margin-top:50%;
+		text-align:center;
 		span {
 			position: absolute;
 			right: -8px;
@@ -102,6 +106,10 @@
 	.v-lazy-image-loaded {
 	  filter: blur(0);
 	  transition-timing-function: ease-in;
+	}
+
+	figure {
+		text-align:center;
 	}
 
 	figure, picture {
