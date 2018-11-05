@@ -1,14 +1,17 @@
 <template>
-  
-  <header>
 
-    <div class="heading push">
+  <header>
+    <transition name="fade" appear >
+
+    <div class="heading push" >
       <h1>Shawn Naquin <span>Front-End-Portfolio</span></h1>
       <h3>October 2018</h3>
     </div>
+
+    </transition>
     <transition name="fade" appear >
-    <video 
-      :class="" 
+    <video
+      :class=""
       v-if=" isHome "
       poster="https://via.placeholder.com/1920x1080?text=Video"
     >
