@@ -2,7 +2,9 @@
 
 	<article class="project"  >
 
-		<transition name="fade" appear mode="out-in">
+		<transition name="fade" appear mode="out-in"
+			v-on:enter="articleEnter"
+		>
 
 			<p
 				v-if="!project"
@@ -23,7 +25,7 @@
 
 		</transition>
 
-  		<div v-if="images.mobile && images.mobile.length" >
+  		<div v-if="showImages && images.mobile && images.mobile.length" >
 
   			<transition-group
   			  name="staggered-fade"
@@ -49,6 +51,7 @@
 					>
 					</picture-query>
 				</div>
+
 	  		</transition-group>
 
   		</div>
@@ -90,16 +93,22 @@
 	import Loader from "@/components/Loader.vue";
 	import PhoneVert from '@/assets/ui/mobile.vert.png';
 	import PhoneHoriz from '@/assets/ui/mobile.horiz.png';
+	import mixins from '@/mixins';
 
 	export default {
+
 		components: {
 			Loader,
 			'picture-query': Picture
 		},
+
+		mixins: [mixins],
+
 		data() {
 			return {
 				phoneHorizLoaded: false,
-				phoneVertLoaded: false
+				phoneVertLoaded: false,
+				showImages: false
 			}
 		},
 		computed: {
@@ -146,6 +155,12 @@
 		},
 
 		methods: {
+			articleEnter(el,done){
+				if  ( el.classList.contains('article-header') ) {
+					this.showImages = true;
+				}
+				done;
+			},
 			checkPhone() {
 				let imgVert = new Image();
 				imgVert.src = PhoneVert;
@@ -161,37 +176,6 @@
 					return;
 				}
 
-			},
-
-			beforeEnter: function (el) {
-			  el.style.opacity = 0;
-			  el.style.height = 0;
-			},
-			enter: function (el, done) {
-
-			  let delay = el.dataset.index * 200;
-
-			  setTimeout( () => {
-
-			  	let f = 0;
-			  	let p = requestAnimationFrame( t );
-
-			  	function t() {
-			  		if ( el.style.opacity != 1 )  {
-			  			requestAnimationFrame(t);
-			  			el.style.opacity = f += 0.08;
-			  		} else {
-			  			cancelAnimationFrame(p);
-			  			done;
-			  			return;
-			  		}
-			  	}
-
-			  }, delay );
-
-			},
-			leave: function (el, done) {
-				done;
 			}
 		}
 
