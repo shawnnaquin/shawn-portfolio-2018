@@ -169,7 +169,7 @@ router-link
 	.image {
 		position:relative;
 		width:100%;
-		padding-bottom:200%;
+		padding-bottom:177%;
 	}
 
 	.main-description {

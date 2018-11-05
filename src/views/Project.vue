@@ -9,16 +9,16 @@
 
 	  	<p :class="['description']"> {{ project.content.article }} Minim aute adipisicing officia excepteur veniam dolor exercitation consequat occaecat aute dolor nostrud laborum in veniam in veniam sunt id sit proident sit cillum laboris dolor excepteur officia esse nostrud dolore ad labore deserunt incididunt non aliqua proident est incididunt do commodo incididunt laborum qui ad minim labore ut dolor reprehenderit fugiat qui reprehenderit ut enim et nisi minim dolore dolore sed dolore quis ad aliqua eu reprehenderit ea culpa ea sunt ea nisi laboris qui duis sunt anim enim ad dolore officia eiusmod do ea ullamco sit consequat adipisicing do fugiat officia irure sit consequat velit incididunt enim dolor sint eu eiusmod reprehenderit deserunt cupidatat sed enim ut dolore in ut cupidatat dolore qui duis nulla ut ex do fugiat minim in sit et nulla veniam dolore.</p>
 
-	</div> 
+	</div>
   		<div v-if="images.mobile.length" :class="[ 'mobile', 'grid' ]" >
   			<template v-for="image in images.mobile" >
   				<div style="position:relative;">
-				<picture-query 
-					:type=" $route.params.type " 
-					:path=" image.path " 
-					:alt=" '' " 
+				<picture-query
+					:type=" $route.params.type "
+					:path=" image.path "
+					:alt=" '' "
 				>
-					<p>some text.</p>
+					<!-- <p>some text.</p> -->
 
 				</picture-query>
 
@@ -29,12 +29,12 @@
 		<div v-if="images.horiz.length" :class="[ 'horiz', 'grid' ]" >
 			<template v-for="image in images.horiz" >
 				<div style="position:relative;">
-			<picture-query 
-				:type=" $route.params.type " 
-				:path=" image.path " 
-				:alt=" '' " 
+			<picture-query
+				:type=" $route.params.type "
+				:path=" image.path "
+				:alt=" '' "
 			>
-				<p>some text.</p>
+				<!-- <p>some text.</p> -->
 
 			</picture-query>
 			</div>
@@ -45,15 +45,13 @@
   			<template v-for="image in images.regular" >
   				<div style="position:relative;">
 
-  				<picture-query 
-  					:type=" $route.params.type " 
-  					:path=" image.path " 
-  					:alt=" '' " 
+  				<picture-query
+  					:type=" $route.params.type "
+  					:path=" image.path "
+  					:alt=" '' "
   				>
-  					<p>some text.</p>
-
+  					<!-- <p>some text.</p> -->
   				</picture-query>
-  				<!-- <div></div> -->
 	  			</div>
   			</template>
   		</div>
@@ -128,11 +126,31 @@
 			height: 100%;
 		}
 		figcaption {
-			background:white;
-			color:black;
+			// background:white;
+			// color:black;
+			background:black;
+			padding:0;
+			color:white;
+			font-size:16px;
 			text-align:left;
 		}
 	}
+	@media only screen and (min-width: 630px) {
+		.grid.horiz figure {
+			width: 77.5%;
+		    height: 88%;
+		    left: 11%;
+		    top: 6%;
+		}
+
+		.grid.mobile figure {
+			width: 88%;
+			height: 77%;
+			left: 5.5%;
+			top: 11.25%;
+		}
+	}
+
 </style>
 
 <style lang="scss" scoped >
@@ -151,7 +169,7 @@
 	}
 	.article-header {
 
-		padding-bottom: 10%; 
+		padding-bottom: 10%;
 
 		> *:not( button ) {
 			display:inline-block;
@@ -194,7 +212,7 @@
 		margin-bottom:10%;
 
 		> div {
-			padding-bottom:64%;
+			padding-bottom:62.5% ;
 		}
 
 		@media only screen and (max-width:630px) {
@@ -205,7 +223,14 @@
 
 	.grid.horiz {
 		> div {
-			padding-bottom: 25%;
+			padding-bottom: 56.1%;
+			@media only screen and (min-width: 630px) {
+				padding-bottom: 49.21%;
+				background-image: url( '~@/assets/ui/mobile.horiz.png' );
+				background-size: cover;
+				background-position: center;
+			}
+
 		}
 	}
 
@@ -213,7 +238,13 @@
 		width:100%;
 		grid-template-columns: repeat( auto-fill, minmax(200px, 1fr ) );
 		> div {
-			padding-bottom:200%;
+			padding-bottom: 177%;
+			@media only screen and (min-width: 630px) {
+				padding-bottom: 202.9%;
+				background-image: url( '~@/assets/ui/mobile.vert.png' );
+				background-size: cover;
+				background-position: center;
+			}
 		}
 	}
 
