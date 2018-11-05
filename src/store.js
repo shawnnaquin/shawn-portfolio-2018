@@ -12,7 +12,14 @@ export default new Vuex.Store({
 
   getters: {
 
-    projects: state => name => state.projects[name]
+    projects: state => name => state.projects[name],
+    getProject: state => (p) => {
+      if ( !state.projects[ p.name ] ) {
+        return false;
+      } else {
+        return state.projects[ p.name ][ p.project ];
+      }
+    }
 
   },
 
@@ -29,7 +36,7 @@ export default new Vuex.Store({
       async setProjects( {context,commit,state}, name ) {
       if( !state.projects[name] ) {
         try {
-          const response = await axios.get( `./json/${name}.json` );
+          const response = await axios.get( `/json/${name}.json` );
           // setTimeout( ()=> { // test for loader
             commit('addProject', {'name': name, 'response': response } )
           // }, 5000 );
