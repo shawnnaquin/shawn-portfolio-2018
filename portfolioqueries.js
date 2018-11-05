@@ -12,6 +12,7 @@ dir.forEach( (d)=> {
 
 		files.forEach(file => {
 
+			if ( file.includes('DS_Store') ) return;
 			// let name = file.split('.').slice(0, -1);
 			const nameA = file.split('.');
 			const projectName = nameA[ nameA.length-2 ];
@@ -19,10 +20,13 @@ dir.forEach( (d)=> {
 			const path =  nameA.slice(0, -1).join('.');
 
 			if ( prefix == 'main' ) {
-				
 				json[ projectName ].mainImage.path = path;
 
 			} else {
+
+				if ( !json[ projectName ] || !json[ projectName ].content ) {
+					console.log( nameA );
+				}
 
 				const aa = json[ projectName ].content.images;
 				let pos = null;
