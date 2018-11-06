@@ -7,9 +7,19 @@
 </template>
 
 <script>
-
+	import { mapGetters } from 'vuex';
 	export default {
-	  name: "home"
+	  name: "home",
+	  computed: {
+	  	...mapGetters([
+	  		'getLoading'
+	  	])
+	  },
+	  mounted(){
+		setTimeout( ()=> {
+		    this.$store.dispatch('setLoading');
+		}, 1000 );
+	  }
 	};
 
 </script>

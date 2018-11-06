@@ -1,8 +1,17 @@
 <template>
   <div id="app">
+
+    <transition name="long-fade" >
+
+      <div :class="[ 'loader' ]" v-if="getLoading" >
+        <p>Loading <Loader :go="getLoading" /></p>
+      </div>
+
+    </transition>
+
     <div :class="'flex-column'">
       <Nav />
-      <Header />
+      <Header :loaded="!getLoading" />
     </div>
     <transition name="fade" appear>
       <router-view/>
@@ -14,15 +23,53 @@
   // @ is an alias to /src
 import Header from "@/components/Header.vue";
 import Nav from "@/components/Nav.vue";
+import Loader from "@/components/Loader";
+import { mapGetters } from 'vuex';
 
 export default {
   name: "home",
+  computed: {
+    ...mapGetters([
+        'getLoading'
+      ])
+  },
   components: {
+    Loader,
     Header,
     Nav
   }
 };
 </script>
+
+<style lang="scss" scoped >
+
+    .loader {
+      background: black;
+      position: fixed;
+      top:0;
+      left:0;
+      z-index:100;
+      height:100%;
+      width:100%;
+      color: white;
+      display:flex;
+      justify-content: center;
+      flex-flow: column;
+      p {
+        position:absolute;
+        left: 50%;
+        transform: translate3d(-60%,0,0);
+        font-size: 32px;
+        font-weight: bold;
+        span {
+              position: absolute;
+              right: -32px;
+              bottom: 0;
+        }
+      }
+    }
+
+</style>
 
 <style lang="scss">
 
@@ -56,13 +103,13 @@ export default {
     flex-direction: column;
     margin-bottom:48px;
   }
-  
+
   @media only screen and (min-width:1000px) {
-    
+
     #app {
       text-align:center;
     }
-    
+
     .push {
       margin-left:0;
       width:100%;
@@ -71,11 +118,39 @@ export default {
 
   }
 
-  .fade-fast-enter-active, .fade-fast-leave-active {
-    opacity: opacity 0.1s;
+  .external {
+    display:inline-block;
+    padding: 0.75rem 2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    text-decoration:none;
+    width:auto;
+    background:darken(white,5%);
+    border:1px solid darken(white,10%);
+    font-size:16px;
+    transition: border-color 150ms ease-out;
+    &:hover, &:active, &:focus {
+      border-color:Purple;
+      transition-timing-function:ease-in;
+    }
   }
 
-  .fade-fast-enter, .fade-fast-leave-to {
+  .long-fade-enter-active {
+    transition-timing-function: ease-in;
+  }
+  .long-fade-leave-active {
+    transition-timing-function: ease-out;
+  }
+
+  .long-fade-enter-active, .long-fade-leave-active {
+    transform: translateY(0);
+    filter: blur(0px);
+    transition: opacity 0.4s, transform 0.5s, filter 0.1s;
+  }
+
+  .long-fade-enter, .long-fade-leave-to {
+    transform: translateY(-100%);
+    filter: blur(10px);
     opacity: 0;
   }
 

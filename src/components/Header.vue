@@ -3,9 +3,14 @@
   <header>
     <transition name="fade" appear >
 
-    <div class="heading push" >
+    <div class="heading push" v-if="loaded" >
       <h1>Shawn Naquin <span>Front-End-Portfolio</span></h1>
       <h3>October 2018</h3>
+
+      <router-link :to="'/'" :class="['external']">
+        About Shawn
+      </router-link>
+
     </div>
 
     </transition>
@@ -24,6 +29,7 @@
 
 <script>
   export default {
+    props: ['loaded'],
     computed: {
       isHome() {
         return this.$route.name == 'home';

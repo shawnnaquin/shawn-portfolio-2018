@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 
   state: {
-      projects: {}
+      projects: {},
+      loading: true
   },
 
   getters: {
@@ -19,11 +20,16 @@ export default new Vuex.Store({
       } else {
         return state.projects[ p.name ][ p.project ];
       }
-    }
+    },
+    getLoading: state => state.loading
 
   },
 
   mutations: {
+
+    loading(state) {
+      state.loading = state.loading === true ? !state.loading : state.loading;
+    },
 
     addProject(state, payload) {
       Vue.set( state.projects, payload.name, payload.response.data);
@@ -33,18 +39,33 @@ export default new Vuex.Store({
 
   actions: {
 
+      setLoading(context) {
+        context.commit( 'loading' );
+      },
+
       async setProjects( {context,commit,state}, name ) {
-      if( !state.projects[name] ) {
-        try {
-          const response = await axios.get( `/json/${name}.json` );
-          // setTimeout( ()=> { // test for loader
-            commit('addProject', {'name': name, 'response': response } )
-          // }, 5000 );
-        } catch (error) {
-          // console.log(error);
+
+        if( !state.projects[name] ) {
+          try {
+            const response = await axios.get( `/json/${name}.json` );
+
+            if ( state.loading ) {
+              setTimeout( ()=> {
+                commit('loading');
+                commit('addProject', {'name': name, 'response': response } )
+              }, 300 );
+            } else {
+              // setTimeout( ()=> { // test for loader
+              // }, 5000 );
+              commit('addProject', {'name': name, 'response': response } )
+            }
+
+          } catch (error) {
+            // console.log(error);
+          }
         }
+
       }
-    }
 
   }
 

@@ -15,9 +15,23 @@
 			</p>
 
 		  	<div v-else :class="[ 'article-header' ]" >
+
 			  	<h1>{{project.title}}</h1>
 			  	<h3>{{project.projectDescription}}</h3>
-			  	<button>Visit (external site)</button>
+
+			  	<div class="buttons" >
+			  		<a href="#" target="_blank" :class="[ 'external' ]" > Visit (external site) </a>
+			  		&nbsp;
+			  		<a href="#" target="_blank" :class="[ 'external' ]" >
+			  			//code
+			  		</a>
+			  	</div>
+
+			  	<div class="buttons" >
+			  		<h4>Tech List: </h4>
+			  		<p>some, list, that, goes, on, forever</p>
+			  	</div>
+
 			  	<p :class="['description']">
 			  		{{ project.content.article }} Minim aute adipisicing officia excepteur veniam dolor exercitation consequat occaecat aute dolor nostrud laborum in veniam in veniam sunt id sit proident sit cillum laboris dolor excepteur officia esse nostrud dolore ad labore deserunt incididunt non aliqua proident est incididunt do commodo incididunt laborum qui ad minim labore ut dolor reprehenderit fugiat qui reprehenderit ut enim et nisi minim dolore dolore sed dolore quis ad aliqua eu reprehenderit ea culpa ea sunt ea nisi laboris qui duis sunt anim enim ad dolore officia eiusmod do ea ullamco sit consequat adipisicing do fugiat officia irure sit consequat velit incididunt enim dolor sint eu eiusmod reprehenderit deserunt cupidatat sed enim ut dolore in ut cupidatat dolore qui duis nulla ut ex do fugiat minim in sit et nulla veniam dolore.
 			  	</p>
@@ -56,9 +70,25 @@
 
   		</div>
 
-<!-- 		<div v-if="images.horiz.length" :class="[ 'horiz', 'grid' ]" >
-			<template v-for="image in images.horiz" transition="fade" stagger="1250">
-				<div style="position:relative;" v-if="phoneHorizLoaded" >
+		<div v-if="showImages && images.horiz && images.horiz.length" >
+
+			<transition-group
+				name="staggered-fade"
+				tag="div"
+				v-bind:css="false"
+				v-on:before-enter="beforeEnter"
+				v-on:enter="enter"
+				v-on:leave="leave"
+				:class="[ 'horiz', 'grid' ]"
+			>
+
+				<div
+					v-for=" (image,i) in images.horiz"
+					style="position:relative;"
+					:data-index="i"
+					v-bind:key="image.path"
+					v-if="phoneVertLoaded"
+				>
 					<picture-query
 						:type=" $route.params.type "
 						:path=" image.path "
@@ -66,22 +96,72 @@
 					>
 					</picture-query>
 				</div>
-			</template>
+
+			</transition-group>
+
 		</div>
 
-  		<div :class="[ 'grid' ]" >
-  			<template v-for="image in images.regular" >
-  				<div style="position:relative;">
+		<div v-if="showImages && images.horiz && images.horiz.length" >
 
-  				<picture-query
-  					:type=" $route.params.type "
-  					:path=" image.path "
-  					:alt=" '' "
-  				>
-  				</picture-query>
-	  			</div>
-  			</template>
-  		</div> -->
+			<transition-group
+				name="staggered-fade"
+				tag="div"
+				v-bind:css="false"
+				v-on:before-enter="beforeEnter"
+				v-on:enter="enter"
+				v-on:leave="leave"
+				:class="[ 'horiz', 'grid' ]"
+			>
+
+				<div
+					v-for=" (image,i) in images.horiz"
+					style="position:relative;"
+					:data-index="i"
+					v-bind:key="image.path"
+					v-if="phoneVertLoaded"
+				>
+					<picture-query
+						:type=" $route.params.type "
+						:path=" image.path "
+						:alt=" '' "
+					>
+					</picture-query>
+				</div>
+
+			</transition-group>
+
+		</div>
+
+		<div v-if="showImages && images.regular && images.regular.length" >
+
+			<transition-group
+				name="staggered-fade"
+				tag="div"
+				v-bind:css="false"
+				v-on:before-enter="beforeEnter"
+				v-on:enter="enter"
+				v-on:leave="leave"
+				:class="[ 'grid' ]"
+			>
+
+				<div
+					v-for=" (image,i) in images.regular"
+					style="position:relative;"
+					:data-index="i"
+					v-bind:key="image.path"
+					v-if="phoneVertLoaded"
+				>
+					<picture-query
+						:type=" $route.params.type "
+						:path=" image.path "
+						:alt=" '' "
+					>
+					</picture-query>
+				</div>
+
+			</transition-group>
+
+		</div>
 
   </article>
 
@@ -219,6 +299,7 @@
 </style>
 
 <style lang="scss" scoped >
+
 	.images {
 		line-height: 0;
 		column-count: 5;
@@ -236,18 +317,19 @@
 
 		padding-bottom: 10%;
 
-		> *:not( button ) {
+		> *:not( .external ) {
 			display:inline-block;
 			width:100%;
 			margin: 0 auto 16px auto;
 		}
 
-		button {
-			float:none;
-			margin: 0 auto 32px auto;
-			display: block;
-			@media only screen and (max-width: 1000px) {
-				float:left;
+		.buttons {
+			h1,h2,h3,h4 {
+				margin-top:0;
+			}
+			margin-bottom:48px;
+			&:nth-of-type(1) {
+				margin-top:32px;
 			}
 		}
 	}

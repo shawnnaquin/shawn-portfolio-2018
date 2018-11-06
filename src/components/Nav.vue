@@ -43,6 +43,7 @@
       padding: 0.75rem 4rem;
       font-weight: bold;
       color: #2c3e50;
+      text-decoration:none;
       &.router-link-exact-active {
         color:Purple;
       }
