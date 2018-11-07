@@ -13,12 +13,13 @@ export default new Vuex.Store({
 
   getters: {
 
-    projects: state => name => state.projects[name],
     getProject: state => (p) => {
       if ( !state.projects[ p.name ] ) {
         return false;
-      } else {
+      } else if ( p.name && p.project ) {
         return state.projects[ p.name ][ p.project ];
+      } else {
+        return state.projects[ p.name ]
       }
     },
     getLoading: state => state.loading
