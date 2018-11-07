@@ -2,7 +2,7 @@
 
 	<div :class="[ 'background' ]" >
 
-		<router-link :class="['close']" :to="`/${type}/${project}`" ><close></close></router-link>
+		<router-link :class="['close']" :to="routeBack" >( close / ESC )<close></close></router-link>
 
 		<div
 			  :class="[ orientation, 'grid' ]"
@@ -87,20 +87,37 @@ export default {
 		image() {
 			if ( !this.images ) return false;
 			return this.images[this.orientation][this.getImageIndex];
-		}
+		},
+
+		routeBack() {
+			return `/${this.type}/${this.project}`;
+		},
 
 	},
 
 	mixins: [],
 
 	methods: {
+		keyPress() {
+
+			window.onkeydown = ( event ) => {
+			    if ( event.keyCode == 27 ) {
+					this.$router.push( this.routeBack );
+			    }
+			};
+
+		},
 	},
 
 	watch: {
+
 	},
-
+	beforeDestroy() {
+		window.onkeydown = false;
+	},
 	mounted() {
-
+		this.keyPress();
+		console.log( this.$router );
 	}
 
 };
@@ -119,10 +136,9 @@ export default {
 		position:absolute;
 		top: 16px;
 		right: 16px;
-		width: 32px;
-		height: 32px;
 		opacity:0;
-
+		color: white;
+		text-decoration: none;
 		animation-name: in;
 		animation-duration: 200ms;
 		animation-fill-mode:forwards;
@@ -130,10 +146,13 @@ export default {
 		animation-delay: 700ms;
 
 		> svg {
+			width: 32px;
+			height: 32px;
 			fill: white;
 			transition: fill 200ms ease;
 			transition-property: fill, filter;
 			filter: blur(0px);
+			margin-left:10px;
 		}
 
 		&:hover {
