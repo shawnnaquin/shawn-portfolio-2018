@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 
 const Portfolio = () => import(/* webpackChunkName: "portfolio" */ "./views/Portfolio.vue");
 const Project = () => import(/* webpackChunkName: "project" */ "./views/Project.vue");
+const Image = () => import(/* webpackChunkNameL "image" */ "./views/Image.vue" );
 
 Vue.use(Router);
 
@@ -29,7 +30,13 @@ export default new Router({
 
     {
       path: "/:type(marketing|interactive|website)/:project",
-      component: Project
+      component: Project,
+      children: [
+        {
+          path: ":image",
+          component: Image
+        }
+      ]
     },
 
     {
