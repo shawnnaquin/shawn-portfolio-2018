@@ -1,9 +1,10 @@
 <template>
 
   <header>
+
     <transition name="fade" appear >
 
-    <div class="heading push" v-if="loaded" >
+    <div :class="[ 'heading', 'push' ]" v-if="loaded" >
       <h1>Shawn Naquin <span>Front-End-Portfolio</span></h1>
       <h3>October 2018</h3>
 
@@ -15,12 +16,12 @@
 
     </transition>
     <transition name="fade" appear >
-    <video
-      :class=""
-      v-if=" isHome "
-      poster="https://via.placeholder.com/1920x1080?text=Video"
-    >
-    </video>
+      <video
+        :class=""
+        v-if=" isHome "
+        poster="https://via.placeholder.com/1920x1080?text=Video"
+      >
+      </video>
     </transition>
 
   </header>
@@ -40,9 +41,20 @@
 
 <style lang="scss" scoped>
 
+  header {
+    perspective: 1000px;
+    perspective-origin: center;
+  }
+
+  .heading {
+    margin-bottom: 32px;
+  }
   video {
     width:100%;
     display:block;
+    transform-origin:right;
+    transform: translateX(-16%) rotateY(-43deg);
+    box-shadow: 8px 8px 40px darken(white,20%);
   }
 
   h1 span::before {
