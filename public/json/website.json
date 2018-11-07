@@ -1,1 +1,267 @@
-{"buntin":{"link":"buntin","title":"Buntin Media Group","projectDescription":"Proident sed dolore est esse dolore officia cupidatat duis sint ullamco voluptate do deserunt et anim.","mainImage":{"path":"main.buntin","caption":"In pariatur in labore est enim non veniam nisi","alt":""},"content":{"images":[{"path":"eight.buntin"},{"path":"eleven.buntin"},{"path":"five.buntin"},{"path":"five.horiz.buntin"},{"path":"five.mobile.buntin"},{"path":"four.buntin"},{"path":"four.horiz.buntin"},{"path":"four.mobile.buntin"},{"path":"fourteen.buntin"},{"path":"nine.buntin"},{"path":"one.buntin"},{"path":"one.horiz.buntin"},{"path":"one.mobile.buntin"},{"path":"seven.buntin"},{"path":"six.buntin"},{"path":"ten.buntin"},{"path":"thirteen.buntin"},{"path":"three.buntin"},{"path":"three.horiz.buntin"},{"path":"three.mobile.buntin"},{"path":"twelve.buntin"},{"path":"two.buntin"},{"path":"two.horiz.buntin"},{"path":"two.mobile.buntin"}]}},"drm":{"link":"drm","title":"Deer Run Media","projectDescription":"Eiusmod sit tempor commodo amet veniam qui et tempor.","mainImage":{"path":"main.drm","caption":"Laborum commodo mollit exercitation consectetur commodo","alt":""},"content":{"article":"","tech":"","layout":"mix","behance":"","images":[{"path":"five.drm"},{"path":"five.mobile.drm"},{"path":"four.drm"},{"path":"four.mobile.drm"},{"path":"one.drm"},{"path":"one.mobile.drm"},{"path":"seven.mobile.drm"},{"path":"six.mobile.drm"},{"path":"three.drm"},{"path":"three.mobile.drm"},{"path":"two.drm"},{"path":"two.mobile.drm"}]}},"rtc":{"link":"rtc","title":"Ringgold Telecommunications Company","projectDescription":"Eiusmod sed id cillum minim magna amet ex incididunt minim.","mainImage":{"path":"main.rtc","caption":"Sit commodo nisi mollit et voluptate nulla in ea anim excepteur.","alt":""},"content":{"images":[{"path":"five.rtc"},{"path":"four.mobile.rtc"},{"path":"four.rtc"},{"path":"one.horiz.rtc"},{"path":"one.mobile.rtc"},{"path":"one.rtc"},{"path":"seven.rtc"},{"path":"six.rtc"},{"path":"three.horiz.rtc"},{"path":"three.mobile.rtc"},{"path":"three.rtc"},{"path":"two.horiz.rtc"},{"path":"two.mobile.rtc"},{"path":"two.rtc"}]}},"l2d":{"link":"l2d","title":"L2D Agency","projectDescription":"Eiusmod sed id cillum minim magna amet ex incididunt minim.","mainImage":{"path":"main.l2d","caption":"Sit commodo nisi mollit et voluptate nulla in ea anim excepteur.","alt":""},"content":{"images":[{"path":"eight.l2d"},{"path":"five.l2d"},{"path":"four.l2d"},{"path":"four.mobile.l2d"},{"path":"one.horiz.l2d"},{"path":"one.l2d"},{"path":"one.mobile.l2d"},{"path":"seven.l2d"},{"path":"six.l2d"},{"path":"three.l2d"},{"path":"three.mobile.l2d"},{"path":"two.l2d"},{"path":"two.mobile.l2d"}]}}}
+{
+    "buntin": {
+        "link": "buntin",
+        "title": "Buntin Media Group",
+        "projectDescription": "Proident sed dolore est esse dolore officia cupidatat duis sint ullamco voluptate do deserunt et anim.",
+        "mainImage": {
+            "path": "main.buntin",
+            "caption": "In pariatur in labore est enim non veniam nisi",
+            "alt": ""
+        },
+        "content": {
+            "techList": [
+                ""
+            ],
+        	"imageRatio": "62.5%",
+            "images": [
+                {
+                    "path": "eight.buntin"
+                },
+                {
+                    "path": "eleven.buntin"
+                },
+                {
+                    "path": "five.buntin"
+                },
+                {
+                    "path": "five.horiz.buntin"
+                },
+                {
+                    "path": "five.mobile.buntin"
+                },
+                {
+                    "path": "four.buntin"
+                },
+                {
+                    "path": "four.horiz.buntin"
+                },
+                {
+                    "path": "four.mobile.buntin"
+                },
+                {
+                    "path": "fourteen.buntin"
+                },
+                {
+                    "path": "nine.buntin"
+                },
+                {
+                    "path": "one.buntin"
+                },
+                {
+                    "path": "one.horiz.buntin"
+                },
+                {
+                    "path": "one.mobile.buntin"
+                },
+                {
+                    "path": "seven.buntin"
+                },
+                {
+                    "path": "six.buntin"
+                },
+                {
+                    "path": "ten.buntin"
+                },
+                {
+                    "path": "thirteen.buntin"
+                },
+                {
+                    "path": "three.buntin"
+                },
+                {
+                    "path": "three.horiz.buntin"
+                },
+                {
+                    "path": "three.mobile.buntin"
+                },
+                {
+                    "path": "twelve.buntin"
+                },
+                {
+                    "path": "two.buntin"
+                },
+                {
+                    "path": "two.horiz.buntin"
+                },
+                {
+                    "path": "two.mobile.buntin"
+                }
+            ]
+        }
+    },
+    "drm": {
+        "link": "drm",
+        "title": "Deer Run Media",
+        "projectDescription": "Eiusmod sit tempor commodo amet veniam qui et tempor.",
+        "mainImage": {
+            "path": "main.drm",
+            "caption": "Laborum commodo mollit exercitation consectetur commodo",
+            "alt": ""
+        },
+        "content": {
+            "techList": [
+                ""
+            ],
+            "article": "",
+            "tech": "",
+            "layout": "mix",
+            "behance": "",
+        	"imageRatio": "56.25%",
+            "images": [
+                {
+                    "path": "five.drm"
+                },
+                {
+                    "path": "five.mobile.drm"
+                },
+                {
+                    "path": "four.drm"
+                },
+                {
+                    "path": "four.mobile.drm"
+                },
+                {
+                    "path": "one.drm"
+                },
+                {
+                    "path": "one.mobile.drm"
+                },
+                {
+                    "path": "seven.mobile.drm"
+                },
+                {
+                    "path": "six.mobile.drm"
+                },
+                {
+                    "path": "three.drm"
+                },
+                {
+                    "path": "three.mobile.drm"
+                },
+                {
+                    "path": "two.drm"
+                },
+                {
+                    "path": "two.mobile.drm"
+                }
+            ]
+        }
+    },
+    "rtc": {
+        "link": "rtc",
+        "title": "Ringgold Telecommunications Company",
+        "projectDescription": "Eiusmod sed id cillum minim magna amet ex incididunt minim.",
+        "mainImage": {
+            "path": "main.rtc",
+            "caption": "Sit commodo nisi mollit et voluptate nulla in ea anim excepteur.",
+            "alt": ""
+        },
+        "content": {
+            "techList": [
+                ""
+            ],
+        	"imageRatio": "62.5%",
+            "images": [
+                {
+                    "path": "five.rtc"
+                },
+                {
+                    "path": "four.mobile.rtc"
+                },
+                {
+                    "path": "four.rtc"
+                },
+                {
+                    "path": "one.horiz.rtc"
+                },
+                {
+                    "path": "one.mobile.rtc"
+                },
+                {
+                    "path": "one.rtc"
+                },
+                {
+                    "path": "seven.rtc"
+                },
+                {
+                    "path": "six.rtc"
+                },
+                {
+                    "path": "three.horiz.rtc"
+                },
+                {
+                    "path": "three.mobile.rtc"
+                },
+                {
+                    "path": "three.rtc"
+                },
+                {
+                    "path": "two.horiz.rtc"
+                },
+                {
+                    "path": "two.mobile.rtc"
+                },
+                {
+                    "path": "two.rtc"
+                }
+            ]
+        }
+    },
+    "l2d": {
+        "link": "l2d",
+        "title": "L2D Agency",
+        "projectDescription": "Eiusmod sed id cillum minim magna amet ex incididunt minim.",
+        "mainImage": {
+            "path": "main.l2d",
+            "caption": "Sit commodo nisi mollit et voluptate nulla in ea anim excepteur.",
+            "alt": ""
+        },
+        "content": {
+            "techList": [
+                ""
+            ],
+        	"imageRatio": "62.5%",
+            "images": [
+                {
+                    "path": "eight.l2d"
+                },
+                {
+                    "path": "five.l2d"
+                },
+                {
+                    "path": "four.l2d"
+                },
+                {
+                    "path": "four.mobile.l2d"
+                },
+                {
+                    "path": "one.horiz.l2d"
+                },
+                {
+                    "path": "one.l2d"
+                },
+                {
+                    "path": "one.mobile.l2d"
+                },
+                {
+                    "path": "seven.l2d"
+                },
+                {
+                    "path": "six.l2d"
+                },
+                {
+                    "path": "three.l2d"
+                },
+                {
+                    "path": "three.mobile.l2d"
+                },
+                {
+                    "path": "two.l2d"
+                },
+                {
+                    "path": "two.mobile.l2d"
+                }
+            ]
+        }
+    }
+}

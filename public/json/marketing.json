@@ -1,1 +1,110 @@
-{"kylotto-card-flip":{"link":"kylotto-card-flip","title":"Kentucky Lottery Card Matching","projectDescription":"Sint sunt officia est esse dolore aute deserunt tempor occaecat adipisicing dolor eu velit labore duis commodo pariatur laborum sunt aute magna occaecat cupidatat sit irure pariatur nulla elit in","mainImage":{"path":"main.kylotto-card-flip","caption":"Mollit nisi nostrud ullamco laborum id quis esse ut ut aliqua adn","alt":"Kentucky Lottery Card Matching"},"content":{"images":[{"path":"five.mobile.kylotto-card-flip"},{"path":"four.kylotto-card-flip"},{"path":"four.mobile.kylotto-card-flip"},{"path":"one.kylotto-card-flip"},{"path":"one.mobile.kylotto-card-flip"},{"path":"seven.mobile.kylotto-card-flip"},{"path":"six.mobile.kylotto-card-flip"},{"path":"three.kylotto-card-flip"},{"path":"three.mobile.kylotto-card-flip"},{"path":"two.kylotto-card-flip"},{"path":"two.mobile.kylotto-card-flip"}]}},"kylotto-speed":{"link":"kylotto-speed","title":"Kentucky Lottery Speedometer","projectDescription":"Enim amet id enim dolore culpa ea qui nisi consectetur occaecat proident sunt in ullamco","mainImage":{"path":"main.kylotto-speed","caption":"Lorem ipsum enim cillum ex voluptate","alt":"Kentucky Lottery Speedometer"},"content":{"images":[{"path":"one.kylotto-speed"},{"path":"three.kylotto-speed"},{"path":"two.kylotto-speed"}]}},"trex-deck":{"link":"trex-deck","title":"Trex: Composite Decking","projectDescription":"Nisi occaecat elit veniam exercitation in irure et eu duis voluptate mollit mollit eu id velit eu pariatur elit","mainImage":{"path":"main.trex-deck","caption":"Voluptate ad et voluptate adipisicing commodo mollit cillum qui aliqua","alt":"Trex: Composite Decking"},"content":{"images":[{"path":"five.trex-deck"},{"path":"four.trex-deck"},{"path":"one.trex-deck"},{"path":"three.trex-deck"}]}}}
+{
+    "kylotto-card-flip": {
+        "link": "kylotto-card-flip",
+        "title": "Kentucky Lottery Card Matching",
+        "projectDescription": "Sint sunt officia est esse dolore aute deserunt tempor occaecat adipisicing dolor eu velit labore duis commodo pariatur laborum sunt aute magna occaecat cupidatat sit irure pariatur nulla elit in",
+        "mainImage": {
+            "path": "main.kylotto-card-flip",
+            "caption": "Mollit nisi nostrud ullamco laborum id quis esse ut ut aliqua adn",
+            "alt": "Kentucky Lottery Card Matching"
+        },
+        "content": {
+            "techList": [
+                ""
+            ],
+        	"imageRatio": "62.5%",
+            "images": [
+                {
+                    "path": "five.mobile.kylotto-card-flip"
+                },
+                {
+                    "path": "four.kylotto-card-flip"
+                },
+                {
+                    "path": "four.mobile.kylotto-card-flip"
+                },
+                {
+                    "path": "one.kylotto-card-flip"
+                },
+                {
+                    "path": "one.mobile.kylotto-card-flip"
+                },
+                {
+                    "path": "seven.mobile.kylotto-card-flip"
+                },
+                {
+                    "path": "six.mobile.kylotto-card-flip"
+                },
+                {
+                    "path": "three.kylotto-card-flip"
+                },
+                {
+                    "path": "three.mobile.kylotto-card-flip"
+                },
+                {
+                    "path": "two.kylotto-card-flip"
+                },
+                {
+                    "path": "two.mobile.kylotto-card-flip"
+                }
+            ]
+        }
+    },
+    "kylotto-speed": {
+        "link": "kylotto-speed",
+        "title": "Kentucky Lottery Speedometer",
+        "projectDescription": "Enim amet id enim dolore culpa ea qui nisi consectetur occaecat proident sunt in ullamco",
+        "mainImage": {
+            "path": "main.kylotto-speed",
+            "caption": "Lorem ipsum enim cillum ex voluptate",
+            "alt": "Kentucky Lottery Speedometer"
+        },
+        "content": {
+            "techList": [
+                ""
+            ],
+        	"imageRatio": "56.3%",
+            "images": [
+                {
+                    "path": "one.kylotto-speed"
+                },
+                {
+                    "path": "three.kylotto-speed"
+                },
+                {
+                    "path": "two.kylotto-speed"
+                }
+            ]
+        }
+    },
+    "trex-deck": {
+        "link": "trex-deck",
+        "title": "Trex: Composite Decking",
+        "projectDescription": "Nisi occaecat elit veniam exercitation in irure et eu duis voluptate mollit mollit eu id velit eu pariatur elit",
+        "mainImage": {
+            "path": "main.trex-deck",
+            "caption": "Voluptate ad et voluptate adipisicing commodo mollit cillum qui aliqua",
+            "alt": "Trex: Composite Decking"
+        },
+        "content": {
+            "techList": [
+                ""
+            ],
+        	"imageRatio": "56.25%",
+            "images": [
+                {
+                    "path": "five.trex-deck"
+                },
+                {
+                    "path": "four.trex-deck"
+                },
+                {
+                    "path": "one.trex-deck"
+                },
+                {
+                    "path": "three.trex-deck"
+                }
+            ]
+        }
+    }
+}

@@ -1,1 +1,200 @@
-{"astec":{"link":"astec","title":"Astec Interactive","projectDescription":"In laborum quis ut consequat anim laborum sunt mollit in veniam laborum magna minim officia id sed.","mainImage":{"path":"main.astec","caption":"Pariatur officia quis eu duis nulla in aute ea laboris culpa aliquip aute et.","alt":""},"content":{"images":[{"path":"eight.astec"},{"path":"five.astec"},{"path":"four.astec"},{"path":"nine.astec"},{"path":"one.astec"},{"path":"seven.astec"},{"path":"six.astec"},{"path":"ten.astec"},{"path":"three.astec"},{"path":"two.astec"}]}},"servpro-halloween":{"link":"servpro-halloween","title":"Servpro Halloween","projectDescription":"Labore minim in dolore dolore in aliquip proident dolore ut consectetur ut velit ut duis adipisicing.","mainImage":{"path":"main.servpro-halloween","caption":"Duis dolore nisi sit sed nisi ad esse quis.","alt":""},"content":{"images":[{"path":"five.servpro-halloween"},{"path":"four.servpro-halloween"},{"path":"one.horiz.servpro-halloween"},{"path":"one.mobile.servpro-halloween"},{"path":"one.servpro-halloween"},{"path":"three.horiz.servpro-halloween"},{"path":"three.mobile.servpro-halloween"},{"path":"three.servpro-halloween"},{"path":"two.horiz.servpro-halloween"},{"path":"two.mobile.servpro-halloween"},{"path":"two.servpro-halloween"}]}},"servpro-prep":{"link":"servpro-prep","title":"Servpro Prep","projectDescription":"Labore mollit aute anim ad veniam sed sed deserunt.","mainImage":{"path":"main.servpro-prep","caption":"Consequat veniam sunt veniam nisi","alt":""},"content":{"images":[{"path":"five.servpro-prep"},{"path":"four.horiz.servpro-prep"},{"path":"four.servpro-prep"},{"path":"one.horiz.servpro-prep"},{"path":"one.mobile.servpro-prep"},{"path":"one.servpro-prep"},{"path":"six.servpro-prep"},{"path":"three.horiz.servpro-prep"},{"path":"three.servpro-prep"},{"path":"two.horiz.servpro-prep"},{"path":"two.mobile.servpro-prep"},{"path":"two.servpro-prep"}]}},"servpro-holiday":{"link":"servpro-holiday","title":"Servpro Holiday","projectDescription":"Excepteur nisi magna cupidatat veniam excepteur occaecat laborum in in ullamco quis.","mainImage":{"path":"main.servpro-holiday","caption":"Aliqua proident consequat ad cupidatat excepteur sunt in dolor","alt":""},"content":{"images":[{"path":"five.servpro-holiday"},{"path":"four.servpro-holiday"},{"path":"one.horiz.servpro-holiday"},{"path":"one.mobile.servpro-holiday"},{"path":"one.servpro-holiday"},{"path":"three.horiz.servpro-holiday"},{"path":"three.servpro-holiday"},{"path":"two.horiz.servpro-holiday"},{"path":"two.servpro-holiday"}]}}}
+{
+    "astec": {
+        "link": "astec",
+        "title": "Astec Interactive",
+        "projectDescription": "In laborum quis ut consequat anim laborum sunt mollit in veniam laborum magna minim officia id sed.",
+        "mainImage": {
+            "path": "main.astec",
+            "caption": "Pariatur officia quis eu duis nulla in aute ea laboris culpa aliquip aute et.",
+            "alt": ""
+        },
+        "content": {
+        	"imageRatio": "56.25%",
+            "techList": [
+                ""
+            ],
+            "images": [
+                {
+                    "path": "eight.astec"
+                },
+                {
+                    "path": "five.astec"
+                },
+                {
+                    "path": "four.astec"
+                },
+                {
+                    "path": "nine.astec"
+                },
+                {
+                    "path": "one.astec"
+                },
+                {
+                    "path": "seven.astec"
+                },
+                {
+                    "path": "six.astec"
+                },
+                {
+                    "path": "ten.astec"
+                },
+                {
+                    "path": "three.astec"
+                },
+                {
+                    "path": "two.astec"
+                }
+            ]
+        }
+    },
+    "servpro-halloween": {
+        "link": "servpro-halloween",
+        "title": "Servpro Halloween",
+        "projectDescription": "Labore minim in dolore dolore in aliquip proident dolore ut consectetur ut velit ut duis adipisicing.",
+        "mainImage": {
+            "path": "main.servpro-halloween",
+            "caption": "Duis dolore nisi sit sed nisi ad esse quis.",
+            "alt": ""
+        },
+        "content": {
+            "techList": [
+                ""
+            ],
+        	"imageRatio": "56.25%",
+            "images": [
+                {
+                    "path": "five.servpro-halloween"
+                },
+                {
+                    "path": "four.servpro-halloween"
+                },
+                {
+                    "path": "one.horiz.servpro-halloween"
+                },
+                {
+                    "path": "one.mobile.servpro-halloween"
+                },
+                {
+                    "path": "one.servpro-halloween"
+                },
+                {
+                    "path": "three.horiz.servpro-halloween"
+                },
+                {
+                    "path": "three.mobile.servpro-halloween"
+                },
+                {
+                    "path": "three.servpro-halloween"
+                },
+                {
+                    "path": "two.horiz.servpro-halloween"
+                },
+                {
+                    "path": "two.mobile.servpro-halloween"
+                },
+                {
+                    "path": "two.servpro-halloween"
+                }
+            ]
+        }
+    },
+    "servpro-prep": {
+        "link": "servpro-prep",
+        "title": "Servpro Prep",
+        "projectDescription": "Labore mollit aute anim ad veniam sed sed deserunt.",
+        "mainImage": {
+            "path": "main.servpro-prep",
+            "caption": "Consequat veniam sunt veniam nisi",
+            "alt": ""
+        },
+        "content": {
+            "techList": [
+                ""
+            ],
+        	"imageRatio": "56.25%",
+            "images": [
+                {
+                    "path": "five.servpro-prep"
+                },
+                {
+                    "path": "four.horiz.servpro-prep"
+                },
+                {
+                    "path": "four.servpro-prep"
+                },
+                {
+                    "path": "one.horiz.servpro-prep"
+                },
+                {
+                    "path": "one.mobile.servpro-prep"
+                },
+                {
+                    "path": "one.servpro-prep"
+                },
+                {
+                    "path": "six.servpro-prep"
+                },
+                {
+                    "path": "three.horiz.servpro-prep"
+                },
+                {
+                    "path": "three.servpro-prep"
+                },
+                {
+                    "path": "two.horiz.servpro-prep"
+                },
+                {
+                    "path": "two.mobile.servpro-prep"
+                },
+                {
+                    "path": "two.servpro-prep"
+                }
+            ]
+        }
+    },
+    "servpro-holiday": {
+        "link": "servpro-holiday",
+        "title": "Servpro Holiday",
+        "projectDescription": "Excepteur nisi magna cupidatat veniam excepteur occaecat laborum in in ullamco quis.",
+        "mainImage": {
+            "path": "main.servpro-holiday",
+            "caption": "Aliqua proident consequat ad cupidatat excepteur sunt in dolor",
+            "alt": ""
+        },
+        "content": {
+            "techList": [
+                ""
+            ],
+        	"imageRatio": "56.25%",
+            "images": [
+                {
+                    "path": "five.servpro-holiday"
+                },
+                {
+                    "path": "four.servpro-holiday"
+                },
+                {
+                    "path": "one.horiz.servpro-holiday"
+                },
+                {
+                    "path": "one.mobile.servpro-holiday"
+                },
+                {
+                    "path": "one.servpro-holiday"
+                },
+                {
+                    "path": "three.horiz.servpro-holiday"
+                },
+                {
+                    "path": "three.servpro-holiday"
+                },
+                {
+                    "path": "two.horiz.servpro-holiday"
+                },
+                {
+                    "path": "two.servpro-holiday"
+                }
+            ]
+        }
+    }
+}
