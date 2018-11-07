@@ -55,8 +55,8 @@
 								:path="p.mainImage.path"
 								:alt="p.mainImage.alt"
 							>
-								<h3>{{p.mainImage.caption}}</h3>
-								<p>{{ p.mainImage.alt}}</p>
+								<h3>{{ p.mainImage.alt}}</h3>
+								<p>{{p.mainImage.caption}}</p>
 							</picture-query>
 						</div>
 					</router-link>

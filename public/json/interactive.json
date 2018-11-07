@@ -5,8 +5,8 @@
         "projectDescription": "3d Interactive touchscreen Unreal experience visualizing asphalt plant production equipment",
         "mainImage": {
             "path": "main.astec",
-            "caption": "Astec Planet!",
-            "alt": "Astec Interactive Unreal Experience"
+            "alt": "Astec Planet!",
+            "caption": "Astec Interactive Unreal Experience"
         },
         "content": {
             "article": "This project was created in Unreal and utilized a 60 Inch Elo touch screen. This interactive display helped potential buyers to visualize massive construction machinery in a 3d space. This project was built using Unreal Engine and custom Blueprint scripts. A custom-built UI further programmaticm logic was used to interact with the 3d models as well as navigate through the visual experience.",
@@ -75,12 +75,12 @@
         "projectDescription": "A 2d reactive time-based game with a marketing twist, and a jump-scare ending!",
         "mainImage": {
             "path": "main.servpro-halloween",
-            "caption": "Too scary...",
-            "alt": "Grab the dangerous objects!"
+            "alt": "Too scary...",
+            "caption": "Grab the dangerous objects!"
         },
         "content": {
             "article": "Servpro Halloween was built in Vue with multiple reactive SVG objects. The game logic, data, state and routing are controlled via javascript and JSON. Servpro Halloween features user-controlled audio and is developed to work on mobile and desktop. The content is sized by ratio down to the smallest of screens.",
-            "externalSite": "//tbg.l2.design/halloween/game",
+            "externalSite": "//tbg.l2.design/halloween",
             "code": false,
             "techList": [ "Vue", "Webpack", "babel/ES7", "SVG", "SCSS", "HTML5" ],
         	"imageRatio": "56.25%",
@@ -149,8 +149,8 @@
         "projectDescription": "A Vue based marketing solution as a micro-site.",
         "mainImage": {
             "path": "main.servpro-prep",
-            "caption": "Are you prepared?",
-            "alt": "Do you know which items you'll need in an emergency?"
+            "alt": "Are you prepared?",
+            "caption": "Do you know which items you'll need in an emergency?"
         },
         "content": {
             "article": "An interactive experience leveraging localStorage to limit game play and take return users right to the call-to-action",
@@ -228,8 +228,8 @@
         "projectDescription": "A Christmas themed responsisve informational marketing one-page advertisement.",
         "mainImage": {
             "path": "main.servpro-holiday",
-            "caption": "Happy Holidays!",
-            "alt": "Do you know what dangers are present inside and out?"
+            "alt": "Happy Holidays!",
+            "caption": "Do you know what dangers are present inside and out?"
         },
         "content": {
             "article": "Servpro Holiday is an informational marketing advertisement built with Vue. Servpro Holiday tracks analytical data and user interaction. This informational website is presented with ultra-flexible info-boxes that are built to go anywhere on the page. Users can click through two seperate scenarios inside and outside of the house. Once users have read all info-boxes in one view the user is switched to the other view in a cancelable loop.",
