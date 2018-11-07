@@ -43,7 +43,7 @@
 
 		</transition>
 
-  		<div v-if="showImages && images.mobile && images.mobile.length" >
+  		<div :class="[ 'image-container' ]" v-if="showImages && images.mobile && images.mobile.length" >
 
   			<transition-group
   			  name="staggered-fade"
@@ -82,7 +82,7 @@
 
   		</div>
 
-		<div v-if="showImages && images.horiz && images.horiz.length" >
+		<div :class="[ 'image-container' ]" v-if="showImages && images.horiz && images.horiz.length" >
 
 			<transition-group
 				name="staggered-fade"
@@ -119,7 +119,7 @@
 
 		</div>
 
-		<div v-if="showImages && images.regular && images.regular.length" >
+		<div :class="[ 'image-container' ]" v-if="showImages && images.regular && images.regular.length" >
 
 			<transition-group
 				name="staggered-fade"
@@ -308,6 +308,10 @@
 
 <style lang="scss" scoped >
 
+	.image-container {
+		align-self: normal;
+	}
+
 	.images {
 		line-height: 0;
 		column-count: 5;
@@ -319,12 +323,14 @@
 		height: auto !important;
 	}
 	article {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 		padding:0 10%;
 	}
 	.article-header {
-
+		max-width:600px;
 		padding-bottom: 10%;
-
 		> *:not( .external ) {
 			display:inline-block;
 			width:100%;
@@ -346,7 +352,6 @@
 		column-count:1;
 		line-height:24px;
 		text-align:left;
-		max-width:600px;
 
 		@media only screen and (min-width:630px) {
 			column-count:2;
