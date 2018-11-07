@@ -2,6 +2,10 @@
 
 	<article class="project"  >
 
+		<transition name="fade" appear >
+			<router-view :images="images" />
+		</transition>
+
 		<transition name="fade" appear mode="out-in"
 			v-on:enter="articleEnter"
 		>
@@ -58,12 +62,19 @@
 	  				v-bind:key="image.path"
 	  				v-if="phoneVertLoaded"
 	  			>
-					<picture-query
-						:type=" $route.params.type "
-						:path=" image.path "
-						:alt=" '' "
-					>
-					</picture-query>
+
+	  				<router-link
+	  					:to=" `/${type}/${project.link}/${image.path}`"
+						:class="['link']"
+	  				>
+						<picture-query
+							:type=" type "
+							:path=" image.path "
+							:alt=" '' "
+						>
+						</picture-query>
+					</router-link>
+
 				</div>
 
 	  		</transition-group>
@@ -89,43 +100,17 @@
 					v-bind:key="image.path"
 					v-if="phoneVertLoaded"
 				>
-					<picture-query
-						:type=" $route.params.type "
-						:path=" image.path "
-						:alt=" '' "
+					<router-link
+						:to=" `/${type}/${project.link}/${image.path}`"
+						:class="['link']"
 					>
-					</picture-query>
-				</div>
-
-			</transition-group>
-
-		</div>
-
-		<div v-if="showImages && images.horiz && images.horiz.length" >
-
-			<transition-group
-				name="staggered-fade"
-				tag="div"
-				v-bind:css="false"
-				v-on:before-enter="beforeEnter"
-				v-on:enter="enter"
-				v-on:leave="leave"
-				:class="[ 'horiz', 'grid' ]"
-			>
-
-				<div
-					v-for=" (image,i) in images.horiz"
-					style="position:relative;"
-					:data-index="i"
-					v-bind:key="image.path"
-					v-if="phoneVertLoaded"
-				>
-					<picture-query
-						:type=" $route.params.type "
-						:path=" image.path "
-						:alt=" '' "
-					>
-					</picture-query>
+						<picture-query
+							:type=" type "
+							:path=" image.path "
+							:alt=" '' "
+						>
+						</picture-query>
+					</router-link>
 				</div>
 
 			</transition-group>
@@ -150,13 +135,19 @@
 					:data-index="i"
 					v-bind:key="image.path"
 					v-if="phoneVertLoaded"
+					:style="{ paddingBottom: project.content.imageRatio }"
 				>
-					<picture-query
-						:type=" $route.params.type "
-						:path=" image.path "
-						:alt=" '' "
+					<router-link
+						:to=" `/${type}/${project.link}/${image.path}`"
+						:class="['link']"
 					>
-					</picture-query>
+						<picture-query
+							:type=" type "
+							:path=" image.path "
+							:alt=" '' "
+						>
+						</picture-query>
+					</router-link>
 				</div>
 
 			</transition-group>
@@ -168,12 +159,12 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
 	import Picture from '@/components/Picture.vue';
 	import Loader from "@/components/Loader.vue";
 	import PhoneVert from '@/assets/ui/mobile.vert.png';
 	import PhoneHoriz from '@/assets/ui/mobile.horiz.png';
-	import mixins from '@/mixins';
+	import animateIn from '@/mixins/animateIn';
+	import projects from '@/mixins/projects';
 
 	export default {
 
@@ -182,7 +173,7 @@
 			'picture-query': Picture
 		},
 
-		mixins: [mixins],
+		mixins: [ animateIn, projects ],
 
 		data() {
 			return {
@@ -191,47 +182,9 @@
 				showImages: false
 			}
 		},
-		computed: {
-			...mapGetters([
-				'getProject'
-			]),
-
-			type() {
-				return this.$route.params.type;
-			},
-
-			project() {
-				return this.getProject( { name: this.type, project: this.$route.params.project } );
-			},
-
-			images() {
-
-				if ( !this.project ) return false;
-
-				return this.project.content.images.reduce( (result, item ) => {
-
-						if ( item.path.includes( 'mobile' ) ) {
-							result.mobile.push( item );
-						} else if ( item.path.includes( 'horiz' ) ) {
-							result.horiz.push( item );
-						} else {
-							result.regular.push( item );
-						}
-
-						return result;
-					}, { mobile: [], regular: [], horiz: [] } );
-
-			}
-
-		},
 
 		mounted() {
-
-			if ( !this.project ) {
-				this.$store.dispatch('setProjects', this.type );
-			}
 			this.checkPhone();
-
 		},
 
 		methods: {
@@ -264,7 +217,26 @@
 </script>
 
 <style lang="scss" >
+
 	.grid {
+
+		width:100%;
+		display: grid;
+		grid-template-columns: repeat( auto-fill, minmax(400px, 1fr ) );
+		grid-gap: 2rem;
+		margin-bottom:10%;
+		perspective: 1000px;
+		perspective-origin:center;
+		> div {
+			padding-bottom: 56.25%;
+			transform-origin:center;
+			transform: translate3d(0,0,0);
+			transition: transform 150ms ease;
+			&:hover {
+				transform: translate3d(0,0,10px);
+			}
+		}
+
 		source, img {
 			object-fit: contain;
 			width: 100%;
@@ -279,7 +251,40 @@
 			font-size:16px;
 			text-align:left;
 		}
+
+		@media only screen and (max-width:630px) {
+			grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) )
+		}
+
 	}
+
+	.grid.horiz {
+		> div {
+			padding-bottom: 56.1%;
+			@media only screen and (min-width: 630px) {
+				padding-bottom: 49.21%;
+				background-image: url( '~@/assets/ui/mobile.horiz.png' );
+				background-size: cover;
+				background-position: center;
+			}
+
+		}
+	}
+
+	.grid.mobile {
+		width:100%;
+		grid-template-columns: repeat( auto-fill, minmax(200px, 1fr ) );
+		> div {
+			padding-bottom: 177%;
+			@media only screen and (min-width: 630px) {
+				padding-bottom: 202.9%;
+				background-image: url( '~@/assets/ui/mobile.vert.png' );
+				background-size: cover;
+				background-position: center;
+			}
+		}
+	}
+
 	@media only screen and (min-width: 630px) {
 		.grid.horiz figure {
 			width: 77.5%;
@@ -348,51 +353,6 @@
 			column-count:3;
 		}
 
-	}
-
-	.grid {
-
-		width:100%;
-		display: grid;
-		grid-template-columns: repeat( auto-fill, minmax(400px, 1fr ) );
-		grid-gap: 2rem;
-		margin-bottom:10%;
-
-		> div {
-			padding-bottom:62.5% ;
-		}
-
-		@media only screen and (max-width:630px) {
-			grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) )
-		}
-
-	}
-
-	.grid.horiz {
-		> div {
-			padding-bottom: 56.1%;
-			@media only screen and (min-width: 630px) {
-				padding-bottom: 49.21%;
-				background-image: url( '~@/assets/ui/mobile.horiz.png' );
-				background-size: cover;
-				background-position: center;
-			}
-
-		}
-	}
-
-	.grid.mobile {
-		width:100%;
-		grid-template-columns: repeat( auto-fill, minmax(200px, 1fr ) );
-		> div {
-			padding-bottom: 177%;
-			@media only screen and (min-width: 630px) {
-				padding-bottom: 202.9%;
-				background-image: url( '~@/assets/ui/mobile.vert.png' );
-				background-size: cover;
-				background-position: center;
-			}
-		}
 	}
 
 </style>

@@ -3,10 +3,10 @@
 	<div>
 
 		<transition name="fade" mode="out-in" appear >
-			<h1 :key="$route.params.type" class="push">
-				{{$route.params.type}} Projects
+			<h1 :key="type" class="push">
+				{{type}} Projects
 				<transition name="fade" >
-					<span v-if="!projects($route.params.type)" >
+					<span v-if="!projects" >
 						&hellip;
 					</span>
 				</transition>
@@ -17,7 +17,7 @@
 
 			<transition name="fade" appear >
 
-				<p :key="$route.params.type" v-if="!projects($route.params.type)" :class="[ 'loading' ]">LOADING <Loader :go=" ( !projects($route.params.type) ) " /> </p>
+				<p :key="type" v-if="!projects" :class="[ 'loading' ]">LOADING <Loader :go=" ( !projects ) " /> </p>
 
 				<div
 				v-else
@@ -37,26 +37,26 @@
 
 					<router-link
 
-						v-for="(project,i) in projects($route.params.type)"
-						:to="`${$route.params.type}/${project.link}`"
+						v-for="(p,i) in projects"
+						:to="`${type}/${p.link}`"
 						:class="[ 'link' ]"
-						:data-index="getIndex(project.link)"
-						v-bind:key="project.mainImage.path"
-						:style="{ 'animationDelay': String( getIndex(project.link) * 150 ) + 'ms' }"
+						:data-index="getIndex(p.link)"
+						v-bind:key="p.mainImage.path"
+						:style="{ 'animationDelay': String( getIndex(p.link) * 150 ) + 'ms' }"
 					>
 						<div :class="[ 'main-description' ]" >
-							<h3>{{ project.title }}</h3>
-							<small>{{ project.projectDescription }}</small>
+							<h3>{{ p.title }}</h3>
+							<small>{{ p.projectDescription }}</small>
 						</div>
 
 						<div :class="'image'" >
 							<picture-query
-								:type="$route.params.type"
-								:path="project.mainImage.path"
-								:alt="project.mainImage.alt"
+								:type="type"
+								:path="p.mainImage.path"
+								:alt="p.mainImage.alt"
 							>
-								<h3>{{ project.title }} Title </h3>
-								<p>{{ project.mainImage.caption }} This is a caption; </p>
+								<h3>{{ p.title }} Title </h3>
+								<p>{{ p.mainImage.caption }} This is a caption; </p>
 							</picture-query>
 						</div>
 					</router-link>
@@ -75,37 +75,18 @@
 	import { mapGetters } from 'vuex';
 	import Loader from "@/components/Loader.vue";
 	import Picture from '@/components/Picture.vue';
-	import mixin from '@/mixins';
+	import animateIn from '@/mixins/animateIn';
+	import projects from '@/mixins/projects';
 
 	export default {
 		components: {
 			Loader,
 			'picture-query': Picture
 		},
-		mixins: [mixin],
-		props: ['images'],
-		computed: {
-			...mapGetters([
-				`projects`
-			])
-		},
-		watch: {
-			'$route'(routeName) {
-				this.startApp(routeName.params.type);
-			},
-		},
-		mounted() {
-			this.startApp();
-		},
+		mixins: [ animateIn, projects ],
 		methods: {
-			startApp( routeName = this.$route.params.type ) {
-				this.dispatchProjects(routeName);
-			},
-			dispatchProjects(routeName) {
-				this.$store.dispatch('setProjects', routeName);
-			},
 			getIndex(name) {
-				return Object.keys( this.projects(this.$route.params.type) ).indexOf( name );
+				return Object.keys( this.projects ).indexOf( name );
 			}
 		}
 	};
