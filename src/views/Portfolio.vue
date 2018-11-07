@@ -38,7 +38,7 @@
 					<router-link
 
 						v-for="(p,i) in projects"
-						:to="`${type}/${p.link}`"
+						:to="`/${type}/${p.link}`"
 						:class="[ 'link' ]"
 						:data-index="getIndex(p.link)"
 						v-bind:key="p.mainImage.path"
@@ -55,8 +55,8 @@
 								:path="p.mainImage.path"
 								:alt="p.mainImage.alt"
 							>
-								<h3>{{ p.title }} Title </h3>
-								<p>{{ p.mainImage.caption }} This is a caption; </p>
+								<h3>{{p.mainImage.caption}}</h3>
+								<p>{{ p.mainImage.alt}}</p>
 							</picture-query>
 						</div>
 					</router-link>

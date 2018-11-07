@@ -23,21 +23,21 @@
 			  	<h1>{{project.title}}</h1>
 			  	<h3>{{project.projectDescription}}</h3>
 
-			  	<div class="buttons" >
-			  		<a href="#" target="_blank" :class="[ 'external' ]" > Visit (external site) </a>
+			  	<div v-if="project.content.code || project.content.externalSite" class="buttons" >
+			  		<a :href="project.content.externalSite" v-if="project.content.externalSite" target="_blank" :class="[ 'external' ]" > Visit (external site) </a>
 			  		&nbsp;
-			  		<a href="#" target="_blank" :class="[ 'external' ]" >
+			  		<a :href="project.content.code" v-if="project.content.code" target="_blank" :class="[ 'external' ]" >
 			  			//code
 			  		</a>
 			  	</div>
 
-			  	<div class="buttons" >
+			  	<div v-if="project.content.techList" class="buttons" >
 			  		<h4>Tech List: </h4>
-			  		<p>some, list, that, goes, on, forever</p>
+			  		<p>{{ project.content.techList }}</p>
 			  	</div>
 
-			  	<p :class="['description']">
-			  		{{ project.content.article }} Minim aute adipisicing officia excepteur veniam dolor exercitation consequat occaecat aute dolor nostrud laborum in veniam in veniam sunt id sit proident sit cillum laboris dolor excepteur officia esse nostrud dolore ad labore deserunt incididunt non aliqua proident est incididunt do commodo incididunt laborum qui ad minim labore ut dolor reprehenderit fugiat qui reprehenderit ut enim et nisi minim dolore dolore sed dolore quis ad aliqua eu reprehenderit ea culpa ea sunt ea nisi laboris qui duis sunt anim enim ad dolore officia eiusmod do ea ullamco sit consequat adipisicing do fugiat officia irure sit consequat velit incididunt enim dolor sint eu eiusmod reprehenderit deserunt cupidatat sed enim ut dolore in ut cupidatat dolore qui duis nulla ut ex do fugiat minim in sit et nulla veniam dolore.
+			  	<p v-if="project.content.article" :class="['description']">
+			  		{{ project.content.article }}
 			  	</p>
 			</div>
 
@@ -68,10 +68,11 @@
 						:class="['link']"
 	  				>
 						<picture-query
-							:type=" type "
-							:path=" image.path "
-							:alt=" '' "
+							:type="type"
+							:path="image.path"
+							:alt="image.alt"
 						>
+							{{ image.caption }}
 						</picture-query>
 					</router-link>
 
@@ -107,8 +108,9 @@
 						<picture-query
 							:type=" type "
 							:path=" image.path "
-							:alt=" '' "
+							:alt="image.alt"
 						>
+							{{ image.caption }}
 						</picture-query>
 					</router-link>
 				</div>
@@ -144,8 +146,9 @@
 						<picture-query
 							:type=" type "
 							:path=" image.path "
-							:alt=" '' "
+							:alt="image.alt"
 						>
+							{{ image.caption }}
 						</picture-query>
 					</router-link>
 				</div>
@@ -343,15 +346,15 @@
 		column-count:1;
 		line-height:24px;
 		text-align:left;
-		max-width:1000px;
+		max-width:600px;
 
 		@media only screen and (min-width:630px) {
 			column-count:2;
 		}
 
-		@media only screen and (min-width:1000px) {
-			column-count:3;
-		}
+		// @media only screen and (min-width:1000px) {
+		// 	column-count:3;
+		// }
 
 	}
 
