@@ -52,10 +52,7 @@
   }
 
   ul {
-
-    border:0.25px solid darken(white, 8%);
     margin:0;
-
   }
 
   li {
