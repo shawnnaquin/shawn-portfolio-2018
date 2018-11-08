@@ -1,4 +1,304 @@
 {
+    "l2d": {
+        "link": "l2d",
+        "title": "L2D Agency",
+        "projectDescription": "Eiusmod sed id cillum minim magna amet ex incididunt minim.",
+        "mainImage": {
+            "path": "main.l2d",
+            "caption": "Sit commodo nisi mollit et voluptate nulla in ea anim excepteur.",
+            "alt": ""
+        },
+        "content": {
+            "techList": [
+                ""
+            ],
+            "imageRatio": "62.5%",
+            "images": [
+                {
+                    "path": "eight.l2d"
+                },
+                {
+                    "path": "five.l2d"
+                },
+                {
+                    "path": "four.l2d"
+                },
+                {
+                    "path": "four.mobile.l2d"
+                },
+                {
+                    "path": "one.horiz.l2d"
+                },
+                {
+                    "path": "one.l2d"
+                },
+                {
+                    "path": "one.mobile.l2d"
+                },
+                {
+                    "path": "seven.l2d"
+                },
+                {
+                    "path": "six.l2d"
+                },
+                {
+                    "path": "three.l2d"
+                },
+                {
+                    "path": "three.mobile.l2d"
+                },
+                {
+                    "path": "two.l2d"
+                },
+                {
+                    "path": "two.mobile.l2d"
+                }
+            ]
+        }
+    },
+    "sos": {
+        "link": "sos",
+        "title": "Safe Online Surfing",
+        "projectDescription": "Eiusmod sed id cillum minim magna amet ex incididunt minim.",
+        "mainImage": {
+            "path": "main.sos",
+            "alt": "",
+            "caption": "Sit commodo nisi mollit et voluptate nulla in ea anim excepteur."
+        },
+        "content": {
+            "imageRatio": "62.5%",
+            "images": [
+                {
+                    "path": "one.sos"
+                },
+                {
+                    "path": "eight.sos"
+                },
+                {
+                    "path": "eleven.sos"
+                },
+                {
+                    "path": "fifteen.sos"
+                },
+                {
+                    "path": "five.sos"
+                },
+                {
+                    "path": "four.sos"
+                },
+                {
+                    "path": "fourteen.sos"
+                },
+                {
+                    "path": "nine.sos"
+                },
+                {
+                    "path": "seven.sos"
+                },
+                {
+                    "path": "six.sos"
+                },
+                {
+                    "path": "sixteen.sos"
+                },
+                {
+                    "path": "ten.sos"
+                },
+                {
+                    "path": "three.sos"
+                },
+                {
+                    "path": "thrirteen.sos"
+                },
+                {
+                    "path": "twelve.sos"
+                },
+                {
+                    "path": "two.sos"
+                },
+                {
+                    "path": "seventeen.sos"
+                }
+            ]
+        }
+    },
+    "rtc": {
+        "link": "rtc",
+        "title": "Ringgold Telecommunications Company",
+        "projectDescription": "Eiusmod sed id cillum minim magna amet ex incididunt minim.",
+        "mainImage": {
+            "path": "main.rtc",
+            "caption": "Sit commodo nisi mollit et voluptate nulla in ea anim excepteur.",
+            "alt": ""
+        },
+        "content": {
+            "techList": [
+                ""
+            ],
+            "imageRatio": "62.5%",
+            "images": [
+                {
+                    "path": "five.rtc"
+                },
+                {
+                    "path": "four.mobile.rtc"
+                },
+                {
+                    "path": "four.rtc"
+                },
+                {
+                    "path": "one.horiz.rtc"
+                },
+                {
+                    "path": "one.mobile.rtc"
+                },
+                {
+                    "path": "one.rtc"
+                },
+                {
+                    "path": "seven.rtc"
+                },
+                {
+                    "path": "six.rtc"
+                },
+                {
+                    "path": "three.horiz.rtc"
+                },
+                {
+                    "path": "three.mobile.rtc"
+                },
+                {
+                    "path": "three.rtc"
+                },
+                {
+                    "path": "two.horiz.rtc"
+                },
+                {
+                    "path": "two.mobile.rtc"
+                },
+                {
+                    "path": "two.rtc"
+                }
+            ]
+        }
+    },
+    "crg": {
+        "link": "crg",
+        "title": "Chattanooga Roller Girls",
+        "projectDescription": "A Wordpress site built from the Foundation Sites Framework",
+        "mainImage": {
+            "path": "main.crg",
+            "alt": "CRG Logo",
+            "caption": "The mascott of the CRG skates forward while the website loads."
+        },
+        "content": {
+        	"article": "This custom-built Wordpress Theme for the Chattanooga WFTDA Roller Derby team features several custom plugins. Advanced User Roles, Custom Categories, Custom Types, Google Analytics... the works! This theme was developed from the groundup to be versatile. Chattanooga Roller Girls features smooth page transitions for a seemless experience through javascript.",
+        	"techList": [
+        		"Wordpress",
+        		"PHP",
+        		"Foundation",
+        		"SCSS",
+        		"Grunt",
+                "Webpack",
+                "Javascript"
+        	],
+        	"code": "https://github.com/shawnnaquin/chattgirls_v2/",
+        	"externalSite": "https://chattanoogarollergirls.com/",
+            "imageRatio": "62.5%",
+            "images": [
+                {
+                    "path": "one.crg",
+                    "alt": "Team Logo",
+                    "caption": "Team mascott skates by while the data loads."
+                },
+                {
+                    "path": "five.crg",
+                    "alt": "Individual Skater",
+                    "caption": "Individual Skater pages are presented in slider which tracks the user's history using the history API."
+                },
+                {
+                    "path": "five.horiz.crg",
+                    "alt": "Next Home Bout",
+                    "caption": "the Next Home Bouts are displayed front and center even on odd sized devices."
+                },
+                {
+                    "path": "two.mobile.crg",
+                    "alt": "Mobile Skater",
+                    "caption": "An indiviual's skater pages takes up more of the frame on a mobile device."
+                },
+                {
+                    "path": "four.crg",
+                    "alt": "Schedule Page",
+                    "caption": "The Schedule page is a similar layout to the homepage so that users are presented information in a manner that feels familiar."
+                },
+                {
+                    "path": "four.horiz.crg",
+                    "alt": "Instagram Feed",
+                    "caption": "CRG connects live to the Instagram Feed so that images are always current."
+                },
+                {
+                    "path": "four.mobile.crg",
+                    "alt": "Coaches and Staff",
+                    "caption": "Coaches and Staff are also in a responsive format."
+                },
+                {
+                    "path": "one.horiz.crg",
+                    "alt": "Mobile Skater Page",
+                    "caption": "Skater's are presented in pairs on mobile."
+                },
+                {
+                    "path": "one.mobile.crg",
+                    "alt": "Team Mascott Mobile",
+                    "caption": "The Logo is made using SVG"
+                },
+                {
+                    "path": "seven.mobile.crg",
+                    "alt": "Alternate Page Transition",
+                    "caption": "When switching between interior views the page smoothly transitions and interupts the viewer with a loading screen."
+                },
+                {
+                    "path": "six.crg",
+                    "alt": "Sponsor Logos",
+                    "caption": "Sponsors are layed out in a responsive grid fixed to a ratio."
+                },
+                {
+                    "path": "six.mobile.crg",
+                    "alt": "Custom Categories and Fieds",
+                    "caption": "This theme depends on custom data and logic before presenting a readable schedule."
+                },
+                {
+                    "path": "three.crg",
+                    "alt": "Desktop Homepage",
+                    "caption": "The Homepage view on desktop for CRG."
+                },
+                {
+                    "path": "three.horiz.crg",
+                    "alt": "Readable Page",
+                    "caption": "The page content is still readable even on tiny devices!"
+                },
+                {
+                    "path": "three.mobile.crg",
+                    "alt": "Recent Phots",
+                    "caption": "Any device can fetch the most recent photos the the Instagram API."
+                },
+                {
+                    "path": "two.crg",
+                    "alt": "Banner",
+                    "caption": "Homepage Desktop view with banner."
+                },
+                {
+                    "path": "two.horiz.crg",
+                    "alt": "Mobile Banner",
+                    "caption": "Homepage Mobile view with banner."
+                },
+                {
+                    "path": "five.mobile.crg",
+                    "alt": "Mobile Menu",
+                    "caption": "On mobile devices the hamburger menu expands to reveal an offscreen menu."
+                }
+            ]
+        }
+    },
     "buntin": {
         "link": "buntin",
         "title": "Buntin Media Group",
@@ -12,7 +312,7 @@
             "techList": [
                 ""
             ],
-        	"imageRatio": "62.5%",
+            "imageRatio": "62.5%",
             "images": [
                 {
                     "path": "eight.buntin"
@@ -106,7 +406,7 @@
             "tech": "",
             "layout": "mix",
             "behance": "",
-        	"imageRatio": "56.25%",
+            "imageRatio": "56.25%",
             "images": [
                 {
                     "path": "five.drm"
@@ -143,123 +443,6 @@
                 },
                 {
                     "path": "two.mobile.drm"
-                }
-            ]
-        }
-    },
-    "rtc": {
-        "link": "rtc",
-        "title": "Ringgold Telecommunications Company",
-        "projectDescription": "Eiusmod sed id cillum minim magna amet ex incididunt minim.",
-        "mainImage": {
-            "path": "main.rtc",
-            "caption": "Sit commodo nisi mollit et voluptate nulla in ea anim excepteur.",
-            "alt": ""
-        },
-        "content": {
-            "techList": [
-                ""
-            ],
-        	"imageRatio": "62.5%",
-            "images": [
-                {
-                    "path": "five.rtc"
-                },
-                {
-                    "path": "four.mobile.rtc"
-                },
-                {
-                    "path": "four.rtc"
-                },
-                {
-                    "path": "one.horiz.rtc"
-                },
-                {
-                    "path": "one.mobile.rtc"
-                },
-                {
-                    "path": "one.rtc"
-                },
-                {
-                    "path": "seven.rtc"
-                },
-                {
-                    "path": "six.rtc"
-                },
-                {
-                    "path": "three.horiz.rtc"
-                },
-                {
-                    "path": "three.mobile.rtc"
-                },
-                {
-                    "path": "three.rtc"
-                },
-                {
-                    "path": "two.horiz.rtc"
-                },
-                {
-                    "path": "two.mobile.rtc"
-                },
-                {
-                    "path": "two.rtc"
-                }
-            ]
-        }
-    },
-    "l2d": {
-        "link": "l2d",
-        "title": "L2D Agency",
-        "projectDescription": "Eiusmod sed id cillum minim magna amet ex incididunt minim.",
-        "mainImage": {
-            "path": "main.l2d",
-            "caption": "Sit commodo nisi mollit et voluptate nulla in ea anim excepteur.",
-            "alt": ""
-        },
-        "content": {
-            "techList": [
-                ""
-            ],
-        	"imageRatio": "62.5%",
-            "images": [
-                {
-                    "path": "eight.l2d"
-                },
-                {
-                    "path": "five.l2d"
-                },
-                {
-                    "path": "four.l2d"
-                },
-                {
-                    "path": "four.mobile.l2d"
-                },
-                {
-                    "path": "one.horiz.l2d"
-                },
-                {
-                    "path": "one.l2d"
-                },
-                {
-                    "path": "one.mobile.l2d"
-                },
-                {
-                    "path": "seven.l2d"
-                },
-                {
-                    "path": "six.l2d"
-                },
-                {
-                    "path": "three.l2d"
-                },
-                {
-                    "path": "three.mobile.l2d"
-                },
-                {
-                    "path": "two.l2d"
-                },
-                {
-                    "path": "two.mobile.l2d"
                 }
             ]
         }
