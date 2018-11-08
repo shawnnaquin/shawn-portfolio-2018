@@ -117,7 +117,6 @@ export default {
 	},
 	mounted() {
 		this.keyPress();
-		console.log( this.$router );
 	}
 
 };
