@@ -10,7 +10,7 @@
         },
         "content": {
             "article": "",
-            "externalSite": "//sos.fbi.gov",
+            "externalSite": "//l2d.co/",
             "code": false,
             "techList": [
                 ""
@@ -88,105 +88,111 @@
     "sos": {
         "link": "sos",
         "title": "Safe Online Surfing",
-        "projectDescription": "",
+        "projectDescription": "SOS features games butilt with HTML5 and Javascript ",
         "mainImage": {
             "path": "main.sos",
-            "alt": "",
-            "caption": ""
+            "alt": "Online Surfing",
+            "caption": "A character makes surfs their way around several obstacles."
         },
         "content": {
-            "article": "",
+            "article": "This website is built with sessionStorage to keep user data. User data is applied via a gamestate to keep track of student's interaction. This website largely leverages CSS transitions rather than javascript animation. SOS functions well even on deprecated browser and is built to be IE9 Strict! The content's data structure allows for easy language translation. An entire side project was built leveraging node.js to convert the site's data to spreadsheets and then back to JSON.",
             "externalSite": "//sos.fbi.gov",
             "code": false,
             "techList": [
-                ""
+                "HTML5",
+                "SCSS",
+                "Grunt",
+                "Javascript",
+                "Assemble",
+                "JSON",
+                "compatibility"
             ],
             "imageRatio": "62.5%",
             "images": [
                 {
                     "path": "one.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Home Page",
+                    "caption": "The Home landing page displays all of the critical information in a highly visible manner. Students can choose which grade level they'd like to play."
                 },
                 {
                     "path": "eight.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Treasure Hunt",
+                    "caption": "Students must collect all of the hidden coins. Once a coin is revealed the student must answer a challenge question. If the submitted answer is correct a coin is collected. The Health Bar displays the game status."
                 },
                 {
                     "path": "eleven.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Crossing To Safety",
+                    "caption": "Line up the board walk to create a path across to the other beach."
                 },
                 {
                     "path": "fifteen.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "6th Grade",
+                    "caption": "Each grade has it's own character and color scheme. In addition the island is themed for the character."
                 },
                 {
                     "path": "five.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "A Challenge",
+                    "caption": "Students must answer questions during the games in order to succesfully finish."
                 },
                 {
                     "path": "four.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Flexible Challenges",
+                    "caption": "Questions can be formatted in several ways but all use the same general structure and class names."
                 },
                 {
                     "path": "fourteen.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Island View",
+                    "caption": "Each island contains several themed challenges involving."
                 },
                 {
                     "path": "nine.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Computer Health",
+                    "caption": "In Computer Health students must keep their computer healthy by responding to a series of questions."
                 },
                 {
                     "path": "seven.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Safe Surfing",
+                    "caption": "A surfing character succesfully dodges an obstacle after a correct answer."
                 },
                 {
                     "path": "six.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Finish Screen",
+                    "caption": "A Congratulation screen after succesfully completing a challenge."
                 },
                 {
                     "path": "sixteen.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Several Characters",
+                    "caption": "The Island can be configured with dots placed at any point on the screen. The dots and numbers are mapped to various games."
                 },
                 {
                     "path": "ten.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Personal Information",
+                    "caption": "A challenge to unlock all the spaces within a game."
                 },
                 {
                     "path": "three.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Modals",
+                    "caption": "The modal present information about the contest in order to keep educators informed."
                 },
                 {
                     "path": "thrirteen.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Onboarding Instructions",
+                    "caption": "Users are presented a set of instructions for completing each seperate contest."
                 },
                 {
                     "path": "twelve.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Marine Matching",
+                    "caption": "The student must match the word with the definition."
                 },
                 {
                     "path": "two.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Grid of Grades",
+                    "caption": "The difficulty of the contest depends on the grade level."
                 },
                 {
                     "path": "seventeen.sos",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "The Results",
+                    "caption": "A succesfull completion of the surfing game before the final screen."
                 }
             ]
         }
