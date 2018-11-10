@@ -3,8 +3,8 @@
 
     <transition name="long-fade" >
 
-      <div :class="[ 'loader' ]" v-if="getLoading" >
-        <p>Loading <Loader :go="getLoading" /></p>
+      <div :class="[ 'loader' ]"  v-if="getLoading" >
+        <p :class="[ 'paragraph' ]" >Loading <Loader :go="getLoading" /></p>
       </div>
 
     </transition>
@@ -42,7 +42,10 @@ export default {
 </script>
 
 <style lang="scss" scoped >
-
+    
+    .paragraph {
+      margin: 0 auto;
+    }
     .loader {
       background: black;
       position: fixed;
