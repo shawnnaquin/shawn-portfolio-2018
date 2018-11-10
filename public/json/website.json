@@ -5,53 +5,82 @@
         "projectDescription": "Eiusmod sed id cillum minim magna amet ex incididunt minim.",
         "mainImage": {
             "path": "main.l2d",
-            "caption": "Sit commodo nisi mollit et voluptate nulla in ea anim excepteur.",
-            "alt": ""
+            "alt": "",
+            "caption": "Sit commodo nisi mollit et voluptate nulla in ea anim excepteur."
         },
         "content": {
+            "article": "",
+            "externalSite": "//sos.fbi.gov",
+            "code": false,
             "techList": [
                 ""
             ],
             "imageRatio": "62.5%",
             "images": [
                 {
-                    "path": "eight.l2d"
+                    "path": "eight.l2d",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "five.l2d"
+                    "path": "five.l2d",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "four.l2d"
+                    "path": "four.l2d",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "four.mobile.l2d"
+                    "path": "four.mobile.l2d",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "one.horiz.l2d"
+                    "path": "one.horiz.l2d",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "one.l2d"
+                    "path": "one.l2d",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "one.mobile.l2d"
+                    "path": "one.mobile.l2d",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "seven.l2d"
+                    "path": "seven.l2d",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "six.l2d"
+                    "path": "six.l2d",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "three.l2d"
+                    "path": "three.l2d",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "three.mobile.l2d"
+                    "path": "three.mobile.l2d",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "two.l2d"
+                    "path": "two.l2d",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "two.mobile.l2d"
+                    "path": "two.mobile.l2d",
+                    "alt": "",
+                    "caption": ""
                 }
             ]
         }
@@ -59,65 +88,105 @@
     "sos": {
         "link": "sos",
         "title": "Safe Online Surfing",
-        "projectDescription": "Eiusmod sed id cillum minim magna amet ex incididunt minim.",
+        "projectDescription": "",
         "mainImage": {
             "path": "main.sos",
             "alt": "",
-            "caption": "Sit commodo nisi mollit et voluptate nulla in ea anim excepteur."
+            "caption": ""
         },
         "content": {
+            "article": "",
+            "externalSite": "//sos.fbi.gov",
+            "code": false,
+            "techList": [
+                ""
+            ],
             "imageRatio": "62.5%",
             "images": [
                 {
-                    "path": "one.sos"
+                    "path": "one.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "eight.sos"
+                    "path": "eight.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "eleven.sos"
+                    "path": "eleven.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "fifteen.sos"
+                    "path": "fifteen.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "five.sos"
+                    "path": "five.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "four.sos"
+                    "path": "four.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "fourteen.sos"
+                    "path": "fourteen.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "nine.sos"
+                    "path": "nine.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "seven.sos"
+                    "path": "seven.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "six.sos"
+                    "path": "six.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "sixteen.sos"
+                    "path": "sixteen.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "ten.sos"
+                    "path": "ten.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "three.sos"
+                    "path": "three.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "thrirteen.sos"
+                    "path": "thrirteen.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "twelve.sos"
+                    "path": "twelve.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "two.sos"
+                    "path": "two.sos",
+                    "alt": "",
+                    "caption": ""
                 },
                 {
-                    "path": "seventeen.sos"
+                    "path": "seventeen.sos",
+                    "alt": "",
+                    "caption": ""
                 }
             ]
         }
@@ -125,59 +194,94 @@
     "rtc": {
         "link": "rtc",
         "title": "Ringgold Telecommunications Company",
-        "projectDescription": "Eiusmod sed id cillum minim magna amet ex incididunt minim.",
+        "projectDescription": "Telecommunications Provider Website built with Foundation and Craft.",
         "mainImage": {
             "path": "main.rtc",
-            "caption": "Sit commodo nisi mollit et voluptate nulla in ea anim excepteur.",
-            "alt": ""
+            "alt": "3d Animation",
+            "caption": "ThreeJS script featuring waveforms."
         },
         "content": {
+            "article": "RTC needed a proven front-end reliable enough for customers to gain access to essential services. Special attention was payed to accesibility and performance tests. RTC is sleek and stylish while serving the public.",
+            "externalSite": "//rtctel.com/",
+            "code": false,
             "techList": [
-                ""
+                "Craft CMS",
+                "Foundation",
+                "Font-Awesome",
+                "Grunt",
+                "Javascript"
             ],
             "imageRatio": "62.5%",
             "images": [
                 {
-                    "path": "five.rtc"
+                    "path": "five.rtc",
+                    "alt": "Parallax",
+                    "caption": "The site uses parallax to emphasize graphics in a two-column responsive layout."
                 },
                 {
-                    "path": "four.mobile.rtc"
+                    "path": "four.mobile.rtc",
+                    "alt": "Animations",
+                    "caption": "RTC features several animations including a three JS wave along with an SVG throttle animation."
                 },
                 {
-                    "path": "four.rtc"
+                    "path": "four.rtc",
+                    "alt": "Informational Layout",
+                    "caption": "Desktop layout featuring a header, SVG icons and a list. The Youtube video is animated in place."
                 },
                 {
-                    "path": "one.horiz.rtc"
+                    "path": "one.horiz.rtc",
+                    "alt": "Flexible Home Page",
+                    "caption": "Responsive view of the header content."
                 },
                 {
-                    "path": "one.mobile.rtc"
+                    "path": "one.mobile.rtc",
+                    "alt": "Home Page",
+                    "caption": "The Home page features a standard Header and text along with a very visible button and tagline."
                 },
                 {
-                    "path": "one.rtc"
+                    "path": "one.rtc",
+                    "alt": "Home Page",
+                    "caption": "The desktop home page featuring ThreeJS animations."
                 },
                 {
-                    "path": "seven.rtc"
+                    "path": "seven.rtc",
+                    "alt": "Integrated Forms",
+                    "caption": "RTC features completely custom and styled forms. The forms use native Javascript along with server-side validation."
                 },
                 {
-                    "path": "six.rtc"
+                    "path": "six.rtc",
+                    "alt": "Slider",
+                    "caption": "A slider feaaturing unique content in a responsive format."
                 },
                 {
-                    "path": "three.horiz.rtc"
+                    "path": "three.horiz.rtc",
+                    "alt": "Speed Graph",
+                    "caption": "A CSS animated chart displaying compared internet speeds."
                 },
                 {
-                    "path": "three.mobile.rtc"
+                    "path": "three.mobile.rtc",
+                    "alt": "Interior",
+                    "caption": "An interior page featuring a video using the Youtube Javascript API."
                 },
                 {
-                    "path": "three.rtc"
+                    "path": "three.rtc",
+                    "alt": "Footer",
+                    "caption": "The footer is highly flexible and utilizes list styling."
                 },
                 {
-                    "path": "two.horiz.rtc"
+                    "path": "two.horiz.rtc",
+                    "alt": "Interior Header",
+                    "caption": "The Interior page headers include movies that autoplay on mobile and desktop."
                 },
                 {
-                    "path": "two.mobile.rtc"
+                    "path": "two.mobile.rtc",
+                    "alt": "Forms",
+                    "caption": "RTC users can easily connect by using the styled forms along with native validation."
                 },
                 {
-                    "path": "two.rtc"
+                    "path": "two.rtc",
+                    "alt": "Interior Content",
+                    "caption": "All of the interior content is created within a CMS and is template driven."
                 }
             ]
         }
@@ -302,89 +406,141 @@
     "buntin": {
         "link": "buntin",
         "title": "Buntin Media Group",
-        "projectDescription": "Proident sed dolore est esse dolore officia cupidatat duis sint ullamco voluptate do deserunt et anim.",
+        "projectDescription": "Unique creative advertising agency website with Vue.js",
         "mainImage": {
             "path": "main.buntin",
-            "caption": "In pariatur in labore est enim non veniam nisi",
-            "alt": ""
+            "alt": "Buntin Logo",
+            "caption": "The Buntin Logo show while the experience loads."
         },
         "content": {
+            "article": "",
+            "externalSite": "//www.buntingroup.com/",
+            "code": false,
             "techList": [
-                ""
+                "Babel/ES7",
+                "Vue",
+                "VueX",
+                "CSS-Next",
+                "Webpack",
+                "Greensock",
+                "SVG"
             ],
             "imageRatio": "62.5%",
             "images": [
                 {
-                    "path": "eight.buntin"
+                    "path": "eight.buntin",
+                    "alt": "parallaxing content",
+                    "caption": "The parallaxing content enters on the screen while the user scrolls."
                 },
                 {
-                    "path": "eleven.buntin"
+                    "path": "eleven.buntin",
+                    "alt": "Adhope Page",
+                    "caption": "The Adhope page showing headline and logo on Desktop."
                 },
                 {
-                    "path": "five.buntin"
+                    "path": "five.buntin",
+                    "alt": "Grid of images",
+                    "caption": "A grid of portfolio images are presented on a client page."
                 },
                 {
-                    "path": "five.horiz.buntin"
+                    "path": "five.horiz.buntin",
+                    "alt": "Station Page",
+                    "caption": "Each agency card fits within all mobile devices."
                 },
                 {
-                    "path": "five.mobile.buntin"
+                    "path": "five.mobile.buntin",
+                    "alt": "Buntin's Story",
+                    "caption": "A poster series for multiple years presented in a responsive slider with progressive loading."
                 },
                 {
-                    "path": "four.buntin"
+                    "path": "four.buntin",
+                    "alt": "Main section",
+                    "caption": "Main section content while hovered reveals a CTA while moving in a 3d space."
                 },
                 {
-                    "path": "four.horiz.buntin"
+                    "path": "four.horiz.buntin",
+                    "alt": "Buntin Logo",
+                    "caption": "The Buntin Logo is presented on website load."
                 },
                 {
-                    "path": "four.mobile.buntin"
+                    "path": "four.mobile.buntin",
+                    "alt": "Poster Page",
+                    "caption": "An infomation box expanded from the info button on a agency history page."
                 },
                 {
-                    "path": "fourteen.buntin"
+                    "path": "fourteen.buntin",
+                    "alt": "Load Screen",
+                    "caption": "The Loading screen for the entire experience."
                 },
                 {
-                    "path": "nine.buntin"
+                    "path": "nine.buntin",
+                    "alt": "Card Info",
+                    "caption": "Informational cards for each employee staggers in from top to bottom as the page loads."
                 },
                 {
-                    "path": "one.buntin"
+                    "path": "one.buntin",
+                    "alt": "Main Screen",
+                    "caption": "The Home page on desktop plays a video in the background."
                 },
                 {
-                    "path": "one.horiz.buntin"
+                    "path": "one.horiz.buntin",
+                    "alt": "Home Page",
+                    "caption": "The Home page on mobile is very flexible and can respond to any size."
                 },
                 {
-                    "path": "one.mobile.buntin"
+                    "path": "one.mobile.buntin",
+                    "alt": "Home Page",
+                    "caption": "The Home page presents a powerful video and entices the user to scroll down with a clickable button."
                 },
                 {
-                    "path": "seven.buntin"
+                    "path": "seven.buntin",
+                    "alt": "Menu",
+                    "caption": "The menu opens to reveal an entire screen and a map via the Google Maps API."
                 },
                 {
-                    "path": "six.buntin"
+                    "path": "six.buntin",
+                    "alt": "Phone slider and Footer",
+                    "caption": "The footer displays a reusable card component, used also on the home page just below a slider of images."
                 },
                 {
-                    "path": "ten.buntin"
+                    "path": "ten.buntin",
+                    "alt": "logo grid",
+                    "caption": "A grid of logos which displays SVGs in a waterfall animation."
                 },
                 {
-                    "path": "thirteen.buntin"
+                    "path": "thirteen.buntin",
+                    "alt": "Contact",
+                    "caption": "The contact page is the last station in the main view."
                 },
                 {
-                    "path": "three.buntin"
+                    "path": "three.buntin",
+                    "alt": "A Section Header",
+                    "caption": "Section Headers along with accompanying paragraph text with navigation bar below."
                 },
                 {
-                    "path": "three.horiz.buntin"
+                    "path": "three.horiz.buntin",
+                    "alt": "Interior Page",
+                    "caption": "The interior view showing a header image and title along with left and right arrows to advance between section content."
                 },
                 {
-                    "path": "three.mobile.buntin"
+                    "path": "three.mobile.buntin",
+                    "alt": "Adhope Page",
+                    "caption": "floating informatinal boxes along with logos tell a story."
                 },
                 {
-                    "path": "twelve.buntin"
+                    "path": "twelve.buntin",
+                    "alt": "History Page",
+                    "caption": "A view of the history page on desktop."
                 },
                 {
-                    "path": "two.buntin"
+                    "path": "two.horiz.buntin",
+                    "alt": "Scrolling Through",
+                    "caption": "The user can scroll through entire sections presented as cards."
                 },
                 {
-                    "path": "two.horiz.buntin"
-                },
-                {
-                    "path": "two.mobile.buntin"
+                    "path": "two.mobile.buntin",
+                    "alt": "Main Station",
+                    "caption": "Each section is presented on a card delivered along a scrollable path."
                 }
             ]
         }
@@ -392,57 +548,88 @@
     "drm": {
         "link": "drm",
         "title": "Deer Run Media",
-        "projectDescription": "Eiusmod sit tempor commodo amet veniam qui et tempor.",
+        "projectDescription": "Craft template featuring a unique boutique video agency content.",
         "mainImage": {
             "path": "main.drm",
-            "caption": "Laborum commodo mollit exercitation consectetur commodo",
-            "alt": ""
+            "caption": "Deer Run Media Logo",
+            "alt": "The Logo is presented to users on first load in a dramatic film-type presentation."
         },
         "content": {
+            "externalSite": "//deerrunmedia.com/",
+            "code": false,
+            "article": "Deer Run Media is a local Visual Art and Video Production Company. This project shows off their unique work while minimizing the UI. All the content is presented simply to the user. The project makes extensive use of the HTML5 video API and features an entirely from scratch HTML5 video player.",
             "techList": [
-                ""
+                "Craft CMS",
+                "HTML5",
+                "Video",
+                "SCSS",
+                "Foundation",
+                "Greensock",
+                "Babel/ES7",
+                "Grunt",
+                "History API"
             ],
-            "article": "",
-            "tech": "",
-            "layout": "mix",
-            "behance": "",
             "imageRatio": "56.25%",
             "images": [
                 {
-                    "path": "five.drm"
+                    "path": "five.drm",
+                    "alt": "Get a Quote",
+                    "caption": "The form uses a javascript API to POST forms."
                 },
                 {
-                    "path": "five.mobile.drm"
+                    "path": "five.mobile.drm",
+                    "alt": "Projects",
+                    "caption": "Projects are presented in similar ways on desktop and mobile."
                 },
                 {
-                    "path": "four.drm"
+                    "path": "four.drm",
+                    "alt": "Contact Page",
+                    "caption": "The Contact Page on desktop."
                 },
                 {
-                    "path": "four.mobile.drm"
+                    "path": "four.mobile.drm",
+                    "alt": "Contact Us",
+                    "caption": "The contact page on a mobile device."
                 },
                 {
-                    "path": "one.drm"
+                    "path": "one.drm",
+                    "alt": "Project Page",
+                    "caption": "The project page features a slider of images or video supporting the project."
                 },
                 {
-                    "path": "one.mobile.drm"
+                    "path": "one.mobile.drm",
+                    "alt": "DRM Logo",
+                    "caption": "The DRM Logo on mobile."
                 },
                 {
-                    "path": "seven.mobile.drm"
+                    "path": "seven.mobile.drm",
+                    "alt": "Mobile Behind the Scenes",
+                    "caption": "images are presented on a mobile device."
                 },
                 {
-                    "path": "six.mobile.drm"
+                    "path": "six.mobile.drm",
+                    "alt": "Project Page",
+                    "caption": "example project page on a mobile device."
                 },
                 {
-                    "path": "three.drm"
+                    "path": "three.drm",
+                    "alt": "Home Page",
+                    "caption": "The Home Page on desktop displays video segments on rollover."
                 },
                 {
-                    "path": "three.mobile.drm"
+                    "path": "three.mobile.drm",
+                    "alt": "About Page",
+                    "caption": "Basic content presented on an about page."
                 },
                 {
-                    "path": "two.drm"
+                    "path": "two.drm",
+                    "alt": "Case Studies",
+                    "caption": "Case Studies are presented in a grid format on desktop."
                 },
                 {
-                    "path": "two.mobile.drm"
+                    "path": "two.mobile.drm",
+                    "alt": "Home Page",
+                    "caption": "Mobile Home Page with inline video."
                 }
             ]
         }
