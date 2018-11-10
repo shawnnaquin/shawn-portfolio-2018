@@ -245,15 +245,6 @@
 			width: 100%;
 			height: 100%;
 		}
-		figcaption {
-			// background:white;
-			// color:black;
-			background:black;
-			padding:0;
-			color:white;
-			font-size:16px;
-			text-align:left;
-		}
 
 		@media only screen and (max-width:630px) {
 			grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) )

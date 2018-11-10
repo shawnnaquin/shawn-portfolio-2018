@@ -33,7 +33,7 @@
 
 		</picture>
 
-		<figcaption>
+		<figcaption :class="[ { ['blur']: !setShowLoader } ] " >
 			<slot />
 		</figcaption>
 
@@ -78,9 +78,19 @@
 	};
 </script>
 <style lang="scss" scoped>
-.portfolio .loader {
-	color:black;
-}
+
+	picture {
+
+	}
+
+	img {
+
+	}
+
+	.portfolio .loader {
+		color:black;
+	}
+
 	.loader {
 		color:white;
 		text-transform:capitalize;
@@ -95,7 +105,8 @@
 			bottom: 0px;
 		}
 	}
-	.v-lazy-image {
+
+	.v-lazy-image, .blur {
 	  filter: blur(10px);
 	  transition-property: filter;
 	  transition-duration: 0.3s;
@@ -127,16 +138,15 @@
 	figcaption {
 		position:absolute;
 		bottom:0;
-		left:0;
-		width:calc( 100% - 32px );
+		font-size: 10px;
+		color: white;
+		text-shadow: 2px 2px 5px rgba(black,0.4);
 		z-index:1;
+		text-align:left;
+		padding:10px;
+		background:black;
+		width:calc(100% - 20px);
 		height:auto;
-		font-size:12px;
-		padding: 16px;
-		color: darken( white, 20%);
-		background:rgba(black,0.9);
-		border-top-right-radius:16px;
-		border-top-left-radius:8px;
 	}
 
 	source, img {

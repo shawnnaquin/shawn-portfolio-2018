@@ -16,6 +16,7 @@
 	  				:path="`${ image.path }`"
 	  				:alt="image.alt ? image.alt : '' "
 	  			>
+	  				<p>{{image.caption}}</p>
 	  			</picture-query>
 			</div>
 		</div>
@@ -194,12 +195,6 @@ export default {
 		height:100%;
 		background: rgba(black,1);
 		z-index:100;
-	}
-
-	figcaption {
-		background: white;
-		color:black;
-		height:auto;
 	}
 
 </style>
