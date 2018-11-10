@@ -2,85 +2,79 @@
     "l2d": {
         "link": "l2d",
         "title": "L2D Agency",
-        "projectDescription": "Eiusmod sed id cillum minim magna amet ex incididunt minim.",
+        "projectDescription": "Agency Website featuring a portfolio of work.",
         "mainImage": {
             "path": "main.l2d",
-            "alt": "",
-            "caption": "Sit commodo nisi mollit et voluptate nulla in ea anim excepteur."
+            "alt": "L2D Logo",
+            "caption": "The L2D Logo inside a custom ThreeJS script generated from a live video feed."
         },
         "content": {
-            "article": "",
+            "article": "The L2D website reflects a portfolio of work in a single page. Everything on the page is custom and features Greensock animations. Everything from the icon to the content on-scroll is animated in. The inline forms are validated through native javascript and styled through SCSS. Each project is loaded from custom structured data.",
             "externalSite": "//l2d.co/",
             "code": false,
             "techList": [
-                ""
+                "Webpack",
+                "Babel/ES7",
+                "Vue",
+                "Greensock",
+                "SCSS"
             ],
             "imageRatio": "62.5%",
             "images": [
                 {
                     "path": "eight.l2d",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Desktop Forms",
+                    "caption": "The contact information is displayed along side the contact form."
                 },
                 {
                     "path": "five.l2d",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Project Grid",
+                    "caption": "The project grid contains advanced SCSS styles to display a dropshadow on hover."
                 },
                 {
                     "path": "four.l2d",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "ThreeJS Styling",
+                    "caption": "The ThreeJS script displays translated video in a 3d pattern with alternative styles."
                 },
                 {
                     "path": "four.mobile.l2d",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Form Data",
+                    "caption": "The forms are styled with parallaxed background images. The forms are validated through native Javascript."
                 },
                 {
                     "path": "one.horiz.l2d",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Responsive Design",
+                    "caption": "The L2D website is responsive and functions across a range of devices."
                 },
                 {
                     "path": "one.l2d",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Destop Header",
+                    "caption": "If no one is at the office the ThreeJS script remains fairly static."
                 },
                 {
                     "path": "one.mobile.l2d",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "ThreeJS Header",
+                    "caption": "The ThreeJS script on mobile devices."
                 },
                 {
                     "path": "seven.l2d",
-                    "alt": "",
-                    "caption": ""
-                },
-                {
-                    "path": "six.l2d",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Client Page with open Menu",
+                    "caption": "The menu opens in a dramatic animation over client logos while elements parralax in the background."
                 },
                 {
                     "path": "three.l2d",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "80s Retro",
+                    "caption": "The top of the page can be expanded into a dashboard which also interaction with the L2D employees as they work. Catch the at the right time, they might wave hello!"
                 },
                 {
                     "path": "three.mobile.l2d",
-                    "alt": "",
-                    "caption": ""
-                },
-                {
-                    "path": "two.l2d",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Client Logos",
+                    "caption": "The Client logos load as the user scrolls towards the content. Once loaded the logos are animated in."
                 },
                 {
                     "path": "two.mobile.l2d",
-                    "alt": "",
-                    "caption": ""
+                    "alt": "Client Projects",
+                    "caption": "Projects are displayed in a flexible grid with corresponding icons and animations."
                 }
             ]
         }
