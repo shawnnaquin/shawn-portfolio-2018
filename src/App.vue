@@ -91,6 +91,8 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align:left;
     color: #2c3e50;
+    max-width: 1440px;
+    margin: 0 auto;
   }
 
   ul {
