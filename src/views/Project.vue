@@ -162,6 +162,8 @@
 </template>
 
 <script>
+
+	import YoutubeVideo from '@/components/YoutubeVideo';
 	import Picture from '@/components/Picture.vue';
 	import Loader from "@/components/Loader.vue";
 	import PhoneVert from '@/assets/ui/mobile.vert.png';

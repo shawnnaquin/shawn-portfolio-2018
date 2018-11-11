@@ -15,13 +15,9 @@
     </div>
 
     </transition>
+
     <transition name="fade" appear >
-      <video
-        :class=""
-        v-if=" isHome "
-        poster="https://via.placeholder.com/1920x1080?text=Video"
-      >
-      </video>
+      <youtube-video v-if=" isHome" ></youtube-video>
     </transition>
 
   </header>
@@ -29,8 +25,14 @@
 </template>
 
 <script>
+
+  import YoutubeVideo from '@/components/YoutubeVideo';
+
   export default {
     props: ['loaded'],
+    components: {
+      'youtube-video': YoutubeVideo
+    },
     computed: {
       isHome() {
         return this.$route.name == 'home';
@@ -49,13 +51,6 @@
   .heading {
     margin-bottom: 32px;
   }
-  video {
-    width:100%;
-    display:block;
-    transform-origin:right;
-    transform: translateX(-16%) rotateY(-43deg);
-    box-shadow: 8px 8px 40px darken(white,20%);
-  }
 
   h1 span::before {
     content:'// ';
@@ -70,13 +65,6 @@
       &::before {
         content:none;
       }
-    }
-  }
-
-  @media only screen and (min-width:1000px) {
-    video {
-      width:55%;
-      display:inline-block;
     }
   }
 
