@@ -9,6 +9,7 @@
             "caption": "The L2D Logo inside a custom ThreeJS script generated from a live video feed."
         },
         "content": {
+            "video": "EYyELvmsw4c",
             "article": "The L2D website reflects a portfolio of work in a single page. Everything on the page is custom and features Greensock animations. Everything from the icon to the content on-scroll is animated in. The inline forms are validated through native javascript and styled through SCSS. Each project is loaded from custom structured data.",
             "externalSite": "//l2d.co/",
             "code": false,
@@ -89,6 +90,7 @@
             "caption": "A character makes surfs their way around several obstacles."
         },
         "content": {
+            "video": "9XMh78_iCYs",
             "article": "This website is built with sessionStorage to keep user data. User data is applied via a gamestate to keep track of student's interaction. This website largely leverages CSS transitions rather than javascript animation. SOS functions well even on deprecated browser and is built to be IE9 Strict! The content's data structure allows for easy language translation. An entire side project was built leveraging node.js to convert the site's data to spreadsheets and then back to JSON.",
             "externalSite": "//sos.fbi.gov",
             "code": false,
@@ -201,6 +203,7 @@
             "caption": "ThreeJS script featuring waveforms."
         },
         "content": {
+            "video": "JqRtOz6CCsE",
             "article": "RTC needed a proven front-end reliable enough for customers to gain access to essential services. Special attention was payed to accesibility and performance tests. RTC is sleek and stylish while serving the public.",
             "externalSite": "//rtctel.com/",
             "code": false,
@@ -296,6 +299,7 @@
             "caption": "The mascott of the CRG skates forward while the website loads."
         },
         "content": {
+            "video": false,
         	"article": "This custom-built Wordpress Theme for the Chattanooga WFTDA Roller Derby team features several custom plugins. Advanced User Roles, Custom Categories, Custom Types, Google Analytics... the works! This theme was developed from the groundup to be versatile. Chattanooga Roller Girls features smooth page transitions for a seemless experience through javascript.",
         	"techList": [
         		"Wordpress",
@@ -413,6 +417,7 @@
             "caption": "The Buntin Logo show while the experience loads."
         },
         "content": {
+            "video": "pjE0QVzCRZk",
             "article": "",
             "externalSite": "//www.buntingroup.com/",
             "code": false,
@@ -556,6 +561,7 @@
         },
         "content": {
             "externalSite": "//deerrunmedia.com/",
+            "video": "bDezQV75q74",
             "code": false,
             "article": "Deer Run Media is a local Visual Art and Video Production Company. This project shows off their unique work while minimizing the UI. All the content is presented simply to the user. The project makes extensive use of the HTML5 video API and features an entirely from scratch HTML5 video player.",
             "techList": [

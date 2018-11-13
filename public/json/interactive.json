@@ -1,1 +1,319 @@
-{"astec":{"link":"astec","title":"Astec Interactive","projectDescription":"3d Interactive touchscreen Unreal experience visualizing asphalt plant production equipment","mainImage":{"path":"main.astec","alt":"Astec Planet!","caption":"Astec Interactive Unreal Experience"},"content":{"article":"This project was created in Unreal and utilized a 60 Inch Elo touch screen. This interactive display helped potential buyers to visualize massive construction machinery in a 3d space. This project was built using Unreal Engine and custom Blueprint scripts. A custom-built UI further programmaticm logic was used to interact with the 3d models as well as navigate through the visual experience.","externalSite":false,"code":false,"techList":["Unreal Engine 4","C++","Blueprints","Git","Visual Studio"],"imageRatio":"56.25%","images":[{"path":"eight.astec","alt":"model with informational view","caption":"The Astec models were displayed along with sidebar in able to present further images and text, the info bar collapses via a hamburger button."},{"path":"five.astec","caption":"Astec Forms","alt":"Forms were built to allow easy sign-up of new customers."},{"path":"four.astec","alt":"astec info-graphic","caption":"The main page was sometimes an info-graphic, the product view was custom-built to be very flexible in content type."},{"path":"nine.astec","alt":"3d main product model view","caption":"The main product view was of a bisected 3d model, allowing customers to visualize large machines in a virtual space."},{"path":"one.astec","alt":"main project start page","caption":"The start screen presents customers with a planet of construction equipment. This landing page serves as both a screen-saver and start screen"},{"path":"seven.astec","alt":"main product rotation","caption":"the main product was built to be rotated by touch!"},{"path":"six.astec","alt":"astec sales reps","caption":"Astec sales representative were broken down by state. Users can choose by state which representative to contact via form"},{"path":"ten.astec","alt":"component types","caption":"Astec components were broken down by type is product in a type is presented in a touchable card"},{"path":"three.astec","alt":"plant view","caption":"Users could see products associated in common plant configurations, then an infobox can be brought up to see more about each individual plant component"},{"path":"two.astec","alt":"plant type","caption":"multiple plant view where users can choose the type of common configuration they might use"}]}},"servpro-halloween":{"link":"servpro-halloween","title":"Servpro Halloween","projectDescription":"A 2d reactive time-based game with a marketing twist, and a jump-scare ending!","mainImage":{"path":"main.servpro-halloween","alt":"Too scary...","caption":"Grab the dangerous objects!"},"content":{"article":"Servpro Halloween was built in Vue with multiple reactive SVG objects. The game logic, data, state and routing are controlled via javascript and JSON. Servpro Halloween features user-controlled audio and is developed to work on mobile and desktop. The content is sized by ratio down to the smallest of screens.","externalSite":"//tbg.l2.design/halloween","code":false,"techList":["Vue","Webpack","babel/ES7","SVG","SCSS","HTML5"],"imageRatio":"56.25%","images":[{"path":"five.servpro-halloween","alt":"SVG objects","caption":"SVG objects were layered into the background and made selectable to minimize external calls."},{"path":"four.servpro-halloween","alt":"Zombie","caption":"Beware! If you take too long you may be presented with a scare!"},{"path":"one.horiz.servpro-halloween","alt":"dialogue box","caption":"Game instructions are presented prior to game play."},{"path":"one.mobile.servpro-halloween","alt":"Landing Page","caption":"Info is presented to the user via landing page."},{"path":"one.servpro-halloween","alt":"Landing Page","caption":"The Landing page is responsive for both desktop and mobile."},{"path":"three.horiz.servpro-halloween","alt":"Zombie","caption":"Even the Zombie was made to work responsively."},{"path":"three.mobile.servpro-halloween","alt":"responsive","caption":"Since the game was based on a 16:9 ratio the phone must be rotated, users are progressively warned."},{"path":"three.servpro-halloween","alt":"dialogue","caption":"Users are presented various dialogue screens added directly to the viewport without switching pages."},{"path":"two.horiz.servpro-halloween","alt":"responsive game-play","caption":"Servpro Halloween's game-play was built to be as flexible as possible while maintaining a specfic 16:9 ratio."},{"path":"two.mobile.servpro-halloween","alt":"Final Screen","caption":"All things, even scary, must come to an end... but they can be responsive too!"},{"path":"two.servpro-halloween","alt":"End Screen","caption":"Another responsive view of the final screen."}]}},"servpro-prep":{"link":"servpro-prep","title":"Servpro Prep","projectDescription":"A Vue based marketing solution as a micro-site.","mainImage":{"path":"main.servpro-prep","alt":"Are you prepared?","caption":"Do you know which items you'll need in an emergency?"},"content":{"article":"An interactive experience leveraging localStorage to limit game play and take return users right to the call-to-action","externalSite":"//tbg.l2.design/servpro-preparedness/","code":false,"techList":["Vue","Webpack","babel/ES7","SVG","SCSS","HTML5"],"imageRatio":"56.25%","images":[{"path":"five.servpro-prep","alt":"SVG Use","caption":"SVGs were expertly placed on the screen for users to see."},{"path":"four.horiz.servpro-prep","alt":"Tally","caption":"All items picked are tallied and store in local data."},{"path":"four.servpro-prep","alt":"Alternate Items","caption":"Items can be different"},{"path":"one.horiz.servpro-prep","alt":"Responsive Landing","caption":"On landing users are presented with a default \"Home\" component"},{"path":"one.mobile.servpro-prep","alt":"Mobile Landing","caption":"This page was meant to be viewed on any size screen."},{"path":"one.servpro-prep","alt":"CTA","caption":"Responsive forms using the POST method to send data as the CTA."},{"path":"six.servpro-prep","alt":"Play Again","caption":"Your score is tallied and the user is offered to play again."},{"path":"three.horiz.servpro-prep","alt":"Any size!","caption":"The game is made playable through flexible scss on any size screen."},{"path":"three.servpro-prep","alt":"Info Box","caption":"Users are presented with a set of instructions before playing the game."},{"path":"two.horiz.servpro-prep","alt":"Responsive box","caption":"The dialogue box is as responsive as possible."},{"path":"two.mobile.servpro-prep","alt":"Ratio Locked","caption":"The game is locked to a horizontal aspect ratio so mobile device rotation is detected via javascript."},{"path":"two.servpro-prep","alt":"Landing","caption":"The Desktop Landing Page."}]}},"servpro-holiday":{"link":"servpro-holiday","title":"Servpro Holiday","projectDescription":"A Christmas themed responsisve informational marketing one-page advertisement.","mainImage":{"path":"main.servpro-holiday","alt":"Happy Holidays!","caption":"Do you know what dangers are present inside and out?"},"content":{"article":"Servpro Holiday is an informational marketing advertisement built with Vue. Servpro Holiday tracks analytical data and user interaction. This informational website is presented with ultra-flexible info-boxes that are built to go anywhere on the page. Users can click through two seperate scenarios inside and outside of the house. Once users have read all info-boxes in one view the user is switched to the other view in a cancelable loop.","externalSite":false,"code":false,"techList":["Vue","Webpack","babel/ES7","SVG","SCSS","HTML5"],"imageRatio":"56.25%","images":[{"path":"five.servpro-holiday","alt":"Landing page","caption":"The CTA is built to be responsive and flexible."},{"path":"four.servpro-holiday","alt":"Inside the House","caption":"info boxes are placed via scss around the screen locked to a ratio."},{"path":"one.horiz.servpro-holiday","alt":"Alternate View","caption":"Users are presented info-boxes through javascript transitions and animations."},{"path":"one.mobile.servpro-holiday","alt":"Snow","caption":"Snow is dynamically generated from javascript based on animationFrame."},{"path":"one.servpro-holiday","alt":"Landing Page","caption":"The page is responsive and can be viewed on desktop or mobile."},{"path":"three.horiz.servpro-holiday","alt":"Landing Page Mobile","caption":"A mobile view of the landing page."},{"path":"three.servpro-holiday","alt":"Info Box","caption":"Each info box is the exact same component with different data. the box can open in any direction."},{"path":"two.horiz.servpro-holiday","alt":"Responsive Layout","caption":"The responsive layout is locked to a screen ratio of 16:9."},{"path":"two.servpro-holiday","alt":"Informational Boxes","caption":"the info boxes work with the dynamically generated snow."}]}}}
+{
+    "astec": {
+        "link": "astec",
+        "title": "Astec Interactive",
+        "projectDescription": "3d Interactive touchscreen Unreal experience visualizing asphalt plant production equipment",
+        "mainImage": {
+            "path": "main.astec",
+            "alt": "Astec Planet!",
+            "caption": "Astec Interactive Unreal Experience"
+        },
+        "content": {
+        	"video": "lDXqdw1hVN0",
+            "article": "This project was created in Unreal and utilized a 60 Inch Elo touch screen. This interactive display helped potential buyers to visualize massive construction machinery in a 3d space. This project was built using Unreal Engine and custom Blueprint scripts. A custom-built UI further programmaticm logic was used to interact with the 3d models as well as navigate through the visual experience.",
+            "externalSite": false,
+            "code": false,
+            "techList": [
+                "Unreal Engine 4",
+                "C++",
+                "Blueprints",
+                "Git",
+                "Visual Studio"
+            ],
+            "imageRatio": "56.25%",
+            "images": [
+                {
+                    "path": "eight.astec",
+                    "alt": "model with informational view",
+                    "caption": "The Astec models were displayed along with sidebar in able to present further images and text, the info bar collapses via a hamburger button."
+                },
+                {
+                    "path": "five.astec",
+                    "caption": "Astec Forms",
+                    "alt": "Forms were built to allow easy sign-up of new customers."
+                },
+                {
+                    "path": "four.astec",
+                    "alt": "astec info-graphic",
+                    "caption": "The main page was sometimes an info-graphic, the product view was custom-built to be very flexible in content type."
+                },
+                {
+                    "path": "nine.astec",
+                    "alt": "3d main product model view",
+                    "caption": "The main product view was of a bisected 3d model, allowing customers to visualize large machines in a virtual space."
+                },
+                {
+                    "path": "one.astec",
+                    "alt": "main project start page",
+                    "caption": "The start screen presents customers with a planet of construction equipment. This landing page serves as both a screen-saver and start screen"
+                },
+                {
+                    "path": "seven.astec",
+                    "alt": "main product rotation",
+                    "caption": "the main product was built to be rotated by touch!"
+                },
+                {
+                    "path": "six.astec",
+                    "alt": "astec sales reps",
+                    "caption": "Astec sales representative were broken down by state. Users can choose by state which representative to contact via form"
+                },
+                {
+                    "path": "ten.astec",
+                    "alt": "component types",
+                    "caption": "Astec components were broken down by type is product in a type is presented in a touchable card"
+                },
+                {
+                    "path": "three.astec",
+                    "alt": "plant view",
+                    "caption": "Users could see products associated in common plant configurations, then an infobox can be brought up to see more about each individual plant component"
+                },
+                {
+                    "path": "two.astec",
+                    "alt": "plant type",
+                    "caption": "multiple plant view where users can choose the type of common configuration they might use"
+                }
+            ]
+        }
+    },
+    "servpro-halloween": {
+        "link": "servpro-halloween",
+        "title": "Servpro Halloween",
+        "projectDescription": "A 2d reactive time-based game with a marketing twist, and a jump-scare ending!",
+        "mainImage": {
+            "path": "main.servpro-halloween",
+            "alt": "Too scary...",
+            "caption": "Grab the dangerous objects!"
+        },
+        "content": {
+        	"video": "Mrb_HgqUr20",
+            "article": "Servpro Halloween was built in Vue with multiple reactive SVG objects. The game logic, data, state and routing are controlled via javascript and JSON. Servpro Halloween features user-controlled audio and is developed to work on mobile and desktop. The content is sized by ratio down to the smallest of screens.",
+            "externalSite": "//tbg.l2.design/halloween",
+            "code": false,
+            "techList": [
+                "Vue",
+                "Webpack",
+                "babel/ES7",
+                "SVG",
+                "SCSS",
+                "HTML5"
+            ],
+            "imageRatio": "56.25%",
+            "images": [
+                {
+                    "path": "five.servpro-halloween",
+                    "alt": "SVG objects",
+                    "caption": "SVG objects were layered into the background and made selectable to minimize external calls."
+                },
+                {
+                    "path": "four.servpro-halloween",
+                    "alt": "Zombie",
+                    "caption": "Beware! If you take too long you may be presented with a scare!"
+                },
+                {
+                    "path": "one.horiz.servpro-halloween",
+                    "alt": "dialogue box",
+                    "caption": "Game instructions are presented prior to game play."
+                },
+                {
+                    "path": "one.mobile.servpro-halloween",
+                    "alt": "Landing Page",
+                    "caption": "Info is presented to the user via landing page."
+                },
+                {
+                    "path": "one.servpro-halloween",
+                    "alt": "Landing Page",
+                    "caption": "The Landing page is responsive for both desktop and mobile."
+                },
+                {
+                    "path": "three.horiz.servpro-halloween",
+                    "alt": "Zombie",
+                    "caption": "Even the Zombie was made to work responsively."
+                },
+                {
+                    "path": "three.mobile.servpro-halloween",
+                    "alt": "responsive",
+                    "caption": "Since the game was based on a 16:9 ratio the phone must be rotated, users are progressively warned."
+                },
+                {
+                    "path": "three.servpro-halloween",
+                    "alt": "dialogue",
+                    "caption": "Users are presented various dialogue screens added directly to the viewport without switching pages."
+                },
+                {
+                    "path": "two.horiz.servpro-halloween",
+                    "alt": "responsive game-play",
+                    "caption": "Servpro Halloween's game-play was built to be as flexible as possible while maintaining a specfic 16:9 ratio."
+                },
+                {
+                    "path": "two.mobile.servpro-halloween",
+                    "alt": "Final Screen",
+                    "caption": "All things, even scary, must come to an end... but they can be responsive too!"
+                },
+                {
+                    "path": "two.servpro-halloween",
+                    "alt": "End Screen",
+                    "caption": "Another responsive view of the final screen."
+                }
+            ]
+        }
+    },
+    "servpro-prep": {
+        "link": "servpro-prep",
+        "title": "Servpro Prep",
+        "projectDescription": "A Vue based marketing solution as a micro-site.",
+        "mainImage": {
+            "path": "main.servpro-prep",
+            "alt": "Are you prepared?",
+            "caption": "Do you know which items you'll need in an emergency?"
+        },
+        "content": {
+        	"video": "7ppDrAJ0xJc",
+            "article": "An interactive experience leveraging localStorage to limit game play and take return users right to the call-to-action",
+            "externalSite": "//tbg.l2.design/servpro-preparedness/",
+            "code": false,
+            "techList": [
+                "Vue",
+                "Webpack",
+                "babel/ES7",
+                "SVG",
+                "SCSS",
+                "HTML5"
+            ],
+            "imageRatio": "56.25%",
+            "images": [
+                {
+                    "path": "five.servpro-prep",
+                    "alt": "SVG Use",
+                    "caption": "SVGs were expertly placed on the screen for users to see."
+                },
+                {
+                    "path": "four.horiz.servpro-prep",
+                    "alt": "Tally",
+                    "caption": "All items picked are tallied and store in local data."
+                },
+                {
+                    "path": "four.servpro-prep",
+                    "alt": "Alternate Items",
+                    "caption": "Items can be different"
+                },
+                {
+                    "path": "one.horiz.servpro-prep",
+                    "alt": "Responsive Landing",
+                    "caption": "On landing users are presented with a default \"Home\" component"
+                },
+                {
+                    "path": "one.mobile.servpro-prep",
+                    "alt": "Mobile Landing",
+                    "caption": "This page was meant to be viewed on any size screen."
+                },
+                {
+                    "path": "one.servpro-prep",
+                    "alt": "CTA",
+                    "caption": "Responsive forms using the POST method to send data as the CTA."
+                },
+                {
+                    "path": "six.servpro-prep",
+                    "alt": "Play Again",
+                    "caption": "Your score is tallied and the user is offered to play again."
+                },
+                {
+                    "path": "three.horiz.servpro-prep",
+                    "alt": "Any size!",
+                    "caption": "The game is made playable through flexible scss on any size screen."
+                },
+                {
+                    "path": "three.servpro-prep",
+                    "alt": "Info Box",
+                    "caption": "Users are presented with a set of instructions before playing the game."
+                },
+                {
+                    "path": "two.horiz.servpro-prep",
+                    "alt": "Responsive box",
+                    "caption": "The dialogue box is as responsive as possible."
+                },
+                {
+                    "path": "two.mobile.servpro-prep",
+                    "alt": "Ratio Locked",
+                    "caption": "The game is locked to a horizontal aspect ratio so mobile device rotation is detected via javascript."
+                },
+                {
+                    "path": "two.servpro-prep",
+                    "alt": "Landing",
+                    "caption": "The Desktop Landing Page."
+                }
+            ]
+        }
+    },
+    "servpro-holiday": {
+        "link": "servpro-holiday",
+        "title": "Servpro Holiday",
+        "projectDescription": "A Christmas themed responsisve informational marketing one-page advertisement.",
+        "mainImage": {
+            "path": "main.servpro-holiday",
+            "alt": "Happy Holidays!",
+            "caption": "Do you know what dangers are present inside and out?"
+        },
+        "content": {
+        	"video": "n0s9cr95l_g",
+            "article": "Servpro Holiday is an informational marketing advertisement built with Vue. Servpro Holiday tracks analytical data and user interaction. This informational website is presented with ultra-flexible info-boxes that are built to go anywhere on the page. Users can click through two seperate scenarios inside and outside of the house. Once users have read all info-boxes in one view the user is switched to the other view in a cancelable loop.",
+            "externalSite": false,
+            "code": false,
+            "techList": [
+                "Vue",
+                "Webpack",
+                "babel/ES7",
+                "SVG",
+                "SCSS",
+                "HTML5"
+            ],
+            "imageRatio": "56.25%",
+            "images": [
+                {
+                    "path": "five.servpro-holiday",
+                    "alt": "Landing page",
+                    "caption": "The CTA is built to be responsive and flexible."
+                },
+                {
+                    "path": "four.servpro-holiday",
+                    "alt": "Inside the House",
+                    "caption": "info boxes are placed via scss around the screen locked to a ratio."
+                },
+                {
+                    "path": "one.horiz.servpro-holiday",
+                    "alt": "Alternate View",
+                    "caption": "Users are presented info-boxes through javascript transitions and animations."
+                },
+                {
+                    "path": "one.mobile.servpro-holiday",
+                    "alt": "Snow",
+                    "caption": "Snow is dynamically generated from javascript based on animationFrame."
+                },
+                {
+                    "path": "one.servpro-holiday",
+                    "alt": "Landing Page",
+                    "caption": "The page is responsive and can be viewed on desktop or mobile."
+                },
+                {
+                    "path": "three.horiz.servpro-holiday",
+                    "alt": "Landing Page Mobile",
+                    "caption": "A mobile view of the landing page."
+                },
+                {
+                    "path": "three.servpro-holiday",
+                    "alt": "Info Box",
+                    "caption": "Each info box is the exact same component with different data. the box can open in any direction."
+                },
+                {
+                    "path": "two.horiz.servpro-holiday",
+                    "alt": "Responsive Layout",
+                    "caption": "The responsive layout is locked to a screen ratio of 16:9."
+                },
+                {
+                    "path": "two.servpro-holiday",
+                    "alt": "Informational Boxes",
+                    "caption": "the info boxes work with the dynamically generated snow."
+                }
+            ]
+        }
+    }
+}
