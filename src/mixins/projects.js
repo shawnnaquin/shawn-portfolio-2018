@@ -35,8 +35,13 @@ export default {
 						result.regular.push( item );
 					}
 
+					if( item.path.includes(`one.${this.$route.params.project}`) ) {
+						result.video = item.path;
+					}
+
 					return result;
-				}, { mobile: [], regular: [], horiz: [] } );
+
+				}, { mobile: [], regular: [], horiz: [], video: false } );
 
 		}
 
