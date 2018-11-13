@@ -87,18 +87,22 @@
 
 	}
 
-	.portfolio .loader {
-		color:black;
+	.horiz .loader, 
+	.mobile .loader {
+		color: white;
 	}
 
 	.loader {
-		color:white;
+		color:black;
 		text-transform:capitalize;
 		display:inline-block;
 		width:auto;
 		position:relative;
-		margin-top:50%;
+		top:50%;
+		transform:translateY(-50%);
 		text-align:center;
+		margin-top:0;
+		margin-bottom:0;
 		span {
 			position: absolute;
 			right: -8px;
