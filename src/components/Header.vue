@@ -15,11 +15,9 @@
     </div>
 
     </transition>
-
-    <transition name="fade" appear >
-      <youtube-video v-if=" isHome" ></youtube-video>
-    </transition>
-
+    <div :class="['video']">
+      <youtube-video :videoId="'EYyELvmsw4c'" v-if="isHome" ></youtube-video>
+ </div>
   </header>
 
 </template>
@@ -42,7 +40,11 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .video {
+    width:55%;
+    float:none;
+    margin: 0 auto;
+  }
   header {
     perspective: 1000px;
     perspective-origin: center;
@@ -58,6 +60,9 @@
   }
 
   @media only screen and (max-width:630px) {
+    .video {
+      width:100%;
+    }
     h1 span {
       display:block;
       font-size:1rem;
