@@ -8,6 +8,7 @@
 
 		<transition name="fade" appear mode="out-in"
 			v-on:enter="articleEnter"
+			v-on:after-enter="articleAfterEnter"
 		>
 
 			<p
@@ -39,6 +40,9 @@
 			  	<p v-if="project.content.article" :class="['description']">
 			  		{{ project.content.article }}
 			  	</p>
+
+			  	<youtube-video :videoId="project.content.video" :videoImg=" `/img/portfolio/${ type }/${ images.video }-lg_1x.jpg`" ></youtube-video>
+
 			</div>
 
 		</transition>
@@ -166,8 +170,10 @@
 	import YoutubeVideo from '@/components/YoutubeVideo';
 	import Picture from '@/components/Picture.vue';
 	import Loader from "@/components/Loader.vue";
+
 	import PhoneVert from '@/assets/ui/mobile.vert.png';
 	import PhoneHoriz from '@/assets/ui/mobile.horiz.png';
+
 	import animateIn from '@/mixins/animateIn';
 	import projects from '@/mixins/projects';
 
@@ -175,7 +181,8 @@
 
 		components: {
 			Loader,
-			'picture-query': Picture
+			'picture-query': Picture,
+			'youtube-video': YoutubeVideo
 		},
 
 		mixins: [ animateIn, projects ],
@@ -184,7 +191,8 @@
 			return {
 				phoneHorizLoaded: false,
 				phoneVertLoaded: false,
-				showImages: false
+				showImages: false,
+				articleLoaded: false
 			}
 		},
 
@@ -197,8 +205,15 @@
 				if  ( el.classList.contains('article-header') ) {
 					this.showImages = true;
 				}
-				done;
+				done();
 			},
+
+			articleAfterEnter(el) {
+				if ( el.classList.contains('article-header') ) {
+					this.articleLoaded = true;
+				}
+			},
+
 			checkPhone() {
 				let imgVert = new Image();
 				imgVert.src = PhoneVert;
@@ -231,7 +246,6 @@
 		grid-gap: 2rem;
 		margin-bottom:10%;
 		perspective: 1000px;
-		perspective-origin:center;
 		> div {
 			padding-bottom: 56.25%;
 			transform-origin:center;
@@ -324,12 +338,7 @@
 	.article-header {
 		max-width:600px;
 		padding-bottom: 10%;
-		> *:not( .external ) {
-			display:inline-block;
-			width:100%;
-			margin: 0 auto 16px auto;
-		}
-
+		
 		.buttons {
 			h1,h2,h3,h4 {
 				margin-top:0;
