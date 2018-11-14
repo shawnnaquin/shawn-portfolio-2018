@@ -13,10 +13,17 @@
       <Nav />
       <Header :loaded="!getLoading" />
     </div>
+
     <transition name="fade" appear>
       <router-view/>
     </transition>
+
+    <div :class="['footer']">
+
+    </div>
+
   </div>
+
 </template>
 
 <script>
@@ -72,6 +79,18 @@ export default {
       }
     }
 
+    .footer {
+
+      position:fixed;
+      left:0;
+      bottom:0;
+      background:lighten(black, 10%);
+      min-height:32px;
+      width:100vw;
+      box-shadow: 2px 2px 3px 4px rgba(black,0.2);
+      border-top: 1px solid lighten(black,25%);
+    }
+
 </style>
 
 <style lang="scss">
@@ -110,7 +129,7 @@ export default {
     margin-bottom:48px;
   }
 
-  @media only screen and (min-width:1000px) {
+  @media only screen and (min-width:1100px) {
 
     #app {
       text-align:center;
@@ -123,7 +142,9 @@ export default {
 
 
   }
-
+  .external-span {
+    font-size:12px; margin-left:2px; font-weight:normal; transform: translateY(-10%); display:inline-block;
+  }
   .external {
     display:inline-block;
     padding: 0.75rem 2rem;
@@ -135,6 +156,7 @@ export default {
     border:1px solid darken(white,10%);
     font-size:16px;
     transition: border-color 150ms ease-out;
+
     &:hover, &:active, &:focus {
       border-color:Purple;
       transition-timing-function:ease-in;
