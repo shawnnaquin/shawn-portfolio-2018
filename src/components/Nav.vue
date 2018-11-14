@@ -50,6 +50,15 @@
 
 			</li>
 
+
+			<li @click="$router.push('/')" >
+
+				<a href="#" target="_blank">
+					<github/>&nbsp;<span :class="['external-span']" >(external)</span>
+				</a>
+
+			</li>
+
 		</ul>
 
 	</nav>
@@ -58,7 +67,12 @@
 
 <script>
 
+import github from '@/components/icons/github';
+
 export default {
+	components: {
+		github
+	},
 	data() {
 		return {
 			menuOpen: false
@@ -147,13 +161,27 @@ export default {
 
 			&:hover {
 				color: darken(aqua, 25%);
+				> svg {
+					fill: darken(aqua, 25%);
+				}
 			}
-		}
 
-		a.router-link-exact-active {
-			color:Purple;
+			> svg {
+				display:inline;
+				height:14px;
+				width: auto;
+				fill: #2c3e50;
+				transition: fill 200ms ease-in;
+			}
+
+			&.router-link-exact-active {
+				color:Purple;
+				> svg {
+					fill: Purple;
+				}
+			}
+
 		}
-		
 
 		&:nth-last-child(1) {
 			border-right:0;
@@ -215,7 +243,7 @@ export default {
 
 	// large up
 
-	@media only screen and (min-width:1000px) {
+	@media only screen and (min-width:1100px) {
 
 		.external {
 			opacity:0;
@@ -236,7 +264,7 @@ export default {
 
 	// small only
 
-	@media only screen and ( max-width: 1000px ) {
+	@media only screen and ( max-width: 1100px ) {
 
 		#nav {
 
