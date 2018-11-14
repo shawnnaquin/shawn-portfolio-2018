@@ -13,7 +13,7 @@
 			</h1>
 		</transition>
 
-		<div style="position:relative;">
+		<div style="position:relative; margin-bottom:124px;">
 
 			<transition name="fade" appear >
 
@@ -130,7 +130,7 @@
 		position:absolute;
 		left:50%;
 		transform:translateX(-50%);
-		@media only screen and (max-width:1000px) {
+		@media only screen and (max-width:1100px) {
 			left:10%;
 			transform:translateX(0);
 		}
@@ -187,7 +187,7 @@ router-link
 	.image {
 		position:relative;
 		width:100%;
-		padding-bottom:177%;
+		padding-bottom:120%;
 	}
 
 	.main-description {
