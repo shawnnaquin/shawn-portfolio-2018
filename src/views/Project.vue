@@ -25,8 +25,10 @@
 			  	<h3>{{project.projectDescription}}</h3>
 
 			  	<div v-if="project.content.code || project.content.externalSite" class="buttons" >
-			  		<a :href="project.content.externalSite" v-if="project.content.externalSite" target="_blank" :class="[ 'external' ]" > Visit (external site) </a>
+
+			  		<a :href="project.content.externalSite" v-if="project.content.externalSite" target="_blank" :class="[ 'external' ]" > Visit <span :class="['external-span']">(external)</span> </a>
 			  		&nbsp;
+
 			  		<a :href="project.content.code" v-if="project.content.code" target="_blank" :class="[ 'external' ]" >
 			  			//code
 			  		</a>
@@ -250,7 +252,7 @@
 		grid-template-columns: repeat( auto-fill, minmax(400px, 1fr ) );
 		grid-gap: 2rem;
 		margin-bottom:10%;
-		perspective: 1000px;
+		perspective: 1100px;
 		> div {
 			padding-bottom: 56.25%;
 			transform-origin:center;
@@ -356,6 +358,9 @@
 			&:nth-of-type(1) {
 				margin-top:32px;
 			}
+			a {
+				margin-bottom:24px;
+			}
 		}
 	}
 	.description {
@@ -368,7 +373,7 @@
 			column-count:2;
 		}
 
-		// @media only screen and (min-width:1000px) {
+		// @media only screen and (min-width:1100px) {
 		// 	column-count:3;
 		// }
 
