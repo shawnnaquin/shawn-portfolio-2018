@@ -30,11 +30,16 @@
 			  		<a :href="project.content.code" v-if="project.content.code" target="_blank" :class="[ 'external' ]" >
 			  			//code
 			  		</a>
+
+					<router-link :to="'/'" :class="['external']">
+						About Shawn
+					</router-link>
+					
 			  	</div>
 
 			  	<div v-if="project.content.techList" class="buttons" >
 			  		<h4>Tech List: </h4>
-			  		<p>{{ project.content.techList }}</p>
+			  		<p :class="['tech-list']" >{{ project.content.techList }}</p>
 			  	</div>
 
 			  	<p v-if="project.content.article" :class="['description']">
@@ -314,6 +319,10 @@
 </style>
 
 <style lang="scss" scoped >
+
+	.tech-list {
+		line-height:32px;
+	}
 
 	.image-container {
 		align-self: normal;
