@@ -57,6 +57,8 @@ export default {
 		mouseleave() {
 			this.mousein = false;
 
+			if ( !window.YTPlayer )  return;
+
 			if ( window.YTPlayer.getPlayerState() != 1 && window.YTPlayer.getPlayerState() != 3 ) {
 				this.stuck = false;
 			}
