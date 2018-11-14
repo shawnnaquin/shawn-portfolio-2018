@@ -9,18 +9,19 @@
 
 				<h1>Shawn Naquin <span>Front-End-Portfolio</span></h1>
 
-				<h3>October 2018</h3>
+				<h3>{{getDate}}</h3>
 
 			</div>
 
 		</transition>
+
 
 		<div :class="['video']">
 
 			<youtube-video :videoId="'EYyELvmsw4c'" ></youtube-video>
 
 		</div>
-
+		
 	</header>
 </transition>
 
@@ -34,11 +35,21 @@
 
 		props: ['loaded'],
 
+		data() {
+			return {
+				monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
+			}
+		},
+
 		components: {
 			'youtube-video': YoutubeVideo
 		},
 
 		computed: {
+			getDate() {
+				let d = new Date();
+				return `${ this.monthNames[ d.getMonth() ] } ${ d.getFullYear() }`;
+			},
 			isHome() {
 				return this.$route.name == 'home';
 			}
@@ -57,7 +68,7 @@
 	}
 
 	header {
-		perspective: 1000px;
+		perspective: 1100px;
 		perspective-origin: center;
 	}
 
