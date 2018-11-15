@@ -1,8 +1,8 @@
 <template>
 
-	<div>
+	<div :class="['top']">
 
-	<button :class="[ 'external', { ['menu-open']: menuOpen } ]" @click="button" >Menu</button>
+	<button :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]" @click="button" >Menu</button>
 
 	<nav id="nav" :class="[ { ['menu-open']: menuOpen } ]" >
 
@@ -15,45 +15,41 @@
 					@click="toggleMenu()"
 					:class="['dark']"
 				>
-					<button>Close / Esc (x)</button>
+					<button>Close X</button>
 				</li>
 
 			</transition>
 
 			<transition name="fade">
 
-				<li v-if="$route.name !== 'home'"
-					@click="$router.push('/')"
-				>
-
-					<router-link to="/">Home</router-link>
-
+				<li v-if="$route.name !== 'home'" >
+					<button  :class="[ { [ 'is-active' ]: isActive('/')} ]" @click="click('/')" >Home</button>
 				</li>
 
 			</transition>
 
-			<li @click="$router.push('/website')" >
+			<li >
 
-				<router-link to="/website">Website</router-link>
-
-			</li>
-
-			<li @click="$router.push('/marketing')" >
-
-				<router-link to="/marketing">Marketing</router-link>
+				<button  :class="[ { [ 'is-active' ]: isActive('/marketing')} ]" @click="click('/marketing')" >Marketing</button>
 
 			</li>
 
-			<li @click="$router.push('/interactive')" >
+			<li >
 
-				<router-link to="/interactive">Interactive / 3d</router-link>
+				<button :class="[ { [ 'is-active' ]: isActive('/interactive')} ]"  @click="click('/interactive')" >Interactive / 3D</button>
+
+			</li>
+
+			<li>
+
+				<button :class="[ { [ 'is-active' ]: isActive('/website')} ]"  @click="click('/website')" >Website</button>
 
 			</li>
 
 
-			<li @click="$router.push('/')" >
+			<li>
 
-				<a href="#" target="_blank">
+				<a href="#" target="_blank" @click="click()" >
 					<github/>&nbsp;<span :class="['external-span']" >(external)</span>
 				</a>
 
@@ -68,20 +64,34 @@
 <script>
 
 import github from '@/components/icons/github';
+import { mapGetters } from 'vuex';
+import { debounce } from 'lodash';
 
 export default {
+
 	components: {
 		github
 	},
+
 	data() {
-		return {
-			menuOpen: false
-		};
+		return {}
+	},
+
+	computed: {
+
+		...mapGetters({
+			menuOpen: 'getMenuOpen'
+		}),
+
+		d() {
+			return debounce( this.resizeFn, 50, { 'leading': true, 'trailing': true } )
+		}
+
 	},
 	watch: {
 		'$route'(r) {
 			if ( this.menuOpen ) {
-				this.toggleMenu();				
+				this.toggleMenu();
 			}
 		},
 		'menuOpen'(o) {
@@ -94,7 +104,52 @@ export default {
 
 		},
 	},
+
+	mounted() {
+		this.resize();
+	},
+
+	beforeDestroy() {
+		window.removeEventListener("resize", this.d );
+	},
+
 	methods: {
+
+		resizeFn() {
+
+			if ( !this.$store.state.menuOpen ) return;
+
+			console.log('happening'); 
+
+			if ( window.innerWidth >= 1100 && this.$store.state.menuOpen ) { 
+				this.toggleMenu(); 
+				return;
+			} else {
+				return;
+			}
+		},
+
+		resize() {
+			window.addEventListener("resize", this.d );
+		},
+
+		isActive(r) {
+			let t = '/'+this.$route.params.type == r;
+			return r == this.$route.pat || t;
+		},
+
+		click(path) {
+
+			if ( path && path != this.$route.path ) {
+				this.$router.push( path );
+			} else if ( !path || path == this.$route.path ) {
+				this.toggleMenu();
+			} else {
+				console.log("!");
+			}
+
+		},
+
 		keyPress() {
 
 			window.onkeydown = ( event ) => {
@@ -104,18 +159,25 @@ export default {
 			};
 
 		},
+
 		button() {
 			this.toggleMenu();
 		},
+
 		toggleMenu() {
-			this.menuOpen = !this.menuOpen;			
+			this.$store.dispatch( 'setToggleMenu' );
 		}
+
 	}
 };
 
 </script>
 
 <style lang="scss" scoped>
+
+	.top {
+		padding-top:48px;
+	}
 
 	#nav {
 
@@ -137,25 +199,33 @@ export default {
 		list-style:none;
 		cursor: pointer;
 		transition: background 200ms ease;
+		margin: 0;
+		padding: 0;
+		padding-left:0;
+
 		&:hover {
 			background: darken(white, 8%);
 		}
 
 		button, a {
-			display:inline-block;
 			padding: 0.75rem 4rem;
+			padding-left:64px;
+			display:inline-block;
 			font-weight: bold;
 			text-decoration:none;
-		}
-
-		button {
-			background: transparent;
-			outline: none;
-			border:0;
+			-webkit-tap-highlight-color: transparent;
+			font-size:16px;
+			text-align:left;
 			cursor: pointer;
 		}
 
-		a {
+		button,a  {
+			background: transparent;
+			outline: none;
+			border:0;
+		}
+
+		button,a {
 			color: #2c3e50;
 			transition: color 200ms ease-in;
 
@@ -174,7 +244,7 @@ export default {
 				transition: fill 200ms ease-in;
 			}
 
-			&.router-link-exact-active {
+			&.router-link-exact-active, &.is-active {
 				color:Purple;
 				> svg {
 					fill: Purple;
@@ -216,6 +286,13 @@ export default {
 
 	.external {
 
+		border:0;
+		outline: 0;
+
+		position:fixed;
+		top:0;
+		left:0;
+
 		cursor: pointer;
 		opacity:0;
 		background: black;
@@ -224,11 +301,11 @@ export default {
 		font-size: 12px;
 		font-weight: normal;
 
-		padding: 16px 16px;
-		margin: 32px;
-		margin-top: 24px;
+		padding: 8px 16px;
 		margin-bottom: 0;
-
+		margin-top:0;		
+		z-index:1;
+		width:100%;
 		animation-name: opacityIn;
 		animation-duration: 500ms;
 		animation-delay: 0s;
@@ -244,7 +321,9 @@ export default {
 	// large up
 
 	@media only screen and (min-width:1100px) {
-
+		.top {
+			padding-top:0;
+		}
 		.external {
 			opacity:0;
 			display:none;
@@ -259,7 +338,11 @@ export default {
 			flex-direction:row;
 			justify-content:center;
 		}
-
+		li {
+			button,a {
+				text-align:center;
+			}
+		}
 	}
 
 	// small only
@@ -281,7 +364,7 @@ export default {
 			transition: transform 100ms ease-out;
 			transition-property: transform, filter, opacity;
 			transition-delay: 50ms, 0s, 30ms;
-
+			overflow-y: auto;
 			&.menu-open {
 				transform: translate3d(0,0,0);
 				opacity:1;
@@ -297,7 +380,9 @@ export default {
 
 		li {
 			text-align: left;
-			padding-left: 18px;
+			button, a  {
+				width:100%;
+			}
 		}
 
 	}
