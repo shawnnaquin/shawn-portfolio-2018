@@ -1,12 +1,18 @@
 <template>
 
-	<div :class="[ 'background' ]" >
+	<div  :class="[ 'background' ]"  >
 
-		<router-link :class="['close']" :to="routeBack" >( close / ESC )<close></close></router-link>
+		<div class="" style="z-index:1; height:100%; width:100%; top:0; left:0; position:absolute;" ref="background" ></div>
+
+		<router-link :class="['close']" :to="routeBack" ><close></close></router-link>
+
+		<button :class="['external']" @click="goToImage()" > > </button>
+		<button :class="['external']" @click="goToPrevImage()" > < </button>
+
 
 		<div
 			  :class="[ orientation, 'grid' ]"
-			>
+		>
 
   			<div
   			>
@@ -40,7 +46,8 @@ export default {
 
 	data() {
 		return {
-			index: 0
+			index: 0,
+			imageTypes: [ 'mobile', 'horiz', 'regular' ]
 		}
 	},
 
@@ -54,14 +61,17 @@ export default {
 		},
 
 		orientation() {
+
 			let h = ['mobile','horiz'];
 			let p = null;
+
 			for( let v of h ) {
 				if ( this.$route.params.image.includes( v ) ) {
 					p = v;
 					break;
 				}
 			}
+
 			if ( p === null ) {
 				p = 'regular';
 			}
@@ -83,6 +93,14 @@ export default {
 
 			return p;
 
+		},
+
+		nextImage() {
+			return ( this.getImageIndex + 1 ) % ( this.images[this.orientation].length + 1 );
+		},
+
+		prevImage() {
+			return this.getImageIndex - 1;
 		},
 
 		image() {
@@ -108,16 +126,124 @@ export default {
 			};
 
 		},
+
+		changeImageType(subtract) {
+
+			let addIt = (i) => {
+				let n = i + 1;
+
+				if ( subtract ) {
+					if ( i-1 < 0 ) {
+						n = this.imageTypes.length - 1;
+					} else {
+						n = i-1;
+					}
+				}
+
+				return n % this.imageTypes.length;
+
+			};
+
+			let p = false;	
+
+			let num = addIt( this.imageTypes.indexOf( this.orientation ) );
+
+			let t = () => {
+				if ( this.images[ this.imageTypes[num] ].length ) {
+					p = this.imageTypes[num];
+				} else {
+					num = addIt( num );
+					t();
+				}
+			};
+
+			t();
+
+			return p;
+
+		},
+
+		goToImage() {		
+			if ( this.nextImage > this.images[this.orientation].length - 1  ) {
+				this.$router.push( `/${this.type}/${this.project}/${ this.images[ this.changeImageType() ][0].path }` )
+			} else {
+				this.$router.push( `/${this.type}/${this.project}/${ this.images[this.orientation][ this.nextImage ].path }` );
+			}
+		},
+
+		goToPrevImage() {
+
+			if ( this.prevImage < 0 ) {
+				this.$router.push( `/${this.type }/${this.project}/${ this.images[ this.changeImageType(true) ][ this.images[ this.changeImageType(true) ].length - 1 ].path }` )
+			} else {
+				this.$router.push( `/${this.type }/${this.project}/${ this.images[this.orientation][ this.prevImage ].path }` )
+			}
+
+		},
+		swipe() {
+
+			var touchStartCoords =  {'x':-1, 'y':-1}, // X and Y coordinates on mousedown or touchstart events.
+			    touchEndCoords = {'x':-1, 'y':-1},// X and Y coordinates on mouseup or touchend events.
+			    direction = 'undefined',// Swipe direction
+			    minDistanceXAxis = 30,// Min distance on mousemove or touchmove on the X axis
+			    maxDistanceYAxis = 30,// Max distance on mousemove or touchmove on the Y axis
+			    maxAllowedTime = 1000,// Max allowed time between swipeStart and swipeEnd
+			    startTime = 0,// Time on swipeStart
+			    elapsedTime = 0,// Elapsed time between swipeStart and swipeEnd
+			    targetElement = this.$refs.background;// Element to delegate
+
+			function swipeStart(e) {
+			  e = e ? e : window.event;
+			  e = ('changedTouches' in e)?e.changedTouches[0] : e;
+			  touchStartCoords = {'x':e.pageX, 'y':e.pageY};
+			  startTime = new Date().getTime();
+			  // targetElement.textContent = " ";
+			}
+
+			function swipeMove(e){
+			  e = e ? e : window.event;
+			  e.preventDefault();
+			}
+
+			function swipeEnd(e) {
+			  e = e ? e : window.event;
+			  e = ('changedTouches' in e)?e.changedTouches[0] : e;
+			  touchEndCoords = {'x':e.pageX - touchStartCoords.x, 'y':e.pageY - touchStartCoords.y};
+			  elapsedTime = new Date().getTime() - startTime;
+			  if (elapsedTime <= maxAllowedTime){
+			    if (Math.abs(touchEndCoords.x) >= minDistanceXAxis && Math.abs(touchEndCoords.y) <= maxDistanceYAxis){
+			      direction = (touchEndCoords.x < 0)? 'left' : 'right';
+			      switch(direction){
+			        case 'left':
+			        console.log('left');
+			          // targetElement.textContent = "Left swipe detected";
+			          break;
+			        case 'right':
+			        console.log('right')
+			          // targetElement.textContent = "Right swipe detected";
+			          break;
+			      }
+			    }
+			  }
+			}
+
+			addMultipleListeners(targetElement, 'mousedown touchstart', swipeStart);
+			addMultipleListeners(targetElement, 'mousemove touchmove', swipeMove);
+			addMultipleListeners(targetElement, 'mouseup touchend', swipeEnd);
+
+		},
+
 	},
 
-	watch: {
-
-	},
 	beforeDestroy() {
 		window.onkeydown = false;
+		this.$store.dispatch('setToggleNoScroll');
 	},
+
 	mounted() {
 		this.keyPress();
+		this.$store.dispatch('setToggleNoScroll');
+		this.swipe();
 	}
 
 };
@@ -128,9 +254,48 @@ export default {
 </style>
 
 <style lang="scss" scoped >
+
+	.external {
+		position:absolute;
+		top:0;
+		left:0;
+		padding:48px;
+
+		background:black;
+		color:white;
+		z-index:2;
+		outline:0;
+		cursor: pointer;
+		transition: color 200ms ease;
+		height:100%;
+		border:0;
+		font-size:48px;
+		-webkit-tap-highlight-color: transparent;
+
+		&:hover {
+			color: darken(white, 20%);
+		}
+
+		&:nth-of-type(1) {
+			left:auto;
+			right:0;
+		}
+		@media only screen and (max-width:630px) {
+			font-size:12px;
+			padding-right:48px;
+			padding-left:8px;
+			background:transparent;
+			&:nth-of-type(1) {
+				padding-left:48px;
+				padding-right: 8px;
+			}
+		}
+	}
+
 	@keyframes in {
 		100% {opacity:1;}
 	}
+
 	.close {
 
 		position:absolute;
@@ -144,7 +309,21 @@ export default {
 		animation-fill-mode:forwards;
 		animation-timing-function: ease;
 		animation-delay: 700ms;
+		background: black;
+		padding: 10px;
+		font-size:10px;
+		z-index:3;
 
+		&:after {
+			display:block;
+			position:relative;
+			content: '(close/ESC)';
+			right:0;
+			bottom:-10px;
+			padding-top:4px;
+			padding-bottom:4px;
+			background:black;
+		}
 		> svg {
 			width: 32px;
 			height: 32px;
@@ -162,6 +341,15 @@ export default {
 			}
 		}
 
+		@media only screen and (max-width: 630px) {
+			top: 0;
+			right: 0;
+			// font-size:8px;
+			// > svg {
+			// 	width: 10px;
+			// 	height:10px;
+			// }
+		}
 	}
 
 	.grid.mobile {
@@ -182,8 +370,10 @@ export default {
 		transform: translate3d(-50%,-50%,0);
 
 		> div {
-			// padding-bottom: 56.25%;
 			position:relative;
+		}
+		@media only screen and (max-width: 630px) {
+			width: 80%;
 		}
 	}
 
