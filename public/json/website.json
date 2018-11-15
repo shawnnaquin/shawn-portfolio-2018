@@ -299,7 +299,7 @@
             "caption": "The mascott of the CRG skates forward while the website loads."
         },
         "content": {
-            "video": false,
+            "video": "",
         	"article": "This custom-built Wordpress Theme for the Chattanooga WFTDA Roller Derby team features several custom plugins. Advanced User Roles, Custom Categories, Custom Types, Google Analytics... the works! This theme was developed from the groundup to be versatile. Chattanooga Roller Girls features smooth page transitions for a seemless experience through javascript.",
         	"techList": [
         		"Wordpress",
