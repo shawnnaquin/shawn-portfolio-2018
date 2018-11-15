@@ -79,11 +79,24 @@
 	import projects from '@/mixins/projects';
 
 	export default {
+
 		components: {
 			Loader,
 			'picture-query': Picture
 		},
+
 		mixins: [ animateIn, projects ],
+		watch: {
+			'$route'(p) {
+				// override the menu function from store.js
+				setTimeout( ()=> { window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0; }, 10 );
+			}
+		},
+		mounted() {
+			// override the menu function from store.js
+			setTimeout( ()=> { window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0; }, 10 );
+		},
+
 		methods: {
 			getIndex(name) {
 				return Object.keys( this.projects ).indexOf( name );
@@ -104,9 +117,12 @@
 	.portfolio {
 		padding: 0 10%;
   		display: grid;
-		grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) );
+		grid-template-columns: repeat( auto-fill, minmax(250px, 1fr) );
 		grid-gap: 2rem;
 		transition: grid-template-columns 5s ease;
+		@media only screen and (max-width:630px) {
+			grid-template-columns: repeat( auto-fill, minmax(200px, 1fr) );
+		}
 	}
 
 	h1 {
