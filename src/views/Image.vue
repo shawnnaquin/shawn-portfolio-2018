@@ -6,8 +6,8 @@
 
 		<router-link :class="['close']" :to="routeBack" ><close></close></router-link>
 
-		<button :class="['external']" @click="goToImage()" > > </button>
-		<button :class="['external']" @click="goToPrevImage()" > < </button>
+		<button :class="['external']" @click="goToImage()" > &gt; </button>
+		<button :class="['external']" @click="goToPrevImage()" > &lt; </button>
 
 		<div
 			  :class="[ orientation, 'grid' ]"
@@ -15,7 +15,10 @@
 
   			<div
   			>
+
+  			<transition name="fade" appear >
 	  			<picture-query
+	  				:key="image.path"
 	  				v-if="image"
 	  				:type="type"
 	  				:path="`${ image.path }`"
@@ -23,6 +26,8 @@
 	  			>
 	  				<p>{{image.caption}}</p>
 	  			</picture-query>
+	  		</transition>
+
 			</div>
 		</div>
 	</div>
@@ -143,6 +148,8 @@ export default {
 
 			};
 
+			// take advantage of blocking script
+
 			let p = false;
 
 			let num = addIt( this.imageTypes.indexOf( this.orientation ) );
@@ -164,18 +171,18 @@ export default {
 
 		goToImage() {
 			if ( this.nextImage > this.images[this.orientation].length - 1  ) {
-				this.$router.push( `/${this.type}/${this.project}/${ this.images[ this.changeImageType() ][0].path }` )
+				this.$router.replace( `/${this.type}/${this.project}/${ this.images[ this.changeImageType() ][0].path }` )
 			} else {
-				this.$router.push( `/${this.type}/${this.project}/${ this.images[this.orientation][ this.nextImage ].path }` );
+				this.$router.replace( `/${this.type}/${this.project}/${ this.images[this.orientation][ this.nextImage ].path }` );
 			}
 		},
 
 		goToPrevImage() {
 
 			if ( this.prevImage < 0 ) {
-				this.$router.push( `/${this.type }/${this.project}/${ this.images[ this.changeImageType(true) ][ this.images[ this.changeImageType(true) ].length - 1 ].path }` )
+				this.$router.replace( `/${this.type }/${this.project}/${ this.images[ this.changeImageType(true) ][ this.images[ this.changeImageType(true) ].length - 1 ].path }` )
 			} else {
-				this.$router.push( `/${this.type }/${this.project}/${ this.images[this.orientation][ this.prevImage ].path }` )
+				this.$router.replace( `/${this.type }/${this.project}/${ this.images[this.orientation][ this.prevImage ].path }` )
 			}
 
 		}
@@ -190,7 +197,6 @@ export default {
 	mounted() {
 		this.keyPress();
 		this.$store.dispatch('setToggleNoScroll');
-		this.swipe();
 	}
 
 };
