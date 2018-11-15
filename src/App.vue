@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+
+  <div id="app" :class="[{['no-scroll']: $store.state.noScroll }]" >
 
     <transition name="long-fade" >
 
@@ -49,10 +50,16 @@ export default {
 </script>
 
 <style lang="scss" scoped >
-    
+
+    .no-scroll {
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+
     .paragraph {
       margin: 0 auto;
     }
+
     .loader {
       background: black;
       position: fixed;
@@ -112,6 +119,8 @@ export default {
     color: #2c3e50;
     max-width: 1440px;
     margin: 0 auto;
+    width:100%;
+    overflow-x: hidden;
   }
 
   ul {
@@ -126,10 +135,13 @@ export default {
   .flex-column {
     display: flex;
     flex-direction: column;
-    margin-bottom:48px;
   }
 
   @media only screen and (min-width:1100px) {
+    .flex-column {
+      
+      margin-bottom:48px;
+    }
 
     #app {
       text-align:center;
