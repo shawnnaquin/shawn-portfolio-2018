@@ -9,7 +9,6 @@
 		<button :class="['external']" @click="goToImage()" > > </button>
 		<button :class="['external']" @click="goToPrevImage()" > < </button>
 
-
 		<div
 			  :class="[ orientation, 'grid' ]"
 		>
@@ -144,7 +143,7 @@ export default {
 
 			};
 
-			let p = false;	
+			let p = false;
 
 			let num = addIt( this.imageTypes.indexOf( this.orientation ) );
 
@@ -163,7 +162,7 @@ export default {
 
 		},
 
-		goToImage() {		
+		goToImage() {
 			if ( this.nextImage > this.images[this.orientation].length - 1  ) {
 				this.$router.push( `/${this.type}/${this.project}/${ this.images[ this.changeImageType() ][0].path }` )
 			} else {
@@ -179,59 +178,7 @@ export default {
 				this.$router.push( `/${this.type }/${this.project}/${ this.images[this.orientation][ this.prevImage ].path }` )
 			}
 
-		},
-		swipe() {
-
-			var touchStartCoords =  {'x':-1, 'y':-1}, // X and Y coordinates on mousedown or touchstart events.
-			    touchEndCoords = {'x':-1, 'y':-1},// X and Y coordinates on mouseup or touchend events.
-			    direction = 'undefined',// Swipe direction
-			    minDistanceXAxis = 30,// Min distance on mousemove or touchmove on the X axis
-			    maxDistanceYAxis = 30,// Max distance on mousemove or touchmove on the Y axis
-			    maxAllowedTime = 1000,// Max allowed time between swipeStart and swipeEnd
-			    startTime = 0,// Time on swipeStart
-			    elapsedTime = 0,// Elapsed time between swipeStart and swipeEnd
-			    targetElement = this.$refs.background;// Element to delegate
-
-			function swipeStart(e) {
-			  e = e ? e : window.event;
-			  e = ('changedTouches' in e)?e.changedTouches[0] : e;
-			  touchStartCoords = {'x':e.pageX, 'y':e.pageY};
-			  startTime = new Date().getTime();
-			  // targetElement.textContent = " ";
-			}
-
-			function swipeMove(e){
-			  e = e ? e : window.event;
-			  e.preventDefault();
-			}
-
-			function swipeEnd(e) {
-			  e = e ? e : window.event;
-			  e = ('changedTouches' in e)?e.changedTouches[0] : e;
-			  touchEndCoords = {'x':e.pageX - touchStartCoords.x, 'y':e.pageY - touchStartCoords.y};
-			  elapsedTime = new Date().getTime() - startTime;
-			  if (elapsedTime <= maxAllowedTime){
-			    if (Math.abs(touchEndCoords.x) >= minDistanceXAxis && Math.abs(touchEndCoords.y) <= maxDistanceYAxis){
-			      direction = (touchEndCoords.x < 0)? 'left' : 'right';
-			      switch(direction){
-			        case 'left':
-			        console.log('left');
-			          // targetElement.textContent = "Left swipe detected";
-			          break;
-			        case 'right':
-			        console.log('right')
-			          // targetElement.textContent = "Right swipe detected";
-			          break;
-			      }
-			    }
-			  }
-			}
-
-			addMultipleListeners(targetElement, 'mousedown touchstart', swipeStart);
-			addMultipleListeners(targetElement, 'mousemove touchmove', swipeMove);
-			addMultipleListeners(targetElement, 'mouseup touchend', swipeEnd);
-
-		},
+		}
 
 	},
 
