@@ -20,8 +20,7 @@
 			</p>
 
 		  	<div v-else :class="[ 'article-header' ]" >
-
-			  	<h1>{{project.title}}</h1>
+			  	<h1> {{project.title}}</h1>
 			  	<h3>{{project.projectDescription}}</h3>
 
 			  	<div v-if="project.content.code || project.content.externalSite" class="buttons" >
@@ -48,7 +47,7 @@
 			  		{{ project.content.article }}
 			  	</p>
 
-			  	<youtube-video :videoId="project.content.video" :videoImg=" `/img/portfolio/${ type }/${ images.video }-lg_1x.jpg`" ></youtube-video>
+			  	<youtube-video v-if="project.content.video.length" :videoId="project.content.video" :videoImg=" `/img/portfolio/${ type }/${ images.video }-lg_1x.jpg`" ></youtube-video>
 
 			</div>
 
@@ -205,6 +204,7 @@
 
 		mounted() {
 			this.checkPhone();
+			window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
 		},
 
 		methods: {
@@ -270,7 +270,7 @@
 		}
 
 		@media only screen and (max-width:630px) {
-			grid-template-columns: repeat( auto-fill, minmax(300px, 1fr) )
+			grid-template-columns: repeat( auto-fill, minmax(200px, 1fr) )
 		}
 
 	}
@@ -359,7 +359,7 @@
 				margin-top:32px;
 			}
 			a {
-				margin-bottom:24px;
+				margin-bottom:12px;
 			}
 		}
 	}
