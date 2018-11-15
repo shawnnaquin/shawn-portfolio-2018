@@ -16,6 +16,8 @@
 	  	])
 	  },
 	  mounted(){
+		window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
+
 		setTimeout( ()=> {
 		    this.$store.dispatch('setLoading');
 		}, 1000 );
