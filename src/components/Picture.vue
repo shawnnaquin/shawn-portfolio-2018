@@ -42,14 +42,13 @@
 </template>
 
 <script>
-	import VLazyImage from "v-lazy-image";
+
 	import Loader from "@/components/Loader";
 
 	export default {
 
 		components: {
-			Loader,
-			VLazyImage
+			Loader
 		},
 		data() {
 			return {
@@ -111,12 +110,16 @@
 	}
 
 	.v-lazy-image, .blur {
-	  filter: blur(10px);
 	  transition-property: filter;
 	  transition-duration: 0.3s;
-	  transition-delay: 0.3s;
+	  filter: blur(10px);
+	  // transition-delay: 0.3s;
 	  transition-timing-function: ease-out;
-	}
+
+	  // @media only screen and (max-width: 630px) {
+	  // }
+
+	} 
 
 	.v-lazy-image-loaded {
 	  filter: blur(0);
