@@ -74,7 +74,7 @@
 
 	.heading {
 		margin-bottom: 32px;
-		margin-top: 64px;
+		margin-top: 24px;
 	}
 
 	h1 span::before {
@@ -85,7 +85,7 @@
 	@media only screen and (max-width:630px) {
 
 		.video {
-			width:100%;
+			width:90%;
 		}
 
 		h1 span {
