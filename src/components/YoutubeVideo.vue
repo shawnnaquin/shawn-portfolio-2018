@@ -3,6 +3,7 @@
 		<div :class="['player', { ['stuck']: stuck } ]" 
 			@mouseenter="mouseenter"
 			@mouseleave="mouseleave"
+			:ref=" 'player' "
 		>
 
 			<div id="player"> </div>
@@ -35,7 +36,21 @@ export default {
 	},
 
 	mounted() {
+
 		this.createScript();
+
+		let observer = new IntersectionObserver( entry => {
+			entry.forEach( (e) =>  {
+
+			    if ( e.intersectionRatio <= 0 && window.YTPlayer && window.YTPlayer.pauseVideo ) {
+					window.YTPlayer.pauseVideo();
+			    }
+
+			});
+		});
+
+		observer.observe( this.$refs.player );
+
 	},
 
 	watch: {
