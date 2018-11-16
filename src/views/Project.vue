@@ -2,9 +2,9 @@
 
 	<article class="project"  >
 
-		<transition name="fade" appear >
-			<router-view :images="images" />
-		</transition>
+		<!-- <transition name="fade" appear > -->
+			<!-- <router-view :images="images" /> -->
+		<!-- </transition> -->
 
 		<transition name="fade" appear mode="out-in"
 			v-on:enter="articleEnter"
@@ -204,7 +204,6 @@
 
 		mounted() {
 			this.checkPhone();
-			window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
 		},
 
 		methods: {
@@ -243,83 +242,6 @@
 
 </script>
 
-<style lang="scss" >
-
-	.grid {
-
-		width:100%;
-		display: grid;
-		grid-template-columns: repeat( auto-fill, minmax(400px, 1fr ) );
-		grid-gap: 2rem;
-		margin-bottom:10%;
-		perspective: 1100px;
-		> div {
-			padding-bottom: 56.25%;
-			transform-origin:center;
-			transform: translate3d(0,0,0);
-			transition: transform 150ms ease;
-			&:hover {
-				transform: translate3d(0,0,10px);
-			}
-		}
-
-		source, img {
-			object-fit: contain;
-			width: 100%;
-			height: 100%;
-		}
-
-		@media only screen and (max-width:630px) {
-			grid-template-columns: repeat( auto-fill, minmax(200px, 1fr) )
-		}
-
-	}
-
-	.grid.horiz {
-		> div {
-			padding-bottom: 56.1%;
-			@media only screen and (min-width: 630px) {
-				padding-bottom: 49.21%;
-				background-image: url( '~@/assets/ui/mobile.horiz.png' );
-				background-size: cover;
-				background-position: center;
-			}
-
-		}
-	}
-
-	.grid.mobile {
-		width:100%;
-		grid-template-columns: repeat( auto-fill, minmax(200px, 1fr ) );
-		> div {
-			padding-bottom: 177%;
-			@media only screen and (min-width: 630px) {
-				padding-bottom: 202.9%;
-				background-image: url( '~@/assets/ui/mobile.vert.png' );
-				background-size: cover;
-				background-position: center;
-			}
-		}
-	}
-
-	@media only screen and (min-width: 630px) {
-		.grid.horiz figure {
-			width: 77.5%;
-		    height: 88%;
-		    left: 11%;
-		    top: 6%;
-		}
-
-		.grid.mobile figure {
-			width: 88%;
-			height: 77%;
-			left: 5.5%;
-			top: 11.25%;
-		}
-	}
-
-</style>
-
 <style lang="scss" scoped >
 
 	.tech-list {
@@ -346,10 +268,11 @@
 		align-items: center;
 		padding:0 10%;
 	}
+
 	.article-header {
 		max-width:600px;
 		padding-bottom: 10%;
-		
+
 		.buttons {
 			h1,h2,h3,h4 {
 				margin-top:0;

@@ -30,13 +30,12 @@ export default new Router({
 
     {
       path: "/:type(marketing|interactive|website)/:project",
-      component: Project,
-      children: [
-        {
-          path: ":image",
-          component: Image
-        }
-      ]
+      component: Project
+    },
+
+    {
+      path: "/:type(marketing|interactive|website)/:project/:image",
+      component: Image
     },
 
     {

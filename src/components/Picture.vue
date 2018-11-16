@@ -139,10 +139,8 @@
 		margin:0;
 	}
 
-	figure {
-	}
-
 	figcaption {
+
 		position:absolute;
 		bottom:0;
 		font-size: 10px;
@@ -154,6 +152,14 @@
 		background:black;
 		width:calc(100% - 20px);
 		height:auto;
+		transition: opacity 200ms ease;
+		opacity:1;
+		pointer-events: auto;
+		@media only screen and (max-width: 1100px) {
+			pointer-events:none;
+			opacity:0;
+		}
+
 	}
 
 	source, img {

@@ -1,8 +1,12 @@
 <template>
 
-	<div  :class="[ 'background' ]"  >
+	<div :class="[ 'background' ]" :style="" ref="background" >
 
-		<div class="" style="z-index:1; height:100%; width:100%; top:0; left:0; position:absolute;" ref="background" ></div>
+		<div
+			:class="[ 'swipe' ]"
+			ref="swipe"
+			v-hammer:swipe="swipe"
+		> </div>
 
 		<router-link :class="['close']" :to="routeBack" ><close></close></router-link>
 
@@ -38,11 +42,13 @@
 
 import Picture from '@/components/Picture';
 import close from '@/components/icons/close';
+import projects from '@/mixins/projects';
+import height from '@/mixins/height';
 
 export default {
 
-	props: [ 'images' ],
-
+	// props: [ 'images' ],
+	mixins: [ projects, height ],
 	components: {
 		'picture-query': Picture,
 		close
@@ -51,18 +57,12 @@ export default {
 	data() {
 		return {
 			index: 0,
-			imageTypes: [ 'mobile', 'horiz', 'regular' ]
+			imageTypes: [ 'mobile', 'horiz', 'regular' ],
+			height: true
 		}
 	},
 
 	computed: {
-		type() {
-			return this.$route.params.type;
-		},
-
-		project() {
-			return this.$route.params.project;
-		},
 
 		orientation() {
 
@@ -113,14 +113,14 @@ export default {
 		},
 
 		routeBack() {
-			return `/${this.type}/${this.project}`;
+			if ( !this.project ) return '';
+			return `/${this.type}/${this.project.link}`;
 		},
 
 	},
 
-	mixins: [],
-
 	methods: {
+
 		keyPress() {
 
 			window.onkeydown = ( event ) => {
@@ -171,18 +171,53 @@ export default {
 
 		goToImage() {
 			if ( this.nextImage > this.images[this.orientation].length - 1  ) {
-				this.$router.replace( `/${this.type}/${this.project}/${ this.images[ this.changeImageType() ][0].path }` )
+				this.$router.replace( `/${this.type}/${this.project.link}/${ this.images[ this.changeImageType() ][0].path }` )
 			} else {
-				this.$router.replace( `/${this.type}/${this.project}/${ this.images[this.orientation][ this.nextImage ].path }` );
+				this.$router.replace( `/${this.type}/${this.project.link}/${ this.images[this.orientation][ this.nextImage ].path }` );
 			}
 		},
 
 		goToPrevImage() {
 
 			if ( this.prevImage < 0 ) {
-				this.$router.replace( `/${this.type }/${this.project}/${ this.images[ this.changeImageType(true) ][ this.images[ this.changeImageType(true) ].length - 1 ].path }` )
+				this.$router.replace( `/${this.type }/${this.project.link}/${ this.images[ this.changeImageType(true) ][ this.images[ this.changeImageType(true) ].length - 1 ].path }` )
 			} else {
-				this.$router.replace( `/${this.type }/${this.project}/${ this.images[this.orientation][ this.prevImage ].path }` )
+				this.$router.replace( `/${this.type }/${this.project.link}/${ this.images[this.orientation][ this.prevImage ].path }` )
+			}
+
+		},
+
+		swipe(e) {
+
+			// DIRECTION_NONE	1
+			// DIRECTION_LEFT	2
+			// DIRECTION_RIGHT	4
+			// DIRECTION_UP	8
+			// DIRECTION_DOWN	16
+			// DIRECTION_HORIZONTAL	6
+			// DIRECTION_VERTICAL	24
+			// DIRECTION_ALL	30
+
+			switch( e.direction ) {
+				case 4:
+					// right
+					this.goToImage();
+					break;
+				case 2:
+					// left
+					this.goToPrevImage();
+					break;
+				case 8:
+					// up
+					this.goToPrevImage();
+					break;
+				case 16:
+					// down
+					this.goToImage();
+					break;
+				default:
+					// do nothing
+					break;
 			}
 
 		}
@@ -190,13 +225,16 @@ export default {
 	},
 
 	beforeDestroy() {
+		this.height = false;
 		window.onkeydown = false;
 		this.$store.dispatch('setToggleNoScroll');
 	},
 
 	mounted() {
+
 		this.keyPress();
 		this.$store.dispatch('setToggleNoScroll');
+
 	}
 
 };
@@ -262,7 +300,7 @@ export default {
 		animation-fill-mode:forwards;
 		animation-timing-function: ease;
 		animation-delay: 700ms;
-		background: black;
+		background: rgba(black,0.5);
 		padding: 10px;
 		font-size:10px;
 		z-index:3;
@@ -270,7 +308,6 @@ export default {
 		&:after {
 			display:block;
 			position:relative;
-			content: '(close/ESC)';
 			right:0;
 			bottom:-10px;
 			padding-top:4px;
@@ -306,8 +343,18 @@ export default {
 	}
 
 	.grid.mobile {
-		width: 75%;
-		max-width: 360px;
+
+		// width: 40%;
+		max-width:180px;
+
+		@media only screen and (max-height: 420px) {
+			width: 20%;
+		}
+		@media only screen and (min-width: 1500px) {
+			// max-width:500px;
+			width:30%;
+			max-width: 100%;
+		}
 	}
 
 	.grid, .grid.horiz {
@@ -325,9 +372,15 @@ export default {
 		> div {
 			position:relative;
 		}
+
 		@media only screen and (max-width: 630px) {
 			width: 80%;
 		}
+
+		@media only screen and (max-height: 420px) {
+			width: 60%;
+		}
+
 	}
 
 	.background {
@@ -336,8 +389,18 @@ export default {
 		left:0;
 		width:100%;
 		height:100%;
+		overflow-y:hidden;
 		background: rgba(black,1);
 		z-index:100;
+	}
+
+	.swipe {
+		position:absolute;
+		z-index:1;
+		height:100%;
+		width:100%;
+		top:0;
+		left:0;
 	}
 
 </style>

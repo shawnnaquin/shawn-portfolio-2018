@@ -1,17 +1,20 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from 'axios';
+import router from '@/router';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
 
   state: {
+
       projects: {},
       loading: true,
       menuOpen: false,
       noScroll: false,
-      lastScroll: 0
+      lastScroll: 0,
+      hadImage: false
   },
 
   getters: {
@@ -53,68 +56,44 @@ export default new Vuex.Store({
 
     setLastScroll(state, p) {
       state.lastScroll = p.last;
+    },
+
+    setHadImage(state,p) {
+      state.hadImage = p.image;
     }
 
   },
 
   actions: {
 
-      setToggleMenu({context,commit,dispatch} ) {
+      setToggleMenu({context,commit,dispatch,state} ) {
 
         commit( 'toggleMenu' );
-        dispatch( 'setToggleNoScroll' );
+
+        setTimeout( ()=> {
+          dispatch('setToggleNoScroll');
+        }, state.menuOpen ? 150 : 0 );
 
       },
 
       setToggleNoScroll( {context,commit,state} ) {
-        
+
         const scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
 
         if ( !state.noScroll ) {
-
-          commit( 'setLastScroll', { 
-              last: scrollTop  
-            });
+          commit('setLastScroll', {
+            last: scrollTop
+          });
         }
 
         commit('toggleNoScroll');
 
         Vue.nextTick( ()=> {
 
-          if ( !state.noScroll ) {
-            document.getElementsByTagName('body')[0].style.overflowY = '';
-            document.getElementsByTagName('html')[0].style.overflowY = '';
-
-            document.getElementsByTagName('body')[0].style.height = '';
-            document.getElementsByTagName('html')[0].style.height = '';
-
-            document.getElementsByTagName('body')[0].style.top = '';
-            document.getElementsByTagName('html')[0].style.top = '';
-
-            document.getElementsByTagName('body')[0].style.left = '';
-            document.getElementsByTagName('html')[0].style.left = '';
-
-            document.getElementsByTagName('body')[0].style.position = '';
-            document.getElementsByTagName('html')[0].style.position = '';
-
-            window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = state.lastScroll;
+          if ( !state.noScroll) {
+              document.body.style.background = '';
           } else {
-
-            document.getElementsByTagName('body')[0].style.overflowY = 'hidden';
-            document.getElementsByTagName('html')[0].style.overflowY = 'hidden';
-
-            document.getElementsByTagName('body')[0].style.height = '100%';
-            document.getElementsByTagName('html')[0].style.height = '100%';
-
-            document.getElementsByTagName('body')[0].style.top = '0';
-            document.getElementsByTagName('html')[0].style.top = '0';
-
-            document.getElementsByTagName('body')[0].style.left = '0';
-            document.getElementsByTagName('html')[0].style.left = '0';
-
-            document.getElementsByTagName('body')[0].style.position = 'absolute';
-            document.getElementsByTagName('html')[0].style.position = 'absolute';
-
+              document.body.style.background = 'black';
           }
 
         });

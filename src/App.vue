@@ -3,25 +3,23 @@
   <div id="app" :class="[{['no-scroll']: $store.state.noScroll }]" >
 
     <transition name="long-fade" >
-
-      <div :class="[ 'loader' ]"  v-if="getLoading" >
+      <div :class="[ 'loader' ]" v-if="getLoading" ref="background" >
         <p :class="[ 'paragraph' ]" >Loading <Loader :go="getLoading" /></p>
       </div>
-
     </transition>
 
-    <div :class="'flex-column'">
+    <div :class="'flex-column'" >
       <Nav />
       <Header :loaded="!getLoading" />
     </div>
 
     <transition name="fade" appear>
-      <router-view/>
+      <router-view />
     </transition>
 
-    <div :class="['footer']">
+<!--     <div :class="['footer']">
 
-    </div>
+    </div> -->
 
   </div>
 
@@ -32,15 +30,23 @@
 import Header from "@/components/Header.vue";
 import Nav from "@/components/Nav.vue";
 import Loader from "@/components/Loader";
+import height from '@/mixins/height';
 import { mapGetters } from 'vuex';
+
 
 export default {
   name: "home",
   computed: {
     ...mapGetters([
         'getLoading'
-      ])
+      ]),
+      height() {
+        return this.getLoading;
+      }
   },
+
+  mixins: [ height ],
+
   components: {
     Loader,
     Header,
@@ -52,8 +58,14 @@ export default {
 <style lang="scss" scoped >
 
     .no-scroll {
-      overflow-x: hidden;
-      overflow-y: hidden;
+
+      overflow:hidden;
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+
     }
 
     .paragraph {
@@ -105,9 +117,11 @@ export default {
   //  GENERAL
 
   body {
+    width:100%;
     box-sizing: border-box;
     margin: 0;
     background: darken(white,2%);
+    transition: background 100ms ease;
   }
 
   #app {
@@ -139,7 +153,7 @@ export default {
 
   @media only screen and (min-width:1100px) {
     .flex-column {
-      
+
       margin-bottom:48px;
     }
 
@@ -205,6 +219,79 @@ export default {
     transition: opacity 0.05s, transform 0.1s;
     transition-timing-function:ease-in;
     opacity: 0;
+  }
+
+  .grid {
+
+    width:100%;
+    display: grid;
+    grid-template-columns: repeat( auto-fill, minmax(400px, 1fr ) );
+    grid-gap: 2rem;
+    margin-bottom:10%;
+    perspective: 1100px;
+    > div {
+      padding-bottom: 56.25%;
+      transform-origin:center;
+      transform: translate3d(0,0,0);
+      transition: transform 150ms ease;
+      &:hover {
+        transform: translate3d(0,0,10px);
+      }
+    }
+
+    source, img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
+
+    @media only screen and (max-width:630px) {
+      grid-template-columns: repeat( auto-fill, minmax(200px, 1fr) )
+    }
+
+  }
+
+  .grid.horiz {
+    > div {
+      padding-bottom: 56.1%;
+      @media only screen and (min-width: 630px) {
+        padding-bottom: 49.21%;
+        background-image: url( '~@/assets/ui/mobile.horiz.png' );
+        background-size: cover;
+        background-position: center;
+      }
+
+    }
+  }
+
+  .grid.mobile {
+    width:100%;
+    grid-template-columns: repeat( auto-fill, minmax(200px, 1fr ) );
+    > div {
+      padding-bottom: 177%;
+      @media only screen and (min-width: 630px) {
+        padding-bottom: 202.9%;
+        background-image: url( '~@/assets/ui/mobile.vert.png' );
+        background-size: cover;
+        background-position: center;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 630px) {
+    .grid.horiz figure {
+      width: 77.5%;
+        height: 88%;
+        left: 11%;
+        top: 6%;
+    }
+
+    .grid.mobile figure {
+      width: 88%;
+      height: 77%;
+      left: 5.5%;
+      top: 11.25%;
+    }
   }
 
 </style>

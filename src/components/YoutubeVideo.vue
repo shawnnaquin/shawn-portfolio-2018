@@ -1,6 +1,6 @@
 <template>
 
-		<div :class="['player', { ['stuck']: stuck } ]" 
+		<div :class="['player', { ['stuck']: stuck } ]"
 			@mouseenter="mouseenter"
 			@mouseleave="mouseleave"
 			:ref=" 'player' "
@@ -72,7 +72,7 @@ export default {
 		mouseleave() {
 			this.mousein = false;
 
-			if ( !window.YTPlayer )  return;
+			if ( !window.YTPlayer.getPlayerState )  return;
 
 			if ( window.YTPlayer.getPlayerState() != 1 && window.YTPlayer.getPlayerState() != 3 ) {
 				this.stuck = false;
@@ -111,11 +111,11 @@ export default {
 
 			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-			window.onYouTubeIframeAPIReady = () => { 
+			window.onYouTubeIframeAPIReady = () => {
 				this.createPlayer();
 			}
 
-			if( window.YT ) {				
+			if( window.YT ) {
 				this.createPlayer();
 			}
 
@@ -124,18 +124,18 @@ export default {
 		createPlayer() {
 			window.YTPlayer = new YT.Player( 'player', {
 							videoId: this.videoId,
-							host: 'https://www.youtube.com',
-							origin: 'localhost',
-							playerVars: { 
-								'rel': 0, 
+							playerVars: {
+								'rel': 0,
+								'origin': 'http://localhost:8080',
 								'width': '100%',
 								'height': '100%',
-								'showinfo': 0, 
+								'showinfo': 0,
 								'ecver': 2,
-								'autoplay': 0, 
-								'controls': 1, 
-								'color': 'white', 
-								'modestbranding': 1 
+								'autoplay': 0,
+								'controls': 1,
+								'color': 'white',
+								'modestbranding': 1,
+								'enablejsapi': 1
 							},
 							events: {
 								'onReady': this.onPlayerReady,

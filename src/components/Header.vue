@@ -21,7 +21,7 @@
 			<youtube-video :videoId="'EYyELvmsw4c'" ></youtube-video>
 
 		</div>
-		
+
 	</header>
 </transition>
 

@@ -86,17 +86,6 @@
 		},
 
 		mixins: [ animateIn, projects ],
-		watch: {
-			'$route'(p) {
-				// override the menu function from store.js
-				setTimeout( ()=> { window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0; }, 10 );
-			}
-		},
-		mounted() {
-			// override the menu function from store.js
-			setTimeout( ()=> { window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0; }, 10 );
-		},
-
 		methods: {
 			getIndex(name) {
 				return Object.keys( this.projects ).indexOf( name );

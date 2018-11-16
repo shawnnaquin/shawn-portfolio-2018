@@ -1,9 +1,13 @@
 <template>
 
 	<div :class="['top']">
+		<transition name="fade" appear>
 
-	<button :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]" @click="button" >Menu</button>
+	<button :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]" v-if="!menuOpen" @click="button" >
+		<hamburger/>
+	</button>
 
+</transition>
 	<nav id="nav" :class="[ { ['menu-open']: menuOpen } ]" >
 
 		<ul>
@@ -12,7 +16,7 @@
 
 				<li
 					v-if="menuOpen"
-					@click="toggleMenu()"
+					@click="close()"
 					:class="['dark']"
 				>
 					<button>Close X</button>
@@ -64,13 +68,15 @@
 <script>
 
 import github from '@/components/icons/github';
+import hamburger from '@/components/icons/hamburger';
 import { mapGetters } from 'vuex';
 import { debounce } from 'lodash';
 
 export default {
 
 	components: {
-		github
+		github,
+		hamburger
 	},
 
 	data() {
@@ -89,11 +95,13 @@ export default {
 
 	},
 	watch: {
-		'$route'(r) {
+
+		'$route'(newr,oldr) {
 			if ( this.menuOpen ) {
-				this.toggleMenu();
+	        	this.toggleMenu();
 			}
 		},
+
 		'menuOpen'(o) {
 
 			if ( o ) {
@@ -117,12 +125,12 @@ export default {
 
 		resizeFn() {
 
-			if ( !this.$store.state.menuOpen ) return;
+			if ( !this.menuOpen ) return;
 
-			console.log('happening'); 
+			console.log('happening');
 
-			if ( window.innerWidth >= 1100 && this.$store.state.menuOpen ) { 
-				this.toggleMenu(); 
+			if ( window.innerWidth >= 1100 && this.menuOpen ) {
+				this.toggleMenu();
 				return;
 			} else {
 				return;
@@ -143,7 +151,7 @@ export default {
 			if ( path && path != this.$route.path ) {
 				this.$router.push( path );
 			} else if ( !path || path == this.$route.path ) {
-				this.toggleMenu();
+				this.setScrollAndToggle();
 			} else {
 				console.log("!");
 			}
@@ -160,8 +168,19 @@ export default {
 
 		},
 
+		close() {
+			this.setScrollAndToggle();
+		},
+
 		button() {
 			this.toggleMenu();
+		},
+
+		setScrollAndToggle() {
+			this.toggleMenu();
+			setTimeout( ()=> {
+				window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = this.$store.state.lastScroll;
+			}, 100 );
 		},
 
 		toggleMenu() {
@@ -176,7 +195,7 @@ export default {
 <style lang="scss" scoped>
 
 	.top {
-		padding-top:48px;
+		padding-top:100px;
 	}
 
 	#nav {
@@ -295,22 +314,25 @@ export default {
 
 		cursor: pointer;
 		opacity:0;
-		background: black;
+		background: rgba( gray,0.1);
 
 		color: white;
-		font-size: 12px;
-		font-weight: normal;
+		font-weight: bold;
 
-		padding: 8px 16px;
+		padding:6px 10px;
 		margin-bottom: 0;
-		margin-top:0;		
+		margin-left:0;
+		margin-top:0;
 		z-index:1;
-		width:100%;
 		animation-name: opacityIn;
 		animation-duration: 500ms;
 		animation-delay: 0s;
 		animation-fill-mode: forwards;
 		animation-timing-function: ease-in;
+
+		> svg {
+			width: 50px;
+		}
 
 		&.menu-open {
 			pointer-events: none;
@@ -354,30 +376,36 @@ export default {
 			position: fixed;
 			top:0;
 			left:0;
-			height:100%;
 			width:100%;
+			height:100%;
 			z-index:100;
+
 			background: rgba(gray,1);
 			filter:blur(10px);
 			opacity:0;
-			transform: translate3d(0,-100%,0);
-			transition: transform 100ms ease-out;
+			transform: translate3d(-100%,-25%,0);
+			transition: transform 200ms ease-out;
 			transition-property: transform, filter, opacity;
-			transition-delay: 50ms, 0s, 30ms;
+			transition-delay: 100ms, 0s, 60ms;
 			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+			overflow-x:hidden;
+
 			&.menu-open {
 				transform: translate3d(0,0,0);
 				opacity:1;
 				filter:blur(0px);
 				transition-timing-function: ease-in;
-				transition-delay: 0s, 50ms, 20ms;
+				transition-delay: 0s, 100ms, 40ms;
 				li a, li button {
 					padding: 1.5rem 4rem;
 				}
 			}
 
 		}
-
+		ul {
+			margin-bottom: 100px;
+		}
 		li {
 			text-align: left;
 			button, a  {
