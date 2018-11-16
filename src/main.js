@@ -39,7 +39,10 @@ router.beforeEach( ( to, from, next ) => {
 			    window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = store.state.lastScroll;
 			},100);
 		} else {
-		    window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
+
+			setTimeout( ()=> {
+			    window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
+			}, to.params.image ? 150 : 0 );
 		}
 
 	});
