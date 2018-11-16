@@ -13,31 +13,37 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
-  store, 
+  store,
   render: h => h(App)
 }).$mount("#app");
 
-router.beforeEach( (to, from, next)=> {
+router.beforeEach( ( to, from, next ) => {
 
-	// store.commit('setHadImage', { image: from.params.image } );
+	if ( !store.state.menuOpen && !from.params.image ) {
 
-	// const scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
+		const scrollTop = () => {
+		    const el = document.scrollingElement || document.documentElement;
+		    return el.scrollTop
+		}
 
-	// if ( scrollTop !== 0 ) {
-	//   store.commit('setLastScroll', {
-	//     last: scrollTop
-	//   });
-	// }
+	    store.commit('setLastScroll', {
+	        last: scrollTop()
+	    });
 
-	if ( store.state.hadImage ) {
-		// setTimeout(()=> {
-		// 	window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = store.state.lastScroll;
-		// }, 100 );
-	} else {
-		// setTimeout(()=> {
-		// 	window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
-		// }, 50 );
-	}
+	 }
+
+	Vue.nextTick(()=> {
+
+		if ( from.params.image ) {
+			setTimeout(()=> {
+			    window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = store.state.lastScroll;
+			},100);
+		} else {
+		    window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
+		}
+
+	});
 
 	next();
+
 });

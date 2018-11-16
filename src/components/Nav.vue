@@ -3,7 +3,7 @@
 	<div :class="['top']">
 		<transition name="fade" appear>
 
-	<button :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]" v-if="!menuOpen" @click="button" >
+	<button :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]" v-if="!menuOpen" @click="toggleMenu()" >
 		<hamburger/>
 	</button>
 
@@ -16,7 +16,7 @@
 
 				<li
 					v-if="menuOpen"
-					@click="close()"
+					@click="setScrollAndToggle()"
 					:class="['dark']"
 				>
 					<button>Close X</button>
@@ -96,18 +96,24 @@ export default {
 	},
 	watch: {
 
-		'$route'(newr,oldr) {
+		'$route'() {
 			if ( this.menuOpen ) {
-	        	this.toggleMenu();
+				this.toggleMenu();
+                window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
 			}
+
 		},
 
 		'menuOpen'(o) {
 
 			if ( o ) {
 				this.keyPress();
+				setTimeout( ()=> {
+	                document.body.style.background = 'black';
+				}, 150 );
 			} else {
 				window.onkeydown = null;
+                document.body.style.background = '';
 			}
 
 		},
@@ -162,25 +168,17 @@ export default {
 
 			window.onkeydown = ( event ) => {
 			    if ( event.keyCode == 27 ) {
-			    	this.toggleMenu();
+			    	this.setScrollAndToggle();
 			    }
 			};
 
 		},
 
-		close() {
-			this.setScrollAndToggle();
-		},
-
-		button() {
-			this.toggleMenu();
-		},
-
 		setScrollAndToggle() {
 			this.toggleMenu();
-			// setTimeout( ()=> {
-			// 	window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = this.$store.state.lastScroll;
-			// }, 100 );
+			setTimeout(()=> {
+                window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = this.$store.state.lastScroll;
+			}, 100 );
 		},
 
 		toggleMenu() {

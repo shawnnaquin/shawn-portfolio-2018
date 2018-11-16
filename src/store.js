@@ -13,8 +13,7 @@ export default new Vuex.Store({
         loading: true,
         menuOpen: false,
         noScroll: false,
-        lastScroll: 0,
-        hadImage: false
+        lastScroll: 0
     },
 
     getters: {
@@ -56,59 +55,32 @@ export default new Vuex.Store({
 
         setLastScroll(state, p) {
             state.lastScroll = p.last;
-        },
-
-        setHadImage(state,p) {
-            state.hadImage = p.image;
         }
 
     },
 
     actions: {
 
-        setToggleMenu({context,commit,dispatch,state} ) {
-            commit( 'toggleMenu' );
-            setTimeout( ()=> {
-                dispatch('setToggleNoScroll');
-            }, state.menuOpen ? 150 : 0 );
-        },
-
-        setToggleNoScroll( {context,commit,state} ) {
+        setToggleMenu( {context,commit,dispatch,state} ) {
 
             const scrollTop = () => {
                 const el = document.scrollingElement || document.documentElement;
                 return el.scrollTop
             }
 
-            console.log( state.noScroll, scrollTop() );
+            commit( 'toggleMenu' );
 
-            if ( !state.noScroll ) {
-                commit('setLastScroll', {
-                    last: scrollTop()
-                });
-            }
-
-            commit('toggleNoScroll');
-
-            Vue.nextTick( ()=> {
+            setTimeout(()=> {
 
                 if ( !state.noScroll ) {
-
-                    setTimeout( ()=> {
-
-                        console.log('in', state.lastScroll);
-                        window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = state.lastScroll;
-
-                    }, 100 );
-
-                    document.body.style.background = '';
-
-                } else {
-                    window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
-                    document.body.style.background = 'black';
+                    commit('setLastScroll', {
+                        last: scrollTop()
+                    });
                 }
 
-            });
+                commit('toggleNoScroll');
+
+            }, state.menuOpen ? 150 : 0 ); // roughly the menu animate time
 
         },
 
