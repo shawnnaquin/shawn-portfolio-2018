@@ -25,7 +25,7 @@
 	  				:key="image.path"
 	  				v-if="image"
 	  				:type="type"
-	  				:path="`${ image.path }`"
+	  				:path="image.path"
 	  				:alt="image.alt ? image.alt : '' "
 	  			>
 	  				<p>{{image.caption}}</p>
@@ -384,12 +384,12 @@ export default {
 	}
 
 	.background {
-		position:fixed;
+		position:relative;
 		top:0;
 		left:0;
 		width:100%;
 		height:100%;
-		overflow-y:hidden;
+		overflow-y:auto;
 		background: rgba(black,1);
 		z-index:100;
 	}
