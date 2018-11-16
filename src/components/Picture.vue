@@ -9,31 +9,31 @@
 			<source
 				media="(min-width: 900px)"
 				:srcset=" `/img/portfolio/${ type }/${ path }-lg_1x.webp 1x, /img/portfolio/${ type }/${ path }-lg_2x.webp 2x` "
-				type="image/webp" 
+				type="image/webp"
 			>
 
 			<source
 				media="(min-width: 601px)"
 				:srcset=" `/img/portfolio/${ type }/${ path }-md_1x.webp 1x, /img/portfolio/${ type }/${ path }-md_2x.webp 2x` "
-				type="image/webp" 
+				type="image/webp"
 			>
 
 			<source
 				:srcset=" `/img/portfolio/${ type }/${ path }-sm_1x.webp 1x, /img/portfolio/${ type }/${ path }-sm_2x.webp 2x` "
-				type="image/webp" 
+				type="image/webp"
 			>
 
 			<v-lazy-image
+				@load="setShowLoader"
+				v-bind:src="imgSrc"
 				:srcset=" `/img/portfolio/${ type }/${ path }-sm_1x.jpg 600w, /img/portfolio/${ type }/${ path }-md_1x.jpg 900w, /img/portfolio/${ type }/${ path }-lg_1x.jpg 1440w` "
-				:src=" `/img/portfolio/${ type }/${ path }-lg_1x.jpg` "
 				type="image/jpeg"
 				:alt=" alt "
-				@load="setShowLoader"
 			/>
 
 		</picture>
 
-		<figcaption :class="[ { ['blur']: !setShowLoader } ] " >
+		<figcaption :class="[ 'figcaption', { ['blur']: showLoader } ] " >
 			<slot />
 		</figcaption>
 
@@ -55,7 +55,12 @@
 				showLoader: true
 			}
 		},
-		methods:{
+		computed: {
+			imgSrc() {
+				return `/img/portfolio/${ this.type }/${ this.path }-lg_1x.jpg`;
+			}
+		},
+		methods: {
 			setShowLoader() {
 				this.showLoader = false;
 			}
@@ -86,7 +91,7 @@
 
 	}
 
-	.horiz .loader, 
+	.horiz .loader,
 	.mobile .loader {
 		color: white;
 	}
@@ -109,17 +114,12 @@
 		}
 	}
 
-	.v-lazy-image, .blur {
+	.v-lazy-image {
+	  filter: blur(10px);
 	  transition-property: filter;
 	  transition-duration: 0.3s;
-	  filter: blur(10px);
-	  // transition-delay: 0.3s;
 	  transition-timing-function: ease-out;
-
-	  // @media only screen and (max-width: 630px) {
-	  // }
-
-	} 
+	}
 
 	.v-lazy-image-loaded {
 	  filter: blur(0);
@@ -139,8 +139,8 @@
 		margin:0;
 	}
 
-	figcaption {
-
+	.figcaption {
+		display:block;
 		position:absolute;
 		bottom:0;
 		font-size: 10px;
@@ -152,16 +152,19 @@
 		background:black;
 		width:calc(100% - 20px);
 		height:auto;
-		transition: opacity 200ms ease;
+		filter:blur(0px);
+		transition: opacity 200ms ease, filter 0.5s ease-in;
 		opacity:1;
 		pointer-events: auto;
+		&.blur {
+			filter:blur(10px);
+		}
 		@media only screen and (max-width: 1100px) {
 			pointer-events:none;
 			opacity:0;
 		}
 
 	}
-
 	source, img {
 		object-fit: cover;
 		width: 100%;
