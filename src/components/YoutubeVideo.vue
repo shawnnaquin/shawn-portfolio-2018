@@ -31,7 +31,8 @@ export default {
 		return {
 			done: false,
 			stuck: false,
-			mousein: false
+			mousein: false,
+			observer: null
 		}
 	},
 
@@ -48,6 +49,10 @@ export default {
 				this.stuck = false;
 			}
 		}
+	},
+
+	beforeDestroy() {
+		this.observer.unobserve( this.$refs.player );
 	},
 
 	methods: {
@@ -131,7 +136,7 @@ export default {
 							}
 						});
 
-			let observer = new IntersectionObserver( entry => {
+			this.observer = new IntersectionObserver( entry => {
 				entry.forEach( (e) =>  {
 
 				    if ( e.intersectionRatio <= 0 && window.YTPlayer && window.YTPlayer.pauseVideo ) {
@@ -141,7 +146,7 @@ export default {
 				});
 			});
 
-			observer.observe( this.$refs.player );
+			this.observer.observe( this.$refs.player );
 		}
 
 	}
