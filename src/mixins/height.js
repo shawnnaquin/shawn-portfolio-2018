@@ -24,7 +24,7 @@ export default {
 
 		doHeight() {
 			this.$refs.background.style.height = window.innerHeight + 'px';
-			window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
+			document.documentElement.scrollTop = document.body.scrollTop = 0;
 		},
 
 		setupBackground() {
