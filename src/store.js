@@ -75,11 +75,16 @@ export default new Vuex.Store({
 
         setToggleNoScroll( {context,commit,state} ) {
 
-            const scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
+            const scrollTop = () => {
+                const el = document.scrollingElement || document.documentElement;
+                return el.scrollTop
+            }
 
-            if ( !state.noScroll && scrollTop !== 0 ) {
+            console.log( state.noScroll, scrollTop() );
+
+            if ( !state.noScroll ) {
                 commit('setLastScroll', {
-                    last: scrollTop
+                    last: scrollTop()
                 });
             }
 
@@ -91,7 +96,7 @@ export default new Vuex.Store({
 
                     setTimeout( ()=> {
 
-                        console.log('in');
+                        console.log('in', state.lastScroll);
                         window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = state.lastScroll;
 
                     }, 100 );
