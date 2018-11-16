@@ -8,7 +8,7 @@
       </div>
     </transition>
 
-    <div :class="'flex-column'" >
+    <div v-if="!$route.params.image" :class="'flex-column'" >
       <Nav />
       <Header :loaded="!getLoading" />
     </div>
