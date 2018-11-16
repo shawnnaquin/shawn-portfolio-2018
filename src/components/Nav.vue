@@ -99,7 +99,7 @@ export default {
 		'$route'() {
 			if ( this.menuOpen ) {
 				this.toggleMenu();
-                window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
+                document.documentElement.scrollTop = document.body.scrollTop = 0;
 			}
 
 		},
@@ -177,7 +177,7 @@ export default {
 		setScrollAndToggle() {
 			this.toggleMenu();
 			setTimeout(()=> {
-                window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = this.$store.state.lastScroll;
+                document.documentElement.scrollTop = document.body.scrollTop = this.$store.state.lastScroll;
 			}, 100 );
 		},
 
