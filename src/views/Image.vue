@@ -346,6 +346,10 @@ export default {
 		@media only screen and (max-height: 420px) {
 			width: 20%;
 		}
+		@media only screen and (min-width: 1100px) {
+			max-width: 300px;
+			width: 25%;
+		}
 		@media only screen and (min-width: 1500px) {
 			// max-width:500px;
 			width:30%;

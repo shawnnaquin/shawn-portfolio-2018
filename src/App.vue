@@ -266,7 +266,7 @@ export default {
 
   .grid.mobile {
     width:100%;
-    grid-template-columns: repeat( auto-fill, minmax(200px, 1fr ) );
+    grid-template-columns: repeat( auto-fill, minmax(250px, 1fr ) );
     > div {
       padding-bottom: 177%;
       @media only screen and (min-width: 630px) {
