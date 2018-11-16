@@ -127,7 +127,7 @@ export default {
 
 			if ( !this.menuOpen ) return;
 
-			console.log('happening');
+			// console.log('happening');
 
 			if ( window.innerWidth >= 1100 && this.menuOpen ) {
 				this.toggleMenu();
@@ -178,9 +178,9 @@ export default {
 
 		setScrollAndToggle() {
 			this.toggleMenu();
-			setTimeout( ()=> {
-				window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = this.$store.state.lastScroll;
-			}, 100 );
+			// setTimeout( ()=> {
+			// 	window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = this.$store.state.lastScroll;
+			// }, 100 );
 		},
 
 		toggleMenu() {

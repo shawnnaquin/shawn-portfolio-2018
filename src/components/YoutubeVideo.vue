@@ -39,18 +39,6 @@ export default {
 
 		this.createScript();
 
-		let observer = new IntersectionObserver( entry => {
-			entry.forEach( (e) =>  {
-
-			    if ( e.intersectionRatio <= 0 && window.YTPlayer && window.YTPlayer.pauseVideo ) {
-					window.YTPlayer.pauseVideo();
-			    }
-
-			});
-		});
-
-		observer.observe( this.$refs.player );
-
 	},
 
 	watch: {
@@ -143,6 +131,17 @@ export default {
 							}
 						});
 
+			let observer = new IntersectionObserver( entry => {
+				entry.forEach( (e) =>  {
+
+				    if ( e.intersectionRatio <= 0 && window.YTPlayer && window.YTPlayer.pauseVideo ) {
+						window.YTPlayer.pauseVideo();
+				    }
+
+				});
+			});
+
+			observer.observe( this.$refs.player );
 		}
 
 	}
