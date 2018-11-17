@@ -6,16 +6,29 @@
 			:ref=" 'player' "
 		>
 
-			<div id="player"> </div>
+			<div :class="[ 'frame' ]" >
+
+				<transition name="fade">
+				<div v-if="!playerReady" :class="['loader']" >
+					Loading <Loader :go="!playerReady" />
+					<div :class="['sub-loader']"  :style="{ backgroundImage: getMainImage() }" ></div>
+				</div>
+				</transition>
+				<div id="player"> </div>
+
+			</div>
 
 		</div>
 
 </template>
 
 <script>
+import Loader from "@/components/Loader.vue";
 
 export default {
-
+	components: {
+		Loader
+	},
 	props: {
 		videoImg: {
 			required: false,
@@ -32,7 +45,8 @@ export default {
 			done: false,
 			stuck: false,
 			mousein: false,
-			observer: null
+			observer: null,
+			playerReady: false
 		}
 	},
 
@@ -74,6 +88,8 @@ export default {
 		},
 
 		onPlayerReady(event) {
+			this.playerReady = true;
+			console.log('ready');
 		},
 
 		onPlayerStateChange(event) {
@@ -84,7 +100,9 @@ export default {
 			// 2 (paused)
 			// 3 (buffering)
 			// 5 (video cued)
-
+			if ( event.data == -1 ) {
+				console.log('!');
+			}
 			if ( event.data == 0 ) {
 				window.YTPlayer.seekTo( 0, true);
 				window.YTPlayer.pauseVideo();
@@ -94,7 +112,23 @@ export default {
 			}
 
 		},
+		getMainImage() {
 
+			let width = window.innerWidth;
+			let size = '-lg_1x.jpg';
+			let image = this.videoImg ? this.videoImg : `one.${ this.$route.params.project }`;
+
+			if ( width < 900 ) {
+				size = '-sm_1x.jpg';
+			} else if ( width >= 900 ) {
+				size = '-md_1x.jpg';
+			} else {
+				size = '-lg_1x.jpg';
+			}
+
+			return `url( /img/portfolio/${ this.$route.params.type }/${ image }${ size }`;
+
+		},
 		createScript() {
 
 			const tag = document.createElement('script');
@@ -154,7 +188,7 @@ export default {
 };
 </script>
 <style lang="scss">
-	iframe {
+	.frame {
 	  display:block;
 		position:absolute;
 		left:0;
@@ -164,16 +198,44 @@ export default {
 	  box-shadow: 8px 8px 40px darken(white,20%);
 	  transform: scale(.95) rotateY(0) translate3d(0,0,0);
 	  transition: transform 200ms ease;
+	  > div, iframe {
+	  	position: absolute;
+	  	top: 0px;
+	  	left: 0px;
+	  	width: 100%;
+	  	height: 100%;
+	  }
 	}
 
-	iframe:hover, iframe:active, iframe:focus,
-	.stuck iframe {
+	.frame:hover, .frame:active, .frame:focus,
+	.stuck .frame {
 		left:0;
 		transform: scale(1) rotateY(0deg) translate3d(0,0,0);
 	}
 </style>
 
 <style lang="scss" scoped >
+
+.loader {
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	z-index:0;
+	font-weight:bold;
+	.sub-loader {
+		position:absolute;
+		top:0;
+		left:0;
+		width:100%;
+		height:100%;
+		background-size:cover;
+		background-position:center;
+		filter:blur(10px);
+		z-index:-1;
+	}
+}
+
 @keyframes blurIn {
 	100% {
 		filter: blur(0px);
