@@ -1,251 +1,287 @@
 <template>
-
+	<div>
+  	<div :class="'flex-column'" >
+  	  <Nav />
+  	  <Header :loaded="!getLoading" />
+  	</div>
 	<article class="project"  >
 
-		<!-- <transition name="fade" appear > -->
-			<!-- <router-view :images="images" /> -->
-		<!-- </transition> -->
+	  <transition name="fade" appear mode="out-in"
+		v-on:enter="articleEnter"
+		v-on:after-enter="articleAfterEnter"
+	  >
 
-		<transition name="fade" appear mode="out-in"
-			v-on:enter="articleEnter"
-			v-on:after-enter="articleAfterEnter"
+		<p
+		  v-if="!project"
+		  :class="[ 'loading' ]"
 		>
+			LOADING
+			<Loader :go=" !project " />
+		</p>
 
-			<p
-				v-if="!project"
-				:class="[ 'loading' ]"
-			>
-				LOADING
-				<Loader :go=" !project " />
-			</p>
+		<div v-else :class="[ 'article-header' ]" >
 
-		  	<div v-else :class="[ 'article-header' ]" >
-			  	<h1> {{project.title}}</h1>
-			  	<h3>{{project.projectDescription}}</h3>
+			<transition name="fade" appear mode="out-in" >
+				<div>
+				<h1> {{project.title}}</h1>
+				<h3>{{project.projectDescription}}</h3>
+				</div>
+			</transition>
 
-			  	<div v-if="project.content.code || project.content.externalSite" class="buttons" >
+			<youtube-video v-if="project.content.video.length" :videoId="project.content.video" :videoImg=" `/img/portfolio/${ type }/${ images.video }-lg_1x.jpg`" ></youtube-video>
+			<p :class="['tech-list']" >{{ project.content.techList }}</p>
 
-			  		<a :href="project.content.externalSite" v-if="project.content.externalSite" target="_blank" :class="[ 'external' ]" > Visit <span :class="['external-span']">(external)</span> </a>
-			  		&nbsp;
+			<div v-if="project && ( project.content.code || project.content.externalSite )" class="buttons" >
 
-			  		<a :href="project.content.code" v-if="project.content.code" target="_blank" :class="[ 'external' ]" >
-			  			//code
-			  		</a>
+				<a :href="project.content.externalSite" v-if="project.content.externalSite" target="_blank" :class="[ 'external' ]" > Visit <span :class="['external-span']">(external)</span> </a>
+				&nbsp;
 
-					<router-link :to="'/'" :class="['external']">
-						About Shawn
-					</router-link>
-					
-			  	</div>
+				<a :href="project.content.code" v-if="project.content.code" target="_blank" :class="[ 'external' ]" >
+					//code
+				</a>
 
-			  	<div v-if="project.content.techList" class="buttons" >
-			  		<h4>Tech List: </h4>
-			  		<p :class="['tech-list']" >{{ project.content.techList }}</p>
-			  	</div>
-
-			  	<p v-if="project.content.article" :class="['description']">
-			  		{{ project.content.article }}
-			  	</p>
-
-			  	<youtube-video v-if="project.content.video.length" :videoId="project.content.video" :videoImg=" `/img/portfolio/${ type }/${ images.video }-lg_1x.jpg`" ></youtube-video>
+				<router-link :to="'/'" :class="['external']">
+					About Shawn
+				</router-link>
 
 			</div>
 
-		</transition>
+		</div>
 
-  		<div :class="[ 'image-container' ]" v-if="showImages && images.mobile && images.mobile.length" >
+	  </transition>
 
-  			<transition-group
-  			  name="staggered-fade"
-  			  tag="div"
-  			  v-bind:css="false"
-  			  v-on:before-enter="beforeEnter"
-  			  v-on:enter="enter"
-  			  v-on:leave="leave"
-  			  :class="[ 'mobile', 'grid' ]"
-  			>
+		<div :class="[ 'image-container' ]" v-if="showImages && images.mobile && images.mobile.length" >
 
-	  			<div
-	  				v-for=" (image,i) in images.mobile"
-	  				style="position:relative;"
-	  				:data-index="i"
-	  				v-bind:key="image.path"
-	  				v-if="phoneVertLoaded"
-	  			>
+		  <transition-group
+			name="staggered-fade"
+			tag="div"
+			v-bind:css="false"
+			v-on:before-enter="beforeEnter"
+			v-on:enter="enter"
+			v-on:leave="leave"
+			:class="[ 'mobile', 'grid' ]"
+		  >
 
-	  				<router-link
-	  					:to=" `/${type}/${project.link}/${image.path}`"
-						:class="['link']"
-	  				>
-						<picture-query
-							:type="type"
-							:path="image.path"
-							:alt="image.alt"
-						>
-							{{ image.caption }}
-						</picture-query>
-					</router-link>
+			<div
+			  v-for=" (image,i) in images.mobile"
+			  style="position:relative;"
+			  :data-index="i"
+			  v-bind:key="image.path"
+			  v-if="phoneVertLoaded"
+			>
 
-				</div>
+				<router-link
+				  :to=" `/${type}/${project.link}/${image.path}`"
+				  :class="['link']"
+				>
+					<picture-query
+					  :type="type"
+					  :path="image.path"
+					  :alt="image.alt"
+					>
+						{{ image.caption }}
+					</picture-query>
+				</router-link>
+			</div>
 
-	  		</transition-group>
+		  </transition-group>
 
-  		</div>
+		</div>
 
 		<div :class="[ 'image-container' ]" v-if="showImages && images.horiz && images.horiz.length" >
 
-			<transition-group
-				name="staggered-fade"
-				tag="div"
-				v-bind:css="false"
-				v-on:before-enter="beforeEnter"
-				v-on:enter="enter"
-				v-on:leave="leave"
-				:class="[ 'horiz', 'grid' ]"
+		  <transition-group
+			name="staggered-fade"
+			tag="div"
+			v-bind:css="false"
+			v-on:before-enter="beforeEnter"
+			v-on:enter="enter"
+			v-on:leave="leave"
+			:class="[ 'horiz', 'grid' ]"
+		  >
+
+			<div
+			  v-for=" (image,i) in images.horiz"
+			  style="position:relative;"
+			  :data-index="i"
+			  v-bind:key="image.path"
+			  v-if="phoneVertLoaded"
 			>
-
-				<div
-					v-for=" (image,i) in images.horiz"
-					style="position:relative;"
-					:data-index="i"
-					v-bind:key="image.path"
-					v-if="phoneVertLoaded"
+				<router-link
+				  :to=" `/${type}/${project.link}/${image.path}`"
+				  :class="['link']"
 				>
-					<router-link
-						:to=" `/${type}/${project.link}/${image.path}`"
-						:class="['link']"
+					<picture-query
+					  :type=" type "
+					  :path=" image.path "
+					  :alt="image.alt"
 					>
-						<picture-query
-							:type=" type "
-							:path=" image.path "
-							:alt="image.alt"
-						>
-							{{ image.caption }}
-						</picture-query>
-					</router-link>
-				</div>
+						{{ image.caption }}
+					</picture-query>
+				</router-link>
+			</div>
 
-			</transition-group>
+		  </transition-group>
 
 		</div>
 
 		<div :class="[ 'image-container' ]" v-if="showImages && images.regular && images.regular.length" >
 
-			<transition-group
-				name="staggered-fade"
-				tag="div"
-				v-bind:css="false"
-				v-on:before-enter="beforeEnter"
-				v-on:enter="enter"
-				v-on:leave="leave"
-				:class="[ 'grid' ]"
+		  <transition-group
+			name="staggered-fade"
+			tag="div"
+			v-bind:css="false"
+			v-on:before-enter="beforeEnter"
+			v-on:enter="enter"
+			v-on:leave="leave"
+			:class="[ 'grid' ]"
+		  >
+
+			<div
+			  v-for=" (image,i) in images.regular"
+			  style="position:relative;"
+			  :data-index="i"
+			  v-bind:key="image.path"
+			  v-if="phoneVertLoaded"
+			  :style="{ paddingBottom: project.content.imageRatio }"
 			>
-
-				<div
-					v-for=" (image,i) in images.regular"
-					style="position:relative;"
-					:data-index="i"
-					v-bind:key="image.path"
-					v-if="phoneVertLoaded"
-					:style="{ paddingBottom: project.content.imageRatio }"
+				<router-link
+				  :to=" `/${type}/${project.link}/${image.path}`"
+				  :class="['link']"
 				>
-					<router-link
-						:to=" `/${type}/${project.link}/${image.path}`"
-						:class="['link']"
+					<picture-query
+					  :type=" type "
+					  :path=" image.path "
+					  :alt="image.alt"
 					>
-						<picture-query
-							:type=" type "
-							:path=" image.path "
-							:alt="image.alt"
-						>
-							{{ image.caption }}
-						</picture-query>
-					</router-link>
-				</div>
+						{{ image.caption }}
+					</picture-query>
+				</router-link>
+			</div>
 
-			</transition-group>
+		  </transition-group>
 
 		</div>
 
-  </article>
+		<div v-if="project" :class="[ 'article-header' ]" >
 
+			<p v-if="project.content.article" :class="['description']">
+				{{ project.content.article }}
+			</p>
+
+			<div v-if="project && ( project.content.code || project.content.externalSite )" class="buttons" >
+
+				<router-link :to="'/'" :class="['external']">
+					Back to Top
+				</router-link>
+
+				<router-link :to="'/'" :class="['external']">
+					Next Project
+				</router-link>
+
+			</div>
+
+		</div>
+
+	</article>
+	</div>
 </template>
 
 <script>
 
-	import YoutubeVideo from '@/components/YoutubeVideo';
-	import Picture from '@/components/Picture.vue';
-	import Loader from "@/components/Loader.vue";
+import YoutubeVideo from '@/components/YoutubeVideo';
+import Picture from '@/components/Picture.vue';
+import Loader from "@/components/Loader.vue";
+import Header from "@/components/Header.vue";
+import Nav from "@/components/Nav.vue";
 
-	import PhoneVert from '@/assets/ui/mobile.vert.png';
-	import PhoneHoriz from '@/assets/ui/mobile.horiz.png';
+import PhoneVert from '@/assets/ui/mobile.vert.png';
+import PhoneHoriz from '@/assets/ui/mobile.horiz.png';
 
-	import animateIn from '@/mixins/animateIn';
-	import projects from '@/mixins/projects';
+import animateIn from '@/mixins/animateIn';
+import projects from '@/mixins/projects';
 
-	export default {
+import { mapGetters } from 'vuex';
 
-		components: {
-			Loader,
-			'picture-query': Picture,
-			'youtube-video': YoutubeVideo
-		},
+export default {
 
-		mixins: [ animateIn, projects ],
+	components: {
+		Loader,
+		'picture-query': Picture,
+		'youtube-video': YoutubeVideo,
+		Nav,
+		Header
+	},
 
-		data() {
-			return {
-				phoneHorizLoaded: false,
-				phoneVertLoaded: false,
-				showImages: false,
-				articleLoaded: false
-			}
-		},
-
-		mounted() {
-			this.checkPhone();
-		},
-
-		methods: {
-			articleEnter(el,done){
-				if  ( el.classList.contains('article-header') ) {
-					this.showImages = true;
-				}
-				done();
-			},
-
-			articleAfterEnter(el) {
-				if ( el.classList.contains('article-header') ) {
-					this.articleLoaded = true;
-				}
-			},
-
-			checkPhone() {
-				let imgVert = new Image();
-				imgVert.src = PhoneVert;
-				imgVert.onload = () => {
-					this.phoneVertLoaded = true;
-					return;
-				};
-
-				let imgHoriz = new Image();
-				imgHoriz.src = PhoneHoriz;
-				imgHoriz.onload = () => {
-					this.phoneHorizLoaded = true;
-					return;
-				}
-
-			}
+	mixins: [ animateIn, projects ],
+	computed: {
+		...mapGetters([
+			'getLoading'
+		])
+	},
+	data() {
+		return {
+			phoneHorizLoaded: false,
+			phoneVertLoaded: false,
+			showImages: false,
+			articleLoaded: false
 		}
+	},
 
-	};
+	mounted() {
+		this.checkPhone();
+	},
+
+	methods: {
+		articleEnter(el,done){
+			if  ( el.classList.contains('article-header') ) {
+				this.showImages = true;
+			}
+			done();
+		},
+
+		articleAfterEnter(el) {
+			if ( el.classList.contains('article-header') ) {
+				this.articleLoaded = true;
+			}
+		},
+
+		checkPhone() {
+			let imgVert = new Image();
+			imgVert.src = PhoneVert;
+			imgVert.onload = () => {
+				this.phoneVertLoaded = true;
+				return;
+			};
+
+			let imgHoriz = new Image();
+			imgHoriz.src = PhoneHoriz;
+			imgHoriz.onload = () => {
+				this.phoneHorizLoaded = true;
+				return;
+			}
+
+		}
+	}
+
+};
 
 </script>
 
 <style lang="scss" scoped >
-
+.loading {
+	margin-top:112px;
+}
+h1 {
+	font-size:32px;
+}
+h3 {
+		// margin-bottom:65px;
+	}
 	.tech-list {
 		line-height:32px;
+		font-size:18px;
+		margin-top:0;
 	}
 
 	.image-container {
@@ -270,18 +306,19 @@
 	}
 
 	.article-header {
-		max-width:600px;
+		max-width:800px;
 		padding-bottom: 10%;
-
+		margin-top:112px;
+		&.no-padding {
+			padding-bottom:0;
+		}
 		.buttons {
 			h1,h2,h3,h4 {
 				margin-top:0;
 			}
-			margin-bottom:48px;
-			&:nth-of-type(1) {
+			a,button {
 				margin-top:32px;
-			}
-			a {
+				font-size:18px;
 				margin-bottom:12px;
 			}
 		}
@@ -289,11 +326,13 @@
 	.description {
 		display:inline-block;
 		column-count:1;
-		line-height:24px;
+		text-align:center;
+		font-size:18px;
+		line-height:1.4;
 		text-align:left;
-
+		max-width:600px;
 		@media only screen and (min-width:630px) {
-			column-count:2;
+			column-count:1;
 		}
 
 		// @media only screen and (min-width:1100px) {
@@ -302,4 +341,4 @@
 
 	}
 
-</style>
+	</style>

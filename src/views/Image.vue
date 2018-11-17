@@ -17,23 +17,28 @@
 			  :class="[ orientation, 'grid' ]"
 		>
 
+
   			<div
   			>
 
-  			<transition name="fade" appear >
+			<transition name="fade-left" mode="out-in" appear >
 	  			<picture-query
-	  				:key="image.path"
-	  				v-if="image"
+		  			:key="image.path"
+		  			v-if="image"
 	  				:type="type"
 	  				:path="image.path"
 	  				:alt="image.alt ? image.alt : '' "
+	  				ref="image"
 	  			>
 	  				<p>{{image.caption}}</p>
 	  			</picture-query>
-	  		</transition>
+			</transition>
 
 			</div>
+
+
 		</div>
+
 	</div>
 
 </template>
@@ -54,6 +59,16 @@ export default {
 		close
 	},
 
+	created() {
+
+		this.$router.beforeEach( (to,from,next)=> {
+			next();
+			this.$refs.image.$el.style.transition = 'transform 0.2s ease-out 0s, opacity 0.2s ease-out';
+			this.$refs.image.$el.style.transform = 'translateX(-20%)';
+			this.$refs.image.$el.style.opacity = '0';
+		});
+
+	},
 	data() {
 		return {
 			index: 0,
@@ -248,7 +263,7 @@ export default {
 		left:0;
 		padding:48px;
 
-		background:black;
+		background:transparent;
 		color:white;
 		z-index:2;
 		outline:0;
@@ -384,14 +399,16 @@ export default {
 	}
 
 	.background {
-		position:relative;
+
+		position: relative;
 		top:0;
 		left:0;
 		width:100%;
-		height:100%;
-		overflow-y:auto;
+		height:100vh;
+		min-height:100vh;
 		background: rgba(black,1);
 		z-index:100;
+
 	}
 
 	.swipe {

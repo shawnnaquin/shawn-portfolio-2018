@@ -30,23 +30,27 @@ router.beforeEach( ( to, from, next ) => {
 	        last: scrollTop()
 	    });
 
-	 }
+	}
 
 	Vue.nextTick(()=> {
 
 		if ( from.params.image ) {
 			setTimeout(()=> {
-			    window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = store.state.lastScroll;
-			},100);
-		} else {
-
-			setTimeout( ()=> {
-			    window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
-			}, to.params.image ? 150 : 0 );
+			    document.documentElement.scrollTop = document.body.scrollTop = store.state.lastScroll;
+			}, 0 );
+		} else if ( !to.params.image ) {
+			document.documentElement.scrollTop = document.body.scrollTop = 0;
 		}
+		// else
+		// if ( to.params.image ) {
+			// setTimeout(()=> {
+			//     window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
+			// }, 2000 );
+		// }
 
 	});
 
 	next();
+
 
 });

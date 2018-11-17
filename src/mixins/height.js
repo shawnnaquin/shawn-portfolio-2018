@@ -48,7 +48,7 @@ export default {
 		setTimeout( ()=> {
 			this.setupBackground();
 			window.dispatchEvent(new Event('resize'));
-		}, 100 );
+		}, 500 );
 	}
 
 };

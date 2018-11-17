@@ -96,8 +96,10 @@ export default new Vuex.Store({
 
                     if ( state.loading ) {
                         setTimeout( ()=> {
-                            commit('loading');
                             commit('addProject', {'name': name, 'response': response } )
+                            setTimeout(()=> {
+                                commit('loading');
+                            }, 500 );
                         }, 300 );
                     } else {
                         commit('addProject', {'name': name, 'response': response } )

@@ -108,12 +108,8 @@ export default {
 
 			if ( o ) {
 				this.keyPress();
-				setTimeout( ()=> {
-	                document.body.style.background = 'black';
-				}, 150 );
 			} else {
 				window.onkeydown = null;
-                document.body.style.background = '';
 			}
 
 		},
@@ -377,7 +373,7 @@ export default {
 			width:100%;
 			height:100%;
 			z-index:100;
-
+			z-index:1;
 			background: rgba(gray,1);
 			filter:blur(10px);
 			opacity:0;
