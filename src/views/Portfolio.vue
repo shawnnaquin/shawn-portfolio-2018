@@ -1,10 +1,6 @@
 <template>
 
 	<div>
-	  	<div :class="'flex-column'" >
-	  	  <Nav />
-	  	  <Header :loaded="!getLoading" />
-	  	</div>
 
 		<transition name="fade" mode="out-in" appear >
 			<h1 :key="type" class="push">
@@ -81,16 +77,12 @@
 	import Picture from '@/components/Picture.vue';
 	import animateIn from '@/mixins/animateIn';
 	import projects from '@/mixins/projects';
-	import Header from "@/components/Header.vue";
-	import Nav from "@/components/Nav.vue";
 
 	export default {
 
 		components: {
 			Loader,
-			'picture-query': Picture,
-			Header,
-			Nav
+			'picture-query': Picture
 		},
 		computed: {
 			...mapGetters([
@@ -128,6 +120,7 @@
 
 	h1 {
 		text-align:left;
+		margin-top:74.5px;
 	}
 
 	h1, .loading {

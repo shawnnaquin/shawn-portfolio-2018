@@ -74,7 +74,7 @@
 
 	.heading {
 		margin-bottom: 32px;
-		margin-top: 24px;
+		margin-top: 72.5px;
 	}
 
 	h1 span::before {

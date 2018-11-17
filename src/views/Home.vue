@@ -1,10 +1,8 @@
 <template>
 
   <div class="home push">
-  	<div :class="'flex-column'" >
-  	  <Nav />
-  	  <Header :loaded="!getLoading" />
-  	</div>
+
+
   </div>
 
 </template>

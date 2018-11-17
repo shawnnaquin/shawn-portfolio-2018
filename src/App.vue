@@ -8,6 +8,13 @@
 			</div>
 		</transition>
 
+      <transition name="fade-up" appear>
+      <div :class="'flex-column'" v-if="!$route.params.image" >
+        <Nav />
+        <Header :loaded="!getLoading" />
+      </div>
+    </transition>
+
 		<transition :name="trans" :mode="mod" appear >
 			<router-view />
 		</transition>
@@ -20,6 +27,8 @@
   // @ is an alias to /src
   import Loader from "@/components/Loader";
   import height from '@/mixins/height';
+  import Nav from "@/components/Nav.vue";
+  import Header from "@/components/Header.vue";
   import { mapGetters } from 'vuex';
 
 
@@ -65,7 +74,9 @@
   		  		});
   	},
   	components: {
-  		Loader
+  		Loader,
+      Header,
+      Nav
   	}
   };
   </script>

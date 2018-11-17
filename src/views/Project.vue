@@ -1,9 +1,6 @@
 <template>
 	<div class="project" >
-  	<div :class="'flex-column'" >
-  	  <Nav />
-  	  <Header :loaded="!getLoading" />
-  	</div>
+
 	<article class=""  >
 
 	  <transition name="fade" appear mode="out-in"
@@ -191,9 +188,8 @@
 
 import YoutubeVideo from '@/components/YoutubeVideo';
 import Picture from '@/components/Picture.vue';
+
 import Loader from "@/components/Loader.vue";
-import Header from "@/components/Header.vue";
-import Nav from "@/components/Nav.vue";
 import external from '@/components/icons/external';
 
 import PhoneVert from '@/assets/ui/mobile.vert.png';
@@ -210,8 +206,6 @@ export default {
 		Loader,
 		'picture-query': Picture,
 		'youtube-video': YoutubeVideo,
-		Nav,
-		Header,
 		external
 	},
 
@@ -310,6 +304,7 @@ h3 {
 	.article-header {
 		max-width:800px;
 		padding-bottom: 10%;
+		margin-top:48px;
 		&.no-padding {
 			padding-bottom:0;
 		}

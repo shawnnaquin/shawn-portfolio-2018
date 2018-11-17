@@ -195,8 +195,7 @@ export default {
 		top:0;
 	  width:100%;
 	  height:100%;
-	  box-shadow: 8px 8px 40px darken(white,20%);
-	  transform: scale(.95) rotateY(0) translate3d(0,0,0);
+	  transform: scale(.98) rotateY(0) translate3d(0,0,0);
 	  transition: transform 200ms ease;
 	  > div, iframe {
 	  	position: absolute;

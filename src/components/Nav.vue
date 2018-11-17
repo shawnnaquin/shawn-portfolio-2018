@@ -1,12 +1,14 @@
 <template>
-	<div :class="['top']">
+	<div :class="['top', { ['sticky']: sticky } ]">
 		<transition name="fade" appear>
 			<button :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]" v-if="!menuOpen" @click="toggleMenu()" >
 				<hamburger/>
 			</button>
 		</transition>
 
-	<nav id="nav" :class="[ { ['menu-open']: menuOpen } ]" >
+	<div :class="['fake-nav']" ref="fakenav"></div>
+
+	<nav id="nav" :class="[ { ['menu-open']: menuOpen }, { ['sticky']: sticky } ]" ref="nav" >
 
 		<ul>
 
@@ -80,7 +82,10 @@ export default {
 	},
 
 	data() {
-		return {}
+		return {
+			observer: null,
+			sticky: false
+		}
 	},
 
 	computed: {
@@ -117,14 +122,34 @@ export default {
 
 	mounted() {
 		this.resize();
+		this.observe();
 	},
 
 	beforeDestroy() {
 		window.removeEventListener("resize", this.d );
+		this.observer.disconnect();
 	},
 
 	methods: {
 
+		observe() {
+
+			this.observer = new IntersectionObserver( entry => {
+				entry.forEach( (e) =>  {
+
+				    if ( e.intersectionRatio <= 0 ) {
+				    	this.sticky = true;
+
+				    } else {
+				    	this.sticky = false;
+				    }
+
+				});
+			});
+
+			this.observer.observe( this.$refs.fakenav );
+
+		},
 		resizeFn() {
 
 			if ( !this.menuOpen ) return;
@@ -189,14 +214,46 @@ export default {
 <style lang="scss" scoped>
 
 	.top {
-		padding-top:100px;
+		&.sticky {
+		}
+	}
+
+	.fake-nav {
+		position:absolute;
+		top:48px;
+		left:0;
+		width:1px;
+		height:1px;
+		pointer-events:none;
+	}
+	@keyframes fadeIn {
+		100% {
+			opacity:1;
+		}
 	}
 
 	#nav {
-
+		z-index:1;
 		order: 1;
-		margin-bottom:24px;
-
+		position: absolute;
+		top:0;
+		left:0;
+		width:100%;
+		&.sticky {
+			@media only screen and (min-width: 1100px) {
+				position: fixed;
+				top:0;
+				left:0;
+				width:100%;
+				opacity:0;
+				background: darken(white, 3%);
+				animation-name: fadeIn;
+				animation-duration: 0.3s;
+				animation-fill-mode: forwards;
+				animation-timing-function: ease-in;
+				transition: background 5s ease;
+			}
+		}
 	}
 
 	ul {
