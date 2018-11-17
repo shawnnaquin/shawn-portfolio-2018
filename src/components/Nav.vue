@@ -1,13 +1,11 @@
 <template>
-
 	<div :class="['top']">
 		<transition name="fade" appear>
+			<button :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]" v-if="!menuOpen" @click="toggleMenu()" >
+				<hamburger/>
+			</button>
+		</transition>
 
-	<button :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]" v-if="!menuOpen" @click="toggleMenu()" >
-		<hamburger/>
-	</button>
-
-</transition>
 	<nav id="nav" :class="[ { ['menu-open']: menuOpen } ]" >
 
 		<ul>
@@ -54,7 +52,7 @@
 			<li>
 
 				<a href="#" target="_blank" @click="click()" >
-					<github/>&nbsp;<span :class="['external-span']" >(external)</span>
+					<github/>&nbsp;<span :class="['external-span']" ><external/></span>
 				</a>
 
 			</li>
@@ -69,6 +67,7 @@
 
 import github from '@/components/icons/github';
 import hamburger from '@/components/icons/hamburger';
+import external from '@/components/icons/external';
 import { mapGetters } from 'vuex';
 import { debounce } from 'lodash';
 
@@ -76,7 +75,8 @@ export default {
 
 	components: {
 		github,
-		hamburger
+		hamburger,
+		external
 	},
 
 	data() {
@@ -244,12 +244,12 @@ export default {
 
 			&:hover {
 				color: darken(aqua, 25%);
-				> svg {
+				svg {
 					fill: darken(aqua, 25%);
 				}
 			}
 
-			> svg {
+			svg {
 				display:inline;
 				height:14px;
 				width: auto;
@@ -258,9 +258,10 @@ export default {
 			}
 
 			&.router-link-exact-active, &.is-active {
-				color:Purple;
-				> svg {
-					fill: Purple;
+				// color:Purple;
+				background:darken(white,2%);
+				svg {
+					// fill: Purple;
 				}
 			}
 
@@ -271,9 +272,8 @@ export default {
 		}
 
 		&:nth-child(even) {
-			background:darken(white,2%);
 			&:hover {
-				background: darken(white,8%);
+				// background: darken(white,8%);
 			}
 		}
 

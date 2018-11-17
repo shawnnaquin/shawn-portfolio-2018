@@ -21,7 +21,7 @@
   			<div
   			>
 
-			<transition name="fade-left" mode="out-in" appear >
+			<transition :name="trans" mode="out-in" appear >
 	  			<picture-query
 		  			:key="image.path"
 		  			v-if="image"
@@ -63,23 +63,39 @@ export default {
 
 		this.$router.beforeEach( (to,from,next)=> {
 			next();
+
+			if( !this.$refs.image ) return;
+
 			this.$refs.image.$el.style.transition = 'transform 0.2s ease-out 0s, opacity 0.2s ease-out';
-			this.$refs.image.$el.style.transform = 'translateX(-20%)';
 			this.$refs.image.$el.style.opacity = '0';
+
+			if ( from.params.image == this.prevImagePath ) {
+				this.$refs.image.$el.style.transform = 'translateX(-20%)';
+				this.trans = 'fade-left';
+			} else if ( from.params.image == this.nextImagePath  ) {
+				this.trans = 'fade-right';
+				this.$refs.image.$el.style.transform = 'translateX(20%)';
+			}
+
+
 		});
 
 	},
+
 	data() {
 		return {
 			index: 0,
 			imageTypes: [ 'mobile', 'horiz', 'regular' ],
-			height: true
+			height: true,
+			trans: 'fade-left'
 		}
 	},
 
 	computed: {
 
 		orientation() {
+
+			if ( !this.$route.params.image ) return;
 
 			let h = ['mobile','horiz'];
 			let p = null;
@@ -100,7 +116,7 @@ export default {
 
 		getImageIndex() {
 
-			if (!this.images) return false;
+			if (!this.images || !this.images[this.orientation]) return false;
 
 			let p = null;
 
@@ -115,13 +131,31 @@ export default {
 		},
 
 		nextImage() {
+			if (!this.images || !this.images[this.orientation]) return false;
 			return ( this.getImageIndex + 1 ) % ( this.images[this.orientation].length + 1 );
 		},
 
 		prevImage() {
 			return this.getImageIndex - 1;
 		},
-
+		imageBase(){
+			return `/${this.type}/${this.project.link}/`;
+		},
+		prevImagePath() {
+			if ( this.prevImage < 0 ) {
+				return `${ this.images[ this.changeImageType(true) ][ this.images[ this.changeImageType(true) ].length - 1 ].path }`;
+			} else {
+				return `${ this.images[this.orientation][ this.prevImage ].path }`;
+			}
+		},
+		nextImagePath() {
+			if (!this.images || !this.images[this.orientation]) return false;
+			if ( this.nextImage > this.images[this.orientation].length - 1  ) {
+				return `${ this.images[ this.changeImageType() ][0].path }`;
+			} else {
+				return `${ this.images[this.orientation][ this.nextImage ].path }`;
+			}
+		},
 		image() {
 			if ( !this.images ) return false;
 			return this.images[this.orientation][this.getImageIndex];
@@ -133,15 +167,49 @@ export default {
 		},
 
 	},
+	watch: {
+		'$route'(to,from) {
 
+			if( !this.images ) return;
+			console.log( 'next: '+from.params.image, 'prev: '+this.prevImagePath );
+			console.log( 'next: '+from.params.image, 'next: '+this.nextImagePath);
+
+			if ( from.params.image == this.prevImagePath ) {
+				this.trans = 'fade-left';
+			} else if ( from.params.image == this.nextImagePath  ) {
+				this.trans = 'fade-right';
+			}
+
+		}
+	},
 	methods: {
 
 		keyPress() {
 
 			window.onkeydown = ( event ) => {
-			    if ( event.keyCode == 27 ) {
-					this.$router.push( this.routeBack );
-			    }
+
+				switch( event.keyCode ) {
+
+					case 27:
+						this.$router.push( this.routeBack );
+						break;
+					case 37: // left
+						this.goToPrevImage();
+						break;
+					case 38: // up
+						this.goToPrevImage();
+						break;
+					case 39: // right
+						this.goToImage()
+						break;
+					case 40: // down
+						this.goToImage();
+						break;
+					default:
+						return;
+
+				}
+
 			};
 
 		},
@@ -185,21 +253,11 @@ export default {
 		},
 
 		goToImage() {
-			if ( this.nextImage > this.images[this.orientation].length - 1  ) {
-				this.$router.replace( `/${this.type}/${this.project.link}/${ this.images[ this.changeImageType() ][0].path }` )
-			} else {
-				this.$router.replace( `/${this.type}/${this.project.link}/${ this.images[this.orientation][ this.nextImage ].path }` );
-			}
+			this.$router.replace( this.imageBase + this.nextImagePath );
 		},
 
 		goToPrevImage() {
-
-			if ( this.prevImage < 0 ) {
-				this.$router.replace( `/${this.type }/${this.project.link}/${ this.images[ this.changeImageType(true) ][ this.images[ this.changeImageType(true) ].length - 1 ].path }` )
-			} else {
-				this.$router.replace( `/${this.type }/${this.project.link}/${ this.images[this.orientation][ this.prevImage ].path }` )
-			}
-
+			this.$router.replace( this.imageBase + this.prevImagePath );
 		},
 
 		swipe(e) {
@@ -214,24 +272,19 @@ export default {
 			// DIRECTION_ALL	30
 
 			switch( e.direction ) {
-				case 4:
-					// right
-					this.goToImage();
-					break;
-				case 2:
-					// left
+				case 4: // right
 					this.goToPrevImage();
 					break;
-				case 8:
-					// up
-					this.goToPrevImage();
-					break;
-				case 16:
-					// down
+				case 2: // left
 					this.goToImage();
 					break;
-				default:
-					// do nothing
+				case 8: // up
+					this.goToPrevImage();
+					break;
+				case 16: // down
+					this.goToImage();
+					break;
+				default: // do nothing
 					break;
 			}
 

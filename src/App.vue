@@ -140,6 +140,7 @@
   }
 
   #app {
+
   	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   	text-rendering: optimizeLegibility !important;
   	-webkit-font-smoothing: antialiased !important;
@@ -167,10 +168,6 @@
   }
 
   @media only screen and (min-width:1100px) {
-  	.flex-column {
-
-  		margin-bottom:48px;
-  	}
 
   	#app {
   		text-align:center;
@@ -185,6 +182,9 @@
   }
   .external-span {
   	font-size:12px; margin-left:2px; font-weight:normal; transform: translateY(-10%); display:inline-block;
+    > svg {
+      width: 12px;
+    }
   }
   .external {
   	display:inline-block;
@@ -223,6 +223,9 @@
     left:0;
     min-height:100vh;
     width:100%;
+    &:not(.project) {
+      position:fixed!important;
+    }
 }
 
 .fade-enter, .fade-leave-to {
@@ -265,6 +268,16 @@ enter ---- enter-to   leave ---- leave-to
   transform:translateX(-100%);
 }
 .fade-left-enter-active, .fade-left-leave-active {
+  transition: transform 0.1s;
+}
+
+.fade-right-enter {
+  transform:translateX(-100%);
+}
+.fade-right-leave-to {
+  transform:translateX(100%);
+}
+.fade-right-enter-active, .fade-left-leave-active {
   transition: transform 0.1s;
 }
 

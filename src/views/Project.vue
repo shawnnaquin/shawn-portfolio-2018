@@ -1,10 +1,10 @@
 <template>
-	<div>
+	<div class="project" >
   	<div :class="'flex-column'" >
   	  <Nav />
   	  <Header :loaded="!getLoading" />
   	</div>
-	<article class="project"  >
+	<article class=""  >
 
 	  <transition name="fade" appear mode="out-in"
 		v-on:enter="articleEnter"
@@ -33,7 +33,7 @@
 
 			<div v-if="project && ( project.content.code || project.content.externalSite )" class="buttons" >
 
-				<a :href="project.content.externalSite" v-if="project.content.externalSite" target="_blank" :class="[ 'external' ]" > Visit <span :class="['external-span']">(external)</span> </a>
+				<a :href="project.content.externalSite" v-if="project.content.externalSite" target="_blank" :class="[ 'external' ]" > Live Site <span :class="['external-span']"><external/></span> </a>
 				&nbsp;
 
 				<a :href="project.content.code" v-if="project.content.code" target="_blank" :class="[ 'external' ]" >
@@ -194,6 +194,7 @@ import Picture from '@/components/Picture.vue';
 import Loader from "@/components/Loader.vue";
 import Header from "@/components/Header.vue";
 import Nav from "@/components/Nav.vue";
+import external from '@/components/icons/external';
 
 import PhoneVert from '@/assets/ui/mobile.vert.png';
 import PhoneHoriz from '@/assets/ui/mobile.horiz.png';
@@ -210,7 +211,8 @@ export default {
 		'picture-query': Picture,
 		'youtube-video': YoutubeVideo,
 		Nav,
-		Header
+		Header,
+		external
 	},
 
 	mixins: [ animateIn, projects ],
@@ -308,7 +310,6 @@ h3 {
 	.article-header {
 		max-width:800px;
 		padding-bottom: 10%;
-		margin-top:112px;
 		&.no-padding {
 			padding-bottom:0;
 		}

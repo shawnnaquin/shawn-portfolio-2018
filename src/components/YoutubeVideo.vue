@@ -162,14 +162,14 @@ export default {
 	  width:100%;
 	  height:100%;
 	  box-shadow: 8px 8px 40px darken(white,20%);
-	  transform: scale(.8) rotateY(-10deg) translate3d(-12%,0,0);
+	  transform: scale(.95) rotateY(0) translate3d(0,0,0);
 	  transition: transform 200ms ease;
 	}
 
 	iframe:hover, iframe:active, iframe:focus,
 	.stuck iframe {
 		left:0;
-		transform: scale(1) rotateY(0deg) translate3d(0%,0,2px);
+		transform: scale(1) rotateY(0deg) translate3d(0,0,0);
 	}
 </style>
 

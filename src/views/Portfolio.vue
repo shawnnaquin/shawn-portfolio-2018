@@ -128,7 +128,6 @@
 
 	h1 {
 		text-align:left;
-		margin-top:112px;
 	}
 
 	h1, .loading {
