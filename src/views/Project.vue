@@ -169,7 +169,7 @@
 				{{ project.content.article }}
 			</p>
 
-			<div v-if="project && ( project.content.code || project.content.externalSite )" class="buttons" >
+			<div v-if="project" class="buttons" >
 
 				<router-link :to="'/'" :class="['external']">
 					Back to Top
