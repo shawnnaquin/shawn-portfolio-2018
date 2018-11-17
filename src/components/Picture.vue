@@ -1,8 +1,9 @@
 <template>
 	<figure>
 
+		<!--   -->
 		<transition name="fade" appear >
-			<p :class=" 'loader' " v-if="showLoader"  >Loading <span><Loader :go=" showLoader " /></span></p>
+			<p :class=" 'loader' " :style="{ color: $route.params.image ? 'white' : '' }" v-if="showLoader" >Loading <span><Loader :go=" showLoader " /></span></p>
 		</transition>
 
 		<picture>
