@@ -1,9 +1,9 @@
 <template>
 
-	<div>
+	<div :class="['max-width']" >
 
 		<transition name="fade" mode="out-in" appear >
-			<h1 :key="type" class="push">
+			<h1 :key="type" class="push" v-if="type" >
 				{{type}} Projects
 				<transition name="fade" >
 					<span v-if="!projects" >
@@ -13,15 +13,15 @@
 			</h1>
 		</transition>
 
-		<div style="position:relative; margin-bottom:124px;">
+		<div style="position:relative;">
 
-			<transition name="fade" appear >
+			<transition :name=" 'fade' " appear >
 
 				<p :key="type" v-if="!projects" :class="[ 'loading' ]">LOADING <Loader :go=" ( !projects ) " /> </p>
 
 				<div
-				v-else
-				:class="[ 'portfolio' ]"
+					v-else
+					:class="[ 'portfolio' ]"
 				>
 <!--
 	  			<transition-group
@@ -64,8 +64,19 @@
 			</transition>
 
 		</div>
+		<transition name="fade" appear>
+			<div :class="['buttons']" v-if="projects" >
 
+				<router-link :to="`/${prevType}`" @click.native="setDirection('left')" :class="['external']">
+					Previous
+				</router-link>
 
+				<router-link :to="`/${nextType}`" @click.native="setDirection('right')" :class="['external']">
+					Next
+				</router-link>
+
+			</div>
+		</transition>
 	</div>
 
 </template>
@@ -82,19 +93,69 @@
 
 		components: {
 			Loader,
-			'picture-query': Picture
+			'picture-query': Picture,
+		},
+		data() {
+			return {
+				direction: ''
+			}
 		},
 		computed: {
-			...mapGetters([
-				'getLoading'
-			])
+			...mapGetters({
+				getLoading: 'getLoading',
+				types: 'getTypes',
+				getTrans: 'getTrans'
+			}),
+
+			typeKey() {
+				return this.types.indexOf( this.$route.params.type );
+			},
+
+			nextTypeKey() {
+				return ( 1 + this.typeKey ) % this.types.length;
+			},
+
+			prevTypeKey() {
+				let k = this.typeKey - 1;
+				if ( k < 0 ) {
+					k = this.types.length - 1;
+				}
+				return k;
+			},
+
+			prevType() {
+				return this.types[this.prevTypeKey];
+			},
+
+			nextType() {
+				return this.types[this.nextTypeKey];
+			}
+
 		},
+
 		mixins: [ animateIn, projects ],
+
+		watch: {
+			'projects'(p) {
+				let k = this.typeKey - 1;
+				console.log(this.typeKey);
+				if ( k < 0 ) {
+					k = this.types.length - 1;
+				}
+				console.log(k);
+			}  
+		},
 		methods: {
+
+			setDirection(d) {
+				this.direction = d;
+			},
+
 			getIndex(name) {
 				return Object.keys( this.projects ).indexOf( name );
 			}
 		}
+
 	};
 
 </script>
@@ -106,8 +167,11 @@
 </style>
 
 <style lang="scss" scoped>
-
-	.portfolio {
+	.buttons {
+		margin: 48px auto;
+		margin-bottom:64px;
+	}
+	.portfolio {	
 		padding: 0 10%;
   		display: grid;
 		grid-template-columns: repeat( auto-fill, minmax(250px, 1fr) );

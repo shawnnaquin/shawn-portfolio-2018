@@ -425,7 +425,7 @@ export default {
 		@media only screen and (min-width: 1500px) {
 			// max-width:500px;
 			width:30%;
-			max-width: 100%;
+			max-width: 450px;
 		}
 	}
 

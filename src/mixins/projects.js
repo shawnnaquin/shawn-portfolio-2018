@@ -41,7 +41,7 @@ export default {
 
 					return result;
 
-				}, { mobile: [], regular: [], horiz: [], video: false } );
+				}, { mobile: [], regular: [], horiz: [], video: false }) ;
 
 		}
 

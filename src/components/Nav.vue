@@ -1,5 +1,5 @@
 <template>
-	<div :class="['top', { ['sticky']: sticky } ]">
+	<div :class="['top', { ['sticky']: !getSticky } ]">
 		<transition name="fade" appear>
 			<button :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]" v-if="!menuOpen" @click="toggleMenu()" >
 				<hamburger/>
@@ -8,7 +8,7 @@
 
 	<div :class="['fake-nav']" ref="fakenav"></div>
 
-	<nav id="nav" :class="[ { ['menu-open']: menuOpen }, { ['sticky']: sticky } ]" ref="nav" >
+	<nav id="nav" :class="[ { ['menu-open']: menuOpen }, { ['sticky']: !getSticky } ]" ref="nav" >
 
 		<ul>
 
@@ -83,15 +83,15 @@ export default {
 
 	data() {
 		return {
-			observer: null,
-			sticky: false
+			observer: null
 		}
 	},
 
 	computed: {
 
 		...mapGetters({
-			menuOpen: 'getMenuOpen'
+			menuOpen: 'getMenuOpen',
+			getSticky: 'getSticky'
 		}),
 
 		d() {
@@ -138,10 +138,9 @@ export default {
 				entry.forEach( (e) =>  {
 
 				    if ( e.intersectionRatio <= 0 ) {
-				    	this.sticky = true;
-
+				    	this.$store.commit('setSticky');
 				    } else {
-				    	this.sticky = false;
+				    	this.$store.commit('setSticky');
 				    }
 
 				});
@@ -248,11 +247,12 @@ export default {
 				width:100%;
 				opacity:0;
 				background: darken(white, 3%);
+				opacity:0;
 				animation-name: fadeIn;
-				animation-duration: 0.3s;
+				animation-duration: 0.1s;
 				animation-fill-mode: forwards;
 				animation-timing-function: ease-in;
-				transition: background 5s ease;
+				transition: background 0.2s ease;
 				transition-property: background, box-shadow;
 				box-shadow: 2px 2px 5px rgba(black,0.1);
 				li  {
@@ -421,6 +421,7 @@ export default {
 		li {
 			button,a {
 				text-align:center;
+				height:100%;
 			}
 		}
 	}

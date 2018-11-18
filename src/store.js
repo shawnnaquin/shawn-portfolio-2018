@@ -14,10 +14,17 @@ export default new Vuex.Store({
         menuOpen: false,
         noScroll: false,
         lastScroll: 0,
-        trans: 'fade-up'
+        types: [ 'marketing', 'interactive', 'website' ],
+        sticky: false,
+        mainTrans: {
+            trans: 'fade-up',
+            mode: ''
+        },
     },
 
     getters: {
+
+        getSticky: state => state.sticky,
 
         getProject: state => (p) => {
             if ( !state.projects[ p.name ] ) {
@@ -32,16 +39,18 @@ export default new Vuex.Store({
         getLoading: state => state.loading,
 
         getMenuOpen: state => state.menuOpen,
-        getTrans: state => state.trans
+        getTrans: state => state.mainTrans,
+        getTypes: state => state.types
 
     },
-
     mutations: {
 
         loading(state) {
             state.loading = state.loading === true ? !state.loading : state.loading;
         },
-
+        setSticky(state) {
+            state.sticky = !state.sticky;
+        },
         addProject(state, payload) {
             Vue.set( state.projects, payload.name, payload.response.data);
         },
@@ -58,9 +67,13 @@ export default new Vuex.Store({
             state.lastScroll = p.last;
         },
 
-        setTrans(state,p) {
-            state.trans = p.trans;
+        setTrans(state, p = { trans: 'fade-up', mode: '' } ) {
+            state.mainTrans = p;
         },
+
+        setProjects(state,p) {
+            state.projects = p;
+        }
 
     },
 
@@ -93,27 +106,30 @@ export default new Vuex.Store({
             context.commit( 'loading' );
         },
 
-        async setProjects( {context,commit,state}, name ) {
+        async setProjectsExec( {context,commit,state,dispatch}, name ) {
+            try {
+                const response = await axios.get( `/json/${name}.json` );
 
-            if( !state.projects[name] ) {
-                try {
-                    const response = await axios.get( `/json/${name}.json` );
-
-                    if ( state.loading ) {
-                        setTimeout( ()=> {
-                            commit('addProject', {'name': name, 'response': response } )
-                            setTimeout(()=> {
-                                commit('loading');
-                            }, 500 );
-                        }, 300 );
-                    } else {
+                if ( state.loading ) {
+                    setTimeout( ()=> {
                         commit('addProject', {'name': name, 'response': response } )
-                    }
-                } catch (error) {
-                    // console.log(error);
+                        setTimeout(()=> {
+                            commit('loading');
+                        }, 500 );
+                    }, 300 );
+                } else {
+                    commit('addProject', {'name': name, 'response': response } )
                 }
+            } catch (error) {
+                // console.log(error);
             }
-        } // setProjects
+        },
+
+        setProjects( {context,commit,state,dispatch}, name ) {
+            if( !state.projects[name] ) {
+                dispatch('setProjectsExec', name );
+            }
+        }
 
     } // actions
 

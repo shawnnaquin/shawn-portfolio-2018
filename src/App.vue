@@ -1,4 +1,4 @@
-<template>
+s<template>
 
 	<div id="app" :class="[{['no-scroll']: $store.state.noScroll }]" >
 
@@ -15,9 +15,15 @@
       </div>
     </transition>
 
-		<transition :name="trans" :mode="mod" appear >
+		<transition :name="mainTrans.trans" :mode="mainTrans.mode" appear >
 			<router-view />
 		</transition>
+
+    <transition name="fade" appear >
+      <button v-if="!getSticky" v-scroll-to=" ':root' " :class="['external', 'bottom' ]">
+        <up/>
+      </button>
+    </transition>
 
 	</div>
 
@@ -29,15 +35,19 @@
   import height from '@/mixins/height';
   import Nav from "@/components/Nav.vue";
   import Header from "@/components/Header.vue";
+  import up from '@/components/icons/up';
+
   import { mapGetters } from 'vuex';
 
 
   export default {
   	name: "home",
+
   	computed: {
   		...mapGetters({
   			getLoading: 'getLoading',
-        trans: 'getTrans'
+        mainTrans: 'getTrans',
+        getSticky: 'getSticky'
   			}),
   		height() {
   			return this.getLoading;
@@ -54,13 +64,13 @@
   		  		this.$router.beforeEach((to, from, next) => {
 
   		  			if ( to.params.image && !from.params.image ) {
-  		  				this.$store.commit('setTrans', { trans: 'fade-abs' } );
+  		  				this.$store.commit('setTrans', { trans: 'fade-abs', mode: '' } );
                 document.body.style.background = 'black';
               } else if (!to.params.image && from.params.image) {
-                this.$store.commit('setTrans', { trans: 'fade-o' } );
+                this.$store.commit('setTrans', { trans: 'fade-o', mode: '' } );
                 document.body.style.background = '';
               } else {
-                this.$store.commit('setTrans', { trans: 'fade-up' } );
+                this.$store.commit('setTrans', { trans: 'fade-up', mode: '' } );
                 document.body.style.background = '';
   		  			}
 
@@ -73,12 +83,26 @@
   	components: {
   		Loader,
       Header,
-      Nav
+      Nav,
+      up
   	}
   };
   </script>
 
   <style lang="scss" scoped >
+
+  .bottom {
+    position: fixed;
+    bottom:32px;
+    right:32px;
+    padding:8px 12px;
+    cursor: pointer;
+    svg {
+      width:32px;
+      height:32px;
+      pointer-event:none;
+    }
+  }
 
   .no-scroll {
 
@@ -138,24 +162,28 @@
   <style lang="scss">
 
   //  GENERAL
+  .max-width {
+    max-width: 1440px;
+    margin-left: auto!important;
+    margin-right: auto!important;
+  }
 
   body {
   	width:100%;
   	box-sizing: border-box;
   	margin: 0;
   	background: darken(white,2%);
+    min-height:100%;
   	transition: background 300ms ease;
   }
 
   #app {
-
   	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   	text-rendering: optimizeLegibility !important;
   	-webkit-font-smoothing: antialiased !important;
   	-moz-osx-font-smoothing: grayscale;
   	text-align:left;
   	color: #2c3e50;
-  	max-width: 1440px;
   	margin: 0 auto;
   	width:100%;
   	overflow-x: hidden;
@@ -228,9 +256,12 @@
 .fade-o-leave-active {
     position:absolute!important;
     top:0;
-    left:0;
     min-height:100vh;
     width:100%;
+    &:not(.background) {
+      left: 50%;
+      transform: translateX(-50%);
+    }
     &:not(.project) {
       position:fixed!important;
     }
@@ -261,6 +292,25 @@
   opacity: 0;
 }
 
+.fade-up-enter-active, .fade-up-leave-active {
+  transition: transform 0.1s ease;
+  transition-property: transform,opacity;
+}
+
+.fade-up-enter-active {
+  transition-timing-function: ease-out;
+}
+.fade-up-leave-active {
+  transition-timing-function: ease-in;
+}
+.fade-up-enter {
+  // transform: translateY(10%);
+  opacity:0;
+}
+.fade-up-leave-to {
+  // transform: translateY(-20%);
+  opacity:0;
+}
 /*
 
 enter ---- enter-to   leave ---- leave-to

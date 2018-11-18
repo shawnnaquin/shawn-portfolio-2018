@@ -1,5 +1,6 @@
 <template>
-	<div class="project" key="project" v-if="project" >
+
+	<div :class="[ 'project', 'max-width' ]" key="project" v-if="project" ref="project" >
 
 	<article class=""  >
 
@@ -180,11 +181,11 @@
 
 			<div v-if="project" class="buttons" >
 
-				<router-link :to="'/'" :class="['external']">
-					Back to Top
+				<router-link :to="`/${type}/${ prevProject.link }`" @click.native="setDirection('left')" :class="['external']">
+					Prev Project
 				</router-link>
 
-				<router-link :to="`/${type}/${ nextProject.link }`" :class="['external']">
+				<router-link :to="`/${type}/${ nextProject.link }`" @click.native="setDirection('right')" :class="['external']">
 					Next Project
 				</router-link>
 
@@ -193,7 +194,9 @@
 		</div>
 
 	</article>
+
 	</div>
+
 </template>
 
 <script>
@@ -225,8 +228,14 @@ export default {
 	computed: {
 
 		...mapGetters([
-			'getLoading'
+			'getLoading',
+			'getSticky'
 		]),
+
+		getStartProjectKey() {
+			return Object.keys( this.projects ).indexOf( this.startProject );
+		},
+
 		projectNames() {
 			if ( !this.projects ) return;
 			return Object.keys(this.projects);
@@ -235,13 +244,16 @@ export default {
 		projectKey() {
 			if ( !this.project ) return;
 			let k = this.projectNames.indexOf( this.project.link );
-			this.startProject = k;
 			return k;
 		},
 
 		nextProjectKey() {
+
 			if ( this.projectKey === undefined || this.projectKey === null || this.projectKey === false ) return;
-			return ( ( 1 + this.projectKey ) % this.projectNames.length );
+
+			let k = ( ( 1 + this.projectKey ) % this.projectNames.length );
+			return k;
+
 		},
 
 		nextProject() {
@@ -250,7 +262,7 @@ export default {
 		},
 
 		prevProjectKey() {
-			if ( !this.projectKey ) return;
+			if ( !this.projects ) return;
 			let prev = this.projectKey - 1;
 			if ( prev < 0 ) {
 				prev = this.projectNames.length - 2;
@@ -261,24 +273,100 @@ export default {
 		prevProject() {
 			if ( !this.projects ) return;
 			return this.projects[ this.projectNames[ this.prevProjectKey ] ];
-		},
+		}
 
 	},
+
+	beforeRouteUpdate(to,from,next) {
+
+		this.next = true;
+
+		const el = () => {
+		    const el = document.scrollingElement || document.documentElement;
+			return el;
+		}
+
+		// if ( this.nextProjectKey == this.getStartProjectKey ) {
+		// 	let n = ( 1 + this.$store.state.types.indexOf( this.$route.params.type ) ) % this.$store.state.types.length;
+		// 	// console.log(  );
+		// 	this.$router.replace(`/${this.$store.state.types[ n ]}`)
+		// 	return;
+		// } else {
+		this.$store.commit('setTrans', {trans: `fade-${ this.direction }`, mode: '' } )
+
+		if ( this.direction == 'right' ) {
+
+			this.$refs.project.style.transition = 'transform 0.2s ease-out';
+			this.$refs.project.style.transitionProperty = 'opacity, transform';
+			this.$refs.project.style.transform = 'translateX(100%)';
+			this.$refs.project.style.opacity = 0;
+
+		} else {
+
+			this.$refs.project.style.transition = 'transform 0.2s ease-out';
+			this.$refs.project.style.transitionProperty = 'opacity, transform';
+			this.$refs.project.style.transform ='translateX(-100%)';
+			this.$refs.project.style.opacity = 0;
+
+		}
+		// if( ) {
+		// 	this.$store.commit('setTrans', { trans: 'fade-right', mode: 'out-in' } );
+		// } else {
+		// 	this.$store.commit('setTrans', { trans: 'fade-left', mode: 'out-in' } );
+		// }
+		setTimeout(()=> {
+			this.$store.commit('setLastScroll', {
+			    last: el().scrollTop
+			});
+
+			this.$store.commit('setProjects', {} );
+
+			next();
+		}, 100 );
+
+		// }
+
+	},
+
+	watch: {
+
+		'project'(p) {
+
+			const el = () => {
+			    const el = document.scrollingElement || document.documentElement;
+			    return el;
+			};
+
+			if ( p && this.next ) {
+				this.next = false;
+				this.$nextTick(()=> {
+					el().scrollTop = el().offsetHeight;
+				});
+			}
+
+		}
+
+	},
+
 	data() {
 		return {
 			phoneHorizLoaded: false,
 			phoneVertLoaded: false,
 			showImages: false,
 			articleLoaded: false,
-			startProject: false
+			next: false,
+			direction: ''
 		}
 	},
 	mounted() {
 		this.checkPhone();
-	},
-	watch: {
+		this.startProject = this.$route.params.project;
 	},
 	methods: {
+
+		setDirection(d) {
+			this.direction = d;
+		},
 
 		articleEnter(el,done){
 			if  ( el.classList.contains('article-header') ) {
@@ -316,6 +404,7 @@ export default {
 </script>
 
 <style lang="scss" scoped >
+
 .loading {
 	margin-top:112px;
 }
@@ -399,6 +488,7 @@ h3 {
 	.article-header {
 		max-width:800px;
 		padding-bottom: 10%;
+		width:100%;
 		margin-top:48px;
 		&.no-padding {
 			padding-bottom:0;

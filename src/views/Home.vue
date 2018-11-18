@@ -1,6 +1,6 @@
 <template>
 
-  <div class="home push">
+  <div :class="['home', 'push', 'max-width' ]">
 
 
   </div>

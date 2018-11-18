@@ -6,6 +6,9 @@ import "./registerServiceWorker";
 import "intersection-observer";
 import { VLazyImagePlugin } from "v-lazy-image";
 import { VueHammer } from 'vue2-hammer'
+import VueScrollTo from 'vue-scrollto';
+
+Vue.use(VueScrollTo);
 Vue.use(VueHammer)
 Vue.use(VLazyImagePlugin);
 
@@ -39,18 +42,12 @@ router.beforeEach( ( to, from, next ) => {
 			    document.documentElement.scrollTop = document.body.scrollTop = store.state.lastScroll;
 			}, 0 );
 		} else if( to.params.project && from.params.project ) {
-			console.log('!elseif');
-			store.commit('setTrans', {trans: 'fade-right' } );
 			return;
 		} else if ( !to.params.image ) {
-			document.documentElement.scrollTop = document.body.scrollTop = 0;
+			store.commit('setTrans', {trans: 'fade-abs', mode:'' });
+			VueScrollTo.scrollTo(':root');
+			// document.documentElement.scrollTop = document.body.scrollTop = 0;
 		}
-		// else
-		// if ( to.params.image ) {
-			// setTimeout(()=> {
-			//     window.pageYOffset = document.documentElement.scrollTop = document.body.scrollTop = 0;
-			// }, 2000 );
-		// }
 
 	});
 
