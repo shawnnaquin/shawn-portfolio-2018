@@ -35,16 +35,16 @@
   export default {
   	name: "home",
   	computed: {
-  		...mapGetters([
-  			'getLoading'
-  			]),
+  		...mapGetters({
+  			getLoading: 'getLoading',
+        trans: 'getTrans'
+  			}),
   		height() {
   			return this.getLoading;
   		}
   	},
   	data() {
   		return {
-  			trans: 'fade-up',
   			mod: ''
   		}
   	},
@@ -54,16 +54,13 @@
   		  		this.$router.beforeEach((to, from, next) => {
 
   		  			if ( to.params.image && !from.params.image ) {
-  		  				this.mod = '';
-  		  				this.trans = 'fade-abs';
+  		  				this.$store.commit('setTrans', { trans: 'fade-abs' } );
                 document.body.style.background = 'black';
               } else if (!to.params.image && from.params.image) {
-                this.mod = '';
-                this.trans = 'fade-o';
+                this.$store.commit('setTrans', { trans: 'fade-o' } );
                 document.body.style.background = '';
               } else {
-                this.mod = '';
-                this.trans = 'fade-up'
+                this.$store.commit('setTrans', { trans: 'fade-up' } );
                 document.body.style.background = '';
   		  			}
 
@@ -288,7 +285,7 @@ enter ---- enter-to   leave ---- leave-to
 .fade-right-leave-to {
   transform:translateX(100%);
 }
-.fade-right-enter-active, .fade-left-leave-active {
+.fade-right-enter-active, .fade-right-leave-active {
   transition: transform 0.1s;
 }
 

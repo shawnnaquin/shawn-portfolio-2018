@@ -295,10 +295,14 @@ export default {
 	beforeDestroy() {
 		this.height = false;
 		window.onkeydown = false;
+		this.$store.commit('toggleNoScroll');
 	},
 
 	mounted() {
 		this.keyPress();
+		setTimeout(()=> {
+			this.$store.commit('toggleNoScroll');
+		}, 450 );
 	}
 
 };

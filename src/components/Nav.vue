@@ -239,6 +239,7 @@ export default {
 		top:0;
 		left:0;
 		width:100%;
+		box-shadow: 2px 2px 3px rgba(black,0.05);
 		&.sticky {
 			@media only screen and (min-width: 1100px) {
 				position: fixed;
@@ -252,6 +253,12 @@ export default {
 				animation-fill-mode: forwards;
 				animation-timing-function: ease-in;
 				transition: background 5s ease;
+				transition-property: background, box-shadow;
+				box-shadow: 2px 2px 5px rgba(black,0.1);
+				li  {
+					button, a {
+					}
+				}
 			}
 		}
 	}

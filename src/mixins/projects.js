@@ -1,15 +1,15 @@
 import { mapGetters } from 'vuex';
 
 export default {
-
+	data() {
+		return {
+			type: false,
+		}
+	},
 	computed: {
 		...mapGetters([
 			'getProject'
 		]),
-
-		type() {
-			return this.$route.params.type;
-		},
 
 		projects() {
 			if ( !this.type ) return false;
@@ -54,11 +54,14 @@ export default {
 
 	},
 	mounted() {
-		this.setProjects( this.type );
+		this.setProjects( this.$route.params.type );
 	},
 	methods: {
 		setProjects( type ) {
-			this.$store.dispatch('setProjects', type );
+			this.type = type;
+			this.$nextTick(()=> {
+				this.$store.dispatch('setProjects', type );
+			});
 		}
 	}
 

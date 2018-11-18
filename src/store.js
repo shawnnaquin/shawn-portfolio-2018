@@ -13,7 +13,8 @@ export default new Vuex.Store({
         loading: true,
         menuOpen: false,
         noScroll: false,
-        lastScroll: 0
+        lastScroll: 0,
+        trans: 'fade-up'
     },
 
     getters: {
@@ -30,8 +31,8 @@ export default new Vuex.Store({
 
         getLoading: state => state.loading,
 
-        getMenuOpen: state => state.menuOpen
-
+        getMenuOpen: state => state.menuOpen,
+        getTrans: state => state.trans
 
     },
 
@@ -55,7 +56,11 @@ export default new Vuex.Store({
 
         setLastScroll(state, p) {
             state.lastScroll = p.last;
-        }
+        },
+
+        setTrans(state,p) {
+            state.trans = p.trans;
+        },
 
     },
 

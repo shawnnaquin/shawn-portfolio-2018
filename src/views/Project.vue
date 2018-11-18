@@ -1,5 +1,5 @@
 <template>
-	<div class="project" >
+	<div class="project" key="project" v-if="project" >
 
 	<article class=""  >
 
@@ -26,7 +26,19 @@
 			</transition>
 
 			<youtube-video v-if="project.content.video.length" :videoId="project.content.video" :videoImg=" `/img/portfolio/${ type }/${ images.video }-lg_1x.jpg`" ></youtube-video>
-			<p :class="['tech-list']" >{{ project.content.techList }}</p>
+
+			<div :class="[ 'built-with' ]" >
+
+			<h2>
+				Built With:
+			</h2>
+			<ul :class="[ 'tech-list' ]" >
+			<template v-for="t in project.content.techList" >
+				<li :class="[ 'tech-item' ]" >{{ t }}</li>
+			</template>
+			</ul>
+
+			</div>
 
 			<div v-if="project && ( project.content.code || project.content.externalSite )" class="buttons" >
 
@@ -172,7 +184,7 @@
 					Back to Top
 				</router-link>
 
-				<router-link :to="'/'" :class="['external']">
+				<router-link :to="`/${type}/${ nextProject.link }`" :class="['external']">
 					Next Project
 				</router-link>
 
@@ -211,24 +223,63 @@ export default {
 
 	mixins: [ animateIn, projects ],
 	computed: {
+
 		...mapGetters([
 			'getLoading'
-		])
+		]),
+		projectNames() {
+			if ( !this.projects ) return;
+			return Object.keys(this.projects);
+		},
+
+		projectKey() {
+			if ( !this.project ) return;
+			let k = this.projectNames.indexOf( this.project.link );
+			this.startProject = k;
+			return k;
+		},
+
+		nextProjectKey() {
+			if ( this.projectKey === undefined || this.projectKey === null || this.projectKey === false ) return;
+			return ( ( 1 + this.projectKey ) % this.projectNames.length );
+		},
+
+		nextProject() {
+			if ( !this.projects ) return;
+			return this.projects[ this.projectNames[ this.nextProjectKey ] ];
+		},
+
+		prevProjectKey() {
+			if ( !this.projectKey ) return;
+			let prev = this.projectKey - 1;
+			if ( prev < 0 ) {
+				prev = this.projectNames.length - 2;
+			}
+			return prev;
+		},
+
+		prevProject() {
+			if ( !this.projects ) return;
+			return this.projects[ this.projectNames[ this.prevProjectKey ] ];
+		},
+
 	},
 	data() {
 		return {
 			phoneHorizLoaded: false,
 			phoneVertLoaded: false,
 			showImages: false,
-			articleLoaded: false
+			articleLoaded: false,
+			startProject: false
 		}
 	},
-
 	mounted() {
 		this.checkPhone();
 	},
-
+	watch: {
+	},
 	methods: {
+
 		articleEnter(el,done){
 			if  ( el.classList.contains('article-header') ) {
 				this.showImages = true;
@@ -274,10 +325,54 @@ h1 {
 h3 {
 		// margin-bottom:65px;
 	}
+
+	.built-with {
+		margin-top:12px;
+		transform:translateY(-5px);
+		padding-top: 48px;
+	}
+
 	.tech-list {
+
+		margin: 24px auto;
 		line-height:32px;
-		font-size:18px;
-		margin-top:0;
+		font-size:16px;
+		list-style:none;
+
+		&:before, &:after {
+			color: darken(white, 50%);
+		}
+		&:before  {
+			content: '[';
+			padding-right:16px;
+		}
+		&:after {
+			content: ']';
+			padding-left:16px;
+		}
+	}
+
+	.tech-item {
+		display:inline;
+		color: darken(white, 80%);
+		&:after {
+			color: darken(white, 32%);
+			padding: 0 8px;
+		}
+		// &:before {
+		// 	content: '\'';
+		// 	color: darken(white, 32%);
+		// 	padding-right:8px;
+		// 	padding-left:4px;
+		// }
+		// &:nth-last-child(1):after {
+		// 	content: '\'';
+		// }
+		&:not( :nth-last-child(1) ):after {
+			content: '-';
+			letter-spacing:0px;
+
+		}
 	}
 
 	.image-container {
