@@ -9,10 +9,12 @@ s<template>
 		</transition>
 
       <transition name="fade-up" appear>
-      <div :class="'flex-column'" v-if="!$route.params.image" >
+
+      <div :class="'flex-column'" >
         <Nav />
         <Header :loaded="!getLoading" />
       </div>
+
     </transition>
 
 		<transition :name="mainTrans.trans" :mode="mainTrans.mode" appear >
@@ -243,7 +245,7 @@ s<template>
 
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0.2s ease-in;
+  transition: opacity 0.1s ease-in;
 }
 
 .fade-leave-active {
@@ -258,6 +260,7 @@ s<template>
     top:0;
     min-height:100vh;
     width:100%;
+    z-index:0;
     &:not(.background) {
       left: 50%;
       transform: translateX(-50%);
@@ -274,7 +277,7 @@ s<template>
 
 .fade-abs-enter-active, .fade-abs-leave-active {
   opacity:1;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.2s ease;
 }
 
 .fade-abs-enter, .fade-abs-leave-to {
@@ -282,7 +285,7 @@ s<template>
 }
 
 .fade-o-enter-active, .fade-o-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.2s ease;
 }
 
 .fade-o-leave-active {
@@ -293,7 +296,7 @@ s<template>
 }
 
 .fade-up-enter-active, .fade-up-leave-active {
-  transition: transform 0.1s ease;
+  transition: transform 0.2s ease;
   transition-property: transform,opacity;
 }
 

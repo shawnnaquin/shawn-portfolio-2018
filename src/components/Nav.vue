@@ -1,5 +1,5 @@
 <template>
-	<div :class="['top', { ['sticky']: !getSticky } ]">
+	<div :class="['top', { ['sticky']: getSticky } ]">
 		<transition name="fade" appear>
 			<button :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]" v-if="!menuOpen" @click="toggleMenu()" >
 				<hamburger/>
@@ -8,7 +8,7 @@
 
 	<div :class="['fake-nav']" ref="fakenav"></div>
 
-	<nav id="nav" :class="[ { ['menu-open']: menuOpen }, { ['sticky']: !getSticky } ]" ref="nav" >
+	<nav id="nav" :class="[ { ['menu-open']: menuOpen }, { ['sticky']: getSticky } ]" ref="nav" >
 
 		<ul>
 
@@ -128,6 +128,9 @@ export default {
 	beforeDestroy() {
 		window.removeEventListener("resize", this.d );
 		this.observer.disconnect();
+		if ( this.getSticky ) {
+			this.$store.commit('setSticky', false );
+		}
 	},
 
 	methods: {
@@ -136,13 +139,11 @@ export default {
 
 			this.observer = new IntersectionObserver( entry => {
 				entry.forEach( (e) =>  {
-
-				    if ( e.intersectionRatio <= 0 ) {
-				    	this.$store.commit('setSticky');
-				    } else {
-				    	this.$store.commit('setSticky');
-				    }
-
+					if ( e.intersectionRatio <= 0 ) {
+						this.$store.commit('setSticky', true );
+					} else {
+						this.$store.commit('setSticky', false );
+					}
 				});
 			});
 

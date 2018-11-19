@@ -48,8 +48,8 @@ export default new Vuex.Store({
         loading(state) {
             state.loading = state.loading === true ? !state.loading : state.loading;
         },
-        setSticky(state) {
-            state.sticky = !state.sticky;
+        setSticky(state, s) {
+            state.sticky = s;
         },
         addProject(state, payload) {
             Vue.set( state.projects, payload.name, payload.response.data);
