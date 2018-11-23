@@ -1,4 +1,4 @@
-s<template>
+<template>
 
 	<div id="app" :class="[{['no-scroll']: $store.state.noScroll }]" >
 
@@ -22,7 +22,7 @@ s<template>
 		</transition>
 
     <transition name="fade" appear >
-      <button v-if="!getSticky" v-scroll-to=" ':root' " :class="['external', 'bottom' ]">
+      <button v-if="getSticky" v-scroll-to=" ':root' " :class="['external', 'bottom' ]">
         <up/>
       </button>
     </transition>
@@ -104,6 +104,19 @@ s<template>
       height:32px;
       pointer-event:none;
     }
+
+    @media only screen and (max-width: 1100px ) {
+      bottom:8px;
+      right:8px;
+      padding:4px 6px;
+      cursor: pointer;
+      svg {
+        width:16px;
+        height:16px;
+        pointer-event:none;
+      }
+    }
+
   }
 
   .no-scroll {
