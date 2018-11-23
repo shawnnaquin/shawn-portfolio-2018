@@ -95,11 +95,11 @@
         },
         "content": {
         	"video": "FivkIwUeUwE",
-            "article": "The KY Lotto Speedometer ads feature ultra-lightweight HTML 5 built for specific viewport sizes. This project features SVG images and a lightweight project size (<= 200KB). This project leverages the Javascript build tool Grunt. A systematic approach was taken in order to reuse similar code throughout multiple banners. Each banner is programmatically produced based on variables, size and custom NPM Scripts. Each project included a testing dashboard and were validated through the Sizmek Media Platform.",
+            "article": "The KY Lotto Speedometer ads feature ultra-lightweight HTML5 built for specific viewport sizes. This project features SVG images and a lightweight project size (<= 200KB). This project leverages the Javascript build tool Grunt. A systematic approach was taken in order to reuse similar code throughout multiple banners. Each banner is programmatically produced based on variables, size and custom NPM Scripts. Each project included a testing dashboard and were validated through the Sizmek Media Platform.",
             "externalSite": "//tbg.l2.design/kylotto-speedometer/kylotto-speedometer-300x600-build/index.html",
             "code": false,
             "techList": [
-                "HTML 5",
+                "HTML5",
                 "vanilla Javascript",
                 "Sizmek API",
                 "Grunt",
@@ -141,7 +141,7 @@
             "externalSite": "//tbg.l2.design/trex-deck",
             "code": false,
             "techList": [
-                "HTML 5",
+                "HTML5",
                 "vanilla Javascript",
                 "Sizmek API",
                 "Grunt",
