@@ -2,7 +2,7 @@
     "kylotto-card-flip": {
         "link": "kylotto-card-flip",
         "title": "Kentucky Lottery Card Matching",
-        "projectDescription": "A card matching game featuring a CTA for branded games online.",
+        "projectDescription": "Card matching game featuring a call-to-action for branded games.",
         "mainImage": {
             "path": "main.kylotto-card-flip",
             "caption": "Flip the cards.",
@@ -10,7 +10,7 @@
         },
         "content": {
         	"video": "JpqKssj8B6I",
-            "article": "Card info from structured data is selected at random by javascript. The javascript selects on card to be a match and randomly places the cards on the table. Users click the card to find the match. The cards are animated with class names and CSS. The game utilizes VERY simple and vanilla javascript in order minimize size and serve the largest set of browsers and devices.",
+            "article": "KY Lottery Card Flip uses information from structured data. A matched game is selected at random from the structured data via Javascript. The Javscript then distributes the cards ramdomly onto the table. Users are prompted to, \"Flip the cards and find a matching game!\" The cards are animated via CSS class names triggered from the game's logic. Both the performance and size of the Javascript was carefully considered in order to serve the largest set of browsers and devices.",
             "externalSite": "//social.kylottery.com",
             "code": false,
             "techList": [
@@ -34,12 +34,12 @@
                 {
                     "path": "four.kylotto-card-flip",
                     "alt": "Match found!",
-                    "caption": "Once the match is complete users are greeted with confetti and a CTA."
+                    "caption": "Users are greeted with confetti and a CTA once the match is complete."
                 },
                 {
                     "path": "four.mobile.kylotto-card-flip",
                     "alt": "Cards flipped",
-                    "caption": "Not all cards are a match! The brands are choosen randomly from structured data."
+                    "caption": "Not all cards are a match! The brands are choosen randomly from the structured data."
                 },
                 {
                     "path": "one.kylotto-card-flip",
@@ -49,27 +49,27 @@
                 {
                     "path": "one.mobile.kylotto-card-flip",
                     "alt": "Header and Mast-Head",
-                    "caption": "The Header and Mast-Head are pulled in from JSON"
+                    "caption": "The Header and Mast-Head are pulled from structured data."
                 },
                 {
                     "path": "seven.mobile.kylotto-card-flip",
                     "alt": "Mobile Match!",
-                    "caption": "When a match is found on a mobile device the experience is the same."
+                    "caption": "The experience is similar both on mobile and Desktop."
                 },
                 {
                     "path": "six.mobile.kylotto-card-flip",
                     "alt": "Flipped cards reveal a match",
-                    "caption": "The match is placed at random onto the card table. The brand is choosen randomly."
+                    "caption": "Both the brand and card placement is chosen at random."
                 },
                 {
                     "path": "three.kylotto-card-flip",
                     "alt": "Brands",
-                    "caption": "The game can be configured for any brand game."
+                    "caption": "The game can be configured for any brand game with some simple data."
                 },
                 {
                     "path": "three.mobile.kylotto-card-flip",
                     "alt": "Alternate Win",
-                    "caption": "The win screen can accomodate any brand even on mobile."
+                    "caption": "The win screen can accomodate any brand, even on mobile!"
                 },
                 {
                     "path": "two.kylotto-card-flip",
@@ -79,7 +79,7 @@
                 {
                     "path": "two.mobile.kylotto-card-flip",
                     "alt": "Mobile Styles",
-                    "caption": "The game is complete with the same styles even on mobile."
+                    "caption": "The game is complete with the same styles, even on mobile!"
                 }
             ]
         }
@@ -95,11 +95,11 @@
         },
         "content": {
         	"video": "FivkIwUeUwE",
-            "article": "The KY Lotto Speedometer ads feature ultra-lightweight HTML5 built for specific sizes with SVG, and a lightweight project size of <= 200KB. A systematic approach was taken with Grunt to produce ads with the same code at multiple sizes. Each project included a testing dashboard and were validated and ran through the Sizmek Media Platform.",
+            "article": "The KY Lotto Speedometer ads feature ultra-lightweight HTML 5 built for specific viewport sizes. This project features SVG images and a lightweight project size (<= 200KB). This project leverages the Javascript build tool Grunt. A systematic approach was taken in order to reuse similar code throughout multiple banners. Each banner is programmatically produced based on variables, size and custom NPM Scripts. Each project included a testing dashboard and were validated through the Sizmek Media Platform.",
             "externalSite": "//tbg.l2.design/kylotto-speedometer/kylotto-speedometer-300x600-build/index.html",
             "code": false,
             "techList": [
-                "HTML5",
+                "HTML 5",
                 "vanilla Javascript",
                 "Sizmek API",
                 "Grunt",
@@ -141,7 +141,7 @@
             "externalSite": "//tbg.l2.design/trex-deck",
             "code": false,
             "techList": [
-                "HTML5",
+                "HTML 5",
                 "vanilla Javascript",
                 "Sizmek API",
                 "Grunt",

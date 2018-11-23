@@ -92,10 +92,10 @@
             "techList": [
                 "Vue",
                 "Webpack",
-                "babel/ES7",
+                "Babel|ES7",
                 "SVG",
                 "SCSS",
-                "HTML5"
+                "HTML 5"
             ],
             "imageRatio": "56.25%",
             "images": [
@@ -174,10 +174,10 @@
             "techList": [
                 "Vue",
                 "Webpack",
-                "babel/ES7",
+                "Babel|ES7",
                 "SVG",
                 "SCSS",
-                "HTML5"
+                "HTML 5"
             ],
             "imageRatio": "56.25%",
             "images": [
@@ -261,10 +261,10 @@
             "techList": [
                 "Vue",
                 "Webpack",
-                "babel/ES7",
+                "Babel|ES7",
                 "SVG",
                 "SCSS",
-                "HTML5"
+                "HTML 5"
             ],
             "imageRatio": "56.25%",
             "images": [

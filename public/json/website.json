@@ -15,7 +15,7 @@
             "code": false,
             "techList": [
                 "Webpack",
-                "Babel/ES7",
+                "Babel|ES7",
                 "Vue",
                 "Greensock",
                 "SCSS"
@@ -83,7 +83,7 @@
     "sos": {
         "link": "sos",
         "title": "Safe Online Surfing",
-        "projectDescription": "SOS features games butilt with HTML5 and Javascript ",
+        "projectDescription": "SOS features games butilt with HTML 5 and Javascript ",
         "mainImage": {
             "path": "main.sos",
             "alt": "Online Surfing",
@@ -95,7 +95,7 @@
             "externalSite": "//sos.fbi.gov",
             "code": false,
             "techList": [
-                "HTML5",
+                "HTML 5",
                 "SCSS",
                 "Grunt",
                 "Javascript",
@@ -422,7 +422,7 @@
             "externalSite": "//www.buntingroup.com/",
             "code": false,
             "techList": [
-                "Babel/ES7",
+                "Babel|ES7",
                 "Vue",
                 "VueX",
                 "CSS-Next",
@@ -563,15 +563,15 @@
             "externalSite": "//deerrunmedia.com/",
             "video": "bDezQV75q74",
             "code": false,
-            "article": "Deer Run Media is a local Visual Art and Video Production Company. This project shows off their unique work while minimizing the UI. All the content is presented simply to the user. The project makes extensive use of the HTML5 video API and features an entirely from scratch HTML5 video player.",
+            "article": "Deer Run Media is a local Visual Art and Video Production Company. This project shows off their unique work while minimizing the UI. All the content is presented simply to the user. The project makes extensive use of the HTML 5 video API and features an entirely from scratch HTML 5 video player.",
             "techList": [
                 "Craft CMS",
-                "HTML5",
+                "HTML 5",
                 "Video",
                 "SCSS",
                 "Foundation",
                 "Greensock",
-                "Babel/ES7",
+                "Babel|ES7",
                 "Grunt",
                 "History API"
             ],
