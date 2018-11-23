@@ -263,7 +263,7 @@ export default {
 			if ( !this.projects ) return;
 			let prev = this.projectKey - 1;
 			if ( prev < 0 ) {
-				prev = this.projectNames.length - 2;
+				prev = this.projectNames.length - 1;
 			}
 			return prev;
 		},
