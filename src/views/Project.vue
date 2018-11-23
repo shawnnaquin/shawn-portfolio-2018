@@ -35,7 +35,9 @@
 			</h2>
 			<ul :class="[ 'tech-list' ]" >
 			<template v-for="t in project.content.techList" >
-				<li :class="[ 'tech-item' ]" >{{ t }}</li>
+				<li :class="[ 'tech-item' ]" >
+					<router-link :to="`/${ getProjectLink(t) }`" >{{ t }}</router-link>
+				</li>
 			</template>
 			</ul>
 
@@ -49,10 +51,6 @@
 				<a :href="project.content.code" v-if="project.content.code" target="_blank" :class="[ 'external' ]" >
 					//code
 				</a>
-
-				<router-link :to="'/'" :class="['external']">
-					About Shawn
-				</router-link>
 
 			</div>
 
@@ -182,11 +180,11 @@
 			<div v-if="project" class="buttons" >
 
 				<router-link :to="`/${type}/${ prevProject.link }`" @click.native="setDirection('left')" :class="['external']">
-					Prev Project
+					&lt;
 				</router-link>
 
 				<router-link :to="`/${type}/${ nextProject.link }`" @click.native="setDirection('right')" :class="['external']">
-					Next Project
+					 &gt;
 				</router-link>
 
 			</div>
@@ -363,6 +361,10 @@ export default {
 		this.startProject = this.$route.params.project;
 	},
 	methods: {
+
+		getProjectLink(t){
+			return window.encodeURI(t);
+		},
 
 		setDirection(d) {
 			this.direction = d;
