@@ -4,7 +4,7 @@
 
 		<transition name="fade" mode="out-in" appear >
 			<h1 :key="type" class="push" v-if="type" >
-				{{type}} Projects
+				{{ getTrueCaps(type) }} Projects
 				<transition name="fade" >
 					<span v-if="!projects" >
 						&hellip;
@@ -38,7 +38,7 @@
 					<router-link
 
 						v-for="(p,i) in projects"
-						:to="`/${type}/${p.link}`"
+						:to="`/${ getType( p.link ) }/${p.link}`"
 						:class="[ 'link' ]"
 						:data-index="getIndex(p.link)"
 						v-bind:key="p.mainImage.path"
@@ -51,7 +51,7 @@
 
 						<div :class="'image'" >
 							<picture-query
-								:type="type"
+								:type="getType( p.link )"
 								:path="p.mainImage.path"
 								:alt="p.mainImage.alt"
 							>
@@ -101,6 +101,7 @@
 			}
 		},
 		computed: {
+
 			...mapGetters({
 				getLoading: 'getLoading',
 				types: 'getTypes',
@@ -108,7 +109,14 @@
 			}),
 
 			typeKey() {
-				return this.types.indexOf( this.$route.params.type );
+				let n = this.types.indexOf( this.$route.params.type );
+
+				if ( n === -1 ) {
+					n = 0;
+				}
+
+				return n;
+
 			},
 
 			nextTypeKey() {
@@ -138,14 +146,35 @@
 		watch: {
 			'projects'(p) {
 				let k = this.typeKey - 1;
-				console.log(this.typeKey);
+				// console.log(this.typeKey);
 				if ( k < 0 ) {
 					k = this.types.length - 1;
 				}
-				console.log(k);
-			}  
+				// console.log(k);
+			}
 		},
+
 		methods: {
+
+			getTrueCaps(type) {
+
+				if ( !Object.keys(this.projects).length ) return;
+
+				let t = this.projects[ Object.keys( this.projects )[0] ].content['techList'];
+				let n = null;
+
+				for ( let i = 0; i < t.length; i++ ) {
+					if ( type.toLocaleLowerCase() == t[i].toLocaleLowerCase() ) {
+						return n = t[i];
+						break;
+					}
+				}
+
+				if ( n === null ) {
+					return type;
+				}
+
+			},
 
 			setDirection(d) {
 				this.direction = d;
@@ -171,7 +200,7 @@
 		margin: 48px auto;
 		margin-bottom:64px;
 	}
-	.portfolio {	
+	.portfolio {
 		padding: 0 10%;
   		display: grid;
 		grid-template-columns: repeat( auto-fill, minmax(250px, 1fr) );
