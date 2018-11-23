@@ -20,7 +20,8 @@ export default new Router({
     },
 
     {
-      path: "/:type(marketing|interactive|website)",
+      // (marketing|interactive|website)
+      path: "/:type",
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
@@ -29,12 +30,12 @@ export default new Router({
     },
 
     {
-      path: "/:type(marketing|interactive|website)/:project",
+      path: "/:type/:project",
       component: Project
     },
 
     {
-      path: "/:type(marketing|interactive|website)/:project/:image",
+      path: "/:type/:project/:image",
       component: Image
     },
 
