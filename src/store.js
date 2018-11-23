@@ -108,20 +108,25 @@ export default new Vuex.Store({
 
         async setProjectsExec( {context,commit,state,dispatch}, name ) {
             try {
+
                 const response = await axios.get( `/json/${name}.json` );
 
                 if ( state.loading ) {
-                    setTimeout( ()=> {
+                    // setTimeout( ()=> {
                         commit('addProject', {'name': name, 'response': response } )
-                        setTimeout(()=> {
-                            commit('loading');
-                        }, 500 );
-                    }, 300 );
+                        if ( state.loading ) {
+                            setTimeout(()=> {
+                                commit('loading');
+                            }, 500 );
+                        }
+                    // }, 300 );
                 } else {
                     commit('addProject', {'name': name, 'response': response } )
                 }
+
             } catch (error) {
-                // console.log(error);
+                dispatch('setAllProjects');
+                // throw error;
             }
         },
 
@@ -129,6 +134,16 @@ export default new Vuex.Store({
             if( !state.projects[name] ) {
                 dispatch('setProjectsExec', name );
             }
+        },
+
+        setAllProjects( {context,commit,state,dispatch} ) {
+
+            for( let t in state.types ) {
+                if ( !state.projects[ state.types[t] ] ) {
+                    dispatch('setProjectsExec', state.types[t] );
+                }
+            }
+
         }
 
     } // actions
