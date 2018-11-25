@@ -296,9 +296,11 @@ export default {
 		this.height = false;
 		window.onkeydown = false;
 		this.$store.commit('toggleNoScroll');
+        document.body.style.background = '';
 	},
 
 	mounted() {
+        document.body.style.background = 'black';
 		this.keyPress();
 		setTimeout(()=> {
 			this.$store.commit('toggleNoScroll');
