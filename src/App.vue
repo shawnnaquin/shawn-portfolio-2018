@@ -67,13 +67,10 @@
 
   		  			if ( to.params.image && !from.params.image ) {
   		  				this.$store.commit('setTrans', { trans: 'fade-abs', mode: '' } );
-                document.body.style.background = 'black';
               } else if (!to.params.image && from.params.image) {
                 this.$store.commit('setTrans', { trans: 'fade-o', mode: '' } );
-                document.body.style.background = '';
               } else {
                 this.$store.commit('setTrans', { trans: 'fade-up', mode: '' } );
-                document.body.style.background = '';
   		  			}
 
   		  			this.$nextTick(()=> {
