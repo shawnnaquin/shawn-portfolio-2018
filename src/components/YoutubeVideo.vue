@@ -66,6 +66,7 @@ export default {
 	},
 
 	beforeDestroy() {
+		if ( !this.observer ) return;
 		this.observer.unobserve( this.$refs.player );
 	},
 
@@ -79,7 +80,7 @@ export default {
 		mouseleave() {
 			this.mousein = false;
 
-			if ( !window.YTPlayer.getPlayerState )  return;
+			if ( !window.YTPlayer )  return;
 
 			if ( window.YTPlayer.getPlayerState() != 1 && window.YTPlayer.getPlayerState() != 3 ) {
 				this.stuck = false;
@@ -126,7 +127,7 @@ export default {
 				size = '-lg_1x.jpg';
 			}
 
-			return `url( /img/portfolio/${ this.$route.params.type }/${ image }${ size }`;
+			return `url( ${ image }${ size }`;
 
 		},
 		createScript() {
