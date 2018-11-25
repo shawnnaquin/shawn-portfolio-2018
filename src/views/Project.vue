@@ -26,7 +26,7 @@
 				</div>
 			</transition>
 
-			<youtube-video v-if="project.content.video.length" :videoId="project.content.video" :videoImg=" `/img/portfolio/${ type }/${ images.video }-lg_1x.jpg`" ></youtube-video>
+			<youtube-video v-if="project.content.video.length" :videoId="project.content.video" :videoImg=" `/img/portfolio/${ type }/${ images.video }`" ></youtube-video>
 
 			<div :class="[ 'built-with' ]" >
 
@@ -279,10 +279,10 @@ export default {
 
 		this.next = true;
 
-		const el = () => {
-		    const el = document.scrollingElement || document.documentElement;
-			return el;
-		}
+		// const el = () => {
+		//     const el = document.scrollingElement || document.documentElement;
+		// 	return el;
+		// }
 
 		// if ( this.nextProjectKey == this.getStartProjectKey ) {
 		// 	let n = ( 1 + this.$store.state.types.indexOf( this.$route.params.type ) ) % this.$store.state.types.length;
@@ -313,12 +313,10 @@ export default {
 		// 	this.$store.commit('setTrans', { trans: 'fade-left', mode: 'out-in' } );
 		// }
 		setTimeout(()=> {
-			this.$store.commit('setLastScroll', {
-			    last: el().scrollTop
-			});
-
+		// 	this.$store.commit('setLastScroll', {
+		// 	    last: el().scrollTop
+		// 	});
 			this.$store.commit('setProjects', {} );
-
 			next();
 		}, 100 );
 
@@ -330,16 +328,16 @@ export default {
 
 		'project'(p) {
 
-			const el = () => {
-			    const el = document.scrollingElement || document.documentElement;
-			    return el;
-			};
+			// const el = () => {
+			//     const el = document.scrollingElement || document.documentElement;
+			//     return el;
+			// };
 
 			if ( p && this.next ) {
 				this.next = false;
-				this.$nextTick(()=> {
-					el().scrollTop = el().offsetHeight;
-				});
+				// this.$nextTick(()=> {
+				// 	el().scrollTop = el().offsetHeight;
+				// });
 			}
 
 		}
