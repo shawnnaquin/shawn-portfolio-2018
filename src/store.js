@@ -16,6 +16,7 @@ export default new Vuex.Store({
         lastScroll: 0,
         types: [ 'marketing', 'interactive', 'website' ],
         sticky: false,
+        resetScroll: false,
         mainTrans: {
             trans: 'fade-up',
             mode: ''
@@ -40,10 +41,16 @@ export default new Vuex.Store({
 
         getMenuOpen: state => state.menuOpen,
         getTrans: state => state.mainTrans,
-        getTypes: state => state.types
+        getTypes: state => state.types,
+        getResetScroll: state => state.resetScroll
 
     },
+
     mutations: {
+
+        setResetScroll(state,p) {
+            state.resetScroll = p;
+        },
 
         loading(state) {
             state.loading = state.loading === true ? !state.loading : state.loading;

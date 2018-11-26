@@ -1,3 +1,5 @@
+import store from "@/store";
+
 export default {
 
 	data() {
@@ -15,10 +17,12 @@ export default {
 		beforeEnter: function (el) {
 		  el.style.opacity = 0;
 		},
+
 		enter: function (el, done) {
 
 		  let delay = el.dataset.index * 200;
-		  // console.log(delay);
+		  console.log('delay', delay);
+
 		  setTimeout( () => {
 
 		  	let f = 0;
@@ -39,6 +43,7 @@ export default {
 		  }, delay );
 
 		},
+
 		leave: function (el, done) {
 			done;
 		}

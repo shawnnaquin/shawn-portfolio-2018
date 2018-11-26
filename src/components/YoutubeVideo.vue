@@ -80,7 +80,7 @@ export default {
 		mouseleave() {
 			this.mousein = false;
 
-			if ( !window.YTPlayer )  return;
+			if ( !window.YTPlayer || !window.YTPlayer.getPlayerState ) return;
 
 			if ( window.YTPlayer.getPlayerState() != 1 && window.YTPlayer.getPlayerState() != 3 ) {
 				this.stuck = false;
@@ -90,7 +90,7 @@ export default {
 
 		onPlayerReady(event) {
 			this.playerReady = true;
-			console.log('ready');
+			// console.log('ready');
 		},
 
 		onPlayerStateChange(event) {
@@ -246,7 +246,7 @@ export default {
 		opacity:0;
 		filter: blur(10px);
 		animation-name: blurIn;
-		animation-duration: 800ms;
+		animation-duration: 200ms;
 		animation-fill-mode: forwards;
 		animation-timing-function: ease-in;
 		animation-delay: 300ms;

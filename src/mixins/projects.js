@@ -87,12 +87,12 @@ export default {
 	},
 
 	watch: {
-
-		'$route'(route) {
-			this.setProjects( route.params.type );
+		'$route'(to,from) {
 		},
 		'$store.state.projects'(p) {
-			// 0 projects, the store has loaded all types, and this instance projects are 0;
+			// slightly confusing as to why:
+			// 0 projects are available, the store has loaded all types, and this instance projects are 0
+			// no project name matches!;
 			// then replace state
 			if ( Object.keys(p).length >= this.$store.state.types.length && !Object.keys( this.projects ).length ) {
 				this.$router.replace( this.$store.state.types[0] );

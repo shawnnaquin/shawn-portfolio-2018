@@ -118,7 +118,7 @@
 	.v-lazy-image {
 	  filter: blur(10px);
 	  transition-property: filter;
-	  transition-duration: 0.3s;
+	  transition-duration: 0.1s;
 	  transition-timing-function: ease-out;
 	}
 

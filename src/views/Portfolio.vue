@@ -1,6 +1,6 @@
 <template>
 
-	<div :class="['max-width']" >
+	<div :class="['max-width']" style="overflow: hidden;" >
 
 		<transition name="fade" mode="out-in" appear >
 			<h1 :key="type" class="push" v-if="type" >
@@ -16,33 +16,24 @@
 		<div style="position:relative;">
 
 			<transition :name=" 'fade' " appear >
-
 				<p :key="type" v-if="!projects" :class="[ 'loading' ]">LOADING <Loader :go=" ( !projects ) " /> </p>
+			</transition>
+
+			<transition name="fade" mode="out-in" v-on:afterEnter="pageAfterEnter" appear >
 
 				<div
-					v-else
-					:class="[ 'portfolio' ]"
+					:key="type"
+					v-if="projects"
+					:class="[ 'portfolio', direction  ]"
+					ref="portfolio"
 				>
-<!--
-	  			<transition-group
-	  			  name="staggered-fade"
-	  			  tag="div"
-	  			  v-bind:css="false"
-	  			  v-on:before-enter="beforeEnter"
-	  			  v-on:enter="enter"
-	  			  v-on:leave="leave"
-	  			  appear
-
-	  			> -->
 
 					<router-link
-
 						v-for="(p,i) in projects"
 						:to="`/${ getType( p.link ) }/${p.link}`"
-						:class="[ 'link' ]"
-						:data-index="getIndex(p.link)"
-						v-bind:key="p.mainImage.path"
-						:style="{ 'animationDelay': String( getIndex(p.link) * 150 ) + 'ms' }"
+						:class="[ 'link', p.link ]"
+						:style="{ 'transitionDelay': String( ( getIndex(p.link) ) * 50 ) + 'ms' }"
+						:data-name="p.link"
 					>
 						<div :class="[ 'main-description' ]" >
 							<h3>{{ p.title }}</h3>
@@ -60,12 +51,15 @@
 							</picture-query>
 						</div>
 					</router-link>
+
 				</div>
+
 			</transition>
 
 		</div>
+
 		<transition name="fade" appear>
-			<div :class="['buttons']" v-if="projects" >
+			<div :class="['buttons']" v-if="showButtons" :key="showButtons" >
 
 				<router-link :to="`/${prevType}`" @click.native="setDirection('left')" :class="['external']">
 					Previous
@@ -77,6 +71,7 @@
 
 			</div>
 		</transition>
+		
 	</div>
 
 </template>
@@ -95,11 +90,14 @@
 			Loader,
 			'picture-query': Picture,
 		},
+
 		data() {
 			return {
-				direction: ''
+				direction: '',
+				showButtons: false
 			}
 		},
+
 		computed: {
 
 			...mapGetters({
@@ -141,9 +139,75 @@
 
 		},
 
+		beforeRouteUpdate(to,from,next) {
+		  // called when the route that renders this component is about to
+		  // be navigated away from.
+		  // has access to `this` component instance.
+
+		  // this.$refs.portfolio.children.style.opacity = 0;
+
+		  // let t = 0;
+
+		  // for (let c of this.$refs.portfolio.children ) {
+
+		  // 	c.style.transition = 'opacity 200ms ease-out';
+		  // 	c.style.transitionDelay = (t*50)+'ms';
+
+		  // 	if ( c.getAttribute('data-name') != to.params.project ) {
+		  // 		c.style.opacity = 0;
+		  // 	}
+
+		  // 	t++;
+
+		  // }
+		  this.showButtons = false;
+
+		  // setTimeout( ()=> {
+		  	next(); 
+		  // }, ( t * 50 ) + 100 );
+
+
+		},
+
+		beforeRouteLeave (to, from, next) {
+		  // called when the route that renders this component is about to
+		  // be navigated away from.
+		  // has access to `this` component instance.
+
+		  // this.$refs.portfolio.children.style.opacity = 0;
+		  this.direction = '';
+		  this.showButtons = false;
+		  let t = 0;
+
+		  for (let c of this.$refs.portfolio.children ) {
+
+		  	c.style.transition = 'opacity 200ms ease-out';
+		  	c.style.transitionDelay = (t*50)+'ms';
+
+		  	if ( c.getAttribute('data-name') != to.params.project ) {
+		  		c.style.opacity = 0;
+		  	}
+
+		  	t++;
+
+		  }
+		  setTimeout( ()=> {
+		  	next(); 
+		  }, ( t * 50 ) + 100 );
+
+		},
+
 		mixins: [ animateIn, projects ],
 
+		mounted() {
+
+				this.showButtons = true;
+		},
+
 		watch: {
+			'$route'(to,from) {
+				this.setProjects(to.params.type);
+			},
 			'projects'(p) {
 				let k = this.typeKey - 1;
 				// console.log(this.typeKey);
@@ -155,6 +219,12 @@
 		},
 
 		methods: {
+
+			pageAfterEnter(el) {
+				this.direction = '';
+				this.showButtons = true;
+				this.$scrollTo(':root');
+			},
 
 			getTrueCaps(type) {
 
@@ -178,6 +248,7 @@
 
 			setDirection(d) {
 				this.direction = d;
+				return;
 			},
 
 			getIndex(name) {
@@ -201,14 +272,52 @@
 		margin-bottom:64px;
 	}
 	.portfolio {
+
 		padding: 0 10%;
   		display: grid;
 		grid-template-columns: repeat( auto-fill, minmax(250px, 1fr) );
 		grid-gap: 2rem;
-		transition: grid-template-columns 5s ease;
 		@media only screen and (max-width:630px) {
 			grid-template-columns: repeat( auto-fill, minmax(200px, 1fr) );
 		}
+
+		&.fade-enter-active {
+			transition-delay:0s;
+		} 
+
+		&.fade-leave-active {
+			transition-delay: 300ms;
+		}
+
+		&.fade-leave-active, &.fade-enter-active {
+			> a {
+				transition: transform 200ms ease;
+				transition-property: opacity,transform;
+			}
+		}
+
+		&.fade-enter, &.fade-leave-to {
+			> a {
+				opacity:0;
+			}
+		}
+
+		&.left.fade-enter, &.left.fade-leave-to {
+			> a {
+				transform: translateX(100%);
+				
+			}
+
+		}
+
+		&.right.fade-leave-to, &.right.fade-enter {
+			> a {
+				transform: translateX(-100%);				
+
+			}
+		}
+
+
 	}
 
 	h1 {
@@ -258,8 +367,6 @@ router-link
 		color:black;
 		text-align:left;
 		border:1px solid rgba(black, 0.1);
-		transition: border-color 200ms ease;
-		transition-property: border-color, border-size;
 		background: white;
 		&:hover {
 			border-color:rgba(black, 0.4);
@@ -267,24 +374,10 @@ router-link
 		}
 	}
 
-	@keyframes in {
-		100% { opacity:1; transform:translate3d(0,0,0); }
-	}
-
 	.link {
-
 		display: flex;
 		flex-flow: wrap;
 		align-content: space-between;
-
-		opacity:0;
-		transform:translate3d(0,100px,0);
-		animation-name: in;
-		animation-delay:0s;
-		animation-duration: 200ms;
-		animation-timing-function: ease-in;
-		animation-fill-mode: forwards;
-
 	}
 
 	.image {

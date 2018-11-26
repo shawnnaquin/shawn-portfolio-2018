@@ -1,8 +1,10 @@
 <template>
 
-	<div :class="[ 'project', 'max-width' ]" key="project" v-if="project" ref="project" >
+	<div :class="[ 'project', 'max-width' ]"  style="overflow: hidden;" >
 
-	<article class=""  >
+	<transition :name="mainTrans.trans" :mode="mainTrans.mode" appear v-on:afterLeave="pageAfterLeave" v-on:beforeEnter="pageBeforeEnter" v-on:afterEnter="pageAfterEnter" >
+
+	<article class="" v-if="show"  appear >
 
 	  <transition name="fade" appear mode="out-in"
 		v-on:enter="articleEnter"
@@ -171,19 +173,19 @@
 
 		</div>
 
-		<div v-if="project" :class="[ 'article-header' ]" >
+		<div :class="[ 'article-header' ]" >
 
 			<p v-if="project.content.article" :class="['description']">
 				{{ project.content.article }}
 			</p>
 
-			<div v-if="project" class="buttons" >
+			<div class="buttons" >
 
-				<router-link :to="`/${type}/${ prevProject.link }`" @click.native="setDirection('left')" :class="['external']">
+				<router-link :to="`/${type}/${ prevProject.link }`" :class="['external']">
 					&lt;
 				</router-link>
 
-				<router-link :to="`/${type}/${ nextProject.link }`" @click.native="setDirection('right')" :class="['external']">
+				<router-link :to="`/${type}/${ nextProject.link }`" :class="['external']">
 					 &gt;
 				</router-link>
 
@@ -192,7 +194,7 @@
 		</div>
 
 	</article>
-
+	</transition>
 	</div>
 
 </template>
@@ -225,10 +227,11 @@ export default {
 	mixins: [ animateIn, projects ],
 	computed: {
 
-		...mapGetters([
-			'getLoading',
-			'getSticky'
-		]),
+		...mapGetters({
+			getLoading: 'getLoading',
+			mainTrans: 'getTrans',
+			getSticky: 'getSticky'
+		}),
 
 		getStartProjectKey() {
 			return Object.keys( this.projects ).indexOf( this.startProject );
@@ -277,70 +280,18 @@ export default {
 
 	beforeRouteUpdate(to,from,next) {
 
-		this.next = true;
-
-		// const el = () => {
-		//     const el = document.scrollingElement || document.documentElement;
-		// 	return el;
-		// }
-
-		// if ( this.nextProjectKey == this.getStartProjectKey ) {
-		// 	let n = ( 1 + this.$store.state.types.indexOf( this.$route.params.type ) ) % this.$store.state.types.length;
-		// 	// console.log(  );
-		// 	this.$router.replace(`/${this.$store.state.types[ n ]}`)
-		// 	return;
-		// } else {
-		this.$store.commit('setTrans', {trans: `fade-${ this.direction }`, mode: '' } )
-
-		if ( this.direction == 'right' ) {
-
-			this.$refs.project.style.transition = 'transform 0.2s ease-out';
-			this.$refs.project.style.transitionProperty = 'opacity, transform';
-			this.$refs.project.style.transform = 'translateX(100%)';
-			this.$refs.project.style.opacity = 0;
-
+		if ( to.params.project == this.nextProject.link ) {
+			this.$store.commit('setTrans', {trans: `fade-right`, mode: '' } );
 		} else {
-
-			this.$refs.project.style.transition = 'transform 0.2s ease-out';
-			this.$refs.project.style.transitionProperty = 'opacity, transform';
-			this.$refs.project.style.transform ='translateX(-100%)';
-			this.$refs.project.style.opacity = 0;
-
+			this.$store.commit('setTrans', {trans: `fade-left`, mode: '' } );
 		}
-		// if( ) {
-		// 	this.$store.commit('setTrans', { trans: 'fade-right', mode: 'out-in' } );
-		// } else {
-		// 	this.$store.commit('setTrans', { trans: 'fade-left', mode: 'out-in' } );
-		// }
-		setTimeout(()=> {
-		// 	this.$store.commit('setLastScroll', {
-		// 	    last: el().scrollTop
-		// 	});
-			this.$store.commit('setProjects', {} );
+
+
+		this.$nextTick( ()=> {
+			this.show = false;
 			next();
-		}, 100 );
+		});
 
-		// }
-
-	},
-
-	watch: {
-
-		'project'(p) {
-
-			// const el = () => {
-			//     const el = document.scrollingElement || document.documentElement;
-			//     return el;
-			// };
-
-			if ( p && this.next ) {
-				this.next = false;
-				// this.$nextTick(()=> {
-				// 	el().scrollTop = el().offsetHeight;
-				// });
-			}
-
-		}
 
 	},
 
@@ -350,22 +301,41 @@ export default {
 			phoneVertLoaded: false,
 			showImages: false,
 			articleLoaded: false,
-			next: false,
+			show: false, // show the page
 			direction: ''
 		}
 	},
+
 	mounted() {
 		this.checkPhone();
 		this.startProject = this.$route.params.project;
+		this.show = true;
+	},
+	watch: {
+		'$route'(to,from) {
+		}
 	},
 	methods: {
 
-		getProjectLink(t){
-			return window.encodeURI(t);
+		pageAfterEnter(el) {	
+
+			if ( this.$store.state.resetScroll ) {
+				this.$scrollTo( ':root', 300, { offset: this.$store.state.lastScroll }  );
+			} else {
+				this.$scrollTo( ':root', 300 );
+			}
+
 		},
 
-		setDirection(d) {
-			this.direction = d;
+		pageBeforeEnter(el) {
+		},
+
+		pageAfterLeave(el) {
+			this.show = true;
+		},
+
+		getProjectLink(t){
+			return window.encodeURI(t);
 		},
 
 		articleEnter(el,done){
@@ -379,6 +349,7 @@ export default {
 			if ( el.classList.contains('article-header') ) {
 				this.articleLoaded = true;
 			}
+
 		},
 
 		checkPhone() {

@@ -246,16 +246,6 @@ export default {
 				top:0;
 				left:0;
 				width:100%;
-				opacity:0;
-				background: darken(white, 3%);
-				opacity:0;
-				animation-name: fadeIn;
-				animation-duration: 0.1s;
-				animation-fill-mode: forwards;
-				animation-timing-function: ease-in;
-				transition: background 0.2s ease;
-				transition-property: background, box-shadow;
-				box-shadow: 2px 2px 5px rgba(black,0.1);
 				li  {
 					button, a {
 					}

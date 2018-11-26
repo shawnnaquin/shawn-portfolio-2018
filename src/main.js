@@ -22,6 +22,8 @@ new Vue({
 
 router.beforeEach( ( to, from, next ) => {
 
+	store.commit('setResetScroll', false );
+
 	if ( !store.state.menuOpen && !from.params.image ) {
 
 		const scrollTop = () => {
@@ -35,23 +37,18 @@ router.beforeEach( ( to, from, next ) => {
 
 	}
 
-	Vue.nextTick(()=> {
+	if ( from.params.image ) {
+		store.commit('setResetScroll', true );
+	}
 
-		if ( from.params.image ) {
-			setTimeout(()=> {
-			    document.documentElement.scrollTop = document.body.scrollTop = store.state.lastScroll;
-			}, 0 );
-		} else if( to.params.project && from.params.project ) {
-			return;
-		} else if ( !to.params.image ) {
-			store.commit('setTrans', {trans: 'fade-abs', mode:'' });
-			VueScrollTo.scrollTo(':root');
-			// document.documentElement.scrollTop = document.body.scrollTop = 0;
-		}
-
-	});
+	store.commit('setTrans', { trans: 'fade-up', mode:'out-in' } );
+	// if ( to.params.image && !from.params.image ) {
+	// } else if (!to.params.image && from.params.image) {
+	// 	store.commit('setTrans', { trans: 'fade-o', mode: '' } );
+	// } else {
+	// 	store.commit('setTrans', { trans: 'fade-up' } );
+	// }
 
 	next();
-
 
 });
