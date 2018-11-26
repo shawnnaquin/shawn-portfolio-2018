@@ -85,18 +85,22 @@ export default {
 		}
 
 	},
-
 	watch: {
+
 		'$route'(to,from) {
 		},
+
 		'$store.state.projects'(p) {
 			// slightly confusing as to why:
 			// 0 projects are available, the store has loaded all types, and this instance projects are 0
 			// no project name matches!;
 			// then replace state
 			if ( Object.keys(p).length >= this.$store.state.types.length && !Object.keys( this.projects ).length ) {
-				this.$router.replace( this.$store.state.types[0] );
+				this.$nextTick( ()=> {
+					this.$router.replace( '/'+this.$store.state.types[0] );
+				});
 			}
+
 		}
 
 	},

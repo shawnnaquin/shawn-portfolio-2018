@@ -170,7 +170,7 @@
 
 		</div>
 		<transition name="fade" appear >
-		<div v-if="showBlurb" :class="[ 'article-header' ]" style="transition-delay: 1000ms" >
+		<div v-if="showBlurb && project" :class="[ 'article-header' ]" style="transition-delay: 1000ms" >
 
 			<p v-if="project.content.article" :class="['description']">
 				{{ project.content.article }}
@@ -277,6 +277,10 @@ export default {
 
 	beforeRouteUpdate(to,from,next) {
 
+		if ( !this.nextProject ) {
+			next();
+		}
+
 		if ( to.params.project == this.nextProject.link ) {
 			this.$store.commit('setTrans', {trans: `fade-right`, mode: '' } );
 		} else {
@@ -310,6 +314,11 @@ export default {
 	},
 	watch: {
 		'$route'(to,from) {
+		},
+		'$store.state.projects'(p) {
+			if ( !this.projectNames.includes(this.$route.params.project ) ) {
+				this.$router.replace(`/${this.$route.params.type}`);
+			}
 		}
 	},
 	methods: {
@@ -451,7 +460,7 @@ h3 {
 				> div {
 					@media only screen and (max-width:630px) {
 						display:none;
-						&:nth-child(1), &:nth-child(2), &:nth-child(3) {
+						&:nth-child(1), &:nth-child(2) {
 							display:block;
 						}
 					}

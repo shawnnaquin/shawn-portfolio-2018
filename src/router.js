@@ -41,7 +41,7 @@ export default new Router({
 
     {
       path: "/*",
-      name: "home",
+      name: "404",
       component: Home
     }
 

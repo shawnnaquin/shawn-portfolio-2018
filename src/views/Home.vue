@@ -33,6 +33,8 @@
 </script>
 <style lang="scss" scoped>
 .external {
+	display:inline-block;
 	margin-top: 32px;
+	margin-bottom:64px;
 }
 </style>
