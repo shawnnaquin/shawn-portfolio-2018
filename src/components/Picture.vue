@@ -146,8 +146,6 @@
 		bottom:0;
 		font-size: 10px;
 		color: black;
-		// text-shadow: 2px 2px 5px rgba(black,0.4);
-		z-index:1;
 		text-align:left;
 		padding:10px;
 		background:darken(white,2%);

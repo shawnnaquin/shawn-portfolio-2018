@@ -17,7 +17,7 @@
 
 		</transition>
 
-		<transition :name="mainTrans.trans" :mode="mainTrans.mode" appear >			
+		<transition :name="mainTrans.trans" :mode="mainTrans.mode" appear >
 			<router-view></router-view>
 		</transition>
 
@@ -34,7 +34,6 @@
 <script>
 // @ is an alias to /src
 import Loader from "@/components/Loader";
-import height from '@/mixins/height';
 import Nav from "@/components/Nav.vue";
 import Header from "@/components/Header.vue";
 import up from '@/components/icons/up';
@@ -50,10 +49,7 @@ export default {
 			getLoading: 'getLoading',
 			mainTrans: 'getTrans',
 			getSticky: 'getSticky'
-		}),
-		height() {
-			return this.getLoading;
-		}
+		})
 	},
 
 	data() {
@@ -62,7 +58,7 @@ export default {
 		}
 	},
 
-	mixins: [ height ],
+	mixins: [ ],
 
 	components: {
 		Loader,
@@ -182,7 +178,6 @@ body {
 	-webkit-font-smoothing: antialiased !important;
 	-moz-osx-font-smoothing: grayscale;
 	text-align:left;
-	color: #2c3e50;
 	margin: 0 auto;
 	width:100%;
 	overflow-x: hidden;
@@ -225,18 +220,21 @@ ul {
 	display:inline-block;
 	padding: 0.75rem 2rem;
 	font-weight: bold;
-	color: #2c3e50;
 	text-decoration:none;
 	width:auto;
 	background:darken(white,5%);
 	border:1px solid darken(white,10%);
 	font-size:16px;
 	transition: border-color 150ms ease-out;
-
-	&:hover, &:active, &:focus {
-		border-color:Purple;
-		transition-timing-function:ease-in;
+	color:black;
+	@media only screen and (min-width: 630px) {
+		&:hover, &:active, &:focus {
+			color:black;
+			border-color:Purple;
+			transition-timing-function:ease-in;
+		}
 	}
+
 }
 
 
@@ -400,7 +398,7 @@ enter-active         leave-active
 
 .grid.mobile {
 	width:100%;
-	grid-template-columns: repeat( auto-fill, minmax(250px, 1fr ) );
+	grid-template-columns: repeat( auto-fill, minmax(110px, 1fr ) );
 	> div {
 		padding-bottom: 177%;
 		@media only screen and (min-width: 630px) {
@@ -418,6 +416,9 @@ enter-active         leave-active
 }
 
 @media only screen and (min-width: 630px) {
+	.grid.mobile {
+		grid-template-columns: repeat( auto-fill, minmax(200px, 1fr ) );
+	}
 	.grid.horiz figure {
 		width: 77.5%;
 		height: 88%;

@@ -87,7 +87,6 @@ export default new Vuex.Store({
     actions: {
 
         setToggleMenu( {context,commit,dispatch,state} ) {
-
             const scrollTop = () => {
                 const el = document.scrollingElement || document.documentElement;
                 return el.scrollTop

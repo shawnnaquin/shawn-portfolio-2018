@@ -99,14 +99,16 @@ export default {
 		}
 
 	},
+
 	watch: {
 
 		'$route'() {
-			if ( this.menuOpen ) {
-				this.toggleMenu();
-                document.documentElement.scrollTop = document.body.scrollTop = 0;
+			if ( this.$store.state.menuOpen) {
+	            document.documentElement.scrollTop = document.body.scrollTop = 0;
+	            setTimeout(()=> {
+					this.toggleMenu();
+	            }, 150 );
 			}
-
 		},
 
 		'menuOpen'(o) {
@@ -215,6 +217,14 @@ export default {
 
 	.top {
 		&.sticky {
+			@media only screen and (max-width:1100px) {
+				.external {
+					padding:4px;
+					> svg {
+						width:24px;
+					}
+				}
+			}
 		}
 	}
 
@@ -240,6 +250,7 @@ export default {
 		left:0;
 		width:100%;
 		box-shadow: 2px 2px 3px rgba(black,0.05);
+		background:rgba( darken( white, 4%), 0.95 );
 		&.sticky {
 			@media only screen and (min-width: 1100px) {
 				position: fixed;
@@ -271,8 +282,10 @@ export default {
 		padding: 0;
 		padding-left:0;
 
-		&:hover {
-			background: darken(white, 8%);
+		@media only screen and (min-width:630px) {
+			&:hover {
+				background: darken(white, 8%);
+			}
 		}
 
 		button, a {
@@ -287,20 +300,18 @@ export default {
 			cursor: pointer;
 		}
 
-		button,a  {
+		button,a {
 			background: transparent;
 			outline: none;
 			border:0;
-		}
-
-		button,a {
-			color: #2c3e50;
 			transition: color 200ms ease-in;
+			@media only screen and (min-width:630px) {
+				&:hover {
+					color: darken(aqua, 25%);
+					svg {
+						fill: darken(aqua, 25%);
+					}
 
-			&:hover {
-				color: darken(aqua, 25%);
-				svg {
-					fill: darken(aqua, 25%);
 				}
 			}
 
@@ -308,7 +319,7 @@ export default {
 				display:inline;
 				height:14px;
 				width: auto;
-				fill: #2c3e50;
+				fill: black;
 				transition: fill 200ms ease-in;
 			}
 
@@ -327,9 +338,6 @@ export default {
 		}
 
 		&:nth-child(even) {
-			&:hover {
-				// background: darken(white,8%);
-			}
 		}
 
 	}
@@ -368,7 +376,7 @@ export default {
 		color: white;
 		font-weight: bold;
 
-		padding:6px 10px;
+		padding:4px 8px;
 		margin-bottom: 0;
 		margin-left:0;
 		margin-top:0;
@@ -380,7 +388,8 @@ export default {
 		animation-timing-function: ease-in;
 
 		> svg {
-			width: 50px;
+			width: 42px;
+			transition: width 200ms ease;
 		}
 
 		&.menu-open {

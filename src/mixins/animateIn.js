@@ -21,7 +21,6 @@ export default {
 		enter: function (el, done) {
 
 		  let delay = el.dataset.index * 200;
-		  console.log('delay', delay);
 
 		  setTimeout( () => {
 

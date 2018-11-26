@@ -2,12 +2,6 @@ import { debounce } from 'lodash';
 
 export default {
 
-	data() {
-		return {
-
-		}
-	},
-
 	computed: {
 
 		d() {
@@ -18,12 +12,20 @@ export default {
 
 	beforeDestroy() {
 		window.removeEventListener('resize', this.d );
+		document.body.style.height = '';
+		document.ontouchmove = function (e) {
+		  return true;
+		}
 	},
 
 	methods: {
 
 		doHeight() {
-			this.$refs.background.style.height = window.innerHeight + 'px';
+			this.height = window.innerHeight + 'px';
+			document.body.style.height = window.innerHeight + 'px';
+			document.ontouchmove = function (e) {
+				e.preventDefault();
+			};
 			document.documentElement.scrollTop = document.body.scrollTop = 0;
 		},
 
@@ -45,8 +47,8 @@ export default {
 	},
 
 	mounted() {
+		this.setupBackground();
 		setTimeout( ()=> {
-			this.setupBackground();
 			window.dispatchEvent(new Event('resize'));
 		}, 500 );
 	}

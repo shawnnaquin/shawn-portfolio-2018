@@ -1,6 +1,6 @@
 <template>
 
-	<div :class="[ 'background' ]" :style="" ref="background" >
+	<div :class="[ 'background' ]" :style="{height:height}" ref="background" >
 
 		<div
 			:class="[ 'swipe' ]"
@@ -48,49 +48,49 @@
 import Picture from '@/components/Picture';
 import close from '@/components/icons/close';
 import projects from '@/mixins/projects';
-import height from '@/mixins/height';
+import H from '@/mixins/height';
 
 export default {
 
 	// props: [ 'images' ],
-	mixins: [ projects, height ],
+	mixins: [ projects, H ],
+
 	components: {
 		'picture-query': Picture,
-		close
+		'close': close
 	},
 
-	created() {
+	// created() {
 
-		this.$router.beforeEach( (to,from,next)=> {
-			next();
+	// 	this.$router.beforeEach( (to,from,next)=> {
+	// 		next();
 
-			if( !this.$refs.image ) return;
+	// 		// if( !this.$refs.image ) return;
 
-			this.$refs.image.$el.style.transition = 'transform 0.2s ease-out 0s, opacity 0.2s ease-out';
-			this.$refs.image.$el.style.opacity = '0';
+	// 		// this.$refs.image.$el.style.transition = 'transform 0.2s ease-out 0s, opacity 0.2s ease-out';
+	// 		// this.$refs.image.$el.style.opacity = '0';
 
-			if ( from.params.image == this.prevImagePath ) {
-				this.$refs.image.$el.style.transform = 'translateX(-20%)';
-				this.trans = 'fade-left';
-			} else if ( from.params.image == this.nextImagePath  ) {
-				this.trans = 'fade-right';
-				this.$refs.image.$el.style.transform = 'translateX(20%)';
-			}
+	// 		// if ( from.params.image == this.prevImagePath ) {
+	// 		// 	this.$refs.image.$el.style.transform = 'translateX(-20%)';
+	// 		// 	this.trans = 'fade-left';
+	// 		// } else if ( from.params.image == this.nextImagePath  ) {
+	// 		// 	this.trans = 'fade-right';
+	// 		// 	this.$refs.image.$el.style.transform = 'translateX(20%)';
+	// 		// }
 
 
-		});
+	// 	});
 
-	},
+	// },
 
 	data() {
 		return {
 			index: 0,
 			imageTypes: [ 'mobile', 'horiz', 'regular' ],
-			height: true,
-			trans: 'fade-left'
+			trans: 'fade-left',
+			height: 'auto'
 		}
 	},
-
 	computed: {
 
 		orientation() {
@@ -171,8 +171,6 @@ export default {
 		'$route'(to,from) {
 
 			if( !this.images ) return;
-			console.log( 'next: '+from.params.image, 'prev: '+this.prevImagePath );
-			console.log( 'next: '+from.params.image, 'next: '+this.nextImagePath);
 
 			if ( from.params.image == this.prevImagePath ) {
 				this.trans = 'fade-left';
@@ -293,7 +291,6 @@ export default {
 	},
 
 	beforeDestroy() {
-		this.height = false;
 		window.onkeydown = false;
 		this.$store.commit('toggleNoScroll');
 	},
@@ -390,10 +387,12 @@ export default {
 			margin-left:10px;
 		}
 
-		&:hover {
-			> svg {
-				fill: darken(white,20%);
-				filter: blur(2px);
+		@media only screen and (min-width:630px) {
+			&:hover {
+				> svg {
+					fill: darken(white,20%);
+					filter: blur(2px);
+				}
 			}
 		}
 
@@ -459,8 +458,6 @@ export default {
 		top:0;
 		left:0;
 		width:100%;
-		height:100vh;
-		min-height:100vh;
 		background: rgba(black,1);
 		z-index:100;
 

@@ -2,14 +2,11 @@
 
 	<div :class="[ 'project', 'max-width' ]"  style="overflow: hidden;" >
 
-	<transition :name="mainTrans.trans" :mode="mainTrans.mode" appear v-on:afterLeave="pageAfterLeave" v-on:beforeEnter="pageBeforeEnter" v-on:afterEnter="pageAfterEnter" >
+	<transition :name="mainTrans.trans" :mode="mainTrans.mode" appear v-on:afterLeave="pageAfterLeave" v-on:enter="pageEnter" >
 
-	<article class="" v-if="show"  appear >
+	<article class="" v-if="show" >
 
-	  <transition name="fade" appear mode="out-in"
-		v-on:enter="articleEnter"
-		v-on:after-enter="articleAfterEnter"
-	  >
+	  <transition name="fade" appear mode="out-in">
 
 		<p
 		  v-if="!project"
@@ -24,11 +21,22 @@
 			<transition name="fade" appear mode="out-in" >
 				<div>
 				<h1> {{project.title}}</h1>
-				<h3>{{project.projectDescription}}</h3>
+				<p>{{project.projectDescription}}</p>
 				</div>
 			</transition>
 
 			<youtube-video v-if="project.content.video.length" :videoId="project.content.video" :videoImg=" `/img/portfolio/${ type }/${ images.video }`" ></youtube-video>
+
+			<div v-if="project && ( project.content.code || project.content.externalSite )" class="buttons" >
+
+				<a :href="project.content.externalSite" v-if="project.content.externalSite" target="_blank" :class="[ 'external' ]" > Live Site <span :class="['external-span']"><external/></span> </a>
+				&nbsp;
+
+				<a :href="project.content.code" v-if="project.content.code" target="_blank" :class="[ 'external' ]" >
+					//code
+				</a>
+
+			</div>
 
 			<div :class="[ 'built-with' ]" >
 
@@ -45,22 +53,11 @@
 
 			</div>
 
-			<div v-if="project && ( project.content.code || project.content.externalSite )" class="buttons" >
-
-				<a :href="project.content.externalSite" v-if="project.content.externalSite" target="_blank" :class="[ 'external' ]" > Live Site <span :class="['external-span']"><external/></span> </a>
-				&nbsp;
-
-				<a :href="project.content.code" v-if="project.content.code" target="_blank" :class="[ 'external' ]" >
-					//code
-				</a>
-
-			</div>
-
 		</div>
 
 	  </transition>
 
-		<div :class="[ 'image-container' ]" v-if="showImages && images.mobile && images.mobile.length" >
+		<div :class="[ 'image-container' ]" v-if="images.mobile && images.mobile.length" >
 
 		  <transition-group
 			name="staggered-fade"
@@ -98,7 +95,7 @@
 
 		</div>
 
-		<div :class="[ 'image-container' ]" v-if="showImages && images.horiz && images.horiz.length" >
+		<div :class="[ 'image-container' ]" v-if="images.horiz && images.horiz.length" >
 
 		  <transition-group
 			name="staggered-fade"
@@ -135,7 +132,7 @@
 
 		</div>
 
-		<div :class="[ 'image-container' ]" v-if="showImages && images.regular && images.regular.length" >
+		<div :class="[ 'image-container' ]" v-if="images.regular && images.regular.length" >
 
 		  <transition-group
 			name="staggered-fade"
@@ -172,8 +169,8 @@
 		  </transition-group>
 
 		</div>
-
-		<div :class="[ 'article-header' ]" >
+		<transition name="fade" appear >
+		<div v-if="showBlurb" :class="[ 'article-header' ]" style="transition-delay: 1000ms" >
 
 			<p v-if="project.content.article" :class="['description']">
 				{{ project.content.article }}
@@ -192,7 +189,7 @@
 			</div>
 
 		</div>
-
+		</transition>
 	</article>
 	</transition>
 	</div>
@@ -299,9 +296,8 @@ export default {
 		return {
 			phoneHorizLoaded: false,
 			phoneVertLoaded: false,
-			showImages: false,
-			articleLoaded: false,
 			show: false, // show the page
+			showBlurb: false,
 			direction: ''
 		}
 	},
@@ -310,46 +306,34 @@ export default {
 		this.checkPhone();
 		this.startProject = this.$route.params.project;
 		this.show = true;
+
 	},
 	watch: {
 		'$route'(to,from) {
 		}
 	},
 	methods: {
-
-		pageAfterEnter(el) {	
+		pageEnter(el,done)	 {
 
 			if ( this.$store.state.resetScroll ) {
-				this.$scrollTo( ':root', 300, { offset: this.$store.state.lastScroll }  );
+				document.body.style.height = this.$store.state.lastScroll + window.innerHeight + 'px';
+				this.$scrollTo( ':root', 100, { offset: this.$store.state.lastScroll }  );
 			} else {
-				this.$scrollTo( ':root', 300 );
+				this.$scrollTo( ':root', 100 );
 			}
+			setTimeout(()=> {
+				this.showBlurb = true;
+				document.body.style.height = '';
+				done();
+			}, 100 )
 
 		},
-
-		pageBeforeEnter(el) {
-		},
-
-		pageAfterLeave(el) {
+ 		pageAfterLeave(el) {
 			this.show = true;
 		},
 
 		getProjectLink(t){
 			return window.encodeURI(t);
-		},
-
-		articleEnter(el,done){
-			if  ( el.classList.contains('article-header') ) {
-				this.showImages = true;
-			}
-			done();
-		},
-
-		articleAfterEnter(el) {
-			if ( el.classList.contains('article-header') ) {
-				this.articleLoaded = true;
-			}
-
 		},
 
 		checkPhone() {
@@ -380,16 +364,16 @@ export default {
 	margin-top:112px;
 }
 h1 {
-	font-size:32px;
+	// font-size:32px;
 }
 h3 {
 		// margin-bottom:65px;
 	}
 
 	.built-with {
-		margin-top:12px;
+		margin-top:0;
 		transform:translateY(-5px);
-		padding-top: 48px;
+		padding-top: 24px;
 	}
 
 	.tech-list {
@@ -437,6 +421,28 @@ h3 {
 
 	.image-container {
 		align-self: normal;
+		> .grid {
+			&.horiz {
+				@media only screen and (max-width:630px) {
+					> div {
+						display:none;
+					}
+				}
+			}
+			&:not(.horiz) {
+				> div {
+					@media only screen and (max-width:630px) {
+						display:none;
+						&:nth-child(1), &:nth-child(2), &:nth-child(3) {
+							display:block;
+						}
+					}
+					// @media only screen and (min-width:630px) {
+						// display:block;
+					// }
+				}
+			}
+		}
 	}
 
 	.images {

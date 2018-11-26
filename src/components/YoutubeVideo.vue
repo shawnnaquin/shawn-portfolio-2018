@@ -102,7 +102,7 @@ export default {
 			// 3 (buffering)
 			// 5 (video cued)
 			if ( event.data == -1 ) {
-				console.log('!');
+				// console.log('!');
 			}
 			if ( event.data == 0 ) {
 				window.YTPlayer.seekTo( 0, true);
@@ -223,6 +223,7 @@ export default {
 	flex-direction: column;
 	z-index:0;
 	font-weight:bold;
+	text-align:center;
 	.sub-loader {
 		position:absolute;
 		top:0;

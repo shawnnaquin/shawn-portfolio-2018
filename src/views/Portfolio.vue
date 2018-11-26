@@ -62,11 +62,11 @@
 			<div :class="['buttons']" v-if="showButtons" :key="showButtons" >
 
 				<router-link :to="`/${prevType}`" @click.native="setDirection('left')" :class="['external']">
-					Previous
+					&lt;
 				</router-link>
 
 				<router-link :to="`/${nextType}`" @click.native="setDirection('right')" :class="['external']">
-					Next
+					&gt;
 				</router-link>
 
 			</div>
@@ -270,6 +270,9 @@
 	.buttons {
 		margin: 48px auto;
 		margin-bottom:64px;
+		@media only screen and (max-width: 1100px) {
+			padding-left:10%;
+		}
 	}
 	.portfolio {
 
@@ -277,8 +280,10 @@
   		display: grid;
 		grid-template-columns: repeat( auto-fill, minmax(250px, 1fr) );
 		grid-gap: 2rem;
-		@media only screen and (max-width:630px) {
-			grid-template-columns: repeat( auto-fill, minmax(200px, 1fr) );
+
+
+		@media only screen and (max-height: 420px) {
+			grid-template-columns: repeat( auto-fill, minmax(150px, 1fr) );
 		}
 
 		&.fade-enter-active {
@@ -305,14 +310,13 @@
 		&.left.fade-enter, &.left.fade-leave-to {
 			> a {
 				transform: translateX(100%);
-				
 			}
 
 		}
 
 		&.right.fade-leave-to, &.right.fade-enter {
 			> a {
-				transform: translateX(-100%);				
+				transform: translateX(-100%);
 
 			}
 		}
@@ -323,6 +327,9 @@
 	h1 {
 		text-align:left;
 		margin-top:74.5px;
+		@media only screen and (max-width:630px) {
+			font-size:24px;
+		}
 	}
 
 	h1, .loading {
@@ -364,13 +371,18 @@ router-link
 */
 	a {
 		text-decoration: none;
-		color:black;
 		text-align:left;
 		border:1px solid rgba(black, 0.1);
-		background: white;
-		&:hover {
-			border-color:rgba(black, 0.4);
-			border-size:2;
+		color:black;
+
+		&:active, &:visited, &:focus {
+			color: black;
+		}
+		@media only screen and (min-width:630px) {
+			&:hover {
+				border-color:rgba(black, 0.4);
+				border-size:2;
+			}
 		}
 	}
 
@@ -383,7 +395,10 @@ router-link
 	.image {
 		position:relative;
 		width:100%;
-		padding-bottom:120%;
+		padding-bottom:50%;
+		@media only screen and (min-width: 630px) {
+			padding-bottom:120%;
+		}
 	}
 
 	.main-description {
