@@ -416,7 +416,7 @@ h3 {
 		line-height:32px;
 		font-size:16px;
 		list-style:none;
-
+		max-width:630px;
 		// &:before, &:after {
 		// 	color: darken(white, 50%);
 		// }
@@ -495,7 +495,6 @@ h3 {
 	}
 
 	.article-header {
-		max-width:800px;
 		padding-bottom: 5%;
 		width:100%;
 		margin-top:48px;

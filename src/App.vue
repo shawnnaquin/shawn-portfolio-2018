@@ -8,14 +8,10 @@
 			</div>
 		</transition>
 
-		<transition name="fade" appear>
-
-			<div :class="'flex-column'" >
-				<Nav />
-				<Header :loaded="!getLoading" />
-			</div>
-
-		</transition>
+		<div :class="'flex-column'" >
+			<Nav />
+			<Header :loaded="!getLoading" />
+		</div>
 
 		<transition :name="mainTrans.trans" :mode="mainTrans.mode" appear >
 			<router-view></router-view>
@@ -35,19 +31,69 @@
 			</button>
 		</transition>
 
+		<aside :class="[ 'aside' ]" >
+
+			<div :class="['footer-buttons']" >
+				<button :class="['external']">Contact</button>
+				<button :class="['external']">Resumé</button>
+			</div>
+
+			<div :class="['footer-about']" >
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+					consequat.
+				</p>
+			</div>
+
+		</aside>
+
+		<footer :class="['footer']" >
+			<div :class="['footer-copy']" ><small>Shawn Naquin | Front-End Portfolio | &copy; {{ getDate }}</small></div>
+			<div :class="['footer-icons']">
+				<a href="#" :class="['footer-icon']" target="_blank">
+					<git />
+				</a>
+
+				<a href="#" :class="['footer-icon']" target="_blank">
+					<lin />
+				</a>
+
+				<a href="#" :class="['footer-icon']" target="_blank">
+					<you />
+				</a>
+
+				<a href="#" :class="['footer-icon']" target="_blank">
+					<be  />
+				</a>
+
+				<a href="#" :class="['footer-icon']" target="_blank">
+					<mail />
+				</a>
+			</div>
+		</footer>
+
 	</div>
 
 </template>
 
 <script>
+
 // @ is an alias to /src
 import Loader from "@/components/Loader";
 import Nav from "@/components/Nav.vue";
 import Header from "@/components/Header.vue";
 import up from '@/components/icons/up';
 
-import { mapGetters } from 'vuex';
+import git from '@/components/icons/gitcat'
+import lin from '@/components/icons/in'
+import you from '@/components/icons/youtube'
+import be from '@/components/icons/be'
+import mail from '@/components/icons/mail'
 
+
+import { mapGetters } from 'vuex';
 
 export default {
 	name: "home",
@@ -57,12 +103,17 @@ export default {
 			getLoading: 'getLoading',
 			mainTrans: 'getTrans',
 			getSticky: 'getSticky'
-		})
+		}),
+		getDate() {
+			let d = new Date();
+			return `${ this.monthNames[ d.getMonth() ] } ${ d.getFullYear() }`;
+		}
 	},
 
 	data() {
 		return {
-			mod: ''
+			mod: '',
+			monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
 		}
 	},
 
@@ -72,7 +123,12 @@ export default {
 		Loader,
 		Header,
 		Nav,
-		up
+		up,
+		git,
+		lin,
+		you,
+		be,
+		mail
 	}
 
 };
@@ -80,6 +136,70 @@ export default {
 </script>
 
 <style lang="scss" scoped >
+
+.aside {
+
+	padding: 24px;
+	background: whitesmoke;
+	text-align: left;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 1rem;
+	@media only screen and ( max-width:630px) {
+		grid-template-columns: 1fr;
+	}
+	align-items: center;
+	justify-items: center;
+}
+
+
+.footer-icon {
+
+	margin-right: 12px;
+	display: inline-block;
+	height:24px;
+	width:auto;
+	> svg {
+		fill: lighten(black,25%);
+		width:auto;
+		height:100%;
+		transform: scale(1);
+		transition: transform 200ms ease;
+		transition-property: transform, fill;
+	}
+
+	@media only screen and (min-width:630px) {
+		&:hover {
+			> svg {
+				transform: scale(1.2);
+				fill: black;
+			}
+		}
+	}
+
+}
+
+.footer {
+	padding:16px;
+	background:darken(white,8%);
+	color:black;
+	text-align:left;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 2rem;
+	@media only screen and ( max-width:630px) {
+		grid-template-columns: 1fr;
+		.footer-icons {
+			order:1;
+		}
+		.footer-copy {
+			order:2;
+		}
+	}
+	grid-gap: 1rem;
+	align-items: center;
+	justify-items: center;
+}
 
 .bottom {
 	position: fixed;
@@ -148,18 +268,6 @@ export default {
 	}
 }
 
-.footer {
-
-	position:fixed;
-	left:0;
-	bottom:0;
-	background:lighten(black, 10%);
-	min-height:32px;
-	width:100vw;
-	box-shadow: 2px 2px 3px 4px rgba(black,0.2);
-	border-top: 1px solid lighten(black,25%);
-}
-
 </style>
 
 <style lang="scss">
@@ -218,6 +326,7 @@ ul {
 	transition: border-color 150ms ease-out;
 	color:black;
 	outline:none;
+	cursor:pointer;
 	@media only screen and (min-width: 630px) {
 		&:hover, &:active, &:focus {
 			color:black;
@@ -390,6 +499,7 @@ enter-active         leave-active
 .grid.mobile {
 	width:100%;
 	grid-template-columns: repeat( auto-fill, minmax(110px, 1fr ) );
+
 	> div {
 		padding-bottom: 177%;
 		@media only screen and (min-width: 630px) {
@@ -399,11 +509,11 @@ enter-active         leave-active
 			background-position: center;
 		}
 		opacity:0;
-
 		animation-name: fadeInS;
 		animation-fill-mode: forwards;
 		animation-duration: 2000ms;
 	}
+
 }
 
 @media only screen and (min-width: 630px) {
