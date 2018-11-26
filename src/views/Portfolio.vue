@@ -270,9 +270,6 @@
 	.buttons {
 		margin: 48px auto;
 		margin-bottom:64px;
-		@media only screen and (max-width: 1100px) {
-			padding-left:10%;
-		}
 	}
 	.portfolio {
 
@@ -283,7 +280,7 @@
 
 
 		@media only screen and (max-height: 420px) {
-			grid-template-columns: repeat( auto-fill, minmax(150px, 1fr) );
+			grid-template-columns: repeat( auto-fill, minmax(180px, 1fr) );
 		}
 
 		&.fade-enter-active {

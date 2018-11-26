@@ -402,7 +402,7 @@ export default {
 
 	// small only
 
-	@media only screen and ( max-width: 1100px ) {
+	@media only screen and (max-width: 630px ) {
 		.top {
 			&.sticky {
 			// don't style this!
@@ -410,17 +410,19 @@ export default {
 				.external {
 					background:transparent;
 					padding:4px 6px;
+
 					&:after {
 						content: '';
 						position: absolute;
 						top: 0;
 						left: 0;
 						height: 45px;
-						width: 100vh;
+						width: 100vw;
 						background: linear-gradient(to bottom, rgba( darken( white, 3% ), 0.9 ), rgba(white,0) );
 						z-index: -1;
 						pointer-events:none;
 					}
+
 					> svg {
 						width:24px;
 						height:24px;
@@ -429,6 +431,9 @@ export default {
 				}
 			}
 		}
+	}
+
+	@media only screen and ( max-width: 1100px ) {
 
 		#nav {
 

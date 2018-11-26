@@ -1,16 +1,16 @@
 <template>
 
 <transition name="fade" appear mode="out-in">
+
 	<header v-if="isHome" >
 
-		<transition name="fade" appear >
+		<transition name="fade" appear mode="out-in">
 
-			<div :class="[ 'heading', 'push' ]" v-if="loaded" >
+			<div :class="[ 'heading' ]" v-if="loaded" >
 
-				<h1>Shawn Naquin <span>Front-End-Portfolio</span></h1>
-
-				<h3>{{getDate}}</h3>
-
+				<h1>Shawn Naquin</h1>
+				<p>Front-End Portfolio</p>
+				<!-- {{getDate}} -->
 			</div>
 
 		</transition>
@@ -75,6 +75,11 @@
 	.heading {
 		margin-bottom: 32px;
 		margin-top: 72.5px;
+		text-align:center;
+		h1 {
+			text-align:center;
+			margin-bottom:0;
+		}
 	}
 
 	h1 span::before {

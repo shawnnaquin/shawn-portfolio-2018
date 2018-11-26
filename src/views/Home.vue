@@ -1,8 +1,9 @@
 <template>
 
   <div :class="['home', 'push', 'max-width' ]">
-
-
+  	<router-link to="/website" :class="['external']" >
+  		View More
+  	</router-link>
   </div>
 
 </template>
@@ -30,3 +31,8 @@
 	};
 
 </script>
+<style lang="scss" scoped>
+.external {
+	margin-top: 32px;
+}
+</style>

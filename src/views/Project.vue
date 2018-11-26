@@ -46,7 +46,7 @@
 			<ul :class="[ 'tech-list' ]" >
 			<template v-for="t in project.content.techList" >
 				<li :class="[ 'tech-item' ]" >
-					<router-link :to="`/${ getProjectLink(t) }`" >{{ t }}</router-link>
+					<router-link :class="[ 'external' ]" :to="`/${ getProjectLink(t) }`" >{{ t }}</router-link>
 				</li>
 			</template>
 			</ul>
@@ -374,6 +374,31 @@ h3 {
 		margin-top:0;
 		transform:translateY(-5px);
 		padding-top: 24px;
+		a {
+			display:inline-block;
+			position:relative;
+			padding:6px 10px;
+			font-weight:normal;
+			line-height:1;
+			@media only screen and (min-width:1100px) {
+				&:hover {
+				}
+			}
+			&:before {
+				display:block;
+				content:'';
+				position:absolute;
+				top:0;
+				left:0;
+				bottom:0;
+				right:0;
+				height:100%;
+				width:100%;
+				background: darken(white,5%);
+				z-index:-1;
+				pointer-events:none;
+			}
+		}
 	}
 
 	.tech-list {
@@ -383,40 +408,33 @@ h3 {
 		font-size:16px;
 		list-style:none;
 
-		&:before, &:after {
-			color: darken(white, 50%);
-		}
-		&:before  {
-			content: '[';
-			padding-right:16px;
-		}
-		&:after {
-			content: ']';
-			padding-left:16px;
-		}
+		// &:before, &:after {
+		// 	color: darken(white, 50%);
+		// }
+		// &:before  {
+		// 	content: '[';
+		// 	padding-right:16px;
+		// }
+		// &:after {
+		// 	content: ']';
+		// 	padding-left:16px;
+		// }
 	}
 
 	.tech-item {
-		display:inline;
+		display:inline-block;
+		margin:4px 16px;
+		margin-left:0;
 		color: darken(white, 80%);
-		&:after {
-			color: darken(white, 32%);
-			padding: 0 8px;
-		}
-		// &:before {
-		// 	content: '\'';
+		// &:after {
 		// 	color: darken(white, 32%);
-		// 	padding-right:8px;
-		// 	padding-left:4px;
+		// 	padding: 0 8px;
 		// }
-		// &:nth-last-child(1):after {
-		// 	content: '\'';
-		// }
-		&:not( :nth-last-child(1) ):after {
-			content: '-';
-			letter-spacing:0px;
+		// &:not( :nth-last-child(1) ):after {
+		// 	content: '-';
+		// 	letter-spacing:0px;
 
-		}
+		// }
 	}
 
 	.image-container {
@@ -455,16 +473,21 @@ h3 {
 		width: 100% !important;
 		height: auto !important;
 	}
+
 	article {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		padding:0 10%;
+
+		@media only screen and (max-width:1100px) {
+			text-align:left;
+		}
 	}
 
 	.article-header {
 		max-width:800px;
-		padding-bottom: 10%;
+		padding-bottom: 5%;
 		width:100%;
 		margin-top:48px;
 		&.no-padding {

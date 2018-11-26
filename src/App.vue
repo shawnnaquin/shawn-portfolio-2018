@@ -1,14 +1,14 @@
 <template>
 
-	<div id="app" :class="[{['no-scroll']: $store.state.noScroll }]" >
+	<div id="app" :class="[{['no-scroll']: $store.state.noScroll } ]" >
 
-		<transition name="fade-o" >
+		<transition name="fade" >
 			<div :class="[ 'loader' ]" v-if="getLoading" ref="background" >
 				<p :class="[ 'paragraph' ]" >Loading <Loader :go="getLoading" /></p>
 			</div>
 		</transition>
 
-		<transition name="fade-up" appear>
+		<transition name="fade" appear>
 
 			<div :class="'flex-column'" >
 				<Nav />
@@ -23,7 +23,7 @@
 
 		<transition name="fade" appear >
 			<button
-			  v-if="getSticky"
+			  v-if="getSticky && $route.name != 'home' "
 			  v-scroll-to="{
 				el: ':root',
 				duration: 200,
@@ -185,7 +185,7 @@ body {
 	text-rendering: optimizeLegibility !important;
 	-webkit-font-smoothing: antialiased !important;
 	-moz-osx-font-smoothing: grayscale;
-	text-align:left;
+	text-align:center;
 	margin: 0 auto;
 	width:100%;
 	overflow-x: hidden;
@@ -195,29 +195,11 @@ ul {
 	padding-left: 0;
 }
 
-.push {
-	margin-left:10%;
-	width:90%;
-}
-
 .flex-column {
 	display: flex;
 	flex-direction: column;
 }
 
-@media only screen and (min-width:1100px) {
-
-	#app {
-		text-align:center;
-	}
-
-	.push {
-		margin-left:0;
-		width:100%;
-	}
-
-
-}
 .external-span {
 	font-size:12px; margin-left:2px; font-weight:normal; transform: translateY(-10%); display:inline-block;
 	> svg {
@@ -235,6 +217,7 @@ ul {
 	font-size:16px;
 	transition: border-color 150ms ease-out;
 	color:black;
+	outline:none;
 	@media only screen and (min-width: 630px) {
 		&:hover, &:active, &:focus {
 			color:black;
@@ -356,7 +339,7 @@ enter-active         leave-active
 	display: grid;
 	grid-template-columns: repeat( auto-fill, minmax(400px, 1fr ) );
 	grid-gap: 2rem;
-	margin-bottom:10%;
+	margin-bottom:4%;
 	perspective: 1100px;
 	> div {
 		padding-bottom: 56.25%;
