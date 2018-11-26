@@ -215,19 +215,6 @@ export default {
 
 <style lang="scss" scoped>
 
-	.top {
-		&.sticky {
-			@media only screen and (max-width:1100px) {
-				.external {
-					padding:4px;
-					> svg {
-						width:24px;
-					}
-				}
-			}
-		}
-	}
-
 	.fake-nav {
 		position:absolute;
 		top:48px;
@@ -251,18 +238,6 @@ export default {
 		width:100%;
 		box-shadow: 2px 2px 3px rgba(black,0.05);
 		background:rgba( darken( white, 4%), 0.95 );
-		&.sticky {
-			@media only screen and (min-width: 1100px) {
-				position: fixed;
-				top:0;
-				left:0;
-				width:100%;
-				li  {
-					button, a {
-					}
-				}
-			}
-		}
 	}
 
 	ul {
@@ -281,63 +256,46 @@ export default {
 		margin: 0;
 		padding: 0;
 		padding-left:0;
+	}
 
+	button, a {
+		padding: 0.75rem 4rem;
+		padding-left:64px;
+		display:inline-block;
+		font-weight: bold;
+		text-decoration:none;
+		-webkit-tap-highlight-color: transparent;
+		font-size:16px;
+		text-align:left;
+		cursor: pointer;
+		background: transparent;
+		outline: none;
+		border:0;
+		transition: color 200ms ease-in;
 		@media only screen and (min-width:630px) {
 			&:hover {
-				background: darken(white, 8%);
-			}
-		}
-
-		button, a {
-			padding: 0.75rem 4rem;
-			padding-left:64px;
-			display:inline-block;
-			font-weight: bold;
-			text-decoration:none;
-			-webkit-tap-highlight-color: transparent;
-			font-size:16px;
-			text-align:left;
-			cursor: pointer;
-		}
-
-		button,a {
-			background: transparent;
-			outline: none;
-			border:0;
-			transition: color 200ms ease-in;
-			@media only screen and (min-width:630px) {
-				&:hover {
-					color: darken(aqua, 25%);
-					svg {
-						fill: darken(aqua, 25%);
-					}
-
-				}
-			}
-
-			svg {
-				display:inline;
-				height:14px;
-				width: auto;
-				fill: black;
-				transition: fill 200ms ease-in;
-			}
-
-			&.router-link-exact-active, &.is-active {
-				// color:Purple;
-				background:darken(white,2%);
+				color: darken(aqua, 25%);
 				svg {
-					// fill: Purple;
+					fill: darken(aqua, 25%);
 				}
+
 			}
-
 		}
 
-		&:nth-last-child(1) {
-			border-right:0;
+		svg {
+			display:inline;
+			height:14px;
+			width: auto;
+			fill: black;
+			transition: fill 200ms ease-in;
 		}
 
-		&:nth-child(even) {
+		&.router-link-exact-active, &.is-active {
+			// color:Purple;
+			background:darken(white,2%);
+			svg {
+				// fill: Purple;
+			}
 		}
 
 	}
@@ -389,6 +347,7 @@ export default {
 
 		> svg {
 			width: 42px;
+			height: 42px;
 			transition: width 200ms ease;
 		}
 
@@ -404,6 +363,7 @@ export default {
 		.top {
 			padding-top:0;
 		}
+
 		.external {
 			opacity:0;
 			display:none;
@@ -424,11 +384,51 @@ export default {
 				height:100%;
 			}
 		}
+
+		#nav {
+			&.sticky {
+				position: fixed;
+				top:0;
+				left:0;
+				width:100%;
+				li  {
+					button, a {
+					}
+				}
+			}
+		}
+
 	}
 
 	// small only
 
 	@media only screen and ( max-width: 1100px ) {
+		.top {
+			&.sticky {
+			// don't style this!
+
+				.external {
+					background:transparent;
+					padding:4px 6px;
+					&:after {
+						content: '';
+						position: absolute;
+						top: 0;
+						left: 0;
+						height: 45px;
+						width: 100vh;
+						background: linear-gradient(to bottom, rgba( darken( white, 3% ), 0.9 ), rgba(white,0) );
+						z-index: -1;
+						pointer-events:none;
+					}
+					> svg {
+						width:24px;
+						height:24px;
+					}
+
+				}
+			}
+		}
 
 		#nav {
 

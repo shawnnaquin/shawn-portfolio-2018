@@ -22,7 +22,15 @@
 		</transition>
 
 		<transition name="fade" appear >
-			<button v-if="getSticky" v-scroll-to=" ':root' " :class="['external', 'bottom' ]">
+			<button
+			  v-if="getSticky"
+			  v-scroll-to="{
+				el: ':root',
+				duration: 200,
+				easing: 'ease-out'
+			  }"
+			  :class="['external', 'bottom' ]"
+			>
 				<up/>
 			</button>
 		</transition>
@@ -91,8 +99,8 @@ export default {
 		padding:4px 6px;
 		cursor: pointer;
 		svg {
-			width:16px;
-			height:16px;
+			width:24px;
+			height:24px;
 			pointer-event:none;
 		}
 	}
