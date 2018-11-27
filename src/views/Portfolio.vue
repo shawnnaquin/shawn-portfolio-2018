@@ -324,6 +324,7 @@
 	h1 {
 		text-align:left;
 		margin-top:74.5px;
+		max-width:75%;
 		@media only screen and (max-width:630px) {
 			font-size:24px;
 		}
