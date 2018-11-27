@@ -40,11 +40,11 @@
 
 			<div :class="['footer-about']" >
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat.
+					Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects. More of his work can be found on Github. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility. Click below for complete list of all technologies used in this portfolio!
 				</p>
+
+				<!-- <router-link /> -->
+
 			</div>
 
 		</aside>

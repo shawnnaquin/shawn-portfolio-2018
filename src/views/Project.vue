@@ -43,13 +43,8 @@
 			<h2>
 				Built With:
 			</h2>
-			<ul :class="[ 'tech-list' ]" >
-			<template v-for="t in project.content.techList" >
-				<li :class="[ 'tech-item' ]" >
-					<router-link :class="[ 'external' ]" :to="`/${ getProjectLink(t) }`" >{{ t }}</router-link>
-				</li>
-			</template>
-			</ul>
+
+			<techList :techList="project.content.techList" />
 
 			</div>
 
@@ -203,7 +198,7 @@ import Picture from '@/components/Picture.vue';
 
 import Loader from "@/components/Loader.vue";
 import external from '@/components/icons/external';
-
+import techList from '@/components/techList';
 import PhoneVert from '@/assets/ui/mobile.vert.png';
 import PhoneHoriz from '@/assets/ui/mobile.horiz.png';
 
@@ -218,7 +213,8 @@ export default {
 		Loader,
 		'picture-query': Picture,
 		'youtube-video': YoutubeVideo,
-		external
+		external,
+		techList
 	},
 
 	mixins: [ animateIn, projects ],
@@ -337,12 +333,9 @@ export default {
 			}, 100 )
 
 		},
+
  		pageAfterLeave(el) {
 			this.show = true;
-		},
-
-		getProjectLink(t){
-			return window.encodeURI(t);
 		},
 
 		checkPhone() {
@@ -383,67 +376,6 @@ h3 {
 		margin-top:0;
 		transform:translateY(-5px);
 		padding-top: 24px;
-		a {
-			display:inline-block;
-			position:relative;
-			padding:6px 10px;
-			font-weight:normal;
-			line-height:1;
-			@media only screen and (min-width:1100px) {
-				&:hover {
-				}
-			}
-			&:before {
-				display:block;
-				content:'';
-				position:absolute;
-				top:0;
-				left:0;
-				bottom:0;
-				right:0;
-				height:100%;
-				width:100%;
-				background: darken(white,5%);
-				z-index:-1;
-				pointer-events:none;
-			}
-		}
-	}
-
-	.tech-list {
-
-		margin: 24px auto;
-		line-height:32px;
-		font-size:16px;
-		list-style:none;
-		max-width:630px;
-		// &:before, &:after {
-		// 	color: darken(white, 50%);
-		// }
-		// &:before  {
-		// 	content: '[';
-		// 	padding-right:16px;
-		// }
-		// &:after {
-		// 	content: ']';
-		// 	padding-left:16px;
-		// }
-	}
-
-	.tech-item {
-		display:inline-block;
-		margin:4px 16px;
-		margin-left:0;
-		color: darken(white, 80%);
-		// &:after {
-		// 	color: darken(white, 32%);
-		// 	padding: 0 8px;
-		// }
-		// &:not( :nth-last-child(1) ):after {
-		// 	content: '-';
-		// 	letter-spacing:0px;
-
-		// }
 	}
 
 	.image-container {

@@ -4,7 +4,8 @@ import Home from "./views/Home.vue";
 
 const Portfolio = () => import(/* webpackChunkName: "portfolio" */ "./views/Portfolio.vue");
 const Project = () => import(/* webpackChunkName: "project" */ "./views/Project.vue");
-const Image = () => import(/* webpackChunkNameL "image" */ "./views/Image.vue" );
+const Image = () => import(/* webpackChunkName: "image" */ "./views/Image.vue" );
+const Tech = () => import(/* webpackChunkName: "tech" */ "./views/Tech.vue" );
 
 Vue.use(Router);
 
@@ -18,7 +19,11 @@ export default new Router({
       name: "home",
       component: Home
     },
-
+    {
+      path: "/tech",
+      name: "tech",
+      component: Tech
+    },
     {
       // (marketing|interactive|website)
       path: "/:type",
