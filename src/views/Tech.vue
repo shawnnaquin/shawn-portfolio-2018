@@ -1,6 +1,7 @@
 <template>
 
 	<div :class="['max-width']" style="overflow: hidden; min-height:75vh;" >
+
 		<h1>
 			Featured Web Technologies
 		</h1>
@@ -12,12 +13,13 @@
 </template>
 
 <script>
+
 import projects from '@/mixins/projects';
 import techList from '@/components/techList';
 
 export default {
 
-	mixins: [projects],
+	mixins: [ projects ],
 	components: {
 		techList
 	},
@@ -27,44 +29,55 @@ export default {
 		}
 	},
 	mounted() {
-		this.$store.state.loading = false;
+		this.setCompileList( this.$store.state.projects );
+		this.$scrollTo(':root');
 	},
 	watch: {
-		'$store.state.projects'(p) {
-			if ( Object.keys(p).length == this.$store.state.types.length ) {
-				this.compileList();
-			}
+		'$store.state.projects'( p ) {
+			this.setCompileList( p );
 		}
 	},
 	methods: {
-		compileList() {
-			for( let type in this.$store.state.projects ) {
-				for ( let project in this.$store.state.projects[ type ] ) {
-					let techList = this.$store.state.projects[ type ][ project ].content['techList']
+
+		setCompileList( p ) {
+			if ( Object.keys( p ).length == this.$store.state.types.length ) {
+				this.compileList( p );
+			}
+		},
+
+		compileList( p ) {
+			for( let type in p ) {
+				for ( let project in p[ type ] ) {
+					let techList = p[ type ][ project ].content['techList']
 					for ( let tech in techList ) {
-						if ( !this.localList.includes( techList[tech] ) ) {
-							this.localList.push( techList[tech] );
-						}
+						this.addTechItem( techList[ tech ] );
 					}
 				}
 			}
+		},
+
+		addTechItem( item ) {
+			if ( !this.localList.includes( item ) ) {
+				this.localList.push( item );
+			}
 		}
+
 	},
 };
 
 </script>
 
 <style lang="scss" scoped>
-h1 {
-	text-align:left;
-	margin-top:74.5px;
-	max-width:75%;
-	text-transform:capitalize;
-	display: inline-block;
-	width: auto;
-	position: relative;
-	@media only screen and (max-width:630px) {
-		font-size:24px;
+	h1 {
+		text-align:center;
+		margin-top:74.5px;
+		max-width:75%;
+		text-transform:capitalize;
+		display: inline-block;
+		width: auto;
+		position: relative;
+		@media only screen and (max-width:630px) {
+			font-size:24px;
+		}
 	}
-}
 </style>

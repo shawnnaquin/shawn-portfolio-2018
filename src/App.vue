@@ -34,16 +34,30 @@
 		<aside :class="[ 'aside' ]" >
 
 			<div :class="['footer-buttons']" >
-				<button :class="['external']">Contact</button>
 				<button :class="['external']">Resumé</button>
+				<button :class="['external']">Contact</button>
 			</div>
 
 			<div :class="['footer-about']" >
+
 				<p>
-					Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects. More of his work can be found on Github. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility. Click below for complete list of all technologies used in this portfolio!
+
+					Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects. More of his work can be found on Github. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility.
+
+					<span v-if="$route.name != 'tech' " >
+						Click below for <router-link to="/tech"> a complete list</router-link>
+						of all technologies used in this portfolio!
+					</span>
+					<span v-else >
+						Click below to see <router-link to="/marketing">more work</router-link> from Shawn's portfolio.
+					</span>
+
 				</p>
 
-				<!-- <router-link /> -->
+				<div :class="['buttons']" >
+					<router-link v-if="$route.name != 'tech' " :class="['external']" to="/tech" >Technology List</router-link>
+					<router-link v-else :class="['external']" to="/marketing" >More Work</router-link>
+				</div>
 
 			</div>
 
@@ -137,6 +151,14 @@ export default {
 
 <style lang="scss" scoped >
 
+.aside, .footer {
+	.external {
+		font-weight:normal;
+		font-size: 14px;
+		padding:8px 12px;
+	}
+}
+
 .aside {
 
 	padding: 24px;
@@ -152,6 +174,13 @@ export default {
 	justify-items: center;
 }
 
+.footer-about {
+	p {
+		@media only screen and (min-width: 1400px) {
+			width: 50%;
+		}
+	}
+}
 
 .footer-icon {
 
@@ -301,6 +330,17 @@ body {
 
 ul {
 	padding-left: 0;
+}
+
+p a {
+	text-decoration: none;
+	color: darken(aqua, 25%);
+	transition: color 100ms ease-out;
+	outline:none;
+	&:focus, &:active, &:hover {
+		color: Purple;
+		transition-timing-function: ease-in;
+	}
 }
 
 .flex-column {
