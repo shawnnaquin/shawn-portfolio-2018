@@ -2,6 +2,10 @@
 
 	<div id="app" :class="[{['no-scroll']: $store.state.noScroll } ]" >
 
+		<transition name="fade" appear>
+			<Contact/>
+		</transition>
+
 		<transition name="fade" >
 			<div :class="[ 'loader' ]" v-if="getLoading" ref="background" >
 				<p :class="[ 'paragraph' ]" >Loading <Loader :go="getLoading" /></p>
@@ -19,7 +23,7 @@
 
 		<transition name="fade" appear >
 			<button
-			  v-if="getSticky && $route.name != 'home' "
+			  v-if="getSticky && $route.name != 'home' || $route.name != 'contact' "
 			  v-scroll-to="{
 				el: ':root',
 				duration: 200,
@@ -35,7 +39,7 @@
 
 			<div :class="['footer-buttons']" >
 				<button :class="['external']">Resumé</button>
-				<button :class="['external']">Contact</button>
+				<button @click="openContact" :class="['external']">Contact</button>
 			</div>
 
 			<div :class="['footer-about']" >
@@ -98,7 +102,10 @@
 import Loader from "@/components/Loader";
 import Nav from "@/components/Nav.vue";
 import Header from "@/components/Header.vue";
+import Contact from "@/components/Contact.vue";
+
 import up from '@/components/icons/up';
+
 
 import git from '@/components/icons/gitcat'
 import lin from '@/components/icons/in'
@@ -132,8 +139,27 @@ export default {
 	},
 
 	mixins: [ ],
+	methods: {
+		openContact() {
+				const scrollTop = () => {
+				    const el = document.scrollingElement || document.documentElement;
+				    return el.scrollTop
+				}
+
+			    this.$store.commit('setLastScroll', {
+			        last: scrollTop()
+			    });
+			this.$store.commit('setOpenContact', true);
+		}
+	},
+	mounted() {
+		if ( this.$route.name == 'contact' ) {
+			this.$store.commit('setOpenContact', true );
+		}
+	},
 
 	components: {
+		Contact,
 		Loader,
 		Header,
 		Nav,

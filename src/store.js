@@ -10,6 +10,7 @@ export default new Vuex.Store({
     state: {
 
         projects: {},
+        openContact: false,
         loading: true,
         menuOpen: false,
         noScroll: false,
@@ -42,8 +43,8 @@ export default new Vuex.Store({
         getMenuOpen: state => state.menuOpen,
         getTrans: state => state.mainTrans,
         getTypes: state => state.types,
-        getResetScroll: state => state.resetScroll
-
+        getResetScroll: state => state.resetScroll,
+        getOpenContact: state => state.openContact
     },
 
     mutations: {
@@ -51,7 +52,9 @@ export default new Vuex.Store({
         setResetScroll(state,p) {
             state.resetScroll = p;
         },
-
+        setOpenContact(state,p) {
+            state.openContact = p;
+        },
         loading(state) {
             state.loading = state.loading === true ? !state.loading : state.loading;
         },

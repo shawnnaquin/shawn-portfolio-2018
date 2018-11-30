@@ -25,6 +25,11 @@ export default new Router({
       component: Tech
     },
     {
+      path: "/contact",
+      name: "contact",
+      component: Home
+    },
+    {
       // (marketing|interactive|website)
       path: "/:type",
       // route level code-splitting

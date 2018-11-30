@@ -51,7 +51,7 @@
 				return `${ this.monthNames[ d.getMonth() ] } ${ d.getFullYear() }`;
 			},
 			isHome() {
-				return this.$route.name == 'home';
+				return this.$route.name == 'home' || this.$route.name == 'contact';
 			}
 		}
 

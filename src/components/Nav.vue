@@ -26,7 +26,7 @@
 
 			<transition name="fade">
 
-				<li v-if="$route.name !== 'home'" >
+				<li v-if="$route.name !== 'home' && $route.name !== 'contact' " >
 					<button  :class="[ { [ 'is-active' ]: isActive('/')} ]" @click="click('/')" >Home</button>
 				</li>
 
