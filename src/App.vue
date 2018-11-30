@@ -23,7 +23,7 @@
 
 		<transition name="fade" appear >
 			<button
-			  v-if="getSticky && $route.name != 'home' || $route.name != 'contact' "
+			  v-if="getSticky && $route.name != 'home' || getSticky && $route.name != 'contact' "
 			  v-scroll-to="{
 				el: ':root',
 				duration: 200,
