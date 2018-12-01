@@ -320,7 +320,7 @@ export default {
 	methods: {
 		pageEnter(el,done)	 {
 
-			if ( this.$store.state.resetScroll ) {
+			if ( this.$store.state.resetScroll || this.$store.state.from == 'contact' ) {
 				document.body.style.height = this.$store.state.lastScroll + window.innerHeight + 'px';
 				this.$scrollTo( ':root', 100, { offset: this.$store.state.lastScroll }  );
 			} else {

@@ -38,8 +38,8 @@
 		<aside :class="[ 'aside' ]" >
 
 			<div :class="['footer-buttons']" >
-				<button :class="['external']">Resumé</button>
-				<button @click="openContact" :class="['external']">Contact</button>
+				<button @click="openContact(true)" :class="['external']">Resumé</button>
+				<button @click="openContact(false)" :class="['external']">Contact</button>
 			</div>
 
 			<div :class="['footer-about']" >
@@ -117,48 +117,95 @@ import mail from '@/components/icons/mail'
 import { mapGetters } from 'vuex';
 
 export default {
+
 	name: "home",
 
 	computed: {
+
 		...mapGetters({
+
 			getLoading: 'getLoading',
 			mainTrans: 'getTrans',
 			getSticky: 'getSticky'
+
 		}),
+
 		getDate() {
+
 			let d = new Date();
 			return `${ this.monthNames[ d.getMonth() ] } ${ d.getFullYear() }`;
+
 		}
+
 	},
 
 	data() {
+
 		return {
+
 			mod: '',
 			monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
+
 		}
+
 	},
 
 	mixins: [ ],
-	methods: {
-		openContact() {
-				const scrollTop = () => {
-				    const el = document.scrollingElement || document.documentElement;
-				    return el.scrollTop
-				}
 
-			    this.$store.commit('setLastScroll', {
-			        last: scrollTop()
-			    });
+	methods: {
+
+
+
+		openContact(p) {
+
+			const scrollTop = () => {
+			    const el = document.scrollingElement || document.documentElement;
+			    return el.scrollTop
+			}
+
+		    this.$store.commit('setLastScroll', {
+		        last: scrollTop()
+		    });
+
+		    this.$store.commit( 'setLastRoute', this.$route.path );
+
+		    if ( p ) {
+		    	// open resume;
+		    	// add query param
+		    	this.$router.push( {
+		    		path: '/contact',
+	    			query:
+	    				Object.assign(
+		    				{},
+		    				this.$route.query,
+		    				{ subject: encodeURI('Resumé Request') }
+	    				)
+	    		});
+
+		    } else {
+
+		    	this.$router.push('/contact');
+
+		    }
+
 			this.$store.commit('setOpenContact', true);
+
 		}
+
 	},
+
 	mounted() {
+
 		if ( this.$route.name == 'contact' ) {
+
 			this.$store.commit('setOpenContact', true );
+
 		}
+
 	},
 
 	components: {
+
 		Contact,
 		Loader,
 		Header,
@@ -169,6 +216,7 @@ export default {
 		you,
 		be,
 		mail
+
 	}
 
 };

@@ -20,11 +20,15 @@ new Vue({
   render: h => h(App)
 }).$mount("#app");
 
+// router.afterEach( (to,from)=> {
+// 	console.log( from.name == 'contact' );
+// });
+
 router.beforeEach( ( to, from, next ) => {
 
 	store.commit('setResetScroll', false );
 
-	if ( !store.state.menuOpen && !from.params.image ) {
+	if ( !store.state.menuOpen && !from.params.image && !from.name == 'contact' ) {
 
 		const scrollTop = () => {
 		    const el = document.scrollingElement || document.documentElement;
@@ -39,6 +43,12 @@ router.beforeEach( ( to, from, next ) => {
 
 	if ( from.params.image ) {
 		store.commit('setResetScroll', true );
+	}
+
+	if( from.name == 'contact' ) {
+		store.state.from = 'contact';
+	} else {
+		store.state.from = false;
 	}
 
 	store.commit('setTrans', { trans: 'fade-up', mode:'out-in' } );

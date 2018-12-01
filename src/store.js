@@ -10,9 +10,11 @@ export default new Vuex.Store({
     state: {
 
         projects: {},
+        lastRoute: '/',
         openContact: false,
         loading: true,
         menuOpen: false,
+        from: false,
         noScroll: false,
         lastScroll: 0,
         types: [ 'marketing', 'interactive', 'website' ],
@@ -44,11 +46,15 @@ export default new Vuex.Store({
         getTrans: state => state.mainTrans,
         getTypes: state => state.types,
         getResetScroll: state => state.resetScroll,
-        getOpenContact: state => state.openContact
+        getOpenContact: state => state.openContact,
+        getLastRoute: state => state.lastRoute
     },
 
     mutations: {
 
+        setLastRoute(state,p) {
+            state.lastRoute = p;
+        },
         setResetScroll(state,p) {
             state.resetScroll = p;
         },

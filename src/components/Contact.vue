@@ -13,7 +13,6 @@
 		    	{ ['error']: input.error },
 		    	{ ['focus']: input.focus },
 		    	{ ['fill']: input.data }
-
 		    ]">
 
 		        <label :class="['label']" :for="input.id">
@@ -147,20 +146,57 @@ export default {
 	watch: {
 		'$store.state.openContact'(o) {
 			if ( o ) {
+
 				this.keyPress();
+
 				document.documentElement.scrollTop = document.body.scrollTop = this.$store.state.lastScroll;
+
+				let q = this.$route.query;
+
+				this.$set(
+					this.inputs.name,
+					'data',
+					decodeURI( q.name || '' )
+				);
+
+				this.$set(
+					this.inputs.subject,
+					'data',
+					decodeURI( q.subject || '' )
+				);
+
+				this.$set(
+					this.inputs.email,
+					'data',
+					decodeURI( q.email || '' )
+				);
+
+				this.$set(
+					this.inputs.message,
+					'data',
+					decodeURI( q.message || '' )
+				);
+
 				setTimeout(()=> {
 					this.$store.commit('toggleNoScroll');
 				}, 300 );
+
 			} else {
+
 				if( this.success ) {
 					this.showInterim = true;
 				}
+
 				window.onkeydown = false;
+
 				this.$store.commit('toggleNoScroll');
-				this.$nextTick(()=> {
-					this.$scrollTo( ':root', 100, { offset: this.$store.state.lastScroll }  );
-				});
+
+		    	this.$router.replace( this.$store.state.lastRoute );
+
+		    	setTimeout(()=> {
+		    		console.log(this.$store.state.lastScroll);
+		    		this.$scrollTo( ':root', 100, { offset: this.$store.state.lastScroll }  );
+		    	}, 200 );
 			}
 		}
 	},
@@ -177,7 +213,7 @@ export default {
 				switch( event.keyCode ) {
 
 					case 27:
-						//
+						this.$store.commit('setOpenContact', false);
 						break;
 					default:
 						return;
