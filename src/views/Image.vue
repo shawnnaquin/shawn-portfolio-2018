@@ -352,7 +352,7 @@ export default {
 
 	.close {
 		cursor: pointer;
-		position:absolute;
+		position:fixed;
 		top: 16px;
 		right: 16px;
 		opacity:0;

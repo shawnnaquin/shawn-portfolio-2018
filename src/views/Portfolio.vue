@@ -223,11 +223,7 @@
 			pageAfterEnter(el) {
 				this.direction = '';
 				this.showButtons = true;
-
-				if( this.$store.state.from != 'contact' ) {
-					this.$scrollTo(':root');
-				}
-
+				this.$scrollTo(':root');
 			},
 
 			getTrueCaps(type) {

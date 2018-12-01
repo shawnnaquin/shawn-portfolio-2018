@@ -2,6 +2,12 @@
 
 	<div :class="['main']" :key="$store.state.openContact" v-if="$store.state.openContact" >
 
+	<div :class="['if-closed']">
+		<transition name="fade" appear>
+			<span v-if="showInterim">Message Sent!</span>
+		</transition>
+	</div>
+
 	<button @click="closeContact" :class="['close']" ><close></close></button>
 
 	<form :class="['form']">
@@ -83,11 +89,6 @@ export default {
 
 	mixins: [ H ],
 
-	computed: {
-		...mapGetters({
-
-		})
-	},
 	data() {
 		return {
 			showInterim: false,
@@ -149,9 +150,9 @@ export default {
 
 				this.keyPress();
 
-				document.documentElement.scrollTop = document.body.scrollTop = this.$store.state.lastScroll;
-
 				let q = this.$route.query;
+
+				console.log(q);
 
 				this.$set(
 					this.inputs.name,
@@ -177,6 +178,10 @@ export default {
 					decodeURI( q.message || '' )
 				);
 
+				this.$nextTick(()=> {
+					this.$router.replace(this.$route.path);
+				});
+
 				setTimeout(()=> {
 					this.$store.commit('toggleNoScroll');
 				}, 300 );
@@ -188,15 +193,9 @@ export default {
 				}
 
 				window.onkeydown = false;
-
 				this.$store.commit('toggleNoScroll');
+				this.$scrollTo(':root', 100, {offset: this.$store.state.lastScroll });
 
-		    	this.$router.replace( this.$store.state.lastRoute );
-
-		    	setTimeout(()=> {
-		    		console.log(this.$store.state.lastScroll);
-		    		this.$scrollTo( ':root', 100, { offset: this.$store.state.lastScroll }  );
-		    	}, 200 );
 			}
 		}
 	},
@@ -383,6 +382,7 @@ export default {
 }
 
 .main {
+
 	position:fixed;
 	z-index:100;
 	top:0;
@@ -394,6 +394,13 @@ export default {
 	justify-content: center;
 	align-items: center;
 	flex-flow: column;
+
+	@media only screen and (max-height:375px) {
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+		justify-content:flex-start;
+	}
+
 }
 .external {
 	margin-bottom: 2rem;
@@ -550,7 +557,7 @@ export default {
 
 	.close {
 		cursor:pointer;
-		position:absolute;
+		position:fixed;
 		top: 16px;
 		right: 16px;
 		opacity:0;

@@ -28,7 +28,7 @@ router.beforeEach( ( to, from, next ) => {
 
 	store.commit('setResetScroll', false );
 
-	if ( !store.state.menuOpen && !from.params.image && !from.name == 'contact' ) {
+	if ( !store.state.menuOpen && !from.params.image && !store.state.openContact ) {
 
 		const scrollTop = () => {
 		    const el = document.scrollingElement || document.documentElement;
@@ -41,14 +41,8 @@ router.beforeEach( ( to, from, next ) => {
 
 	}
 
-	if ( from.params.image ) {
+	if ( from.params.image || from.name == 'contact' ) {
 		store.commit('setResetScroll', true );
-	}
-
-	if( from.name == 'contact' ) {
-		store.state.from = 'contact';
-	} else {
-		store.state.from = false;
 	}
 
 	store.commit('setTrans', { trans: 'fade-up', mode:'out-in' } );

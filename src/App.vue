@@ -167,13 +167,9 @@ export default {
 		        last: scrollTop()
 		    });
 
-		    this.$store.commit( 'setLastRoute', this.$route.path );
-
 		    if ( p ) {
-		    	// open resume;
-		    	// add query param
+
 		    	this.$router.push( {
-		    		path: '/contact',
 	    			query:
 	    				Object.assign(
 		    				{},
@@ -182,13 +178,11 @@ export default {
 	    				)
 	    		});
 
-		    } else {
-
-		    	this.$router.push('/contact');
-
 		    }
 
-			this.$store.commit('setOpenContact', true);
+		    this.$nextTick(()=> {
+				this.$store.commit('setOpenContact', true);
+		    });
 
 		}
 

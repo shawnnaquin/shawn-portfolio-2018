@@ -14,7 +14,6 @@ export default new Vuex.Store({
         openContact: false,
         loading: true,
         menuOpen: false,
-        from: false,
         noScroll: false,
         lastScroll: 0,
         types: [ 'marketing', 'interactive', 'website' ],

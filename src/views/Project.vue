@@ -320,12 +320,13 @@ export default {
 	methods: {
 		pageEnter(el,done)	 {
 
-			if ( this.$store.state.resetScroll || this.$store.state.from == 'contact' ) {
+			if ( this.$store.state.resetScroll ) {
 				document.body.style.height = this.$store.state.lastScroll + window.innerHeight + 'px';
 				this.$scrollTo( ':root', 100, { offset: this.$store.state.lastScroll }  );
 			} else {
 				this.$scrollTo( ':root', 100 );
 			}
+
 			setTimeout(()=> {
 				this.showBlurb = true;
 				document.body.style.height = '';
