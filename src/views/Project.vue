@@ -25,7 +25,7 @@
 				</div>
 			</transition>
 
-			<youtube-video v-if="project.content.video.length" :videoId="project.content.video" :videoImg=" `${process.env.BASE_URL}img/portfolio/${ type }/${ images.video }`" ></youtube-video>
+			<youtube-video v-if="project.content.video.length" :videoId="project.content.video" :videoImg=" `${getBase()}${ type }/${ images.video }`" ></youtube-video>
 
 			<div v-if="project && ( project.content.code || project.content.externalSite )" class="buttons" >
 
@@ -225,7 +225,9 @@ export default {
 			mainTrans: 'getTrans',
 			getSticky: 'getSticky'
 		}),
-
+		getBase() {
+			return `${ process.env.BASE_URL }img/portfolio/`;
+		},
 		getStartProjectKey() {
 			return Object.keys( this.projects ).indexOf( this.startProject );
 		},

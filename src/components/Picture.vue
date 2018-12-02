@@ -8,25 +8,25 @@
 		<picture>
 			<source
 				media="(min-width: 900px)"
-				:srcset=" `${process.env.BASE_URL}img/portfolio/${ type }/${ path }-lg_1x.webp 1x, ${process.env.BASE_URL}img/portfolio/${ type }/${ path }-lg_2x.webp 2x` "
+				:srcset=" `${ getBase() }${ type }/${ path }-lg_1x.webp 1x, ${ getBase() }${ type }/${ path }-lg_2x.webp 2x` "
 				type="image/webp"
 			>
 
 			<source
 				media="(min-width: 601px)"
-				:srcset=" `${process.env.BASE_URL}img/portfolio/${ type }/${ path }-md_1x.webp 1x, ${process.env.BASE_URL}img/portfolio/${ type }/${ path }-md_2x.webp 2x` "
+				:srcset=" `${ getBase() }${ type }/${ path }-md_1x.webp 1x, ${ getBase() }${ type }/${ path }-md_2x.webp 2x` "
 				type="image/webp"
 			>
 
 			<source
-				:srcset=" `${process.env.BASE_URL}img/portfolio/${ type }/${ path }-sm_1x.webp 1x, ${process.env.BASE_URL}img/portfolio/${ type }/${ path }-sm_2x.webp 2x` "
+				:srcset=" `${ getBase() }${ type }/${ path }-sm_1x.webp 1x, ${ getBase() }${ type }/${ path }-sm_2x.webp 2x` "
 				type="image/webp"
 			>
 
 			<v-lazy-image
 				@load="setShowLoader"
 				v-bind:src="imgSrc"
-				:srcset=" `${process.env.BASE_URL}img/portfolio/${ type }/${ path }-sm_1x.jpg 600w, ${process.env.BASE_URL}img/portfolio/${ type }/${ path }-md_1x.jpg 900w, ${process.env.BASE_URL}img/portfolio/${ type }/${ path }-lg_1x.jpg 1440w` "
+				:srcset=" `${ getBase() }${ type }/${ path }-sm_1x.jpg 600w, ${ getBase() }${ type }/${ path }-md_1x.jpg 900w, ${ getBase() }${ type }/${ path }-lg_1x.jpg 1440w` "
 				type="image/jpeg"
 				:alt=" alt "
 			/>
@@ -56,8 +56,11 @@
 			}
 		},
 		computed: {
-			imgSrc() {
-				return `${process.env.BASE_URL}img/portfolio/${ this.type }/${ this.path }-lg_1x.jpg`;
+			getBase() {
+				return `${ process.env.BASE_URL }img/portfolio/`;
+			},
+ 			imgSrc() {
+				return `${ this.getBase() }${ this.type }/${ this.path }-lg_1x.jpg`;
 			}
 		},
 		methods: {
