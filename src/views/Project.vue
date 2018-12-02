@@ -25,7 +25,7 @@
 				</div>
 			</transition>
 
-			<youtube-video v-if="project.content.video.length" :videoId="project.content.video" :videoImg=" `/img/portfolio/${ type }/${ images.video }`" ></youtube-video>
+			<youtube-video v-if="project.content.video.length" :videoId="project.content.video" :videoImg=" `${process.env.BASE_URL}img/portfolio/${ type }/${ images.video }`" ></youtube-video>
 
 			<div v-if="project && ( project.content.code || project.content.externalSite )" class="buttons" >
 

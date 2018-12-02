@@ -1,3 +1,3 @@
 module.exports = {
-	baseUrl: '/2018'
+	baseUrl: '/'
 }
