@@ -25,7 +25,7 @@
 				</div>
 			</transition>
 
-			<youtube-video v-if="project.content.video.length" :videoId="project.content.video" :videoImg=" `${getBase()}${ type }/${ images.video }`" ></youtube-video>
+			<youtube-video v-if="project.content.video.length" :videoId="project.content.video" :videoImg=" `${getBase}${ type }/${ images.video }`" ></youtube-video>
 
 			<div v-if="project && ( project.content.code || project.content.externalSite )" class="buttons" >
 
@@ -308,7 +308,7 @@ export default {
 		this.checkPhone();
 		this.startProject = this.$route.params.project;
 		this.show = true;
-
+		console.log( this.getBase );
 	},
 	watch: {
 		'$route'(to,from) {
