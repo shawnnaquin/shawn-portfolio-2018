@@ -1,12 +1,16 @@
 <template>
 
-	<div :class="['main']" :key="$store.state.openContact" v-if="$store.state.openContact" >
+	<div :class="['main']">
 
 	<div :class="['if-closed']">
 		<transition name="fade" appear>
 			<span v-if="showInterim">Message Sent!</span>
 		</transition>
 	</div>
+
+	<transition name="fade" appear >
+
+	<div :class="['flex-container']" :key="$store.state.openContact" v-if="$store.state.openContact" >
 
 	<button @click="closeContact" :class="['close']" ><close></close></button>
 
@@ -16,9 +20,9 @@
 
 		    <div :class="[
 		    	'div-input',
-		    	{ ['error']: input.error },
-		    	{ ['focus']: input.focus },
-		    	{ ['fill']: input.data }
+				{ [ 'error' ]: input.error },
+				{ [ 'focus' ]: input.focus },
+				{ [ 'fill'  ]: input.data  }
 		    ]">
 
 		        <label :class="['label']" :for="input.id">
@@ -26,6 +30,7 @@
 		        </label>
 
 		        <input
+		        	:tabindex="input.tabIndex"
 					:ref="input.id"
 					:name="input.id"
 					@focus="focus"
@@ -49,14 +54,19 @@
 
 		</template>
 
-		<button
-			:class="['external']"
-			:disabled="sending || success || error"
-			@click.prevent="processForm" type="submit"
+		<g-recaptcha
+		  :data-tabindex="String( Object.keys(inputs).length + 1 )"
+		  data-sitekey="6LcOPH4UAAAAAOAkGz3AiBzFJ0xugr2Cxh8ST4YQ"
+		  :data-validate="processForm"
+		  :data-callback="submitForm"
+		  :data-btn-disabled="sending || success || error"
+		  :class="['form-submit']"
 		>
-		<!-- v-if="formready" -->
-			<span>{{submitText}}</span>
-		</button>
+			<span :class="['external']" :tabindex="Object.keys(inputs).length + 1" >
+				<span>{{submitText}}</span>
+			</span>
+
+		</g-recaptcha>
 
 	</form>
 
@@ -65,12 +75,9 @@
 	        {{ errorMessage }}
 	    </div>
 	</transition>
-	</div>
 
-	<div v-else :key="$store.state.openContact" :class="['if-closed']">
-		<transition name="fade" appear>
-			<span v-if="showInterim">Message Sent!</span>
-		</transition>
+	</div>
+	</transition>
 	</div>
 
 </template>
@@ -79,11 +86,14 @@
 import axios from 'axios';
 import close from '@/components/icons/close';
 import H from '@/mixins/height';
+import gRecaptcha from '@finpo/vue2-recaptcha-invisible';
+
 import { mapGetters } from 'vuex';
 
 export default {
 
 	components: {
+		gRecaptcha,
 		close
 	},
 
@@ -94,46 +104,50 @@ export default {
 			showInterim: false,
 		    errorMessage: '',
 		    inputs: {
-		        name: {
-		            'id': 'name',
-		            'type': 'text',
-		            'label': 'Name',
-		            'required': true,
-		            'pattern': '.{2,}',
-		            'error': false,
-		            'focus': false,
-		            'data': ''
-		        },
-		        subject: {
-		            'id': 'subject',
-		            'type': 'text',
-		            'label': 'Subject',
-		            'required': true,
-		            'pattern': '.{2,}',
-		            'error': false,
-		            'focus': false,
-		            'data': ''
-		        },
-		        email: {
-		            'id': 'email',
-		            'type': 'email',
-		            'label': 'Email',
-		            'required': true,
-		            'pattern': false,
-		            'error': false,
-		            'focus': false,
-		            'data': ''
-		        },
-		        message: {
-		            'id': 'message',
-		            'type': 'text',
-		            'label': 'Message',
-		            'required': true,
-		            'pattern': '.{2,}',
-		            'error': false,
-		            'focus': false,
-		            'data': ''
-		        }
+				name: {
+					'id': 'name',
+					'type': 'text',
+					'label': 'Name',
+					'required': true,
+					'pattern': '.{2,}',
+					'error': false,
+					'focus': false,
+					'data': null,
+					'tabIndex': 1
+				},
+				subject: {
+					'id': 'subject',
+					'type': 'text',
+					'label': 'Subject',
+					'required': true,
+					'pattern': '.{2,}',
+					'error': false,
+					'focus': false,
+					'data': null,
+					'tabIndex': 2
+				},
+				email: {
+					'id': 'email',
+					'type': 'email',
+					'label': 'Email',
+					'required': true,
+					'pattern': false,
+					'error': false,
+					'focus': false,
+					'data': null,
+					'tabIndex': 3
+				},
+				message: {
+					'id': 'message',
+					'type': 'text',
+					'label': 'Message',
+					'required': true,
+					'pattern': '.{2,}',
+					'error': false,
+					'focus': false,
+					'data': null,
+					'tabIndex': 4
+				}
 		    },
 		    formready: true,
 		    sending: false,
@@ -150,36 +164,44 @@ export default {
 
 				this.keyPress();
 
+
 				let q = this.$route.query;
 
-				console.log(q);
+				let name = q.name || this.inputs.name.data || '';
+				let subject = q.subject || this.inputs.subject.data || '';
+				let email = q.email || this.inputs.email.data || '';
+				let message = q.message || this.inputs.message.data || '';
 
-				this.$set(
-					this.inputs.name,
-					'data',
-					decodeURI( q.name || '' )
-				);
+				this.resetForm();
 
-				this.$set(
-					this.inputs.subject,
-					'data',
-					decodeURI( q.subject || '' )
-				);
+				function getString(v) {
+					if ( typeof v == 'string' ) {
+						return  decodeURI( v.trim() );
+					} else {
+						return '&nbsp;';
+					}
+				}
 
-				this.$set(
-					this.inputs.email,
-					'data',
-					decodeURI( q.email || '' )
-				);
+				if( encodeURI(subject) == 'Resum%C3%A9%20Request' && !this.$route.query.subject ) {
+					subject = '';
+				}
 
-				this.$set(
-					this.inputs.message,
-					'data',
-					decodeURI( q.message || '' )
-				);
+				// console.log( {
+				// 	name: name,
+				// 	subject: subject,
+				// 	email: email,
+				// 	message: message
+				// } );
+
+				this.$set( this.inputs.name, 'data', getString(name) );
+				this.$set( this.inputs.subject, 'data', getString(subject) );
+				this.$set( this.inputs.email, 'data', getString(email) );
+				this.$set( this.inputs.message, 'data', getString(message) );
 
 				this.$nextTick(()=> {
 					this.$router.replace(this.$route.path);
+					document.querySelector( `input[name=${ Object.keys( this.inputs )[0] }]` ).focus();
+					document.querySelector( `input[name=${ Object.keys( this.inputs )[0] }]` ).select();
 				});
 
 				setTimeout(()=> {
@@ -230,57 +252,84 @@ export default {
 
 		    for (let v in this.inputs ) {
 
+	    		if ( document.querySelector(`input[name="${v}"]`) ) {
+			    	document.querySelector(`input[name="${v}"]`).dispatchEvent(blurevt);
+	    		}
+
 		    	if ( this.inputs[v].error || !this.inputs[v].data.length ) {
 		    		error = true;
-		    		if ( document.querySelector(`input[name="${v}"]`) ) {
-				    	document.querySelector(`input[name="${v}"]`).dispatchEvent(blurevt);
-		    		}
-		    		break;
 		    	}
+
 		    }
 
-			if ( error ) return;
+		    return !error;
 
-			this.formready = false;
-			this.sending = true;
-			this.submitText = 'Sending...'
+		},
 
-			let bodyFormData = new FormData();
+		submitForm(token) {
 
-			bodyFormData.append('name', this.inputs.name.data );
-			bodyFormData.append('email', this.inputs.email.data );
-			bodyFormData.append('subject', this.inputs.subject.data );
-			bodyFormData.append('message', this.inputs.message.data );
+			if (token) {
 
-			axios({
-				method: 'POST',
-				url: 'https://shawns-contact-form.herokuapp.com/',
-				data: bodyFormData,
-				config:
-					{
-						headers: {
-								'Content-Type': 'multipart/form-data'
+				this.errorMessage = '';
+
+				this.formready = false;
+				this.sending = true;
+				this.submitText = 'Sending...'
+
+				let bodyFormData = new FormData();
+
+				bodyFormData.append('name', this.inputs.name.data );
+				bodyFormData.append('email', this.inputs.email.data );
+				bodyFormData.append('subject', this.inputs.subject.data );
+				bodyFormData.append('message', this.inputs.message.data );
+				bodyFormData.append('token', token );
+
+				axios({
+					method: 'POST',
+					url: 'https://shawns-contact-form.herokuapp.com/',
+					data: bodyFormData,
+					config:
+						{
+							headers: {
+									'Content-Type': 'multipart/form-data'
+							}
 						}
-					}
-			})
-			.then( (response) => {
+				})
+				.then( (response) => {
 
-				this.submitText = 'Success!'
-				this.success = true;
-				this.sending = false;
+					this.submitText = 'Success!'
+					this.success = true;
+					this.sending = false;
+					this.showInterim = true;
 
-				setTimeout( ()=> {
-					this.resetForm()
-					this.showInterim = false;
-				}, 3000 );
+					setTimeout( ()=> {
 
-			})
-			.catch( (response) => {
-				this.error = true;
-				this.sending = false;
-				this.submitText = 'ERROR!';
-				setTimeout( this.resetForm, 1000 );
-			});
+						setTimeout(()=> {
+							this.$store.commit('setOpenContact', false );
+							setTimeout( this.resetForm, 100 );
+						}, 500 );
+
+						setTimeout(()=> {
+							this.showInterim = false;
+						}, 2000 );
+
+					}, 1000 );
+
+				})
+				.catch( (response) => {
+					this.error = true;
+					this.sending = false;
+					this.submitText = 'ERROR!';
+					setTimeout( this.resetForm, 1000 );
+				});
+
+			} else {
+			  // if you use data-size show reCAPTCHA , maybe you will get empty token.
+			  // alert('please check you are not robot');
+			  // this.inputs.name.error = true;
+			  this.errorMessage = 'please check you are not robot';
+
+			}
 
 		},
 
@@ -309,7 +358,6 @@ export default {
 		    for (let error in v) {
 		      if ( error !== 'valid' && v[error] === true ) {
 		        input.error = true;
-
 		        if ( error == 'patternMismatch' || error == 'valueMissing' ) {
 		            this.errorMessage = 'Whoops, looks like something is missing!';
 		        } else {
@@ -320,7 +368,6 @@ export default {
 		      	input.error = false;
 		        // can't null message here, since others may have an error
 		      }
-
 		    }
 
 		},
@@ -341,7 +388,7 @@ export default {
             let blurevt = new Event('blur');
 
 		    for (let v in this.inputs ) {
-		    	this.inputs[v].data = '';
+		    	this.inputs[v].data = null;
 		    	this.inputs[v].error = false;
 		    	this.inputs[v].focus = false;
 		    	if ( document.querySelector(`input[name="${v}"]`) ) {
@@ -354,15 +401,23 @@ export default {
 		    this.formready = true;
 		    this.submitText = 'Submit';
 		    this.errorMessage = null;
-		    setTimeout(()=> {
-		    	this.$store.commit('setOpenContact', false );
-		    }, 1000 );
+
 		}
 
 	}
 
 };
 </script>
+<style lang="scss">
+
+.form-submit {
+	div > button {
+		background: transparent;
+		outline:0;
+		border:0;
+	}
+}
+</style>
 <style lang="scss" scoped>
 
 .if-closed {
@@ -387,32 +442,49 @@ export default {
 	z-index:100;
 	top:0;
 	left:0;
+
+}
+.flex-container {
+	position:fixed;
+	z-index:100;
+	top:0;
+	left:0;
 	right:0;
 	bottom:0;
-	background: darken(white,2%);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-flow: column;
-
+	height:100%;
+	background: darken(white,2%);
+	z-index:1;
 	@media only screen and (max-height:375px) {
 		overflow-y: auto;
 		-webkit-overflow-scrolling: touch;
 		justify-content:flex-start;
 	}
-
 }
-.external {
+
+.form-submit {
 	margin-bottom: 2rem;
 	margin-top: 2rem;
+	div > button {
+		background: transparent;
+		outline:0;
+		border:0;
+	}
 }
+
 .form {
 	width:75%;
 }
+
 .error-message {
 	width:75%;
+	@media only screen and (max-height:375px) {
+		margin-bottom:5rem;
+	}
 }
-
 
 	/*
 		.div-input
@@ -515,7 +587,7 @@ export default {
 		width: 100%;
 		background: lighten(black,33%);
 		z-index: 4;
-		transform: translateX(-100%);
+		transform: translateX(-101%);
 		transition: transform 300ms ease-out;
 		transition-property: transform, background;
 	}
@@ -593,7 +665,12 @@ export default {
 			filter: blur(0px);
 			margin-left:10px;
 		}
-
+		&:focus, &:active {
+			> svg {
+				fill: darken(white,20%);
+				filter: blur(2px);
+			}
+		}
 		@media only screen and (min-width:630px) {
 			&:hover {
 				> svg {

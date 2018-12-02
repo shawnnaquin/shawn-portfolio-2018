@@ -121,27 +121,34 @@ export default new Vuex.Store({
         },
 
         async setProjectsExec( {context,commit,state,dispatch}, name ) {
-            try {
 
-                const response = await axios.get( `/json/${name}.json` );
-
-                if ( state.loading ) {
-                    // setTimeout( ()=> {
-                        commit('addProject', {'name': name, 'response': response } )
-                        if ( state.loading ) {
-                            setTimeout(()=> {
-                                commit('loading');
-                            }, 500 );
-                        }
-                    // }, 300 );
-                } else {
-                    commit('addProject', {'name': name, 'response': response } )
-                }
-
-            } catch (error) {
+            if ( !state.types.includes(name) ) {
                 dispatch('setAllProjects');
-                // throw error;
+                return;
+            } else {
+                try {
+
+                    const response = await axios.get( `/json/${name}.json` );
+
+                    if ( state.loading ) {
+                        // setTimeout( ()=> {
+                            commit('addProject', {'name': name, 'response': response } )
+                            if ( state.loading ) {
+                                setTimeout(()=> {
+                                    commit('loading');
+                                }, 500 );
+                            }
+                        // }, 300 );
+                    } else {
+                        commit('addProject', {'name': name, 'response': response } )
+                    }
+
+                } catch (error) {
+                    dispatch('setAllProjects');
+                    // throw error;
+                }
             }
+
         },
 
         setProjects( {context,commit,state,dispatch}, name ) {

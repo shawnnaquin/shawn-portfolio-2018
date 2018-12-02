@@ -2,9 +2,7 @@
 
 	<div id="app" :class="[{['no-scroll']: $store.state.noScroll } ]" >
 
-		<transition name="fade" appear>
-			<Contact/>
-		</transition>
+		<Contact/>
 
 		<transition name="fade" >
 			<div :class="[ 'loader' ]" v-if="getLoading" ref="background" >
@@ -40,6 +38,8 @@
 			<div :class="['footer-buttons']" >
 				<button @click="openContact(true)" :class="['external']">Resumé</button>
 				<button @click="openContact(false)" :class="['external']">Contact</button>
+				<router-link v-if="$route.name != 'tech' " :class="['external']" to="/tech" >Technology List</router-link>
+				<router-link v-else :class="['external']" to="/marketing" >More Work</router-link>
 			</div>
 
 			<div :class="['footer-about']" >
@@ -57,11 +57,6 @@
 					</span>
 
 				</p>
-
-				<div :class="['buttons']" >
-					<router-link v-if="$route.name != 'tech' " :class="['external']" to="/tech" >Technology List</router-link>
-					<router-link v-else :class="['external']" to="/marketing" >More Work</router-link>
-				</div>
 
 			</div>
 
@@ -248,6 +243,12 @@ export default {
 			width: 50%;
 		}
 	}
+}
+
+.footer-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 8px;
 }
 
 .footer-icon {

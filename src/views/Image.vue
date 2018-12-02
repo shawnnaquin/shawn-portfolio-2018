@@ -1,4 +1,4 @@
-<template>
+.<template>
 
 	<div :class="[ 'background' ]" :style="{height:height}" ref="background" >
 
@@ -386,7 +386,12 @@ export default {
 			filter: blur(0px);
 			margin-left:10px;
 		}
-
+		&:focus, &:active {
+			> svg {
+				fill: darken(white,20%);
+				filter: blur(2px);
+			}
+		}
 		@media only screen and (min-width:630px) {
 			&:hover {
 				> svg {
