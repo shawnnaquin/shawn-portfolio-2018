@@ -1,1 +1,3 @@
-module.exports = {}
+module.exports = {
+	baseUrl: '/2018'
+}

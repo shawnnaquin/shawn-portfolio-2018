@@ -128,7 +128,7 @@ export default new Vuex.Store({
             } else {
                 try {
 
-                    const response = await axios.get( `/json/${name}.json` );
+                    const response = await axios.get( `${process.env.BASE_URL}json/${name}.json` );
 
                     if ( state.loading ) {
                         // setTimeout( ()=> {
