@@ -11,7 +11,7 @@
 				<transition name="fade">
 				<div v-if="!playerReady" :class="['loader']" >
 					Loading <Loader :go="!playerReady" />
-					<div :class="['sub-loader']"  :style="{ backgroundImage: getMainImage() }" ></div>
+					<div v-if="videoImg" :class="['sub-loader']"  :style="{ backgroundImage: getMainImage() }" ></div>
 				</div>
 				</transition>
 				<div id="player"> </div>
@@ -117,7 +117,7 @@ export default {
 
 			let width = window.innerWidth;
 			let size = '-lg_1x.jpg';
-			let image = this.videoImg ? this.videoImg : `one.${ this.$route.params.project }`;
+			let image = this.videoImg;
 
 			if ( width < 900 ) {
 				size = '-sm_1x.jpg';
