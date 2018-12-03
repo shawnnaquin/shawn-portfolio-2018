@@ -10,11 +10,23 @@ export default {
 
 	},
 
+	data() {
+		return {
+			heightTrigger: false,
+			forceNoTouchMove: false,
+			height: 'auto'
+		}
+	},
+
 	beforeDestroy() {
-		window.removeEventListener('resize', this.d );
-		document.body.style.height = '';
-		document.ontouchmove = function (e) {
-		  return true;
+		this.killHeight();
+	},
+
+	mounted() {
+		if ( this.heightTrigger ) {
+			this.startHeight();
+		} else {
+			this.killHeight();
 		}
 	},
 
@@ -23,20 +35,47 @@ export default {
 		doHeight() {
 			this.height = window.innerHeight + 'px';
 			document.body.style.height = window.innerHeight + 'px';
-			document.ontouchmove = function (e) {
-				e.preventDefault();
-			};
+			if( this.forceNoTouchMove ) {
+				document.ontouchmove = function (e) {
+					console.log('touch');
+					e.preventDefault();
+				};
+			}
 			document.documentElement.scrollTop = document.body.scrollTop = 0;
 		},
 
 		setupBackground() {
 			this.doHeight();
 			window.addEventListener('resize', this.d);
+		},
+
+		startHeight() {
+			this.setupBackground();
+			setTimeout( ()=> {
+				window.dispatchEvent(new Event('resize'));
+			}, 500 );
+		},
+
+		killHeight() {
+			window.removeEventListener('resize', this.d );
+			document.body.style.height = '';
+			document.ontouchmove = function (e) {
+			  return true;
+			}
 		}
 
 	},
 
 	watch: {
+
+		'heightTrigger'(h) {
+			if ( h ) {
+				this.startHeight();
+			} else {
+				this.killHeight();
+			}
+		},
+
 		'height'(h) {
 			if ( !h ) {
 				window.removeEventListener('resize', this.d );
@@ -44,13 +83,6 @@ export default {
 				this.doHeight();
 			}
 		}
-	},
-
-	mounted() {
-		this.setupBackground();
-		setTimeout( ()=> {
-			window.dispatchEvent(new Event('resize'));
-		}, 500 );
 	}
 
 };
