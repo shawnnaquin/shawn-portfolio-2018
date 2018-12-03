@@ -1,49 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width,initial-scale=1.0">
-		<link rel="icon" href="<%= BASE_URL %>favicon.ico">
-		<title>shawn-portfolio-2018</title>
-		<!-- Start Single Page Apps for GitHub Pages -->
-		<script type="text/javascript">
-			// Single Page Apps for GitHub Pages
-			// https://github.com/rafrex/spa-github-pages
-			// Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
-			// ----------------------------------------------------------------------
-			// This script checks to see if a redirect is present in the query string
-			// and converts it back into the correct url and adds it to the
-			// browser's history using window.history.replaceState(...),
-			// which won't cause the browser to attempt to load the new url.
-			// When the single page app is loaded further down in this file,
-			// the correct url will be waiting in the browser's history for
-			// the single page app to route accordingly.
-			(function(l) {
-				if (l.search) {
-					var q = {};
-					l.search.slice(1).split('&').forEach(function(v) {
-						var a = v.split('=');
-						q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
-					});
-					
-					if (q.p !== undefined) {
-						window.history.replaceState(null, null,
-							l.pathname.slice(0, -1) + (q.p || '') +
-							(q.q ? ('?' + q.q) : '') +
-							l.hash
-						);
-					}
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="fragment" content="!">
+	<meta name="language" content="en-US">
+	<meta name="robots" content="index,follow">
+
+	<!-- <link rel="manifest" href="/manifest.json"> -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+	<!-- <meta name="google-site-verification" content=""> -->
+
+	<!-- <meta name="theme-color" content="#2e3836"> -->
+	<link rel="canonical" href="https://shawnnaquin.github.io">
+
+	<meta name="application-name" content="Shawn's Front-End Portoflio">
+	<!-- <meta name="msapplication-TileColor" content="#2e3836"> -->
+
+	<title>Shawn Naquin | Front-End Application &amp; Web Development</title>
+
+<!-- 	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/images/favicon/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/images/favicon/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/images/favicon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/images/favicon/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/images/favicon/apple-touch-icon-60x60.png">
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/images/favicon/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/images/favicon/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/images/favicon/apple-touch-icon-152x152.png">
+	<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-196x196.png" sizes="196x196">
+	<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-96x96.png" sizes="96x96">
+	<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-16x16.png" sizes="16x16">
+	<link rel="icon" type="image/png" href="/assets/images/favicon/favicon-128.png" sizes="128x128">
+	<meta name="msapplication-TileImage" content="/assets/images/favicon/mstile-144x144.png">
+	<meta name="msapplication-square70x70logo" content="/assets/images/favicon/mstile-70x70.png">
+	<meta name="msapplication-square150x150logo" content="/assets/images/favicon/mstile-150x150.png">
+	<meta name="msapplication-wide310x150logo" content="/assets/images/favicon/mstile-310x150.png">
+	<meta name="msapplication-square310x310logo" content="/assets/images/favicon/mstile-310x310.png"> -->
+
+	<meta name="description" content="Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects. More of his work can be found on Github. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility.">
+	<meta name="keywords" content="Louisiana, New Orleans, Freelence Developer, Development, Interactive, Front-End, Portfolio, Motion Graphics, Javascript, Vue, Vue.js, Webpack">
+
+	<!-- Schema.org markup for Google+ -->
+	<meta itemprop="name" content="Shawn Naquin | Front-End Application &amp; Web Development">
+	<meta itemprop="description" content="Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects. More of his work can be found on Github. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility.">
+	<!-- <meta itemprop="image" content="https://l2d.co/assets/images/office.png"> -->
+	<!-- Twitter Card data -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@shawnnaquin">
+	<meta name="twitter:creator" content="@shawnnaquin">
+	<meta name="twitter:title" content="Shawn Naquin | Front-End Application &amp; Web Development">
+	<meta name="twitter:description" content="Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects. More of his work can be found on Github. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility.">
+    <!-- <meta name="twitter:image" content="https://l2d.co/assets/images/office.png"> -->
+
+	<!-- Open Graph data -->
+	<meta property="og:title" content="Shawn Naquin | Front-End Application &amp; Web Development">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://shawnnaquin.github.io">
+	<!-- <meta property="og:image" content="https://l2d.co/assets/images/office.png"> -->
+	<meta property="og:description" content="Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects. More of his work can be found on Github. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility.">
+	<meta property="og:site_name" content="Shawn Naquin">
+
+			<!-- "image": "https://l2d.co/assets/images/favicon/favicon-196x196.png",	 -->
+ 	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "LocalDeveloper",
+			"name": "Shawn Naquin",
+			"telephone": "+1 504 289 1990",
+			"url": "https://shawnnaquin.github.io",
+			"openingHours": "Mo,Tu,We,Th,Fr 08:30-17:15",
+			"description": "Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects. More of his work can be found on Github. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility.",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": ""
+				"addressLocality": "New Orleans",
+				"addressRegion": "LA",
+				"postalCode":"70115"
+			},
+			"geo": {
+				"@type": "GeoCoordinates",
+				29.9511° N, 90.0715° W
+				"latitude": "29.9511",
+				"longitude": "-90.0715"
+			}
+		}
+	</script>
+<!-- 
+	"sameAs" : [
+		"https://www.facebook.com/level2d",
+		"https://www.instagram.com/level2d",
+		"https://www.twitter.com/level2d",
+		"https://dribbble.com/level2d",
+		"https://www.linkedin.com/company/level-2-design",
+		"https://www.behance.net/level2d"
+	] -->
+
+	<!-- Start Single Page Apps for GitHub Pages -->
+	<script type="text/javascript">
+		// Single Page Apps for GitHub Pages
+		// https://github.com/rafrex/spa-github-pages
+		// Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
+		// ----------------------------------------------------------------------
+		// This script checks to see if a redirect is present in the query string
+		// and converts it back into the correct url and adds it to the
+		// browser's history using window.history.replaceState(...),
+		// which won't cause the browser to attempt to load the new url.
+		// When the single page app is loaded further down in this file,
+		// the correct url will be waiting in the browser's history for
+		// the single page app to route accordingly.
+		(function(l) {
+			if (l.search) {
+				var q = {};
+				l.search.slice(1).split('&').forEach(function(v) {
+					var a = v.split('=');
+					q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
+				});
+				
+				if (q.p !== undefined) {
+					window.history.replaceState(null, null,
+						l.pathname.slice(0, -1) + (q.p || '') +
+						(q.q ? ('?' + q.q) : '') +
+						l.hash
+					);
 				}
-			}(window.location))
-		</script>
-		<!-- End Single Page Apps for GitHub Pages -->
-	</head>
-	<body style="margin:0;">
-		<noscript>
-		<strong>We're sorry but shawn-portfolio-2018 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-		</noscript>
-		<div id="app" style="background: black; color: transparent; width: 100%; height:100vh;">Loading...</div>
-		<!-- built files will be auto injected -->
-	</body>
+			}
+		}(window.location))
+	</script>
+	<!-- End Single Page Apps for GitHub Pages -->
+
+</head>
+
+<body style="margin:0;">
+	<noscript>
+	<strong>We're sorry but shawn-portfolio-2018 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+	</noscript>
+	<div id="app" style="background: black; color: transparent; width: 100%; height:100vh;">Loading...</div>
+	<!-- built files will be auto injected -->
+</body>
+
 </html>
