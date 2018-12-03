@@ -4,7 +4,7 @@
 
    <url>
 
-      <loc>https://shawnnaquin.github.com/</loc>
+      <loc>https://shawnnaquin.github.io/</loc>
       <lastmod>2018-11-30</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
@@ -13,7 +13,7 @@
 
    <url>
 
-      <loc>https://shawnnaquin.github.com/contact</loc>
+      <loc>https://shawnnaquin.github.io/contact</loc>
       <lastmod>2018-11-30</lastmod>
       <changefreq>weekly</changefreq>
 
@@ -21,7 +21,7 @@
 
    <url>
 
-      <loc>https://shawnnaquin.github.com/marketing</loc>
+      <loc>https://shawnnaquin.github.io/marketing</loc>
       <lastmod>2018-11-30</lastmod>
       <changefreq>weekly</changefreq>
 
@@ -29,16 +29,7 @@
 
    <url>
 
-      <loc>https://shawnnaquin.github.com/website</loc>
-      <lastmod>2018-11-30</lastmod>
-      <changefreq>weekly</changefreq>
-
-
-   </url>
-
-   <url>
-
-      <loc>https://shawnnaquin.github.com/interactive</loc>
+      <loc>https://shawnnaquin.github.io/website</loc>
       <lastmod>2018-11-30</lastmod>
       <changefreq>weekly</changefreq>
 
@@ -47,7 +38,16 @@
 
    <url>
 
-      <loc>https://shawnnaquin.github.com/tech</loc>
+      <loc>https://shawnnaquin.github.io/interactive</loc>
+      <lastmod>2018-11-30</lastmod>
+      <changefreq>weekly</changefreq>
+
+
+   </url>
+
+   <url>
+
+      <loc>https://shawnnaquin.github.io/tech</loc>
       <lastmod>2018-11-30</lastmod>
       <changefreq>weekly</changefreq>
 
