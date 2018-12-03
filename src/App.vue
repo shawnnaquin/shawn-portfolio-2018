@@ -5,8 +5,11 @@
 		<Contact/>
 
 		<transition name="fade" >
-			<div :class="[ 'loader' ]" v-if="getLoading" ref="background" >
-				<p :class="[ 'paragraph' ]" >Loading <Loader :go="getLoading" /></p>
+			<div :class="[ 'loader' ]" v-if="getLoading" ref="background" :style="{height:height}" >
+				<p :class="[ 'paragraph' ]" >
+					<span v-if="getLoading" >Loading <Loader :go="getLoading" /></span>
+					<span v-else >Content Loaded!</span>
+				</p>
 			</div>
 		</transition>
 
@@ -108,12 +111,14 @@ import you from '@/components/icons/youtube'
 import be from '@/components/icons/be'
 import mail from '@/components/icons/mail'
 
+import H from '@/mixins/height';
 
 import { mapGetters } from 'vuex';
 
 export default {
 
 	name: "home",
+	mixins: [ H ],
 
 	computed: {
 
@@ -145,11 +150,22 @@ export default {
 
 	},
 
-	mixins: [ ],
+	watch: {
+		'getLoading'(l) {
+			if (!l) {
+				//destroy
+				this.forceNoTouchMove = false;
+				this.heightTrigger = false;
+			} else {
+				this.forceNoTouchMove = false;
+				this.$nextTick(()=> {
+					this.heightTrigger = true;
+				});
+			}
+		}
+	},
 
 	methods: {
-
-
 
 		openContact(p) {
 
@@ -189,6 +205,14 @@ export default {
 
 			this.$store.commit('setOpenContact', true );
 
+		}
+
+		if ( this.getLoading ) {
+
+			this.forceNoTouchMove = false;
+			this.$nextTick(()=> {
+				this.heightTrigger = true;
+			});
 		}
 
 	},
@@ -341,6 +365,7 @@ export default {
 }
 
 .loader {
+
 	background: black;
 	position: fixed;
 	top:0;
@@ -352,6 +377,7 @@ export default {
 	display:flex;
 	justify-content: center;
 	flex-flow: column;
+
 	p {
 		position:absolute;
 		left: 50%;
