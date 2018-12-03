@@ -117,6 +117,10 @@ export default {
 		},
 		getMainImage() {
 
+			if( !this.videoImg ) {
+				return 'none';
+			}
+
 			let width = window.innerWidth;
 			let size = '-lg_1x.jpg';
 			let image = this.videoImg;
@@ -128,8 +132,8 @@ export default {
 			} else {
 				size = '-lg_1x.jpg';
 			}
-
-			return `url( ${ image }${ size }`;
+			
+			return `url( ${ image }${ size }`;				
 
 		},
 		createScript() {
@@ -156,7 +160,7 @@ export default {
 							videoId: this.videoId,
 							playerVars: {
 								'rel': 0,
-								'origin': 'http://localhost:8080',
+								'origin': 'https://shawnnaquin.github.io',
 								'width': '100%',
 								'height': '100%',
 								'showinfo': 0,
