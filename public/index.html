@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+d<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -67,11 +67,45 @@
  	<script type="application/ld+json">
 		{
 			"@context": "http://schema.org",
-			"@type": "LocalDeveloper",
+			"@type": "LocalBusiness",
 			"name": "Shawn Naquin",
 			"telephone": "+1 504 289 1990",
 			"url": "https://shawnnaquin.github.io",
-			"openingHours": "Mo,Tu,We,Th,Fr 08:30-17:15",
+			"logo": "",
+			"image": [""],
+			"potentialAction":{
+			  "@type":"ReserveAction",
+			  "target":{
+			    "@type":"EntryPoint",
+			    "urlTemplate":"https://shawnnaquin.github.io/?p=/contact",
+			    "inLanguage":"en-US",
+			    "actionPlatform":[
+			      "http://schema.org/DesktopWebPlatform",
+			      "http://schema.org/IOSPlatform",
+			      "http://schema.org/AndroidPlatform"
+			    ]
+			  },
+			  "result":{
+			    "@type":"Reservation",
+			    "name":"Book an appointment today!"
+			  }
+			},
+			"openingHoursSpecification": [
+			  {
+			    "@type": "OpeningHoursSpecification",
+			    "dayOfWeek": [
+			      "Monday",
+			      "Tuesday",
+			      "Wednesday",
+			      "Thursday",
+			      "Friday",
+			      "Saturday",
+			      "Sunday"
+			    ],
+			    "opens": "09:00",
+			    "closes": "21:00"
+			  },
+			],
 			"description": "Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects based in New Orleans, LA. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility. Contact for more information.",
 			"address": {
 				"@type": "PostalAddress",
