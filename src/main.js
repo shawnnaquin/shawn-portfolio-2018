@@ -7,10 +7,15 @@ import "intersection-observer";
 import { VLazyImagePlugin } from "v-lazy-image";
 import { VueHammer } from 'vue2-hammer'
 import VueScrollTo from 'vue-scrollto';
+import VueAnalytics from 'vue-analytics';
 
 Vue.use(VueScrollTo);
 Vue.use(VueHammer)
 Vue.use(VLazyImagePlugin);
+Vue.use(VueAnalytics, {
+	id: 'UA-119672136-2',
+	router
+});
 
 Vue.config.productionTip = false;
 
