@@ -1,4 +1,4 @@
-.<template>
+<template>
 
 	<div :class="[ 'background' ]" :style="{height:height}" ref="background" >
 
@@ -88,7 +88,6 @@ export default {
 			index: 0,
 			imageTypes: [ 'mobile', 'horiz', 'regular' ],
 			trans: 'fade-left',
-			height: 'auto'
 		}
 	},
 	computed: {
@@ -293,11 +292,17 @@ export default {
 	beforeDestroy() {
 		window.onkeydown = false;
 		this.$store.commit('toggleNoScroll');
+		this.forceNoTouchMove = false;
+		this.heightTrigger = false;
 	},
 
 	mounted() {
 		this.keyPress();
 		this.$store.commit('toggleNoScroll');
+		this.forceNoTouchMove = true;
+		this.$nextTick(()=> {
+			this.heightTrigger = true;
+		});
 	}
 
 };
@@ -335,7 +340,7 @@ export default {
 			right:0;
 		}
 		@media only screen and (max-width:630px) {
-			font-size:12px;
+			font-size:24px;
 			padding-right:48px;
 			padding-left:8px;
 			background:transparent;
