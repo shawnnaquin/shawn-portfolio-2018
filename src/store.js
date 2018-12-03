@@ -131,14 +131,8 @@ export default new Vuex.Store({
                     const response = await axios.get( `${process.env.BASE_URL}json/${name}.json` );
 
                     if ( state.loading ) {
-                        // setTimeout( ()=> {
                             commit('addProject', {'name': name, 'response': response } )
-                            if ( state.loading ) {
-                                setTimeout(()=> {
-                                    commit('loading');
-                                }, 500 );
-                            }
-                        // }, 300 );
+                            commit('loading');
                     } else {
                         commit('addProject', {'name': name, 'response': response } )
                     }
