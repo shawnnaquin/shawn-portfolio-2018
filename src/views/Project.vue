@@ -319,7 +319,7 @@ export default {
 		this.checkPhone();
 		this.startProject = this.$route.params.project;
 		this.show = true;
-		console.log( this.getBase );
+		// console.log( this.getBase );
 	},
 	watch: {
 		'$route'(to,from) {

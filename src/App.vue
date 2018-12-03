@@ -68,23 +68,23 @@
 		<footer :class="['footer']" >
 			<div :class="['footer-copy']" ><small>Shawn Naquin | Front-End Portfolio | &copy; {{ getDate }}</small></div>
 			<div :class="['footer-icons']">
-				<a href="#" :class="['footer-icon']" target="_blank">
+				<a href="#" :class="['footer-icon']" aria-label="Github" target="_blank">
 					<git />
 				</a>
 
-				<a href="#" :class="['footer-icon']" target="_blank">
+				<a href="#" :class="['footer-icon']" aria-label="LinkedIn" target="_blank">
 					<lin />
 				</a>
 
-				<a href="#" :class="['footer-icon']" target="_blank">
+				<a href="#" :class="['footer-icon']" aria-label="Youtube" target="_blank">
 					<you />
 				</a>
 
-				<a href="#" :class="['footer-icon']" target="_blank">
+				<a href="#" :class="['footer-icon']" aria-label="Behance" target="_blank">
 					<be  />
 				</a>
 
-				<a href="#" :class="['footer-icon']" target="_blank">
+				<a href="#" :class="['footer-icon']" aria-label="Email" target="_blank">
 					<mail />
 				</a>
 			</div>
@@ -427,13 +427,16 @@ ul {
 	padding-left: 0;
 }
 
+p {
+	color:black;
+}
+
 p a {
-	text-decoration: none;
-	color: darken(aqua, 25%);
+	color: Purple;
 	transition: color 100ms ease-out;
 	outline:none;
 	&:focus, &:active, &:hover {
-		color: Purple;
+		color: darken(Purple, 10%);
 		transition-timing-function: ease-in;
 	}
 }

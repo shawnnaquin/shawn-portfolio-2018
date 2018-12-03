@@ -1,7 +1,7 @@
 <template>
 	<div :class="['top', { ['sticky']: getSticky } ]">
 		<transition name="fade" appear>
-			<button :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]" v-if="!menuOpen" @click="toggleMenu()" >
+			<button aria-label="Menu" :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]" v-if="!menuOpen" @click="toggleMenu()" >
 				<hamburger/>
 			</button>
 		</transition>
@@ -53,7 +53,7 @@
 
 			<li>
 
-				<a href="#" target="_blank" @click="click()" >
+				<a href="https://github.com/shawnnaquin/" aria-label="Shawn's Github" target="_blank" @click="click()" >
 					<github/>&nbsp;<span :class="['external-span']" ><external/></span>
 				</a>
 
@@ -272,6 +272,9 @@ export default {
 		outline: none;
 		border:0;
 		transition: color 200ms ease-in;
+		&:focus {
+			border:1px solid Purple;
+		}
 		@media only screen and (min-width:630px) {
 			&:hover {
 				color: darken(aqua, 25%);
@@ -381,7 +384,6 @@ export default {
 		li {
 			button,a {
 				text-align:center;
-				height:100%;
 			}
 		}
 
