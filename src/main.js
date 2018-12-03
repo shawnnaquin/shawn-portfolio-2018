@@ -31,13 +31,13 @@ router.beforeEach( ( to, from, next ) => {
 	if ( !store.state.menuOpen && !from.params.image && !store.state.openContact ) {
 
 		const scrollTop = () => {
-		    const el = document.scrollingElement || document.documentElement;
-		    return el.scrollTop
+			const el = document.scrollingElement || document.documentElement;
+			return el.scrollTop
 		}
 
-	    store.commit('setLastScroll', {
-	        last: scrollTop()
-	    });
+		store.commit('setLastScroll', {
+			last: scrollTop()
+		});
 
 	}
 

@@ -14,24 +14,24 @@
 		<button :class="['external']" @click="goToPrevImage()" > &lt; </button>
 
 		<div
-			  :class="[ orientation, 'grid' ]"
+		  :class="[ orientation, 'grid' ]"
 		>
 
 
-  			<div
-  			>
+			<div
+			>
 
 			<transition :name="trans" mode="out-in" appear >
-	  			<picture-query
-		  			:key="image.path"
-		  			v-if="image"
-	  				:type="type"
-	  				:path="image.path"
-	  				:alt="image.alt ? image.alt : '' "
-	  				ref="image"
-	  			>
-	  				<p>{{image.caption}}</p>
-	  			</picture-query>
+				<picture-query
+					:key="image.path"
+					v-if="image"
+					:type="type"
+					:path="image.path"
+					:alt="image.alt ? image.alt : '' "
+					ref="image"
+				>
+					<p>{{image.caption}}</p>
+				</picture-query>
 			</transition>
 
 			</div>

@@ -60,7 +60,7 @@ export default {
 			window.removeEventListener('resize', this.d );
 			document.body.style.height = '';
 			document.ontouchmove = function (e) {
-			  return true;
+				return true;
 			}
 		}
 

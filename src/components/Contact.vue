@@ -18,19 +18,19 @@
 
 		<template v-for="(input,i) in inputs">
 
-		    <div :class="[
-		    	'div-input',
+			<div :class="[
+				'div-input',
 				{ [ 'error' ]: input.error },
 				{ [ 'focus' ]: input.focus },
 				{ [ 'fill'  ]: input.data  }
-		    ]">
+			]">
 
-		        <label :class="['label']" :for="input.id">
-		            <span> {{ input.label }} </span>
-		        </label>
+				<label :class="['label']" :for="input.id">
+					<span> {{ input.label }} </span>
+				</label>
 
-		        <input
-		        	:tabindex="input.tabIndex"
+				<input
+					:tabindex="input.tabIndex"
 					:ref="input.id"
 					:name="input.id"
 					@focus="focus"
@@ -42,15 +42,15 @@
 					:aria-label="input.label"
 					:pattern="input.pattern"
 					v-model="input.data"
-		        >
+				>
 
-		        <div :class="['top-label']" >
-		            <span>{{input.label}}</span>
-		        </div>
+				<div :class="['top-label']" >
+					<span>{{input.label}}</span>
+				</div>
 
-		        <div :class="['line']"></div>
+				<div :class="['line']"></div>
 
-		    </div>
+			</div>
 
 		</template>
 
@@ -71,9 +71,9 @@
 	</form>
 
 	<transition name="fade" mode="out-in" >
-	    <div v-if="errorMessage" :key="errorMessage" :class="[ 'error-message' ]">
-	        {{ errorMessage }}
-	    </div>
+		<div v-if="errorMessage" :key="errorMessage" :class="[ 'error-message' ]">
+			{{ errorMessage }}
+		</div>
 	</transition>
 
 	</div>
@@ -102,8 +102,8 @@ export default {
 	data() {
 		return {
 			showInterim: false,
-		    errorMessage: '',
-		    inputs: {
+			errorMessage: '',
+			inputs: {
 				name: {
 					'id': 'name',
 					'type': 'text',
@@ -148,12 +148,12 @@ export default {
 					'data': null,
 					'tabIndex': 4
 				}
-		    },
-		    formready: true,
-		    sending: false,
-		    success: false,
-		    error: false,
-		    submitText: 'Submit'
+			},
+			formready: true,
+			sending: false,
+			success: false,
+			error: false,
+			submitText: 'Submit'
 		}
 	},
 	beforeDestroy() {
@@ -260,21 +260,21 @@ export default {
 
 			let error = false;
 
-            let blurevt = new Event('blur');
+			let blurevt = new Event('blur');
 
-		    for (let v in this.inputs ) {
+			for (let v in this.inputs ) {
 
-	    		if ( document.querySelector(`input[name="${v}"]`) ) {
-			    	document.querySelector(`input[name="${v}"]`).dispatchEvent(blurevt);
-	    		}
+				if ( document.querySelector(`input[name="${v}"]`) ) {
+					document.querySelector(`input[name="${v}"]`).dispatchEvent(blurevt);
+				}
 
-		    	if ( this.inputs[v].error || !this.inputs[v].data.length ) {
-		    		error = true;
-		    	}
+				if ( this.inputs[v].error || !this.inputs[v].data.length ) {
+					error = true;
+				}
 
-		    }
+			}
 
-		    return !error;
+			return !error;
 
 		},
 
@@ -366,53 +366,53 @@ export default {
 
 			let input = this.getInputData( $input );
 
-		    let v = $input.validity;
-		    for (let error in v) {
-		      if ( error !== 'valid' && v[error] === true ) {
-		        input.error = true;
-		        if ( error == 'patternMismatch' || error == 'valueMissing' ) {
-		            this.errorMessage = 'Whoops, looks like something is missing!';
-		        } else {
-		            this.errorMessage = $input.validationMessage;
-		        }
-		        break;
+			let v = $input.validity;
+			for (let error in v) {
+			  if ( error !== 'valid' && v[error] === true ) {
+				input.error = true;
+				if ( error == 'patternMismatch' || error == 'valueMissing' ) {
+					this.errorMessage = 'Whoops, looks like something is missing!';
+				} else {
+					this.errorMessage = $input.validationMessage;
+				}
+				break;
 			  } else {
-		      	input.error = false;
-		        // can't null message here, since others may have an error
-		      }
-		    }
+				input.error = false;
+				// can't null message here, since others may have an error
+			  }
+			}
 
 		},
 
 		checkErrorMessage() {
 			let error = false;
-		    for (let e in this.inputs) {
-		        if ( this.inputs[e].error ) {
-		        	error = true;
-		        }
-		    }
-		    if ( !error ) {
-		    	this.errorMessage = null;
-		    }
+			for (let e in this.inputs) {
+				if ( this.inputs[e].error ) {
+					error = true;
+				}
+			}
+			if ( !error ) {
+				this.errorMessage = null;
+			}
 		},
 
 		resetForm() {
-            let blurevt = new Event('blur');
+			let blurevt = new Event('blur');
 
-		    for (let v in this.inputs ) {
-		    	this.inputs[v].data = null;
-		    	this.inputs[v].error = false;
-		    	this.inputs[v].focus = false;
-		    	if ( document.querySelector(`input[name="${v}"]`) ) {
-			    	document.querySelector(`input[name="${v}"]`).dispatchEvent(blurevt);
-		    	}
-		    }
+			for (let v in this.inputs ) {
+				this.inputs[v].data = null;
+				this.inputs[v].error = false;
+				this.inputs[v].focus = false;
+				if ( document.querySelector(`input[name="${v}"]`) ) {
+					document.querySelector(`input[name="${v}"]`).dispatchEvent(blurevt);
+				}
+			}
 
-		    this.success = false;
-		    this.error = false;
-		    this.formready = true;
-		    this.submitText = 'Submit';
-		    this.errorMessage = null;
+			this.success = false;
+			this.error = false;
+			this.formready = true;
+			this.submitText = 'Submit';
+			this.errorMessage = null;
 
 		}
 
@@ -523,16 +523,16 @@ export default {
 
 		&::after {
 			content: '';
-		    display: block;
-		    position: absolute;
-		    height: 1px;
-		    top: auto;
-		    bottom: 0;
-		    left: 0;
-		    height: 1px;
-		    width: 100%;
-		    background: rgba( black, 0.3);
-		    z-index: 3;
+			display: block;
+			position: absolute;
+			height: 1px;
+			top: auto;
+			bottom: 0;
+			left: 0;
+			height: 1px;
+			width: 100%;
+			background: rgba( black, 0.3);
+			z-index: 3;
 		}
 
 		&.focus {

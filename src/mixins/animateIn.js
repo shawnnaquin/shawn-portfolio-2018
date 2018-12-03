@@ -20,26 +20,26 @@ export default {
 
 		enter: function (el, done) {
 
-		  let delay = el.dataset.index * 200;
+			let delay = el.dataset.index * 200;
 
-		  setTimeout( () => {
+			setTimeout( () => {
 
-		  	let f = 0;
-		  	let fr = this.frame = requestAnimationFrame( t );
+			let f = 0;
+			let fr = this.frame = requestAnimationFrame( t );
 
-		  	function t() {
-		  		if ( el.style.opacity < 1 )  {
-		  			requestAnimationFrame( t );
-		  			el.style.opacity = f += 0.08;
-		  		} else {
-		  			cancelAnimationFrame( fr );
-		  			el.style.opacity = 1;
-		  			done;
-		  			return;
-		  		}
-		  	}
+			function t() {
+				if ( el.style.opacity < 1 )  {
+					requestAnimationFrame( t );
+					el.style.opacity = f += 0.08;
+				} else {
+					cancelAnimationFrame( fr );
+					el.style.opacity = 1;
+					done;
+					return;
+				}
+			}
 
-		  }, delay );
+			}, delay );
 
 		},
 
