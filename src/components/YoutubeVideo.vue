@@ -8,12 +8,14 @@
 
 			<div :class="[ 'frame' ]" >
 
-				<transition name="fade">
-				<div v-if="!playerReady" :class="['loader']" >
-					Loading <Loader :go="!playerReady" />
-					<div v-if="videoImg" :class="['sub-loader']"  :style="{ backgroundImage: getMainImage() }" ></div>
+
+				<div :class="['loader']" >
+					<transition name="fade">
+						<span v-if="!playerReady" >Loading <Loader :go="!playerReady" /> </span>
+					</transition>
+					<div :class="['sub-loader']"  :style="{ backgroundImage: getMainImage() }" ></div>
 				</div>
-				</transition>
+
 				<div id="player"> </div>
 
 			</div>

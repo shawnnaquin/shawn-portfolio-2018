@@ -4,19 +4,29 @@
 
 		<transition name="fade" mode="out-in" appear >
 			<h1 :key="type" class="push" v-if="type" >
-				{{ getTrueCaps(type) }} Projects
+
+				<b style="" v-if="!Object.keys(projects).length" >
+					Loading Projects
+				</b>
+
+				<b v-else>
+					{{ getTrueCaps(type) }} 
+					<b v-if="Object.keys(projects).length > 1" >Projects</b>
+					<b v-else >Project</b>
+				</b>
+
 				<transition name="fade" >
-					<span v-if="!projects" >
+					<span v-if="!Object.keys(projects).length" >
 						&hellip;
 					</span>
 				</transition>
 			</h1>
 		</transition>
 
-		<div style="position:relative;">
+		<div :style="{position:'relative',minHeight: '500px'}">
 
 			<transition :name=" 'fade' " appear >
-				<p :key="type" v-if="!projects" :class="[ 'loading' ]">LOADING <Loader :go=" ( !projects ) " /> </p>
+				<p :key="type" v-if="!Object.keys(projects).length" :class="[ 'loading' ]">LOADING <Loader :go=" ( !Object.keys(projects).length ) " /> </p>
 			</transition>
 
 			<transition name="fade" mode="out-in" v-on:afterEnter="pageAfterEnter" appear >
@@ -24,7 +34,13 @@
 				<div
 					:key="type"
 					v-if="projects"
-					:class="[ 'portfolio', direction  ]"
+					:class="[ 
+						'portfolio', 
+						direction, 
+						{ ['one']: Object.keys(projects).length === 1 },
+						{ ['two']: Object.keys(projects).length === 2 },
+						{ ['three']: Object.keys(projects).length === 3 } 
+					]"
 					ref="portfolio"
 				>
 
@@ -281,6 +297,32 @@
 
 		@media only screen and (max-height: 420px) {
 			grid-template-columns: repeat( auto-fill, minmax(180px, 1fr) );
+		}
+
+		@media only screen and (min-width: 1100px) {
+
+			&.one, &.two, &.three {
+				grid-template-columns: unset;
+				display:flex;
+				flex-wrap: wrap;
+				justify-content:center;
+				> a {
+					flex-basis: 30%;
+					max-width: 300px;
+					margin-left:1%;
+					margin-right:1%;
+				}
+			}
+
+			&.one {
+
+			}
+			&.two {
+
+			}
+			&.three {
+
+			}
 		}
 
 		&.fade-enter-active {

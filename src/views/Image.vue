@@ -422,17 +422,24 @@ export default {
 		// width: 40%;
 		max-width:180px;
 
+		@media only screen and (min-width: 1100px) {
+			@media only screen and ( min-height: 420px) {
+				max-width: 300px;
+				width: 25%;				
+			}
+
+		}
+
 		@media only screen and (max-height: 420px) {
 			width: 20%;
 		}
-		@media only screen and (min-width: 1100px) {
-			max-width: 300px;
-			width: 25%;
-		}
-		@media only screen and (min-width: 1500px) {
-			// max-width:500px;
-			width:30%;
-			max-width: 450px;
+
+		@media only screen and (min-width: 2000px) {
+			@media only screen and ( min-height: 420px) {
+				max-width:500px;
+				width:30%;
+				max-width: 450px;
+			}
 		}
 	}
 

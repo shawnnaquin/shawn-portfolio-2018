@@ -7,14 +7,25 @@
 	<article class="" v-if="show" >
 
 	  <transition name="fade" appear mode="out-in">
-
+	  	<div :style="{minHeight:'500px'}" v-if="!project" :class="['article-header']">
+		<div>
+		<h1>
+			Project Loading
+			<transition name="fade" >
+				<span v-if="!project">
+					&hellip;
+				</span>
+			</transition>
+		</h1>
+		</div>
 		<p
-		  v-if="!project"
 		  :class="[ 'loading' ]"
 		>
 			LOADING
 			<Loader :go=" !project " />
 		</p>
+		
+		</div>
 
 		<div v-else :class="[ 'article-header' ]" >
 
