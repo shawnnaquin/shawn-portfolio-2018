@@ -1,6 +1,6 @@
 <template>
 
-	<div :class="['main']">
+	<div :class="['main', {['open']: $store.state.openContact}]" :style="{height:height}" >
 
 	<div :class="['if-closed']">
 		<transition name="fade" appear>
@@ -163,7 +163,10 @@ export default {
 			if ( o ) {
 
 				this.keyPress();
-
+				this.forceNoTouchMove = false;
+				this.$nextTick(()=> {
+					this.heightTrigger = true;
+				});
 
 				let q = this.$route.query;
 
@@ -198,17 +201,26 @@ export default {
 				this.$set( this.inputs.email, 'data', getString(email) );
 				this.$set( this.inputs.message, 'data', getString(message) );
 
-				this.$nextTick(()=> {
-					this.$router.replace(this.$route.path);
-					document.querySelector( `input[name=${ Object.keys( this.inputs )[0] }]` ).focus();
-					document.querySelector( `input[name=${ Object.keys( this.inputs )[0] }]` ).select();
-				});
+				this.$router.replace(this.$route.path);
+				if ( window.innerWidth > 630 ) {
+					this.$nextTick(()=> {
+						let $i = document.querySelector( `input[name=${ Object.keys( this.inputs )[0] }]` );
+						$i.focus();
+						$i.select();
+						setTimeout(()=> {
+							$i.setSelectionRange(0,999);
+						}, 1 );
+					});
+				}
 
 				setTimeout(()=> {
 					this.$store.commit('toggleNoScroll');
 				}, 300 );
 
 			} else {
+
+				this.forceNoTouchMove = false;
+				this.heightTrigger = false;
 
 				if( this.success ) {
 					this.showInterim = true;
@@ -421,7 +433,6 @@ export default {
 <style lang="scss" scoped>
 
 .if-closed {
-	pointer-events: none;
 	position: fixed;
 	top:0;
 	left:0;
@@ -438,26 +449,31 @@ export default {
 
 .main {
 
-	position:fixed;
-	z-index:100;
-	top:0;
-	left:0;
+	position: absolute;
 
-}
-.flex-container {
-	position:fixed;
-	z-index:100;
 	top:0;
 	left:0;
-	right:0;
-	bottom:0;
+	z-index:2;
+	pointer-events:none;
+
+	&.open {
+		pointer-events:auto;
+		width:100%;
+	}
+}
+
+.flex-container {
+	position:absolute;
+	z-index:1;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-flow: column;
-	height:100%;
 	background: darken(white,2%);
-	z-index:1;
 	@media only screen and (max-height:375px) {
 		overflow-y: auto;
 		-webkit-overflow-scrolling: touch;
