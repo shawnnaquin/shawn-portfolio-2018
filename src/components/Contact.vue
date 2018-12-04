@@ -83,10 +83,13 @@
 </template>
 
 <script>
+
 import axios from 'axios';
 import close from '@/components/icons/close';
 import H from '@/mixins/height';
 import gRecaptcha from '@finpo/vue2-recaptcha-invisible';
+import validator from 'validator';
+import xssFilters from 'xss-filters';
 
 import { mapGetters } from 'vuex';
 
@@ -291,15 +294,26 @@ export default {
 
 				let bodyFormData = new FormData();
 
-				bodyFormData.append('name', this.inputs.name.data );
-				bodyFormData.append('email', this.inputs.email.data );
-				bodyFormData.append('subject', this.inputs.subject.data );
-				bodyFormData.append('message', this.inputs.message.data );
-				bodyFormData.append('token', token );
-				console.log('axios');
+				const getName = (name)=> {
+				    return validator.trim(
+				        validator.escape(
+				            xssFilters.inHTMLData(
+				                validator.blacklist( name, '\\[\\]')
+				            )
+				        )
+				    );
+
+				};
+
+				bodyFormData.append('name', getName( this.inputs.name.data ) );
+				bodyFormData.append('email', getName( this.inputs.email.data ) );
+				bodyFormData.append('subject', getName( this.inputs.subject.data ) );
+				bodyFormData.append('message', getName( this.inputs.message.data ) );
+				bodyFormData.append('token', getName( token ) );
+
 				axios({
 					method: 'POST',
-					url: 'http://localhost:5000/',
+					url: 'https://shawnnaquin.github.io/',
 					data: bodyFormData,
 					config:
 						{

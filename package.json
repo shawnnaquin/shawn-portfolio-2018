@@ -24,12 +24,14 @@
     "png-to-jpeg": "^1.0.1",
     "register-service-worker": "^1.0.0",
     "v-lazy-image": "^1.2.2",
+    "validator": "^10.9.0",
     "vue": "^2.5.17",
     "vue-analytics": "^5.16.1",
     "vue-router": "^3.0.1",
     "vue-scrollto": "^2.13.0",
     "vue2-hammer": "^2.1.2",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "xss-filters": "^1.2.7"
   },
   "devDependencies": {
     "@cypress/webpack-preprocessor": "^3.0.0",
