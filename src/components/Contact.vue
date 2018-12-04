@@ -313,7 +313,7 @@ export default {
 
 				axios({
 					method: 'POST',
-					url: 'https://shawnnaquin.github.io/',
+					url: 'https://shawns-contact-form.herokuapp.com/',
 					data: bodyFormData,
 					config:
 						{
