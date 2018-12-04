@@ -2,9 +2,9 @@
 
 	<div :class="['main', {['open']: $store.state.openContact}]" :style="{height:height}" >
 
-	<div :class="['if-closed']">
+	<div :class="['if-closed', { ['error']: error } ]">
 		<transition name="fade" appear>
-			<span v-if="showInterim">Message Sent!</span>
+			<span v-if="showInterim">{{interimMessage}}</span>
 		</transition>
 	</div>
 
@@ -102,6 +102,7 @@ export default {
 	data() {
 		return {
 			showInterim: false,
+			interimMessage: 'Message Sent!',
 			errorMessage: '',
 			inputs: {
 				name: {
@@ -149,10 +150,10 @@ export default {
 					'tabIndex': 4
 				}
 			},
+			error: false,
 			formready: true,
 			sending: false,
 			success: false,
-			error: false,
 			submitText: 'Submit'
 		}
 	},
@@ -295,10 +296,10 @@ export default {
 				bodyFormData.append('subject', this.inputs.subject.data );
 				bodyFormData.append('message', this.inputs.message.data );
 				bodyFormData.append('token', token );
-
+				console.log('axios');
 				axios({
 					method: 'POST',
-					url: 'https://shawns-contact-form.herokuapp.com/',
+					url: 'http://localhost:5000/',
 					data: bodyFormData,
 					config:
 						{
@@ -308,38 +309,19 @@ export default {
 						}
 				})
 				.then( (response) => {
-
-					this.submitText = 'Success!'
-					this.success = true;
-					this.sending = false;
-					this.showInterim = true;
-
-					setTimeout( ()=> {
-
-						setTimeout(()=> {
-							this.$store.commit('setOpenContact', false );
-							setTimeout( this.resetForm, 100 );
-						}, 500 );
-
-						setTimeout(()=> {
-							this.showInterim = false;
-						}, 2000 );
-
-					}, 1000 );
-
+					// console.log(response.data);
+					this.handleFormResponse();
 				})
-				.catch( (response) => {
-					this.error = true;
-					this.sending = false;
-					this.submitText = 'ERROR!';
-					setTimeout( this.resetForm, 1000 );
+				.catch( (error) => {
+					let e = error.response.data;
+					this.handleFormError( e.error, e.type )
 				});
 
 			} else {
 			  // if you use data-size show reCAPTCHA , maybe you will get empty token.
 			  // alert('please check you are not robot');
 			  // this.inputs.name.error = true;
-			  this.errorMessage = 'please check you are not robot';
+			this.handleFormError( 'please check you are not robot', 'recaptcha' );
 
 			}
 
@@ -396,6 +378,56 @@ export default {
 			}
 		},
 
+		handleFormResponse() {
+
+			this.submitText = 'Success!'
+			this.error = false;
+			this.success = true;
+			this.sending = false;
+			this.interimMessage = 'Message Sent!';
+			this.showInterim = true;
+
+			setTimeout( ()=> {
+
+				setTimeout(()=> {
+					this.$store.commit('setOpenContact', false );
+					setTimeout( this.resetForm, 100 );
+				}, 500 );
+
+				setTimeout(()=> {
+					this.showInterim = false;
+				}, 2000 );
+
+			}, 1000 );
+
+		},
+
+		handleFormError(err,type) {
+
+			this.interimMessage = 'ERROR SENDING!';
+			this.showInterim = true;
+			this.error = true;
+
+			setTimeout(()=> {
+				this.showInterim = false;
+				setTimeout( ()=> {
+					this.error = false;
+				}, 1000 );
+			}, 2000 );
+
+			this.success = false;
+			this.sending = false;
+			this.formready = true;
+			this.submitText = 'Submit';
+
+			this.errorMessage = err;
+
+			if ( Object.keys(this.inputs).includes(type) ) {
+				this.inputs[type].error = true;
+			}
+
+		},
+
 		resetForm() {
 			let blurevt = new Event('blur');
 
@@ -409,7 +441,6 @@ export default {
 			}
 
 			this.success = false;
-			this.error = false;
 			this.formready = true;
 			this.submitText = 'Submit';
 			this.errorMessage = null;
@@ -432,6 +463,10 @@ export default {
 </style>
 <style lang="scss" scoped>
 
+.form {
+	max-width:630px;
+}
+
 .if-closed {
 	position: fixed;
 	top:0;
@@ -445,6 +480,11 @@ export default {
 		color: white;
 		padding: 12px;
 	}
+	&.error {
+		span {
+			background: lighten(red,5%);
+		}
+	}
 }
 
 .main {
@@ -455,10 +495,10 @@ export default {
 	left:0;
 	z-index:2;
 	pointer-events:none;
+	width:100%;
 
 	&.open {
 		pointer-events:auto;
-		width:100%;
 	}
 }
 
