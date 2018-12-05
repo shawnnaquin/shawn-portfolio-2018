@@ -417,7 +417,7 @@ export default {
 }
 
 body {
-  display: none;
+  // display: none;
   width: 100%;
   box-sizing: border-box;
   margin: 0;
