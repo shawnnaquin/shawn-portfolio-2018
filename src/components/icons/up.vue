@@ -10,15 +10,15 @@
 </template>
 
 <style lang="scss" scoped >
-.cls-1{
-	fill: #231f20;
-	opacity: 0;
+.cls-1 {
+  fill: #231f20;
+  opacity: 0;
 }
-.cls-2{
-	fill: none;
-	stroke: #231f20;
-	stroke-linecap: round;
-	stroke-linejoin: round;
-	stroke-width: 5px;
+.cls-2 {
+  fill: none;
+  stroke: #231f20;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5px;
 }
-</style> 
+</style>

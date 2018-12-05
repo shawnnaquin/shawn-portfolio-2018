@@ -212,319 +212,319 @@
 </template>
 
 <script>
-
-import YoutubeVideo from '@/components/YoutubeVideo';
-import Picture from '@/components/Picture.vue';
+import YoutubeVideo from "@/components/YoutubeVideo";
+import Picture from "@/components/Picture.vue";
 
 import Loader from "@/components/Loader.vue";
-import external from '@/components/icons/external';
-import techList from '@/components/techList';
-import PhoneVert from '@/assets/ui/mobile.vert.png';
-import PhoneHoriz from '@/assets/ui/mobile.horiz.png';
+import external from "@/components/icons/external";
+import techList from "@/components/techList";
+import PhoneVert from "@/assets/ui/mobile.vert.png";
+import PhoneHoriz from "@/assets/ui/mobile.horiz.png";
 
-import animateIn from '@/mixins/animateIn';
-import projects from '@/mixins/projects';
+import animateIn from "@/mixins/animateIn";
+import projects from "@/mixins/projects";
 
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
+  return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
 export default {
+  components: {
+    Loader,
+    "picture-query": Picture,
+    "youtube-video": YoutubeVideo,
+    external,
+    techList
+  },
 
-	components: {
-		Loader,
-		'picture-query': Picture,
-		'youtube-video': YoutubeVideo,
-		external,
-		techList
-	},
+  mixins: [animateIn, projects],
+  computed: {
+    ...mapGetters({
+      getLoading: "getLoading",
+      mainTrans: "getTrans",
+      getSticky: "getSticky"
+    }),
+    getBase() {
+      return `${process.env.BASE_URL}img/portfolio/`;
+    },
+    getStartProjectKey() {
+      return Object.keys(this.projects).indexOf(this.startProject);
+    },
 
-	mixins: [ animateIn, projects ],
-	computed: {
+    projectNames() {
+      if (!this.projects) return;
+      return Object.keys(this.projects);
+    },
 
-		...mapGetters({
-			getLoading: 'getLoading',
-			mainTrans: 'getTrans',
-			getSticky: 'getSticky'
-		}),
-		getBase() {
-			return `${ process.env.BASE_URL }img/portfolio/`;
-		},
-		getStartProjectKey() {
-			return Object.keys( this.projects ).indexOf( this.startProject );
-		},
+    projectKey() {
+      if (!this.project) return;
+      let k = this.projectNames.indexOf(this.project.link);
+      return k;
+    },
 
-		projectNames() {
-			if ( !this.projects ) return;
-			return Object.keys(this.projects);
-		},
+    nextProjectKey() {
+      if (
+        this.projectKey === undefined ||
+        this.projectKey === null ||
+        this.projectKey === false
+      )
+        return;
 
-		projectKey() {
-			if ( !this.project ) return;
-			let k = this.projectNames.indexOf( this.project.link );
-			return k;
-		},
+      let k = (1 + this.projectKey) % this.projectNames.length;
+      return k;
+    },
 
-		nextProjectKey() {
+    nextProject() {
+      if (!this.projects) return;
+      return this.projects[this.projectNames[this.nextProjectKey]];
+    },
 
-			if ( this.projectKey === undefined || this.projectKey === null || this.projectKey === false ) return;
+    prevProjectKey() {
+      if (!this.projects) return;
+      let prev = this.projectKey - 1;
+      if (prev < 0) {
+        prev = this.projectNames.length - 1;
+      }
+      return prev;
+    },
 
-			let k = ( ( 1 + this.projectKey ) % this.projectNames.length );
-			return k;
+    prevProject() {
+      if (!this.projects) return;
+      return this.projects[this.projectNames[this.prevProjectKey]];
+    }
+  },
 
-		},
+  beforeRouteUpdate(to, from, next) {
+    if (!this.nextProject) {
+      next();
+    }
 
-		nextProject() {
-			if ( !this.projects ) return;
-			return this.projects[ this.projectNames[ this.nextProjectKey ] ];
-		},
+    if (to.params.project == this.nextProject.link) {
+      this.$store.commit("setTrans", { trans: `fade-right`, mode: "" });
+    } else {
+      this.$store.commit("setTrans", { trans: `fade-left`, mode: "" });
+    }
 
-		prevProjectKey() {
-			if ( !this.projects ) return;
-			let prev = this.projectKey - 1;
-			if ( prev < 0 ) {
-				prev = this.projectNames.length - 1;
-			}
-			return prev;
-		},
+    this.$nextTick(() => {
+      this.show = false;
+      next();
+    });
+  },
 
-		prevProject() {
-			if ( !this.projects ) return;
-			return this.projects[ this.projectNames[ this.prevProjectKey ] ];
-		}
+  data() {
+    return {
+      phoneHorizLoaded: false,
+      phoneVertLoaded: false,
+      show: false, // show the page
+      showBlurb: false,
+      direction: "",
+      title: ""
+    };
+  },
+  head: {
+    title: function() {
+      return {
+        inner: this.title.capitalize()
+      };
+    },
+    link: function() {
+      return [
+        {
+          rel: "canonical",
+          href: `https://shawnnaquin.github.io/${this.$route.params.type}/${
+            this.$route.params.project
+          }`,
+          id: "canonical"
+        }
+      ];
+    }
+  },
+  mounted() {
+    this.checkPhone();
+    this.startProject = this.$route.params.project;
+    this.show = true;
+    // console.log( this.getBase );
+  },
+  watch: {
+    project(p) {
+      if (p) {
+        this.title = p.title;
+        this.$emit("updateHead");
+      }
+    },
+    "$store.state.projects"() {
+      if (!this.projectNames.includes(this.$route.params.project)) {
+        this.$router.replace(`/${this.$route.params.type}`);
+      }
+    }
+  },
+  methods: {
+    pageEnter(el, done) {
+      if (this.$store.state.resetScroll) {
+        document.body.style.height =
+          this.$store.state.lastScroll + window.innerHeight + "px";
+        this.$scrollTo(":root", 100, { offset: this.$store.state.lastScroll });
+      } else {
+        this.$scrollTo(":root", 100);
+      }
 
-	},
+      setTimeout(() => {
+        this.showBlurb = true;
+        document.body.style.height = "";
+        done();
+      }, 100);
+    },
 
-	beforeRouteUpdate(to,from,next) {
+    pageAfterLeave() {
+      this.show = true;
+    },
 
-		if ( !this.nextProject ) {
-			next();
-		}
+    checkPhone() {
+      let imgVert = new Image();
+      imgVert.src = PhoneVert;
+      imgVert.onload = () => {
+        this.phoneVertLoaded = true;
+        return;
+      };
 
-		if ( to.params.project == this.nextProject.link ) {
-			this.$store.commit('setTrans', {trans: `fade-right`, mode: '' } );
-		} else {
-			this.$store.commit('setTrans', {trans: `fade-left`, mode: '' } );
-		}
-
-
-		this.$nextTick( ()=> {
-			this.show = false;
-			next();
-		});
-
-
-	},
-
-	data() {
-		return {
-			phoneHorizLoaded: false,
-			phoneVertLoaded: false,
-			show: false, // show the page
-			showBlurb: false,
-			direction: '',
-			title: ''
-		}
-	},
-	head: {
-		title: function() {
-			return {
-			  inner: this.title.capitalize()
-			}
-		},
-		link: function() { return [
-		  { rel: 'canonical', href: `https://shawnnaquin.github.io/${this.$route.params.type}/${this.$route.params.project}`, id: 'canonical' },
-		]}
-	},
-	mounted() {
-		this.checkPhone();
-		this.startProject = this.$route.params.project;
-		this.show = true;
-		// console.log( this.getBase );
-	},
-	watch: {
-		'$route'(to,from) {
-		},
-		'project'(p){
-			if (p){
-				this.title = p.title;
-				this.$emit('updateHead');
-			}
-		},
-		'$store.state.projects'(p) {
-			if ( !this.projectNames.includes(this.$route.params.project ) ) {
-				this.$router.replace(`/${this.$route.params.type}`);
-			}
-		}
-	},
-	methods: {
-		pageEnter(el,done)	 {
-
-			if ( this.$store.state.resetScroll ) {
-				document.body.style.height = this.$store.state.lastScroll + window.innerHeight + 'px';
-				this.$scrollTo( ':root', 100, { offset: this.$store.state.lastScroll }  );
-			} else {
-				this.$scrollTo( ':root', 100 );
-			}
-
-			setTimeout(()=> {
-				this.showBlurb = true;
-				document.body.style.height = '';
-				done();
-			}, 100 )
-
-		},
-
- 		pageAfterLeave(el) {
-			this.show = true;
-		},
-
-		checkPhone() {
-			let imgVert = new Image();
-			imgVert.src = PhoneVert;
-			imgVert.onload = () => {
-				this.phoneVertLoaded = true;
-				return;
-			};
-
-			let imgHoriz = new Image();
-			imgHoriz.src = PhoneHoriz;
-			imgHoriz.onload = () => {
-				this.phoneHorizLoaded = true;
-				return;
-			}
-
-		}
-	}
-
+      let imgHoriz = new Image();
+      imgHoriz.src = PhoneHoriz;
+      imgHoriz.onload = () => {
+        this.phoneHorizLoaded = true;
+        return;
+      };
+    }
+  }
 };
-
 </script>
 
 <style lang="scss" scoped >
-
 .loading {
-	margin-top:112px;
+  margin-top: 112px;
 }
 
 .link {
-	display: block;
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	border:1px solid transparent;
-	transition: border 100ms ease;
-	&:focus {
-		border:1px solid Purple;
-		outline:0;
-	}
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid transparent;
+  transition: border 100ms ease;
+  &:focus {
+    border: 1px solid Purple;
+    outline: 0;
+  }
 }
 
 h1 {
-	// font-size:32px;
+  // font-size:32px;
 }
 h3 {
-		// margin-bottom:65px;
-	}
+  // margin-bottom:65px;
+}
 
-	.built-with {
-		margin-top:0;
-		transform:translateY(-5px);
-		padding-top: 24px;
-	}
+.built-with {
+  margin-top: 0;
+  transform: translateY(-5px);
+  padding-top: 24px;
+}
 
-	.image-container {
-		align-self: normal;
-		> .grid {
-			&.horiz {
-				@media only screen and (max-width:630px) {
-					> div {
-						display:none;
-					}
-				}
-			}
-			&:not(.horiz) {
-				> div {
-					@media only screen and (max-width:630px) {
-						display:none;
-						&:nth-child(1), &:nth-child(2) {
-							display:block;
-						}
-					}
-					// @media only screen and (min-width:630px) {
-						// display:block;
-					// }
-				}
-			}
-		}
-	}
+.image-container {
+  align-self: normal;
+  > .grid {
+    &.horiz {
+      @media only screen and (max-width: 630px) {
+        > div {
+          display: none;
+        }
+      }
+    }
+    &:not(.horiz) {
+      > div {
+        @media only screen and (max-width: 630px) {
+          display: none;
+          &:nth-child(1),
+          &:nth-child(2) {
+            display: block;
+          }
+        }
+        // @media only screen and (min-width:630px) {
+        // display:block;
+        // }
+      }
+    }
+  }
+}
 
-	.grid.mobile, .grid.horiz {
-		.link {
-			border-radius:30px;
-		}
-	}
+.grid.mobile,
+.grid.horiz {
+  .link {
+    border-radius: 30px;
+  }
+}
 
-	.images {
-		line-height: 0;
-		column-count: 5;
-		column-gap: 0;
-		column-count: 3;
-	}
-	img {
-		width: 100% !important;
-		height: auto !important;
-	}
+.images {
+  line-height: 0;
+  column-count: 5;
+  column-gap: 0;
+  column-count: 3;
+}
+img {
+  width: 100% !important;
+  height: auto !important;
+}
 
-	article {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding:0 10%;
+article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 10%;
 
-		@media only screen and (max-width:1100px) {
-			text-align:left;
-		}
-	}
+  @media only screen and (max-width: 1100px) {
+    text-align: left;
+  }
+}
 
-	.article-header {
-		padding-bottom: 5%;
-		width:100%;
-		margin-top:48px;
-		&.no-padding {
-			padding-bottom:0;
-		}
-		.buttons {
-			h1,h2,h3,h4 {
-				margin-top:0;
-			}
-			a,button {
-				margin-top:32px;
-				font-size:18px;
-				margin-bottom:12px;
-			}
-		}
-	}
-	.description {
-		display:inline-block;
-		column-count:1;
-		text-align:center;
-		font-size:18px;
-		line-height:1.4;
-		text-align:left;
-		max-width:600px;
-		@media only screen and (min-width:630px) {
-			column-count:1;
-		}
+.article-header {
+  padding-bottom: 5%;
+  width: 100%;
+  margin-top: 48px;
+  &.no-padding {
+    padding-bottom: 0;
+  }
+  .buttons {
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin-top: 0;
+    }
+    a,
+    button {
+      margin-top: 32px;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+  }
+}
+.description {
+  display: inline-block;
+  column-count: 1;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.4;
+  text-align: left;
+  max-width: 600px;
+  @media only screen and (min-width: 630px) {
+    column-count: 1;
+  }
 
-		// @media only screen and (min-width:1100px) {
-		// 	column-count:3;
-		// }
-
-	}
-
-	</style>
+  // @media only screen and (min-width:1100px) {
+  // 	column-count:3;
+  // }
+}
+</style>

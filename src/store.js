@@ -1,167 +1,150 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import axios from 'axios';
-import router from '@/router';
+import axios from "axios";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  state: {
+    projects: {},
+    lastRoute: "/",
+    openContact: false,
+    loading: true,
+    menuOpen: false,
+    noScroll: false,
+    lastScroll: 0,
+    types: ["marketing", "interactive", "website"],
+    sticky: false,
+    resetScroll: false,
+    mainTrans: {
+      trans: "fade-up",
+      mode: ""
+    }
+  },
 
-	state: {
+  getters: {
+    getSticky: state => state.sticky,
 
-		projects: {},
-		lastRoute: '/',
-		openContact: false,
-		loading: true,
-		menuOpen: false,
-		noScroll: false,
-		lastScroll: 0,
-		types: [ 'marketing', 'interactive', 'website' ],
-		sticky: false,
-		resetScroll: false,
-		mainTrans: {
-			trans: 'fade-up',
-			mode: ''
-		},
-	},
+    getProject: state => p => {
+      if (!state.projects[p.name]) {
+        return false;
+      } else if (p.name && p.project) {
+        return state.projects[p.name][p.project];
+      } else {
+        return state.projects[p.name];
+      }
+    },
 
-	getters: {
+    getLoading: state => state.loading,
 
-		getSticky: state => state.sticky,
+    getMenuOpen: state => state.menuOpen,
+    getTrans: state => state.mainTrans,
+    getTypes: state => state.types,
+    getResetScroll: state => state.resetScroll,
+    getOpenContact: state => state.openContact,
+    getLastRoute: state => state.lastRoute
+  },
 
-		getProject: state => (p) => {
-			if ( !state.projects[ p.name ] ) {
-				return false;
-			} else if ( p.name && p.project ) {
-				return state.projects[ p.name ][ p.project ];
-			} else {
-				return state.projects[ p.name ]
-			}
-		},
+  mutations: {
+    setLastRoute(state, p) {
+      state.lastRoute = p;
+    },
+    setResetScroll(state, p) {
+      state.resetScroll = p;
+    },
+    setOpenContact(state, p) {
+      state.openContact = p;
+    },
+    loading(state) {
+      state.loading = state.loading === true ? !state.loading : state.loading;
+    },
+    setSticky(state, s) {
+      state.sticky = s;
+    },
+    addProject(state, payload) {
+      Vue.set(state.projects, payload.name, payload.response.data);
+    },
 
-		getLoading: state => state.loading,
+    toggleMenu(state) {
+      state.menuOpen = !state.menuOpen;
+    },
 
-		getMenuOpen: state => state.menuOpen,
-		getTrans: state => state.mainTrans,
-		getTypes: state => state.types,
-		getResetScroll: state => state.resetScroll,
-		getOpenContact: state => state.openContact,
-		getLastRoute: state => state.lastRoute
-	},
+    toggleNoScroll(state) {
+      state.noScroll = !state.noScroll;
+    },
 
-	mutations: {
+    setLastScroll(state, p) {
+      state.lastScroll = p.last;
+    },
 
-		setLastRoute(state,p) {
-			state.lastRoute = p;
-		},
-		setResetScroll(state,p) {
-			state.resetScroll = p;
-		},
-		setOpenContact(state,p) {
-			state.openContact = p;
-		},
-		loading(state) {
-			state.loading = state.loading === true ? !state.loading : state.loading;
-		},
-		setSticky(state, s) {
-			state.sticky = s;
-		},
-		addProject(state, payload) {
-			Vue.set( state.projects, payload.name, payload.response.data);
-		},
+    setTrans(state, p = { trans: "fade-up", mode: "" }) {
+      state.mainTrans = p;
+    },
 
-		toggleMenu(state) {
-			state.menuOpen = !state.menuOpen;
-		},
+    setProjects(state, p) {
+      state.projects = p;
+    }
+  },
 
-		toggleNoScroll(state) {
-			state.noScroll = !state.noScroll;
-		},
+  actions: {
+    setToggleMenu({ commit, state }) {
+      const scrollTop = () => {
+        const el = document.scrollingElement || document.documentElement;
+        return el.scrollTop;
+      };
 
-		setLastScroll(state, p) {
-			state.lastScroll = p.last;
-		},
+      commit("toggleMenu");
 
-		setTrans(state, p = { trans: 'fade-up', mode: '' } ) {
-			state.mainTrans = p;
-		},
+      setTimeout(() => {
+        if (!state.noScroll) {
+          commit("setLastScroll", {
+            last: scrollTop()
+          });
+        }
 
-		setProjects(state,p) {
-			state.projects = p;
-		}
+        commit("toggleNoScroll");
+      }, state.menuOpen ? 150 : 0); // roughly the menu animate time
+    },
 
-	},
+    setLoading(context) {
+      context.commit("loading");
+    },
 
-	actions: {
+    async setProjectsExec({ commit, state, dispatch }, name) {
+      if (!state.types.includes(name)) {
+        dispatch("setAllProjects");
+        return;
+      } else {
+        try {
+          const response = await axios.get(
+            `${process.env.BASE_URL}json/${name}.json`
+          );
 
-		setToggleMenu( {context,commit,dispatch,state} ) {
-			const scrollTop = () => {
-				const el = document.scrollingElement || document.documentElement;
-				return el.scrollTop
-			}
+          if (state.loading) {
+            commit("addProject", { name: name, response: response });
+            commit("loading");
+          } else {
+            commit("addProject", { name: name, response: response });
+          }
+        } catch (error) {
+          dispatch("setAllProjects");
+          // throw error;
+        }
+      }
+    },
 
-			commit( 'toggleMenu' );
+    setProjects({ state, dispatch }, name) {
+      if (!state.projects[name]) {
+        dispatch("setProjectsExec", name);
+      }
+    },
 
-			setTimeout(()=> {
-
-				if ( !state.noScroll ) {
-					commit('setLastScroll', {
-						last: scrollTop()
-					});
-				}
-
-				commit('toggleNoScroll');
-
-			}, state.menuOpen ? 150 : 0 ); // roughly the menu animate time
-
-		},
-
-		setLoading(context) {
-			context.commit( 'loading' );
-		},
-
-		async setProjectsExec( {context,commit,state,dispatch}, name ) {
-
-			if ( !state.types.includes(name) ) {
-				dispatch('setAllProjects');
-				return;
-			} else {
-				try {
-
-					const response = await axios.get( `${process.env.BASE_URL}json/${name}.json` );
-
-					if ( state.loading ) {
-						commit('addProject', {'name': name, 'response': response } )
-						commit('loading');
-					} else {
-						commit('addProject', {'name': name, 'response': response } )
-					}
-
-				} catch (error) {
-					dispatch('setAllProjects');
-					// throw error;
-				}
-			}
-
-		},
-
-		setProjects( {context,commit,state,dispatch}, name ) {
-			if( !state.projects[name] ) {
-				dispatch('setProjectsExec', name );
-			}
-		},
-
-		setAllProjects( {context,commit,state,dispatch} ) {
-
-			for( let t in state.types ) {
-				if ( !state.projects[ state.types[t] ] ) {
-					dispatch('setProjectsExec', state.types[t] );
-				}
-			}
-
-		}
-
-	} // actions
-
-
+    setAllProjects({ state, dispatch }) {
+      for (let t in state.types) {
+        if (!state.projects[state.types[t]]) {
+          dispatch("setProjectsExec", state.types[t]);
+        }
+      }
+    }
+  } // actions
 });

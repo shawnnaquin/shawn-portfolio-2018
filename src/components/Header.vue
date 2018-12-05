@@ -28,82 +28,86 @@
 </template>
 
 <script>
+import YoutubeVideo from "@/components/YoutubeVideo";
 
-	import YoutubeVideo from '@/components/YoutubeVideo';
+export default {
+  props: ["loaded"],
 
-	export default {
+  data() {
+    return {
+      monthNames: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ]
+    };
+  },
 
-		props: ['loaded'],
+  components: {
+    "youtube-video": YoutubeVideo
+  },
 
-		data() {
-			return {
-				monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
-			}
-		},
-
-		components: {
-			'youtube-video': YoutubeVideo
-		},
-
-		computed: {
-			getDate() {
-				let d = new Date();
-				return `${ this.monthNames[ d.getMonth() ] } ${ d.getFullYear() }`;
-			},
-			isHome() {
-				return this.$route.name == 'home' || this.$route.name == 'contact';
-			}
-		}
-
-	};
-
+  computed: {
+    getDate() {
+      let d = new Date();
+      return `${this.monthNames[d.getMonth()]} ${d.getFullYear()}`;
+    },
+    isHome() {
+      return this.$route.name == "home" || this.$route.name == "contact";
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
+.video {
+  width: 55%;
+  float: none;
+  margin: 0 auto;
+}
 
-	.video {
-		width:55%;
-		float:none;
-		margin: 0 auto;
-	}
+header {
+  perspective: 1100px;
+  perspective-origin: center;
+}
 
-	header {
-		perspective: 1100px;
-		perspective-origin: center;
-	}
+.heading {
+  margin-bottom: 32px;
+  margin-top: 72.5px;
+  text-align: center;
+  h1 {
+    text-align: center;
+    margin-bottom: 0;
+  }
+}
 
-	.heading {
-		margin-bottom: 32px;
-		margin-top: 72.5px;
-		text-align:center;
-		h1 {
-			text-align:center;
-			margin-bottom:0;
-		}
-	}
+h1 span::before {
+  content: "// ";
+  color: lighten(black, 75%);
+}
 
-	h1 span::before {
-		content:'// ';
-		color: lighten( black, 75% );
-	}
+@media only screen and (max-width: 630px) {
+  .video {
+    width: 90%;
+  }
 
-	@media only screen and (max-width:630px) {
+  h1 span {
+    display: block;
+    font-size: 1rem;
+    color: lighten(black, 25%);
 
-		.video {
-			width:90%;
-		}
-
-		h1 span {
-			display:block;
-			font-size:1rem;
-			color: lighten( black, 25% );
-
-			&::before {
-				content:none;
-			}
-
-		}
-
-	}
-
+    &::before {
+      content: none;
+    }
+  }
+}
 </style>

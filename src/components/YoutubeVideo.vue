@@ -28,243 +28,236 @@
 import Loader from "@/components/Loader.vue";
 
 export default {
-	components: {
-		Loader
-	},
-	props: {
-		videoImg: {
-			required: false,
-			type: String
-		},
-		videoId: {
-			required: true,
-			type: String
-		}
-	},
+  components: {
+    Loader
+  },
+  props: {
+    videoImg: {
+      required: false,
+      type: String
+    },
+    videoId: {
+      required: true,
+      type: String
+    }
+  },
 
-	data() {
-		return {
-			done: false,
-			stuck: false,
-			mousein: false,
-			observer: null,
-			playerReady: false
-		}
-	},
+  data() {
+    return {
+      done: false,
+      stuck: false,
+      mousein: false,
+      observer: null,
+      playerReady: false
+    };
+  },
 
-	mounted() {
+  mounted() {
+    this.createScript();
+  },
 
-		this.createScript();
+  watch: {
+    $route(r) {
+      if (r.params.image && window.YTPlayer.getPlayerState() != 2) {
+        window.YTPlayer.pauseVideo();
+        this.stuck = false;
+      }
+    }
+  },
 
-	},
+  beforeDestroy() {
+    if (!this.observer) return;
+    this.observer.unobserve(this.$refs.player);
+  },
 
-	watch: {
-		'$route'(r) {
-			if ( r.params.image && window.YTPlayer.getPlayerState() != 2 ) {
-				window.YTPlayer.pauseVideo();
-				this.stuck = false;
-			}
-		}
-	},
+  methods: {
+    mouseenter() {
+      this.stuck = true;
+      this.mousein = true;
+    },
 
-	beforeDestroy() {
-		if ( !this.observer ) return;
-		this.observer.unobserve( this.$refs.player );
-	},
+    mouseleave() {
+      this.mousein = false;
 
-	methods: {
+      if (!window.YTPlayer || !window.YTPlayer.getPlayerState) return;
 
-		mouseenter() {
-			this.stuck = true;
-			this.mousein = true;
-		},
+      if (
+        window.YTPlayer.getPlayerState() != 1 &&
+        window.YTPlayer.getPlayerState() != 3
+      ) {
+        this.stuck = false;
+      }
+    },
 
-		mouseleave() {
-			this.mousein = false;
+    onPlayerReady() {
+      this.playerReady = true;
+      // console.log('ready');
+    },
 
-			if ( !window.YTPlayer || !window.YTPlayer.getPlayerState ) return;
+    onPlayerStateChange(event) {
+      // -1 (unstarted)
+      // 0 (ended)
+      // 1 (playing)
+      // 2 (paused)
+      // 3 (buffering)
+      // 5 (video cued)
+      if (event.data == -1) {
+        // console.log('!');
+      }
+      if (event.data == 0) {
+        window.YTPlayer.seekTo(0, true);
+        window.YTPlayer.pauseVideo();
+        if (!this.mousein) {
+          this.stuck = false;
+        }
+      }
+    },
+    getMainImage() {
+      if (!this.videoImg) {
+        return "none";
+      }
 
-			if ( window.YTPlayer.getPlayerState() != 1 && window.YTPlayer.getPlayerState() != 3 ) {
-				this.stuck = false;
-			}
+      let width = window.innerWidth;
+      let size = "-lg_1x.jpg";
+      let image = this.videoImg;
 
-		},
+      if (width < 900) {
+        size = "-sm_1x.jpg";
+      } else if (width >= 900) {
+        size = "-md_1x.jpg";
+      } else {
+        size = "-lg_1x.jpg";
+      }
 
-		onPlayerReady(event) {
-			this.playerReady = true;
-			// console.log('ready');
-		},
+      return `url( ${image}${size}`;
+    },
+    createScript() {
+      const tag = document.createElement("script");
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      tag.src = "https://www.youtube.com/iframe_api";
+      tag.id = "youtube";
 
-		onPlayerStateChange(event) {
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-			// -1 (unstarted)
-			// 0 (ended)
-			// 1 (playing)
-			// 2 (paused)
-			// 3 (buffering)
-			// 5 (video cued)
-			if ( event.data == -1 ) {
-				// console.log('!');
-			}
-			if ( event.data == 0 ) {
-				window.YTPlayer.seekTo( 0, true);
-				window.YTPlayer.pauseVideo();
-				if ( !this.mousein ) {
-					this.stuck = false;
-				}
-			}
+      window.onYouTubeIframeAPIReady = () => {
+        this.createPlayer();
+      };
 
-		},
-		getMainImage() {
+      if (window.YT) {
+        this.createPlayer();
+      }
+    },
 
-			if( !this.videoImg ) {
-				return 'none';
-			}
+    createPlayer() {
+      window.YTPlayer = new window.YT.Player("player", {
+        videoId: this.videoId,
+        playerVars: {
+          rel: 0,
+          origin: "https://shawnnaquin.github.io",
+          width: "100%",
+          height: "100%",
+          showinfo: 0,
+          ecver: 2,
+          autoplay: 0,
+          controls: 1,
+          color: "white",
+          modestbranding: 1,
+          enablejsapi: 1
+        },
+        events: {
+          onReady: this.onPlayerReady,
+          onStateChange: this.onPlayerStateChange
+        }
+      });
 
-			let width = window.innerWidth;
-			let size = '-lg_1x.jpg';
-			let image = this.videoImg;
+      this.observer = new IntersectionObserver(entry => {
+        entry.forEach(e => {
+          if (
+            e.intersectionRatio <= 0 &&
+            window.YTPlayer &&
+            window.YTPlayer.pauseVideo
+          ) {
+            window.YTPlayer.pauseVideo();
+          }
+        });
+      });
 
-			if ( width < 900 ) {
-				size = '-sm_1x.jpg';
-			} else if ( width >= 900 ) {
-				size = '-md_1x.jpg';
-			} else {
-				size = '-lg_1x.jpg';
-			}
-			
-			return `url( ${ image }${ size }`;				
-
-		},
-		createScript() {
-
-			const tag = document.createElement('script');
-			const firstScriptTag = document.getElementsByTagName('script')[0];
-			tag.src = "https://www.youtube.com/iframe_api";
-			tag.id = "youtube";
-
-			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-			window.onYouTubeIframeAPIReady = () => {
-				this.createPlayer();
-			}
-
-			if( window.YT ) {
-				this.createPlayer();
-			}
-
-		},
-
-		createPlayer() {
-			window.YTPlayer = new YT.Player( 'player', {
-							videoId: this.videoId,
-							playerVars: {
-								'rel': 0,
-								'origin': 'https://shawnnaquin.github.io',
-								'width': '100%',
-								'height': '100%',
-								'showinfo': 0,
-								'ecver': 2,
-								'autoplay': 0,
-								'controls': 1,
-								'color': 'white',
-								'modestbranding': 1,
-								'enablejsapi': 1
-							},
-							events: {
-								'onReady': this.onPlayerReady,
-								'onStateChange': this.onPlayerStateChange
-							}
-						});
-
-			this.observer = new IntersectionObserver( entry => {
-				entry.forEach( (e) =>  {
-
-				    if ( e.intersectionRatio <= 0 && window.YTPlayer && window.YTPlayer.pauseVideo ) {
-						window.YTPlayer.pauseVideo();
-				    }
-
-				});
-			});
-
-			this.observer.observe( this.$refs.player );
-		}
-
-	}
-
+      this.observer.observe(this.$refs.player);
+    }
+  }
 };
 </script>
 <style lang="scss">
-	.frame {
-	  display:block;
-		position:absolute;
-		left:0;
-		top:0;
-	  width:100%;
-	  height:100%;
-	  transform: scale(.98) rotateY(0) translate3d(0,0,0);
-	  transition: transform 200ms ease;
-	  > div, iframe {
-	  	position: absolute;
-	  	top: 0px;
-	  	left: 0px;
-	  	width: 100%;
-	  	height: 100%;
-	  }
-	}
+.frame {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(0.98) rotateY(0) translate3d(0, 0, 0);
+  transition: transform 200ms ease;
+  > div,
+  iframe {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+  }
+}
 
-	.frame:hover, .frame:active, .frame:focus,
-	.stuck .frame {
-		left:0;
-		transform: scale(1) rotateY(0deg) translate3d(0,0,0);
-	}
+.frame:hover,
+.frame:active,
+.frame:focus,
+.stuck .frame {
+  left: 0;
+  transform: scale(1) rotateY(0deg) translate3d(0, 0, 0);
+}
 </style>
 
 <style lang="scss" scoped >
-
 .loader {
-	z-index: 1;
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	z-index:0;
-	font-weight:bold;
-	text-align:center;
-	.sub-loader {
-		position:absolute;
-		top:0;
-		left:0;
-		width:100%;
-		height:100%;
-		background-size:cover;
-		background-position:center;
-		filter:blur(10px);
-		z-index:-1;
-	}
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 0;
+  font-weight: bold;
+  text-align: center;
+  .sub-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(10px);
+    z-index: -1;
+  }
 }
 
 @keyframes blurIn {
-	100% {
-		filter: blur(0px);
-		opacity:1;
-	}
+  100% {
+    filter: blur(0px);
+    opacity: 1;
+  }
 }
-	.player {
-		opacity:0;
-		filter: blur(10px);
-		animation-name: blurIn;
-		animation-duration: 200ms;
-		animation-fill-mode: forwards;
-		animation-timing-function: ease-in;
-		animation-delay: 300ms;
-	}
-	.player {
-		position:relative;
-		perspective: 200px;
-		perspective-origin: 50% 50%;
-		padding-bottom: 56.25%;
-		margin-top:32px;
-	}
-
+.player {
+  opacity: 0;
+  filter: blur(10px);
+  animation-name: blurIn;
+  animation-duration: 200ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+  animation-delay: 300ms;
+}
+.player {
+  position: relative;
+  perspective: 200px;
+  perspective-origin: 50% 50%;
+  padding-bottom: 56.25%;
+  margin-top: 32px;
+}
 </style>
-

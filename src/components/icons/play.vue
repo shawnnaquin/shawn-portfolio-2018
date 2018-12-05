@@ -5,7 +5,7 @@
 </template>
 
 <style lang="scss" scoped >
-	.white {
-		fill: white;
-	}
+.white {
+  fill: white;
+}
 </style>

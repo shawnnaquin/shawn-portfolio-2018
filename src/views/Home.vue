@@ -37,77 +37,78 @@
 <script>
 import Header from "@/components/Header.vue";
 import Nav from "@/components/Nav.vue";
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-	name: "home",
-	components: {
-		Header,
-		Nav
-	},
-	head: {
-		title: function() {
-			return {
-			  inner: 'Home'
-			}
-		},
-		link: function() { return [
-		  { rel: 'canonical', href: `https://shawnnaquin.github.io/}`, id: 'canonical' },
-		]}
-	},
-	computed: {
-		...mapGetters([
-			'getLoading'
-		])
-	},
-	mounted(){
-		setTimeout( ()=> {
-			this.$store.dispatch('setLoading');
-		}, 1000 );
-	}
+  name: "home",
+  components: {
+    Header,
+    Nav
+  },
+  head: {
+    title: function() {
+      return {
+        inner: "Home"
+      };
+    },
+    link: function() {
+      return [
+        {
+          rel: "canonical",
+          href: `https://shawnnaquin.github.io/}`,
+          id: "canonical"
+        }
+      ];
+    }
+  },
+  computed: {
+    ...mapGetters(["getLoading"])
+  },
+  mounted() {
+    setTimeout(() => {
+      this.$store.dispatch("setLoading");
+    }, 1000);
+  }
 };
-
 </script>
 <style lang="scss" scoped>
+h2 {
+  width: 100%;
+  margin: 2rem auto;
+  margin-bottom: 3rem;
+  margin-top: 0;
+  display: block;
+}
 
-	h2 {
-		width:100%;
-		margin:2rem auto;
-		margin-bottom:3rem;
-		margin-top:0;
-		display:block;
-	}
+.flex-on-em {
+  // display: flex;
+  justify-content: center;
+  background: darken(white, 3%);
+  margin: 2rem auto;
+  padding: 2rem;
+  max-width: 800px;
 
-	.flex-on-em {
-		// display: flex;
-		justify-content: center;
-		background:darken( white, 3%);
-		margin:2rem auto;
-		padding:2rem;
-		max-width: 800px;
+  .external {
+    margin-bottom: 0;
+    margin-top: 0;
+    background: transparent;
+  }
+  > div {
+    margin: 0 auto;
+    flex-wrap: wrap;
 
-		.external {
-			margin-bottom:0;
-			margin-top:0;
-			background:transparent;
-		}
-		> div {
-		margin: 0 auto;
-		flex-wrap: wrap;
-
-		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-		display:grid;
-		justify-items: center;
-		> div {
-			max-width: 250px;
-			margin-bottom:1rem;
-		}
-
-		}
-	}
-	.external {
-		display:inline-block;
-		margin-top: 32px;
-		margin-bottom:64px;
-	}
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    display: grid;
+    justify-items: center;
+    > div {
+      max-width: 250px;
+      margin-bottom: 1rem;
+    }
+  }
+}
+.external {
+  display: inline-block;
+  margin-top: 32px;
+  margin-bottom: 64px;
+}
 </style>

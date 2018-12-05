@@ -45,7 +45,7 @@
 				>
 
 					<router-link
-						v-for="(p,i) in projects"
+						v-for="p in projects"
 						:to="`/${ getType( p.link ) }/${p.link}`"
 						:class="[ 'link', p.link ]"
 						:style="{ 'transitionDelay': String( ( getIndex(p.link) ) * 50 ) + 'ms' }"
@@ -97,328 +97,313 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import Loader from "@/components/Loader.vue";
+import Picture from "@/components/Picture.vue";
+import animateIn from "@/mixins/animateIn";
+import projects from "@/mixins/projects";
 
-	import { mapGetters } from 'vuex';
-	import Loader from "@/components/Loader.vue";
-	import Picture from '@/components/Picture.vue';
-	import animateIn from '@/mixins/animateIn';
-	import projects from '@/mixins/projects';
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+};
 
-	String.prototype.capitalize = function() {
-	    return this.charAt(0).toUpperCase() + this.slice(1);
-	};
+export default {
+  components: {
+    Loader,
+    "picture-query": Picture
+  },
 
-	export default {
+  data() {
+    return {
+      direction: "",
+      showButtons: false
+    };
+  },
 
-		components: {
-			Loader,
-			'picture-query': Picture,
-		},
+  head: {
+    title: function() {
+      return {
+        inner: (this.type || "").capitalize()
+      };
+    },
+    link: function() {
+      return [
+        {
+          rel: "canonical",
+          href: `https://shawnnaquin.github.io/${this.$route.params.type}`,
+          id: "canonical"
+        }
+      ];
+    }
+  },
+  computed: {
+    ...mapGetters({
+      getLoading: "getLoading",
+      types: "getTypes",
+      getTrans: "getTrans"
+    }),
 
-		data() {
-			return {
-				direction: '',
-				showButtons: false
-			}
-		},
+    typeKey() {
+      let n = this.types.indexOf(this.$route.params.type);
 
-		head: {
-			title: function() {
-				return {
-				  inner: (this.type || '').capitalize()
-				}
-			},
-			link: function() { return [
-			  { rel: 'canonical', href: `https://shawnnaquin.github.io/${this.$route.params.type}`, id: 'canonical' },
-			]}
-		},
-		computed: {
+      if (n === -1) {
+        n = 0;
+      }
 
-			...mapGetters({
-				getLoading: 'getLoading',
-				types: 'getTypes',
-				getTrans: 'getTrans'
-			}),
+      return n;
+    },
 
-			typeKey() {
-				let n = this.types.indexOf( this.$route.params.type );
+    nextTypeKey() {
+      return (1 + this.typeKey) % this.types.length;
+    },
 
-				if ( n === -1 ) {
-					n = 0;
-				}
+    prevTypeKey() {
+      let k = this.typeKey - 1;
+      if (k < 0) {
+        k = this.types.length - 1;
+      }
+      return k;
+    },
 
-				return n;
+    prevType() {
+      return this.types[this.prevTypeKey];
+    },
 
-			},
+    nextType() {
+      return this.types[this.nextTypeKey];
+    }
+  },
 
-			nextTypeKey() {
-				return ( 1 + this.typeKey ) % this.types.length;
-			},
+  beforeRouteUpdate(to, from, next) {
+    // called when the route that renders this component is about to
+    // be navigated away from.
+    // has access to `this` component instance.
 
-			prevTypeKey() {
-				let k = this.typeKey - 1;
-				if ( k < 0 ) {
-					k = this.types.length - 1;
-				}
-				return k;
-			},
+    // this.$refs.portfolio.children.style.opacity = 0;
 
-			prevType() {
-				return this.types[this.prevTypeKey];
-			},
+    // let t = 0;
 
-			nextType() {
-				return this.types[this.nextTypeKey];
-			}
+    // for (let c of this.$refs.portfolio.children ) {
 
-		},
+    // 	c.style.transition = 'opacity 200ms ease-out';
+    // 	c.style.transitionDelay = (t*50)+'ms';
 
-		beforeRouteUpdate(to,from,next) {
-		  // called when the route that renders this component is about to
-		  // be navigated away from.
-		  // has access to `this` component instance.
+    // 	if ( c.getAttribute('data-name') != to.params.project ) {
+    // 		c.style.opacity = 0;
+    // 	}
 
-		  // this.$refs.portfolio.children.style.opacity = 0;
+    // 	t++;
 
-		  // let t = 0;
+    // }
+    this.showButtons = false;
 
-		  // for (let c of this.$refs.portfolio.children ) {
+    // setTimeout( ()=> {
+    next();
+    // }, ( t * 50 ) + 100 );
+  },
 
-		  // 	c.style.transition = 'opacity 200ms ease-out';
-		  // 	c.style.transitionDelay = (t*50)+'ms';
+  beforeRouteLeave(to, from, next) {
+    // called when the route that renders this component is about to
+    // be navigated away from.
+    // has access to `this` component instance.
 
-		  // 	if ( c.getAttribute('data-name') != to.params.project ) {
-		  // 		c.style.opacity = 0;
-		  // 	}
+    // this.$refs.portfolio.children.style.opacity = 0;
+    this.direction = "";
+    this.showButtons = false;
+    let t = 0;
 
-		  // 	t++;
+    for (let c of this.$refs.portfolio.children) {
+      c.style.transition = "opacity 200ms ease-out";
+      c.style.transitionDelay = t * 50 + "ms";
 
-		  // }
-		  this.showButtons = false;
+      if (c.getAttribute("data-name") != to.params.project) {
+        c.style.opacity = 0;
+      }
 
-		  // setTimeout( ()=> {
-		  	next(); 
-		  // }, ( t * 50 ) + 100 );
+      t++;
+    }
+    setTimeout(() => {
+      next();
+    }, t * 50 + 100);
+  },
 
+  mixins: [animateIn, projects],
 
-		},
+  mounted() {
+    this.showButtons = true;
+  },
 
-		beforeRouteLeave (to, from, next) {
-		  // called when the route that renders this component is about to
-		  // be navigated away from.
-		  // has access to `this` component instance.
+  watch: {
+    $route(to) {
+      this.setProjects(to.params.type);
+    },
+    type(t) {
+      if (t) {
+        this.$emit("updateHead");
+      }
+    },
+    projects() {
+      let k = this.typeKey - 1;
+      // console.log(this.typeKey);
+      if (k < 0) {
+        k = this.types.length - 1;
+      }
+      // console.log(k);
+    }
+  },
 
-		  // this.$refs.portfolio.children.style.opacity = 0;
-		  this.direction = '';
-		  this.showButtons = false;
-		  let t = 0;
+  methods: {
+    pageAfterEnter() {
+      this.direction = "";
+      this.showButtons = true;
+      this.$scrollTo(":root");
+    },
 
-		  for (let c of this.$refs.portfolio.children ) {
+    getTrueCaps(type) {
+      if (!Object.keys(this.projects).length) return;
 
-		  	c.style.transition = 'opacity 200ms ease-out';
-		  	c.style.transitionDelay = (t*50)+'ms';
+      let t = this.projects[Object.keys(this.projects)[0]].content["techList"];
+      let n = null;
 
-		  	if ( c.getAttribute('data-name') != to.params.project ) {
-		  		c.style.opacity = 0;
-		  	}
+      for (let i = 0; i < t.length; i++) {
+        if (type.toLocaleLowerCase() == t[i].toLocaleLowerCase()) {
+          return (n = t[i]);
+        }
+      }
 
-		  	t++;
+      if (n === null) {
+        return type;
+      }
+    },
 
-		  }
-		  setTimeout( ()=> {
-		  	next(); 
-		  }, ( t * 50 ) + 100 );
+    setDirection(d) {
+      this.direction = d;
+      return;
+    },
 
-		},
-
-		mixins: [ animateIn, projects ],
-
-		mounted() {
-
-				this.showButtons = true;
-		},
-
-		watch: {
-			'$route'(to,from) {
-				this.setProjects(to.params.type);
-			},
-			'type'(t) {
-				if ( t) {
-					this.$emit('updateHead');
-				}
-			},
-			'projects'(p) {
-				let k = this.typeKey - 1;
-				// console.log(this.typeKey);
-				if ( k < 0 ) {
-					k = this.types.length - 1;
-				}
-				// console.log(k);
-			}
-		},
-
-		methods: {
-
-			pageAfterEnter(el) {
-				this.direction = '';
-				this.showButtons = true;
-				this.$scrollTo(':root');
-			},
-
-			getTrueCaps(type) {
-
-				if ( !Object.keys(this.projects).length ) return;
-
-				let t = this.projects[ Object.keys( this.projects )[0] ].content['techList'];
-				let n = null;
-
-				for ( let i = 0; i < t.length; i++ ) {
-					if ( type.toLocaleLowerCase() == t[i].toLocaleLowerCase() ) {
-						return n = t[i];
-						break;
-					}
-				}
-
-				if ( n === null ) {
-					return type;
-				}
-
-			},
-
-			setDirection(d) {
-				this.direction = d;
-				return;
-			},
-
-			getIndex(name) {
-				return Object.keys( this.projects ).indexOf( name );
-			}
-		}
-
-	};
-
+    getIndex(name) {
+      return Object.keys(this.projects).indexOf(name);
+    }
+  }
+};
 </script>
 
 <style lang="scss" >
-	.portfolio {
-
-	}
+.portfolio {
+}
 </style>
 
 <style lang="scss" scoped>
-	.buttons {
-		margin: 48px auto;
-		margin-bottom:64px;
-	}
-	.portfolio {
+.buttons {
+  margin: 48px auto;
+  margin-bottom: 64px;
+}
+.portfolio {
+  padding: 0 10%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 2rem;
 
-		padding: 0 10%;
-  		display: grid;
-		grid-template-columns: repeat( auto-fill, minmax(250px, 1fr) );
-		grid-gap: 2rem;
+  @media only screen and (max-height: 420px) {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
 
+  @media only screen and (min-width: 1100px) {
+    &.one,
+    &.two,
+    &.three {
+      grid-template-columns: unset;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      > a {
+        flex-basis: 30%;
+        max-width: 300px;
+        margin-left: 1%;
+        margin-right: 1%;
+      }
+    }
 
-		@media only screen and (max-height: 420px) {
-			grid-template-columns: repeat( auto-fill, minmax(180px, 1fr) );
-		}
+    &.one {
+    }
+    &.two {
+    }
+    &.three {
+    }
+  }
 
-		@media only screen and (min-width: 1100px) {
+  &.fade-enter-active {
+    transition-delay: 0s;
+  }
 
-			&.one, &.two, &.three {
-				grid-template-columns: unset;
-				display:flex;
-				flex-wrap: wrap;
-				justify-content:center;
-				> a {
-					flex-basis: 30%;
-					max-width: 300px;
-					margin-left:1%;
-					margin-right:1%;
-				}
-			}
+  &.fade-leave-active {
+    transition-delay: 300ms;
+  }
 
-			&.one {
+  &.fade-leave-active,
+  &.fade-enter-active {
+    > a {
+      transition: transform 200ms ease;
+      transition-property: opacity, transform;
+    }
+  }
 
-			}
-			&.two {
+  &.fade-enter,
+  &.fade-leave-to {
+    > a {
+      opacity: 0;
+    }
+  }
 
-			}
-			&.three {
+  &.left.fade-enter,
+  &.left.fade-leave-to {
+    > a {
+      transform: translateX(100%);
+    }
+  }
 
-			}
-		}
+  &.right.fade-leave-to,
+  &.right.fade-enter {
+    > a {
+      transform: translateX(-100%);
+    }
+  }
+}
 
-		&.fade-enter-active {
-			transition-delay:0s;
-		} 
+h1 {
+  text-align: left;
+  margin-top: 74.5px;
+  max-width: 75%;
+  @media only screen and (max-width: 630px) {
+    font-size: 24px;
+  }
+}
 
-		&.fade-leave-active {
-			transition-delay: 300ms;
-		}
+h1,
+.loading {
+  text-transform: capitalize;
+  display: inline-block;
+  width: auto;
+  position: relative;
+  span {
+    position: absolute;
+    right: -16px;
+    bottom: 0px;
+  }
+}
+h2 {
+  font-size: 1.25rem;
+}
+.loading {
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-		&.fade-leave-active, &.fade-enter-active {
-			> a {
-				transition: transform 200ms ease;
-				transition-property: opacity,transform;
-			}
-		}
-
-		&.fade-enter, &.fade-leave-to {
-			> a {
-				opacity:0;
-			}
-		}
-
-		&.left.fade-enter, &.left.fade-leave-to {
-			> a {
-				transform: translateX(100%);
-			}
-
-		}
-
-		&.right.fade-leave-to, &.right.fade-enter {
-			> a {
-				transform: translateX(-100%);
-
-			}
-		}
-
-
-	}
-
-	h1 {
-		text-align:left;
-		margin-top:74.5px;
-		max-width:75%;
-		@media only screen and (max-width:630px) {
-			font-size:24px;
-		}
-	}
-
-	h1, .loading {
-		text-transform:capitalize;
-		display:inline-block;
-		width:auto;
-		position:relative;
-		span {
-			position: absolute;
-			right: -16px;
-			bottom: 0px;
-		}
-	}
-	h2 {
-		font-size:1.25rem
-	}
-	.loading {
-		display:block;
-		position:absolute;
-		left:50%;
-		transform:translateX(-50%);
-	}
-
-	h1 span {
-		right: -36px;
-	}
+h1 span {
+  right: -36px;
+}
 
 /*
 router-link
@@ -430,49 +415,50 @@ router-link
 			h2
 			p
 */
-	a {
-		text-decoration: none;
-		text-align:left;
-		border:1px solid rgba(black, 0.1);
-		color:black;
+a {
+  text-decoration: none;
+  text-align: left;
+  border: 1px solid rgba(black, 0.1);
+  color: black;
 
-		&:active, &:visited, &:focus {
-			color: black;
-		}
-		&:focus {
-			border:0;
-			outline:0;
-			border:1px solid Purple;
-		}
-		@media only screen and (min-width:630px) {
-			&:hover {
-				border-color:rgba(black, 0.4);
-				border-size:2;
-			}
-		}
-	}
+  &:active,
+  &:visited,
+  &:focus {
+    color: black;
+  }
+  &:focus {
+    border: 0;
+    outline: 0;
+    border: 1px solid Purple;
+  }
+  @media only screen and (min-width: 630px) {
+    &:hover {
+      border-color: rgba(black, 0.4);
+      border-size: 2;
+    }
+  }
+}
 
-	.link {
-		display: flex;
-		flex-flow: wrap;
-		align-content: space-between;
-	}
+.link {
+  display: flex;
+  flex-flow: wrap;
+  align-content: space-between;
+}
 
-	.image {
-		position:relative;
-		width:100%;
-		padding-bottom:50%;
-		@media only screen and (min-width: 630px) {
-			padding-bottom:120%;
-		}
-	}
+.image {
+  position: relative;
+  width: 100%;
+  padding-bottom: 50%;
+  @media only screen and (min-width: 630px) {
+    padding-bottom: 120%;
+  }
+}
 
-	.main-description {
-		margin: 8px auto;
-		padding-left:16px;
-		padding-right: 16px;
-		padding-bottom: 16px;
-		font-size:16px;
-	}
-
+.main-description {
+  margin: 8px auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  font-size: 16px;
+}
 </style>
