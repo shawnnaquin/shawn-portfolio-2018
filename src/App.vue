@@ -386,6 +386,7 @@ export default {
 }
 
 .paragraph {
+	color:white;
 	margin: 0 auto;
 }
 

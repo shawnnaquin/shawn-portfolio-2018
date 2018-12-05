@@ -315,13 +315,14 @@ export default {
 			phoneVertLoaded: false,
 			show: false, // show the page
 			showBlurb: false,
-			direction: ''
+			direction: '',
+			title: ''
 		}
 	},
 	head: {
 		title: function() {
 			return {
-			  inner: (this.project.title || '').capitalize()
+			  inner: this.title.capitalize()
 			}
 		},
 		link: function() { return [
@@ -339,6 +340,7 @@ export default {
 		},
 		'project'(p){
 			if (p){
+				this.title = p.title;
 				this.$emit('updateHead');
 			}
 		},
