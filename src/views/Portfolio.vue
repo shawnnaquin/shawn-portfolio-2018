@@ -50,6 +50,9 @@
 						:class="[ 'link', p.link ]"
 						:style="{ 'transitionDelay': String( ( getIndex(p.link) ) * 50 ) + 'ms' }"
 						:data-name="p.link"
+						:name="p.title"
+						:aria-label="p.title"
+						:title="p.title"
 					>
 						<div :class="[ 'main-description' ]" >
 							<h3>{{ p.title }}</h3>
@@ -77,11 +80,11 @@
 		<transition name="fade" appear>
 			<div :class="['buttons']" v-if="showButtons" :key="showButtons" >
 
-				<router-link :to="`/${prevType}`" @click.native="setDirection('left')" :class="['external']">
+				<router-link :name="prevType"  :aria-label="prevType"  :title="prevType" :to="`/${prevType}`" @click.native="setDirection('left')" :class="['external']">
 					&lt;
 				</router-link>
 
-				<router-link :to="`/${nextType}`" @click.native="setDirection('right')" :class="['external']">
+				<router-link :name="nextType"  :aria-label="nextType"  :title="nextType" :to="`/${nextType}`" @click.native="setDirection('right')" :class="['external']">
 					&gt;
 				</router-link>
 
@@ -408,10 +411,6 @@
 		position:absolute;
 		left:50%;
 		transform:translateX(-50%);
-		@media only screen and (max-width:1100px) {
-			left:10%;
-			transform:translateX(0);
-		}
 	}
 
 	h1 span {

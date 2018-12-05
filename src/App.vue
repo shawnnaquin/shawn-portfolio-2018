@@ -39,10 +39,10 @@
 		<aside :class="[ 'aside' ]" >
 
 			<div :class="['footer-buttons']" >
-				<button @click="openContact(true)" :class="['external']">Resumé</button>
-				<button @click="openContact(false)" :class="['external']">Contact</button>
-				<router-link v-if="$route.name != 'tech' " :class="['external']" to="/tech" >Technology List</router-link>
-				<router-link v-else :class="['external']" to="/marketing" >More Work</router-link>
+				<button name="Resumé" aria-label="Resumé" title="Resumé" @click="openContact(true)" :class="['external']">Resumé</button>
+				<button name="Contact" aria-label="Contact" title="Contact" @click="openContact(false)" :class="['external']">Contact</button>
+				<router-link name="Technology List" aria-label="Technology List" title="Technology List" v-if="$route.name != 'tech' " :class="['external']" to="/tech" >Technology List</router-link>
+				<router-link name="More Work" aria-label="More Work" title="More Work" v-else :class="['external']" to="/marketing" >More Work</router-link>
 			</div>
 
 			<div :class="['footer-about']" >
@@ -52,11 +52,11 @@
 					Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects. More of his work can be found on Github. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility.
 
 					<span v-if="$route.name != 'tech' " >
-						Click below for <router-link to="/tech"> a complete list</router-link>
+						Click below for <router-link name="Technology List" aria-label="Technology List" title="Technology List" to="/tech"> a complete list</router-link>
 						of all technologies used in this portfolio!
 					</span>
 					<span v-else >
-						Click below to see <router-link to="/marketing">more work</router-link> from Shawn's portfolio.
+						Click below to see <router-link name="Marketing" aria-label="Marketing" title="Marketing" to="/marketing">more work</router-link> from Shawn's portfolio.
 					</span>
 
 				</p>
@@ -68,23 +68,23 @@
 		<footer :class="['footer']" >
 			<div :class="['footer-copy']" ><small>Shawn Naquin | Front-End Portfolio | &copy; {{ getDate }}</small></div>
 			<div :class="['footer-icons']">
-				<a href="#" :class="['footer-icon']" aria-label="Github" target="_blank">
+				<a href="#" name="Github" aria-label="Github" title="Github" :class="['footer-icon']" target="_blank">
 					<git />
 				</a>
 
-				<a href="#" :class="['footer-icon']" aria-label="LinkedIn" target="_blank">
+				<a href="#" name="LinkedIn" aria-label="LinkedIn" title="LinkedIn" :class="['footer-icon']" target="_blank">
 					<lin />
 				</a>
 
-				<a href="#" :class="['footer-icon']" aria-label="Youtube" target="_blank">
+				<a href="#" name="Youtube" aria-label="Youtube" title="Youtube" :class="['footer-icon']" target="_blank">
 					<you />
 				</a>
 
-				<a href="#" :class="['footer-icon']" aria-label="Behance" target="_blank">
+				<a href="#" name="Behance" aria-label="Behance" title="Behance" :class="['footer-icon']" target="_blank">
 					<be  />
 				</a>
 
-				<a href="#" :class="['footer-icon']" aria-label="Email" target="_blank">
+				<a href="#" name="Email" aria-label="Email" title="Email" :class="['footer-icon']" target="_blank">
 					<mail />
 				</a>
 			</div>

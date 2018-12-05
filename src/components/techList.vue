@@ -2,7 +2,7 @@
 	<ul :class="[ 'tech-list' ]" >
 		<template v-for="t in techList" >
 			<li :class="[ 'tech-item' ]" >
-				<router-link :class="[ 'external', 'tech-link' ]" :to="`/${ getProjectLink(t) }`" >{{ t }}</router-link>
+				<router-link :name="t" :aria-label="t" :title="t" :class="[ 'external', 'tech-link' ]" :to="`/${ getProjectLink(t) }`" >{{ t }}</router-link>
 			</li>
 		</template>
 	</ul>

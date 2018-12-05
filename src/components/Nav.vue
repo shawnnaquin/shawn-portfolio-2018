@@ -27,33 +27,33 @@
 			<transition name="fade">
 
 				<li v-if="$route.name !== 'home' && $route.name !== 'contact' " >
-					<button  :class="[ { [ 'is-active' ]: isActive('/')} ]" @click="click('/')" >Home</button>
+					<router-link to="/"  name="Home" aria-label="Home" title="Home" :class="[ { [ 'is-active' ]: isActive('/')} ]" @click="click('/')" >Home</router-link>
 				</li>
 
 			</transition>
 
 			<li >
 
-				<button  :class="[ { [ 'is-active' ]: isActive('/marketing')} ]" @click="click('/marketing')" >Marketing</button>
+				<router-link to="/marketing"  name="Marketing" aria-label="Marketing" title="Marketing" :class="[ { [ 'is-active' ]: isActive('/marketing')} ]" @click="click('/marketing')" >Marketing</router-link>
 
 			</li>
 
 			<li >
 
-				<button :class="[ { [ 'is-active' ]: isActive('/interactive')} ]"  @click="click('/interactive')" >Interactive / 3D</button>
+				<router-link to="/interactive" name="Interactive / 3D" aria-label="Interactive / 3D" title="Interactive / 3D" :class="[ { [ 'is-active' ]: isActive('/interactive')} ]"  @click="click('/interactive')" >Interactive / 3D</router-link>
 
 			</li>
 
 			<li>
 
-				<button :class="[ { [ 'is-active' ]: isActive('/website')} ]"  @click="click('/website')" >Website</button>
+				<router-link to="/website" name="Website" aria-label="Website" title="Website" :class="[ { [ 'is-active' ]: isActive('/website')} ]"  @click="click('/website')" >Website</router-link>
 
 			</li>
 
 
 			<li>
 
-				<a href="https://github.com/shawnnaquin/" rel="noopener" aria-label="Shawn's Github" target="_blank" @click="click()" >
+				<a href="https://github.com/shawnnaquin/" rel="noopener" name="Shawn's Github" title="Shawn's Github" aria-label="Shawn's Github" target="_blank" @click="click()" >
 					<github/>&nbsp;<span :class="['external-span']" ><external/></span>
 				</a>
 
@@ -176,15 +176,9 @@ export default {
 		},
 
 		click(path) {
-
-			if ( path && path != this.$route.path ) {
-				this.$router.push( path );
-			} else if ( !path || path == this.$route.path ) {
+			if ( !path || path == this.$route.path ) {
 				this.setScrollAndToggle();
-			} else {
-				console.log("!");
 			}
-
 		},
 
 		keyPress() {

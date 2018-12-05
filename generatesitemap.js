@@ -12,8 +12,8 @@ for( let type in types ) {
 		all.push({
 			path: type,
 			priority: '0.8',
-			changefreq: 'weekly',
-			lastmod: '2018-11-30'
+			changefreq: 'dailly',
+			lastmod: '2018-12-05'
 		});
 	}
 
@@ -26,8 +26,8 @@ for( let type in types ) {
 				all.push({
 					path: type + '/' + key,
 					priority: '0.6',
-					changefreq: 'weekly',
-					lastmod: '2018-11-30'
+					changefreq: 'daily',
+					lastmod: '2018-12-05'
 				});
 			}
 
@@ -37,8 +37,8 @@ for( let type in types ) {
 						all.push({
 							path: type + '/' + key + '/' + image.path,
 							priority: '0.4',
-							changefreq: 'weekly',
-							lastmod: '2018-11-30'
+							changefreq: 'monthly',
+							lastmod: '2018-12-05'
 						});
 					}
 				});
@@ -54,8 +54,8 @@ let t = builder.create('urlset', { encoding: 'utf-8' })
 	.att('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9')
 	t.ele('url')
 	    .ele('loc', 'https://shawnnaquin.github.io/' ).up()
-	    .ele('lastmod', '2018-11-30' ).up()
-		.ele('changefreq', 'monthly' ).up()
+	    .ele('lastmod', '2018-12-05' ).up()
+		.ele('changefreq', 'daily' ).up()
 		.ele('priority', '1.0' ).up()
 	.up();
 

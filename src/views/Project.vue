@@ -40,7 +40,7 @@
 
 			<div v-if="project && ( project.content.code || project.content.externalSite )" class="buttons" >
 
-				<a :href="project.content.externalSite" v-if="project.content.externalSite" target="_blank" :class="[ 'external' ]" > Live Site <span :class="['external-span']"><external/></span> </a>
+				<a ref="noopener" :href="project.content.externalSite" v-if="project.content.externalSite" target="_blank" :class="[ 'external' ]" > Live Site <span :class="['external-span']"><external/></span> </a>
 				&nbsp;
 
 				<a :href="project.content.code" ref="noopener" v-if="project.content.code" target="_blank" :class="[ 'external' ]" >
@@ -84,6 +84,9 @@
 			>
 
 				<router-link
+					:name="image.path"
+					:arial-label="image.path"
+					:title="image.path"
 				  :to=" `/${type}/${project.link}/${image.path}`"
 				  :class="['link']"
 				>
@@ -123,6 +126,9 @@
 				<router-link
 				  :to=" `/${type}/${project.link}/${image.path}`"
 				  :class="['link']"
+				  :name="image.path"
+				  :arial-label="image.path"
+				  :title="image.path"
 				>
 					<picture-query
 					  :type=" type "
@@ -161,6 +167,9 @@
 				<router-link
 				  :to=" `/${type}/${project.link}/${image.path}`"
 				  :class="['link']"
+				  :name="image.path"
+				  :arial-label="image.path"
+				  :title="image.path"
 				>
 					<picture-query
 					  :type=" type "
@@ -184,11 +193,11 @@
 
 			<div class="buttons" >
 
-				<router-link :to="`/${type}/${ prevProject.link }`" :class="['external']">
+				<router-link :name="prevProject.title" :aria-label="prevProject.title" :title="prevProject.title" :to="`/${type}/${ prevProject.link }`" :class="['external']">
 					&lt;
 				</router-link>
 
-				<router-link :to="`/${type}/${ nextProject.link }`" :class="['external']">
+				<router-link :name="nextProject.title" :aria-label="nextProject.title" :title="nextProject.title" :to="`/${type}/${ nextProject.link }`" :class="['external']">
 					 &gt;
 				</router-link>
 

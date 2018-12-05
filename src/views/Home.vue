@@ -1,7 +1,7 @@
 <template>
 
 	<div :class="['home', 'push', 'max-width' ]">
-		<router-link to="/website" :class="['external']" >
+		<router-link name="Website" aria-label="Website" title="Website" to="/website" :class="['external']" >
 			View More
 		</router-link>
 	</div>
