@@ -53,6 +53,7 @@
 						:name="p.title"
 						:aria-label="p.title"
 						:title="p.title"
+						:key="p.link"
 					>
 						<div :class="[ 'main-description' ]" >
 							<h2>{{ p.title }}</h2>

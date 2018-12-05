@@ -232,7 +232,7 @@ export default {
 <style lang="scss" scoped>
 
 	.trackback {
-	// background:green;
+	background:green;
 		// position: absolute;
 		// top: 3rem;
 		// width: 100%;
@@ -512,7 +512,7 @@ export default {
 			opacity:0;
 			transform: translate3d(-100%,-25%,0);
 			transition: transform 200ms ease-out;
-			transition-property: transform, filter, opacity;
+			// transition-property: transform, filter, opacity;
 			transition-delay: 100ms, 0s, 60ms;
 			overflow-y: auto;
 			-webkit-overflow-scrolling: touch;
