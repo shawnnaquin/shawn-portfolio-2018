@@ -7,7 +7,7 @@
     "removeImages": "./removeImages.sh",
     "beforebuild": "grunt && npm run removeImages && node ./portfolioqueries.js",
     "serve": "vue-cli-service serve",
-    "build": "mv dist/.git .gitl && vue-cli-service build && mv .gitl dist/.git",
+    "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --fix",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"
@@ -21,6 +21,7 @@
     "imagemin": "^6.0.0",
     "intersection-observer": "^0.5.1",
     "lodash": "^4.17.11",
+    "mini-css-extract-plugin": "^0.4.5",
     "png-to-jpeg": "^1.0.1",
     "register-service-worker": "^1.0.0",
     "v-lazy-image": "^1.2.2",
@@ -48,6 +49,7 @@
     "node-sass": "^4.10.0",
     "responsive-loader": "^1.1.0",
     "sass-loader": "^7.0.1",
+    "vue-cli-plugin-critical": "^1.1.0",
     "vue-template-compiler": "^2.5.17"
   }
 }
