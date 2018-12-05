@@ -1,3 +1,10 @@
 module.exports = {
-  baseUrl: "/"
+  baseUrl: "/",
+  lintOnSave: undefined,
+  pluginOptions: {
+         critical: {
+             width: 375,
+             height: 565
+         }
+     }
 };
