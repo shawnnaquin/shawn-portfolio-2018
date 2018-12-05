@@ -43,7 +43,7 @@
 				<a :href="project.content.externalSite" v-if="project.content.externalSite" target="_blank" :class="[ 'external' ]" > Live Site <span :class="['external-span']"><external/></span> </a>
 				&nbsp;
 
-				<a :href="project.content.code" v-if="project.content.code" target="_blank" :class="[ 'external' ]" >
+				<a :href="project.content.code" ref="noopener" v-if="project.content.code" target="_blank" :class="[ 'external' ]" >
 					//code
 				</a>
 

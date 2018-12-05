@@ -53,7 +53,7 @@
 
 			<li>
 
-				<a href="https://github.com/shawnnaquin/" aria-label="Shawn's Github" target="_blank" @click="click()" >
+				<a href="https://github.com/shawnnaquin/" rel="noopener" aria-label="Shawn's Github" target="_blank" @click="click()" >
 					<github/>&nbsp;<span :class="['external-span']" ><external/></span>
 				</a>
 
