@@ -14,7 +14,7 @@ export default {
     techList: {
       required: true,
       type: Array,
-      default: ()=>[]
+      default: () => []
     }
   },
   methods: {
