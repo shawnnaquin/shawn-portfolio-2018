@@ -121,24 +121,63 @@
           itemprop="itemListElement"
           itemscope=""
           itemtype="https://schema.org/ListItem">
-          <a
+          <router-link
             itemprop="item"
-            href="/">
-            <span itemprop="name">Meineke</span>
-          </a>
+            to="/">
+            <span itemprop="name">home</span>
+          </router-link>
           <meta
             itemprop="position"
             content="1">
         </li>
 
         <li
+          v-if="$route.params.type"
           itemprop="itemListElement"
           itemscope=""
           itemtype="https://schema.org/ListItem">
-          <span itemprop="name">Coupons And Deals</span>
+          <router-link
+            v-if="$route.params.project"
+            itemprop="item"
+            :to="`/${$route.params.type}`">
+            <span itemprop="name">{{ nameify( $route.params.type ) }}</span>
+          </router-link>
+          <span 
+            v-else 
+            itemprop="name">{{ nameify( $route.params.type ) }}</span>
           <meta
             itemprop="position"
             content="2">
+        </li>
+
+        <li
+          v-if="$route.params.project"
+          itemprop="itemListElement"
+          itemscope=""
+          itemtype="https://schema.org/ListItem">
+          <router-link
+            v-if="$route.params.image"
+            itemprop="item"
+            :to="`/${$route.params.project}`">
+            <span itemprop="name">{{ nameify( $route.params.project ) }}</span>
+          </router-link>
+          <span 
+            v-else 
+            itemprop="name">{{ nameify( $route.params.project ) }}</span>
+          <meta
+            itemprop="position"
+            content="3">
+        </li>
+
+        <li
+          v-if="$route.params.image"
+          itemprop="itemListElement"
+          itemscope=""
+          itemtype="https://schema.org/ListItem">
+          <span itemprop="name">{{ nameify( $route.params.image ) }}</span>
+          <meta
+            itemprop="position"
+            content="4">
         </li>
 
       </ol>
@@ -154,6 +193,10 @@ import hamburger from "@/components/icons/hamburger";
 import external from "@/components/icons/external";
 import { mapGetters } from "vuex";
 import { debounce } from "lodash";
+
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+};
 
 export default {
   components: {
@@ -212,6 +255,9 @@ export default {
   },
 
   methods: {
+    nameify(a) {
+      return a;
+    },
     observe() {
       this.observer = new IntersectionObserver(entry => {
         entry.forEach(e => {
@@ -291,18 +337,22 @@ export default {
   ol {
     margin: 0;
     padding: 0;
-
+    font-size: 12px;
     li {
       list-style: none;
       display: inline;
       margin: 0;
       padding: 0;
-
+      span {
+        font-size: 14px;
+      }
       a {
         padding: 0;
+        font-size: 14px;
       }
 
       &:not(:nth-last-child(1)):after {
+        color: rgba(black, 0.5);
         content: " > ";
       }
     }
@@ -355,59 +405,58 @@ export default {
       color: white;
     }
   }
-}
-
-button,
-a {
-  padding: 0.75rem 4rem;
-  padding-left: 64px;
-  display: inline-block;
-  font-weight: bold;
-  text-decoration: none;
-  -webkit-tap-highlight-color: transparent;
-  font-size: 16px;
-  text-align: left;
-  cursor: pointer;
-  background: transparent;
-  outline: none;
-  border: 0;
-  transition: color 200ms ease-in;
-  color: black;
-  &:focus {
-    color: darken(aqua, 25%);
-    > svg {
+  button,
+  a {
+    padding: 0.75rem 4rem;
+    padding-left: 64px;
+    display: inline-block;
+    font-weight: bold;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+    background: transparent;
+    outline: none;
+    border: 0;
+    transition: color 200ms ease-in;
+    color: black;
+    &:focus {
       color: darken(aqua, 25%);
-      fill: darken(aqua, 25%);
-    }
-    .external-span svg {
-      fill: darken(aqua, 25%);
-    }
-  }
-
-  @media only screen and (min-width: 630px) {
-    &:hover {
-      color: darken(aqua, 25%);
-      svg {
-        fill: darken(aqua, 25%);
+      > svg {
         color: darken(aqua, 25%);
+        fill: darken(aqua, 25%);
+      }
+      .external-span svg {
+        fill: darken(aqua, 25%);
       }
     }
-  }
 
-  svg {
-    display: inline;
-    height: 14px;
-    width: auto;
-    fill: black;
-    transition: fill 200ms ease-in;
-  }
+    @media only screen and (min-width: 630px) {
+      &:hover {
+        color: darken(aqua, 25%);
+        svg {
+          fill: darken(aqua, 25%);
+          color: darken(aqua, 25%);
+        }
+      }
+    }
 
-  &.router-link-exact-active,
-  &.is-active {
-    // color:Purple;
-    background: darken(white, 2%);
     svg {
-      // fill: Purple;
+      display: inline;
+      height: 14px;
+      width: auto;
+      fill: black;
+      transition: fill 200ms ease-in;
+    }
+
+    &.router-link-exact-active,
+    &.is-active {
+      // color:Purple;
+      background: darken(white, 2%);
+      svg {
+        // fill: Purple;
+      }
     }
   }
 }
