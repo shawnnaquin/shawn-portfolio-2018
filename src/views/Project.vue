@@ -1,213 +1,271 @@
 <template>
 
-	<main :class="[ 'project', 'max-width' ]"  style="overflow: hidden;" >
+  <main 
+    :class="[ 'project', 'max-width' ]" 
+    style="overflow: hidden;" >
 
-	<transition :name="mainTrans.trans" :mode="mainTrans.mode" appear v-on:afterLeave="pageAfterLeave" v-on:enter="pageEnter" >
+    <transition 
+      :name="mainTrans.trans" 
+      :mode="mainTrans.mode" 
+      appear 
+      @afterLeave="pageAfterLeave" 
+      @enter="pageEnter" >
 
-	<article class="" v-if="show" >
+      <article 
+        class="" 
+        v-if="show" >
 
-	  <transition name="fade" appear mode="out-in">
-	  	<div :style="{minHeight:'500px'}" v-if="!project" :class="['article-header']">
-		<div>
-		<h1>
-			Project Loading
-			<transition name="fade" >
-				<span v-if="!project">
-					&hellip;
-				</span>
-			</transition>
-		</h1>
-		</div>
-		<p
-		  :class="[ 'loading' ]"
-		>
-			LOADING
-			<Loader :go=" !project " />
-		</p>
+        <transition 
+          name="fade" 
+          appear 
+          mode="out-in">
+          <div 
+            :style="{minHeight:'500px'}" 
+            v-if="!project" 
+            :class="['article-header']">
+            <div>
+              <h1>
+                Project Loading
+                <transition name="fade" >
+                  <span v-if="!project">
+                    &hellip;
+                  </span>
+                </transition>
+              </h1>
+            </div>
+            <p
+              :class="[ 'loading' ]"
+            >
+              LOADING
+              <Loader :go=" !project " />
+            </p>
 
-		</div>
+          </div>
 
-		<div v-else :class="[ 'article-header' ]" >
+          <div 
+            v-else 
+            :class="[ 'article-header' ]" >
 
-			<transition name="fade" appear mode="out-in" >
-				<div>
-				<h1> {{project.title}}</h1>
-				<p>{{project.projectDescription}}</p>
-				</div>
-			</transition>
+            <transition 
+              name="fade" 
+              appear 
+              mode="out-in" >
+              <div>
+                <h1> {{ project.title }}</h1>
+                <p>{{ project.projectDescription }}</p>
+              </div>
+            </transition>
 
-			<youtube-video v-if="project.content.video.length" :videoId="project.content.video" :videoImg=" `${getBase}${ type }/${ images.video }`" ></youtube-video>
+            <youtube-video 
+              v-if="project.content.video.length" 
+              :video-id="project.content.video" 
+              :video-img=" `${getBase}${ type }/${ images.video }`" />
 
-			<div v-if="project && ( project.content.code || project.content.externalSite )" class="buttons" >
+            <div 
+              v-if="project && ( project.content.code || project.content.externalSite )" 
+              class="buttons" >
 
-				<a ref="noopener" :href="project.content.externalSite" v-if="project.content.externalSite" target="_blank" :class="[ 'external' ]" > Live Site <span :class="['external-span']"><external/></span> </a>
-				&nbsp;
+              <a 
+                ref="noopener" 
+                :href="project.content.externalSite" 
+                v-if="project.content.externalSite" 
+                target="_blank" 
+                :class="[ 'external' ]" > Live Site <span :class="['external-span']"><external/></span> </a>
+              &nbsp;
 
-				<a :href="project.content.code" ref="noopener" v-if="project.content.code" target="_blank" :class="[ 'external' ]" >
-					//code
-				</a>
+              <a 
+                :href="project.content.code" 
+                ref="noopener" 
+                v-if="project.content.code" 
+                target="_blank" 
+                :class="[ 'external' ]" >
+                //code
+              </a>
 
-			</div>
+            </div>
 
-			<div :class="[ 'built-with' ]" >
+            <div :class="[ 'built-with' ]" >
 
-			<h2>
-				Built With:
-			</h2>
+              <h2>
+                Built With:
+              </h2>
 
-			<techList :techList="project.content.techList" />
+              <techList :tech-list="project.content.techList" />
 
-			</div>
+            </div>
 
-		</div>
+          </div>
 
-	  </transition>
+        </transition>
 
-		<div :class="[ 'image-container' ]" v-if="images.mobile && images.mobile.length" >
+        <div 
+          :class="[ 'image-container' ]" 
+          v-if="images.mobile && images.mobile.length" >
 
-		  <transition-group
-			name="staggered-fade"
-			tag="div"
-			v-bind:css="false"
-			v-on:before-enter="beforeEnter"
-			v-on:enter="enter"
-			v-on:leave="leave"
-			:class="[ 'mobile', 'grid' ]"
-		  >
+          <transition-group
+            name="staggered-fade"
+            tag="div"
+            :css="false"
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @leave="leave"
+            :class="[ 'mobile', 'grid' ]"
+          >
 
-			<div
-			  v-for=" (image,i) in images.mobile"
-			  style="position:relative;"
-			  :data-index="i"
-			  v-bind:key="image.path"
-			  v-if="phoneVertLoaded"
-			>
+            <div
+              v-for=" (image,i) in images.mobile"
+              style="position:relative;"
+              :data-index="i"
+              :key="image.path"
+              v-if="phoneVertLoaded"
+            >
 
-				<router-link
-					:name="image.path"
-					:arial-label="image.path"
-					:title="image.path"
-				  :to=" `/${type}/${project.link}/${image.path}`"
-				  :class="['link']"
-				>
-					<picture-query
-					  :type="type"
-					  :path="image.path"
-					  :alt="image.alt"
-					>
-						{{ image.caption }}
-					</picture-query>
-				</router-link>
-			</div>
+              <router-link
+                :name="image.path"
+                :arial-label="image.path"
+                :title="image.path"
+                :to=" `/${type}/${project.link}/${image.path}`"
+                :class="['link']"
+              >
+                <picture-query
+                  :type="type"
+                  :path="image.path"
+                  :alt="image.alt"
+                >
+                  {{ image.caption }}
+                </picture-query>
+              </router-link>
+            </div>
 
-		  </transition-group>
+          </transition-group>
 
-		</div>
+        </div>
 
-		<div :class="[ 'image-container' ]" v-if="images.horiz && images.horiz.length" >
+        <div 
+          :class="[ 'image-container' ]" 
+          v-if="images.horiz && images.horiz.length" >
 
-		  <transition-group
-			name="staggered-fade"
-			tag="div"
-			v-bind:css="false"
-			v-on:before-enter="beforeEnter"
-			v-on:enter="enter"
-			v-on:leave="leave"
-			:class="[ 'horiz', 'grid' ]"
-		  >
+          <transition-group
+            name="staggered-fade"
+            tag="div"
+            :css="false"
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @leave="leave"
+            :class="[ 'horiz', 'grid' ]"
+          >
 
-			<div
-			  v-for=" (image,i) in images.horiz"
-			  style="position:relative;"
-			  :data-index="i"
-			  v-bind:key="image.path"
-			  v-if="phoneVertLoaded"
-			>
-				<router-link
-				  :to=" `/${type}/${project.link}/${image.path}`"
-				  :class="['link']"
-				  :name="image.path"
-				  :arial-label="image.path"
-				  :title="image.path"
-				>
-					<picture-query
-					  :type=" type "
-					  :path=" image.path "
-					  :alt="image.alt"
-					>
-						{{ image.caption }}
-					</picture-query>
-				</router-link>
-			</div>
+            <div
+              v-for=" (image,i) in images.horiz"
+              style="position:relative;"
+              :data-index="i"
+              :key="image.path"
+              v-if="phoneVertLoaded"
+            >
+              <router-link
+                :to=" `/${type}/${project.link}/${image.path}`"
+                :class="['link']"
+                :name="image.path"
+                :arial-label="image.path"
+                :title="image.path"
+              >
+                <picture-query
+                  :type=" type "
+                  :path=" image.path "
+                  :alt="image.alt"
+                >
+                  {{ image.caption }}
+                </picture-query>
+              </router-link>
+            </div>
 
-		  </transition-group>
+          </transition-group>
 
-		</div>
+        </div>
 
-		<div :class="[ 'image-container' ]" v-if="images.regular && images.regular.length" >
+        <div 
+          :class="[ 'image-container' ]" 
+          v-if="images.regular && images.regular.length" >
 
-		  <transition-group
-			name="staggered-fade"
-			tag="div"
-			v-bind:css="false"
-			v-on:before-enter="beforeEnter"
-			v-on:enter="enter"
-			v-on:leave="leave"
-			:class="[ 'grid' ]"
-		  >
+          <transition-group
+            name="staggered-fade"
+            tag="div"
+            :css="false"
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @leave="leave"
+            :class="[ 'grid' ]"
+          >
 
-			<div
-			  v-for=" (image,i) in images.regular"
-			  style="position:relative;"
-			  :data-index="i"
-			  v-bind:key="image.path"
-			  v-if="phoneVertLoaded"
-			  :style="{ paddingBottom: project.content.imageRatio }"
-			>
-				<router-link
-				  :to=" `/${type}/${project.link}/${image.path}`"
-				  :class="['link']"
-				  :name="image.path"
-				  :arial-label="image.path"
-				  :title="image.path"
-				>
-					<picture-query
-					  :type=" type "
-					  :path=" image.path "
-					  :alt="image.alt"
-					>
-						{{ image.caption }}
-					</picture-query>
-				</router-link>
-			</div>
+            <div
+              v-for=" (image,i) in images.regular"
+              style="position:relative;"
+              :data-index="i"
+              :key="image.path"
+              v-if="phoneVertLoaded"
+              :style="{ paddingBottom: project.content.imageRatio }"
+            >
+              <router-link
+                :to=" `/${type}/${project.link}/${image.path}`"
+                :class="['link']"
+                :name="image.path"
+                :arial-label="image.path"
+                :title="image.path"
+              >
+                <picture-query
+                  :type=" type "
+                  :path=" image.path "
+                  :alt="image.alt"
+                >
+                  {{ image.caption }}
+                </picture-query>
+              </router-link>
+            </div>
 
-		  </transition-group>
+          </transition-group>
 
-		</div>
-		<transition name="fade" appear >
-		<div v-if="showBlurb && project" :class="[ 'article-header' ]" style="transition-delay: 1000ms" >
+        </div>
+        <transition 
+          name="fade" 
+          appear >
+          <div 
+            v-if="showBlurb && project" 
+            :class="[ 'article-header' ]" 
+            style="transition-delay: 1000ms" >
 
-			<p v-if="project.content.article" :class="['description']">
-				{{ project.content.article }}
-			</p>
+            <p 
+              v-if="project.content.article" 
+              :class="['description']">
+              {{ project.content.article }}
+            </p>
 
-			<div class="buttons" >
+            <div class="buttons" >
 
-				<router-link :name="prevProject.title" :aria-label="prevProject.title" :title="prevProject.title" :to="`/${type}/${ prevProject.link }`" :class="['external']">
-					&lt;
-				</router-link>
+              <router-link 
+                :name="prevProject.title" 
+                :aria-label="prevProject.title" 
+                :title="prevProject.title" 
+                :to="`/${type}/${ prevProject.link }`" 
+                :class="['external']">
+                &lt;
+              </router-link>
 
-				<router-link :name="nextProject.title" :aria-label="nextProject.title" :title="nextProject.title" :to="`/${type}/${ nextProject.link }`" :class="['external']">
-					 &gt;
-				</router-link>
+              <router-link 
+                :name="nextProject.title" 
+                :aria-label="nextProject.title" 
+                :title="nextProject.title" 
+                :to="`/${type}/${ nextProject.link }`" 
+                :class="['external']">
+                &gt;
+              </router-link>
 
-			</div>
+            </div>
 
-		</div>
-		</transition>
-	</article>
-	</transition>
-	</main>
+          </div>
+        </transition>
+      </article>
+    </transition>
+  </main>
 
 </template>
 

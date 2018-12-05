@@ -2,7 +2,7 @@ const fs = require("fs");
 const dir = ["marketing", "interactive", "website"];
 
 dir.forEach(d => {
-  const testFolder = `./public/img/portfolio/${d}/`;
+  // const testFolder = `./public/img/portfolio/${d}/`;
   const srcFolder = `./src/assets/portfolio/${d}/`;
   const json = JSON.parse(fs.readFileSync(`./public/json/${d}.json`, `utf8`));
 

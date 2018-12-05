@@ -1,4 +1,4 @@
-fs = require("fs");
+var fs = require("fs");
 var builder = require("xmlbuilder");
 
 let types = ["marketing", "interactive", "website", "tech", "contact"];

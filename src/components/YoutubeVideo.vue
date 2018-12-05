@@ -1,26 +1,29 @@
 <template>
 
-		<div :class="['player', { ['stuck']: stuck } ]"
-			@mouseenter="mouseenter"
-			@mouseleave="mouseleave"
-			:ref=" 'player' "
-		>
+  <div 
+    :class="['player', { ['stuck']: stuck } ]"
+    @mouseenter="mouseenter"
+    @mouseleave="mouseleave"
+    :ref=" 'player' "
+  >
 
-			<div :class="[ 'frame' ]" >
+    <div :class="[ 'frame' ]" >
 
 
-				<div :class="['loader']" >
-					<transition name="fade">
-						<span v-if="!playerReady" >Loading <Loader :go="!playerReady" /> </span>
-					</transition>
-					<div :class="['sub-loader']"  :style="{ backgroundImage: getMainImage() }" ></div>
-				</div>
+      <div :class="['loader']" >
+        <transition name="fade">
+          <span v-if="!playerReady" >Loading <Loader :go="!playerReady" /> </span>
+        </transition>
+        <div 
+          :class="['sub-loader']" 
+          :style="{ backgroundImage: getMainImage() }" />
+      </div>
 
-				<div id="player"> </div>
+      <div id="player"/>
 
-			</div>
+    </div>
 
-		</div>
+  </div>
 
 </template>
 

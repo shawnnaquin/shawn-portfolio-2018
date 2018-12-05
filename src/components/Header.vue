@@ -1,29 +1,37 @@
 <template>
 
-<transition name="fade" appear mode="out-in">
+  <transition 
+    name="fade" 
+    appear 
+    mode="out-in">
 
-	<header v-if="isHome" >
+    <header v-if="isHome" >
 
-		<transition name="fade" appear mode="out-in">
+      <transition 
+        name="fade" 
+        appear 
+        mode="out-in">
 
-			<div :class="[ 'heading' ]" v-if="loaded" >
+        <div 
+          :class="[ 'heading' ]" 
+          v-if="loaded" >
 
-				<h1>Shawn Naquin</h1>
-				<p>Front-End Portfolio</p>
-				<!-- {{getDate}} -->
-			</div>
+          <h1>Shawn Naquin</h1>
+          <p>Front-End Portfolio</p>
+          <!-- {{getDate}} -->
+        </div>
 
-		</transition>
+      </transition>
 
 
-		<div :class="['video']">
+      <div :class="['video']">
 
-			<youtube-video :videoId="'EYyELvmsw4c'" ></youtube-video>
+        <youtube-video :video-id="'EYyELvmsw4c'" />
 
-		</div>
+      </div>
 
-	</header>
-</transition>
+    </header>
+  </transition>
 
 </template>
 

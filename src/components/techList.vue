@@ -1,11 +1,18 @@
 <template>
-	<ul :class="[ 'tech-list' ]" >
-		<template v-for="t in techList" >
-			<li :key="t" :class="[ 'tech-item' ]" >
-				<router-link :name="t" :aria-label="t" :title="t" :class="[ 'external', 'tech-link' ]" :to="`/${ getProjectLink(t) }`" >{{ t }}</router-link>
-			</li>
-		</template>
-	</ul>
+  <ul :class="[ 'tech-list' ]" >
+    <template v-for="t in techList" >
+      <li 
+        :key="t" 
+        :class="[ 'tech-item' ]" >
+        <router-link 
+          :name="t" 
+          :aria-label="t" 
+          :title="t" 
+          :class="[ 'external', 'tech-link' ]" 
+          :to="`/${ getProjectLink(t) }`" >{{ t }}</router-link>
+      </li>
+    </template>
+  </ul>
 </template>
 
 <script>

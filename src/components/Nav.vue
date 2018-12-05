@@ -1,89 +1,151 @@
 <template>
-	<div :class="['top', { ['sticky']: getSticky } ]">
-		<transition name="fade" appear>
-			<button aria-label="Menu" :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]" v-if="!menuOpen" @click="toggleMenu()" >
-				<hamburger/>
-			</button>
-		</transition>
+  <div :class="['top', { ['sticky']: getSticky } ]">
+    <transition
+      name="fade"
+      appear>
+      <button
+        aria-label="Menu"
+        :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]"
+        v-if="!menuOpen"
+        @click="toggleMenu()" >
+        <hamburger/>
+      </button>
+    </transition>
 
-	<div :class="['fake-nav']" ref="fakenav"></div>
+    <div
+      :class="['fake-nav']"
+      ref="fakenav"/>
 
-	<nav id="nav" :class="[ { ['menu-open']: menuOpen }, { ['sticky']: getSticky } ]" ref="nav" >
+    <nav
+      id="nav"
+      :class="[ { ['menu-open']: menuOpen }, { ['sticky']: getSticky } ]"
+      ref="nav" >
 
-		<ul>
+      <ul>
 
-			<transition name="fade">
+        <transition name="fade">
 
-				<li
-					v-if="menuOpen"
-					@click="setScrollAndToggle()"
-					:class="['dark']"
-				>
-					<button>Close X</button>
-				</li>
+          <li
+            v-if="menuOpen"
+            @click="setScrollAndToggle()"
+            :class="['dark']"
+          >
+            <button>Close X</button>
+          </li>
 
-			</transition>
+        </transition>
 
-			<transition name="fade">
+        <transition name="fade">
 
-				<li v-if="$route.name !== 'home' && $route.name !== 'contact' " >
-					<router-link tabindex="1" to="/"  name="Home" aria-label="Home" title="Home" :class="[ { [ 'is-active' ]: isActive('/')} ]" @click.native="click('/')" >Home</router-link>
-				</li>
+          <li v-if="$route.name !== 'home' && $route.name !== 'contact' " >
+            <router-link
+              tabindex="1"
+              to="/"
+              name="Home"
+              aria-label="Home"
+              title="Home"
+              :class="[ { [ 'is-active' ]: isActive('/')} ]"
+              @click.native="click('/')" >Home</router-link>
+          </li>
 
-			</transition>
+        </transition>
 
-			<li >
+        <li >
 
-				<router-link tabindex="1" to="/marketing"  name="Marketing" aria-label="Marketing" title="Marketing" :class="[ { [ 'is-active' ]: isActive('/marketing')} ]" @click.native="click('/marketing')" >Marketing</router-link>
+          <router-link
+            tabindex="1"
+            to="/marketing"
+            name="Marketing"
+            aria-label="Marketing"
+            title="Marketing"
+            :class="[ { [ 'is-active' ]: isActive('/marketing')} ]"
+            @click.native="click('/marketing')" >Marketing</router-link>
 
-			</li>
+        </li>
 
-			<li >
+        <li >
 
-				<router-link tabindex="1" to="/interactive" name="Interactive / 3D" aria-label="Interactive / 3D" title="Interactive / 3D" :class="[ { [ 'is-active' ]: isActive('/interactive')} ]"  @click.native="click('/interactive')" >Interactive / 3D</router-link>
+          <router-link
+            tabindex="1"
+            to="/interactive"
+            name="Interactive / 3D"
+            aria-label="Interactive / 3D"
+            title="Interactive / 3D"
+            :class="[ { [ 'is-active' ]: isActive('/interactive')} ]"
+            @click.native="click('/interactive')" >Interactive / 3D</router-link>
 
-			</li>
+        </li>
 
-			<li>
+        <li>
 
-				<router-link tabindex="1" to="/website" name="Website" aria-label="Website" title="Website" :class="[ { [ 'is-active' ]: isActive('/website')} ]"  @click.native="click('/website')" >Website</router-link>
+          <router-link
+            tabindex="1"
+            to="/website"
+            name="Website"
+            aria-label="Website"
+            title="Website"
+            :class="[ { [ 'is-active' ]: isActive('/website')} ]"
+            @click.native="click('/website')" >Website</router-link>
 
-			</li>
+        </li>
 
 
-			<li>
+        <li>
 
-				<a tabindex="1" href="https://github.com/shawnnaquin/" rel="noopener" name="Shawn's Github" title="Shawn's Github" aria-label="Shawn's Github" target="_blank" @click="click()" >
-					<github/>&nbsp;<span :class="['external-span']" ><external/></span>
-				</a>
+          <a
+            tabindex="1"
+            href="https://github.com/shawnnaquin/"
+            rel="noopener"
+            name="Shawn's Github"
+            title="Shawn's Github"
+            aria-label="Shawn's Github"
+            target="_blank"
+            @click="click()" >
+            <github/>&nbsp;<span :class="['external-span']" ><external/></span>
+          </a>
 
-			</li>
+        </li>
 
-		</ul>
+      </ul>
 
-	</nav>
+    </nav>
 
-	<div :class="['trackback']">
+    <div :class="['trackback']">
 
-		<ol itemscope="" itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
+      <ol
+        itemscope=""
+        itemtype="https://schema.org/BreadcrumbList"
+        class="breadcrumb">
 
-			<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-				<a itemprop="item" href="/">
-					<span itemprop="name">Meineke</span>
-				</a>
-				<meta itemprop="position" content="1">
-			</li>
+        <li
+          itemprop="itemListElement"
+          itemscope=""
+          itemtype="https://schema.org/ListItem">
+          <a
+            itemprop="item"
+            href="/">
+            <span itemprop="name">Meineke</span>
+          </a>
+          <meta
+            itemprop="position"
+            content="1">
+        </li>
 
-			<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
-				<span itemprop="name">Coupons And Deals</span>
-				<meta itemprop="position" content="2">
-			</li>
+        <li
+          itemprop="itemListElement"
+          itemscope=""
+          itemtype="https://schema.org/ListItem">
+          <span itemprop="name">Coupons And Deals</span>
+          <meta
+            itemprop="position"
+            content="2">
+        </li>
 
-		</ol>
+      </ol>
 
-	</div>
+    </div>
 
-	</div>
+  </div>
 </template>
 
 <script>
@@ -216,37 +278,35 @@ export default {
 
 <style lang="scss" scoped>
 .trackback {
-  background: green;
-  // position: absolute;
-  // top: 3rem;
-  // width: 100%;
-  // text-align: left;
-  // left:12%;
-  // @media only screen and (max-width: 1100px) {
-  // 	left: 0;
-  // 	top: 1rem;
-  // 	text-align: center;
-  // }
-  // ol {
-  // 	margin:0;
-  // 	padding:0;
-  // 	background: green;
-  // 	li {
-  // 		list-style:none;
-  // 		display:inline;
-  // 		margin:0;
-  // 		padding:0;
+  position: absolute;
+  top: 3rem;
+  width: 100%;
+  text-align: left;
+  left: 16px;
+  @media only screen and (max-width: 1100px) {
+    left: 0;
+    top: 1rem;
+    text-align: center;
+  }
+  ol {
+    margin: 0;
+    padding: 0;
 
-  // 		a {
-  // 			padding:0;
-  // 		}
+    li {
+      list-style: none;
+      display: inline;
+      margin: 0;
+      padding: 0;
 
-  // 		&:not( :nth-last-child(1) ):after {
-  // 			content: ' > ';
-  // 		}
+      a {
+        padding: 0;
+      }
 
-  // 	}
-  // }
+      &:not(:nth-last-child(1)):after {
+        content: " > ";
+      }
+    }
+  }
 }
 
 .fake-nav {

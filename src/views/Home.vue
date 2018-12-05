@@ -1,36 +1,62 @@
 <template>
 
-	<div :class="['home', 'push', 'max-width' ]">
+  <div :class="['home', 'push', 'max-width' ]">
 
-		<main :class="['flex-on-em']">
+    <main :class="['flex-on-em']">
 
-			<h2>View More Work</h2>
-			<div>
-				<div>
-					<router-link name="Marketing" aria-label="Marketing" title="Marketing" :class="['external']" to="/marketing" >Marketing</router-link>
-					<p>Marketing includes Banner advertisemnts, One-page call to action, sales tools and much more!</p>
-				</div>
-				<div>
-					<router-link name="Website" aria-label="Website" title="Website" :class="['external']" to="/website" >Website</router-link>
-					<p>View projects created to be a standalone website. Websites display various technologies and CMS systems.</p>
-				</div>
-				<div>
-					<router-link name="Interactive" aria-label="Interactive" title="Interactive" :class="['external']" to="/interactive" >Interactive / 3D</router-link>
-					<p>Interactive projects have something more! These include 3d experiences and games.</p>
-				</div>
-				<div>
-					<router-link name="Technology" aria-label="Technology" title="Technology" :class="['external']" to="/tech" >Technology</router-link>
-					<p>View a stack of technologies used in Shawn's front-end development.</p>
-				</div>
-				<div>
-					<a ref="noopener" name="Github" aria-label="Github" title="Github" :class="['external']" href="https://github.com/shawnnaquin" >Github</a>
-					<p>View other projects on Github from Shawn.</p>
-				</div>
-			</div>
+      <h2>View More Work</h2>
+      <div>
+        <div>
+          <router-link 
+            name="Marketing" 
+            aria-label="Marketing" 
+            title="Marketing" 
+            :class="['external']" 
+            to="/marketing" >Marketing</router-link>
+          <p>Marketing includes Banner advertisemnts, One-page call to action, sales tools and much more!</p>
+        </div>
+        <div>
+          <router-link 
+            name="Website" 
+            aria-label="Website" 
+            title="Website" 
+            :class="['external']" 
+            to="/website" >Website</router-link>
+          <p>View projects created to be a standalone website. Websites display various technologies and CMS systems.</p>
+        </div>
+        <div>
+          <router-link 
+            name="Interactive" 
+            aria-label="Interactive" 
+            title="Interactive" 
+            :class="['external']" 
+            to="/interactive" >Interactive / 3D</router-link>
+          <p>Interactive projects have something more! These include 3d experiences and games.</p>
+        </div>
+        <div>
+          <router-link 
+            name="Technology" 
+            aria-label="Technology" 
+            title="Technology" 
+            :class="['external']" 
+            to="/tech" >Technology</router-link>
+          <p>View a stack of technologies used in Shawn's front-end development.</p>
+        </div>
+        <div>
+          <a 
+            ref="noopener" 
+            name="Github" 
+            aria-label="Github" 
+            title="Github" 
+            :class="['external']" 
+            href="https://github.com/shawnnaquin" >Github</a>
+          <p>View other projects on Github from Shawn.</p>
+        </div>
+      </div>
 
-		</main>
+    </main>
 
-	</div>
+  </div>
 
 </template>
 
@@ -40,7 +66,7 @@ import Nav from "@/components/Nav.vue";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "home",
+  name: "Home",
   components: {
     Header,
     Nav

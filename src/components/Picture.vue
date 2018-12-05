@@ -1,43 +1,48 @@
 <template>
-	<figure>
+  <figure>
 
-		<transition name="fade" appear >
-			<p :class=" 'loader' " :style="{ color: $route.params.image ? 'white' : '' }" v-if="showLoader" >Loading <span><Loader :go=" showLoader " /></span></p>
-		</transition>
+    <transition 
+      name="fade" 
+      appear >
+      <p 
+        :class=" 'loader' " 
+        :style="{ color: $route.params.image ? 'white' : '' }" 
+        v-if="showLoader" >Loading <span><Loader :go=" showLoader " /></span></p>
+    </transition>
 
-		<picture>
-			<source
-				media="(min-width: 900px)"
-				:srcset=" `${ getBase }${ type }/${ path }-lg_1x.webp 1x, ${ getBase }${ type }/${ path }-lg_2x.webp 2x` "
-				type="image/webp"
-			>
+    <picture>
+      <source
+        media="(min-width: 900px)"
+        :srcset=" `${ getBase }${ type }/${ path }-lg_1x.webp 1x, ${ getBase }${ type }/${ path }-lg_2x.webp 2x` "
+        type="image/webp"
+      >
 
-			<source
-				media="(min-width: 601px)"
-				:srcset=" `${ getBase }${ type }/${ path }-md_1x.webp 1x, ${ getBase }${ type }/${ path }-md_2x.webp 2x` "
-				type="image/webp"
-			>
+      <source
+        media="(min-width: 601px)"
+        :srcset=" `${ getBase }${ type }/${ path }-md_1x.webp 1x, ${ getBase }${ type }/${ path }-md_2x.webp 2x` "
+        type="image/webp"
+      >
 
-			<source
-				:srcset=" `${ getBase }${ type }/${ path }-sm_1x.webp 1x, ${ getBase }${ type }/${ path }-sm_2x.webp 2x` "
-				type="image/webp"
-			>
+      <source
+        :srcset=" `${ getBase }${ type }/${ path }-sm_1x.webp 1x, ${ getBase }${ type }/${ path }-sm_2x.webp 2x` "
+        type="image/webp"
+      >
 
-			<v-lazy-image
-				@load="setShowLoader"
-				v-bind:src="imgSrc"
-				:srcset=" `${ getBase }${ type }/${ path }-sm_1x.jpg 600w, ${ getBase }${ type }/${ path }-md_1x.jpg 900w, ${ getBase }${ type }/${ path }-lg_1x.jpg 1440w` "
-				type="image/jpeg"
-				:alt=" alt "
-			/>
+      <v-lazy-image
+        @load="setShowLoader"
+        :src="imgSrc"
+        :srcset=" `${ getBase }${ type }/${ path }-sm_1x.jpg 600w, ${ getBase }${ type }/${ path }-md_1x.jpg 900w, ${ getBase }${ type }/${ path }-lg_1x.jpg 1440w` "
+        type="image/jpeg"
+        :alt=" alt "
+      />
 
-		</picture>
+    </picture>
 
-		<figcaption :class="[ 'figcaption', { ['blur']: showLoader } ] " >
-			<slot />
-		</figcaption>
+    <figcaption :class="[ 'figcaption', { ['blur']: showLoader } ] " >
+      <slot />
+    </figcaption>
 
-	</figure>
+  </figure>
 
 </template>
 

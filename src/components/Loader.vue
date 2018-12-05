@@ -1,5 +1,5 @@
 <template>
-	<span>{{ bracket }}</span>
+  <span>{{ bracket }}</span>
 </template>
 
 <script>

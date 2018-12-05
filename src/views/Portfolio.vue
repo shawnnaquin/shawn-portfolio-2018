@@ -1,98 +1,134 @@
 <template>
 
-	<div :class="['max-width']" style="overflow: hidden;" >
+  <div 
+    :class="['max-width']" 
+    style="overflow: hidden;" >
 
-		<transition name="fade" mode="out-in" appear >
-			<h1 :key="type" class="push" v-if="type" >
+    <transition 
+      name="fade" 
+      mode="out-in" 
+      appear >
+      <h1 
+        :key="type" 
+        class="push" 
+        v-if="type" >
 
-				<b style="" v-if="!Object.keys(projects).length" >
-					Loading Projects
-				</b>
+        <b 
+          style="" 
+          v-if="!Object.keys(projects).length" >
+          Loading Projects
+        </b>
 
-				<b v-else>
-					{{ getTrueCaps(type) }} 
-					<b v-if="Object.keys(projects).length > 1" >Projects</b>
-					<b v-else >Project</b>
-				</b>
+        <b v-else>
+          {{ getTrueCaps(type) }} 
+          <b v-if="Object.keys(projects).length > 1" >Projects</b>
+          <b v-else >Project</b>
+        </b>
 
-				<transition name="fade" >
-					<span v-if="!Object.keys(projects).length" >
-						&hellip;
-					</span>
-				</transition>
-			</h1>
-		</transition>
+        <transition name="fade" >
+          <span v-if="!Object.keys(projects).length" >
+            &hellip;
+          </span>
+        </transition>
+      </h1>
+    </transition>
 
-		<main :style="{position:'relative',minHeight: '500px'}">
+    <main :style="{position:'relative',minHeight: '500px'}">
 
-			<transition :name=" 'fade' " appear >
-				<p :key="type" v-if="!Object.keys(projects).length" :class="[ 'loading' ]">LOADING <Loader :go=" ( !Object.keys(projects).length ) " /> </p>
-			</transition>
+      <transition 
+        :name=" 'fade' " 
+        appear >
+        <p 
+          :key="type" 
+          v-if="!Object.keys(projects).length" 
+          :class="[ 'loading' ]">LOADING <Loader :go=" ( !Object.keys(projects).length ) " /> </p>
+      </transition>
 
-			<transition name="fade" mode="out-in" v-on:afterEnter="pageAfterEnter" appear >
+      <transition 
+        name="fade" 
+        mode="out-in" 
+        @afterEnter="pageAfterEnter" 
+        appear >
 
-				<div
-					:key="type"
-					v-if="projects"
-					:class="[ 
-						'portfolio', 
-						direction, 
-						{ ['one']: Object.keys(projects).length === 1 },
-						{ ['two']: Object.keys(projects).length === 2 },
-						{ ['three']: Object.keys(projects).length === 3 } 
-					]"
-					ref="portfolio"
-				>
+        <div
+          :key="type"
+          v-if="projects"
+          :class="[ 
+            'portfolio', 
+            direction, 
+            { ['one']: Object.keys(projects).length === 1 },
+            { ['two']: Object.keys(projects).length === 2 },
+            { ['three']: Object.keys(projects).length === 3 } 
+          ]"
+          ref="portfolio"
+        >
 
-					<router-link
-						v-for="p in projects"
-						:to="`/${ getType( p.link ) }/${p.link}`"
-						:class="[ 'link', p.link ]"
-						:style="{ 'transitionDelay': String( ( getIndex(p.link) ) * 50 ) + 'ms' }"
-						:data-name="p.link"
-						:name="p.title"
-						:aria-label="p.title"
-						:title="p.title"
-						:key="p.link"
-					>
-						<div :class="[ 'main-description' ]" >
-							<h2>{{ p.title }}</h2>
-							<small>{{ p.projectDescription }}</small>
-						</div>
+          <router-link
+            v-for="p in projects"
+            :to="`/${ getType( p.link ) }/${p.link}`"
+            :class="[ 'link', p.link ]"
+            :style="{ 'transitionDelay': String( ( getIndex(p.link) ) * 50 ) + 'ms' }"
+            :data-name="p.link"
+            :name="p.title"
+            :aria-label="p.title"
+            :title="p.title"
+            :key="p.link"
+          >
+            <div :class="[ 'main-description' ]" >
+              <h2>{{ p.title }}</h2>
+              <small>{{ p.projectDescription }}</small>
+            </div>
 
-						<div :class="'image'" >
-							<picture-query
-								:type="getType( p.link )"
-								:path="p.mainImage.path"
-								:alt="p.mainImage.alt"
-							>
-								<h3>{{ p.mainImage.alt}}</h3>
-								<p>{{p.mainImage.caption}}</p>
-							</picture-query>
-						</div>
-					</router-link>
+            <div :class="'image'" >
+              <picture-query
+                :type="getType( p.link )"
+                :path="p.mainImage.path"
+                :alt="p.mainImage.alt"
+              >
+                <h3>{{ p.mainImage.alt }}</h3>
+                <p>{{ p.mainImage.caption }}</p>
+              </picture-query>
+            </div>
+          </router-link>
 
-				</div>
+        </div>
 
-			</transition>
+      </transition>
 
-		</main>
+    </main>
 
-		<transition name="fade" appear>
-			<div :class="['buttons']" v-if="showButtons" :key="showButtons" >
+    <transition 
+      name="fade" 
+      appear>
+      <div 
+        :class="['buttons']" 
+        v-if="showButtons" 
+        :key="showButtons" >
 
-				<router-link :name="prevType"  :aria-label="prevType"  :title="prevType" :to="`/${prevType}`" @click.native="setDirection('left')" :class="['external']">
-					&lt;
-				</router-link>
+        <router-link 
+          :name="prevType" 
+          :aria-label="prevType" 
+          :title="prevType" 
+          :to="`/${prevType}`" 
+          @click.native="setDirection('left')" 
+          :class="['external']">
+          &lt;
+        </router-link>
 
-				<router-link :name="nextType"  :aria-label="nextType"  :title="nextType" :to="`/${nextType}`" @click.native="setDirection('right')" :class="['external']">
-					&gt;
-				</router-link>
+        <router-link 
+          :name="nextType" 
+          :aria-label="nextType" 
+          :title="nextType" 
+          :to="`/${nextType}`" 
+          @click.native="setDirection('right')" 
+          :class="['external']">
+          &gt;
+        </router-link>
 
-			</div>
-		</transition>
+      </div>
+    </transition>
 
-	</div>
+  </div>
 
 </template>
 

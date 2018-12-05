@@ -1,96 +1,167 @@
 <template>
 
-	<div id="app" :class="[{['no-scroll']: $store.state.noScroll } ]" >
+  <div 
+    id="app" 
+    :class="[{['no-scroll']: $store.state.noScroll } ]" >
 
-		<Contact/>
+    <Contact/>
 
-		<transition name="fade" >
-			<div :class="[ 'loader' ]" v-if="getLoading" ref="background" :style="{height:height}" >
-				<p :class="[ 'paragraph' ]" >
-					<span v-if="getLoading" >Loading <Loader :go="getLoading" /></span>
-					<span v-else >Content Loaded!</span>
-				</p>
-			</div>
-		</transition>
+    <transition name="fade" >
+      <div 
+        :class="[ 'loader' ]" 
+        v-if="getLoading" 
+        ref="background" 
+        :style="{height:height}" >
+        <p :class="[ 'paragraph' ]" >
+          <span v-if="getLoading" >Loading <Loader :go="getLoading" /></span>
+          <span v-else >Content Loaded!</span>
+        </p>
+      </div>
+    </transition>
 
-		<div :class="'flex-column'" >
-			<Nav />
-			<Header :loaded="!getLoading" />
-		</div>
+    <div :class="'flex-column'" >
+      <Nav />
+      <Header :loaded="!getLoading" />
+    </div>
 
-		<transition :name="mainTrans.trans" :mode="mainTrans.mode" appear >
-			<router-view></router-view>
-		</transition>
+    <transition 
+      :name="mainTrans.trans" 
+      :mode="mainTrans.mode" 
+      appear >
+      <router-view/>
+    </transition>
 
-		<transition name="fade" appear >
-			<button
-			  v-if="getSticky && $route.name != 'home' || getSticky && $route.name != 'contact' "
-			  v-scroll-to="{
-				el: ':root',
-				duration: 200,
-				easing: 'ease-out'
-			  }"
-			  :class="['external', 'bottom' ]"
-			>
-				<up/>
-			</button>
-		</transition>
+    <transition 
+      name="fade" 
+      appear >
+      <button
+        v-if="getSticky && $route.name != 'home' || getSticky && $route.name != 'contact' "
+        v-scroll-to="{
+          el: ':root',
+          duration: 200,
+          easing: 'ease-out'
+        }"
+        :class="['external', 'bottom' ]"
+      >
+        <up/>
+      </button>
+    </transition>
 
-		<aside :class="[ 'aside' ]" >
+    <aside :class="[ 'aside' ]" >
 
-			<div :class="['footer-buttons']" >
-				<button name="Resumé" aria-label="Resumé" title="Resumé" @click="openContact(true)" :class="['external']">Resumé</button>
-				<button name="Contact" aria-label="Contact" title="Contact" @click="openContact(false)" :class="['external']">Contact</button>
-				<router-link name="Technology List" aria-label="Technology List" title="Technology List" v-if="$route.name != 'tech' " :class="['external']" to="/tech" >Technology List</router-link>
-				<router-link name="More Work" aria-label="More Work" title="More Work" v-else :class="['external']" to="/marketing" >More Work</router-link>
-			</div>
+      <div :class="['footer-buttons']" >
+        <button 
+          name="Resumé" 
+          aria-label="Resumé" 
+          title="Resumé" 
+          @click="openContact(true)" 
+          :class="['external']">Resumé</button>
+        <button 
+          name="Contact" 
+          aria-label="Contact" 
+          title="Contact" 
+          @click="openContact(false)" 
+          :class="['external']">Contact</button>
+        <router-link 
+          name="Technology List" 
+          aria-label="Technology List" 
+          title="Technology List" 
+          v-if="$route.name != 'tech' " 
+          :class="['external']" 
+          to="/tech" >Technology List</router-link>
+        <router-link 
+          name="More Work" 
+          aria-label="More Work" 
+          title="More Work" 
+          v-else 
+          :class="['external']" 
+          to="/marketing" >More Work</router-link>
+      </div>
 
-			<div :class="['footer-about']" >
+      <div :class="['footer-about']" >
 
-				<p>
+        <p>
 
-					Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects. More of his work can be found on Github. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility.
+          Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects. More of his work can be found on Github. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility.
 
-					<span v-if="$route.name != 'tech' " >
-						Click below for <router-link name="Technology List" aria-label="Technology List" title="Technology List" to="/tech"> a complete list</router-link>
-						of all technologies used in this portfolio!
-					</span>
-					<span v-else >
-						Click below to see <router-link name="Marketing" aria-label="Marketing" title="Marketing" to="/marketing">more work</router-link> from Shawn's portfolio.
-					</span>
+          <span v-if="$route.name != 'tech' " >
+            Click below for <router-link 
+              name="Technology List" 
+              aria-label="Technology List" 
+              title="Technology List" 
+              to="/tech"> a complete list</router-link>
+            of all technologies used in this portfolio!
+          </span>
+          <span v-else >
+            Click below to see <router-link 
+              name="Marketing" 
+              aria-label="Marketing" 
+              title="Marketing" 
+              to="/marketing">more work</router-link> from Shawn's portfolio.
+          </span>
 
-				</p>
+        </p>
 
-			</div>
+      </div>
 
-		</aside>
+    </aside>
 
-		<footer :class="['footer']" >
-			<div :class="['footer-copy']" ><small>Shawn Naquin | Front-End Portfolio | &copy; {{ getDate }}</small></div>
-			<div :class="['footer-icons']">
-				<a href="#" name="Github" aria-label="Github" title="Github" :class="['footer-icon']" target="_blank">
-					<git />
-				</a>
+    <footer :class="['footer']" >
+      <div :class="['footer-copy']" ><small>Shawn Naquin | Front-End Portfolio | &copy; {{ getDate }}</small></div>
+      <div :class="['footer-icons']">
+        <a 
+          href="#" 
+          name="Github" 
+          aria-label="Github" 
+          title="Github" 
+          :class="['footer-icon']" 
+          target="_blank">
+          <git />
+        </a>
 
-				<a href="#" name="LinkedIn" aria-label="LinkedIn" title="LinkedIn" :class="['footer-icon']" target="_blank">
-					<lin />
-				</a>
+        <a 
+          href="#" 
+          name="LinkedIn" 
+          aria-label="LinkedIn" 
+          title="LinkedIn" 
+          :class="['footer-icon']" 
+          target="_blank">
+          <lin />
+        </a>
 
-				<a href="#" name="Youtube" aria-label="Youtube" title="Youtube" :class="['footer-icon']" target="_blank">
-					<you />
-				</a>
+        <a 
+          href="#" 
+          name="Youtube" 
+          aria-label="Youtube" 
+          title="Youtube" 
+          :class="['footer-icon']" 
+          target="_blank">
+          <you />
+        </a>
 
-				<a href="#" name="Behance" aria-label="Behance" title="Behance" :class="['footer-icon']" target="_blank">
-					<be  />
-				</a>
+        <a 
+          href="#" 
+          name="Behance" 
+          aria-label="Behance" 
+          title="Behance" 
+          :class="['footer-icon']" 
+          target="_blank">
+          <be />
+        </a>
 
-				<a href="#" name="Email" aria-label="Email" title="Email" :class="['footer-icon']" target="_blank">
-					<mail />
-				</a>
-			</div>
-		</footer>
+        <a 
+          href="#" 
+          name="Email" 
+          aria-label="Email" 
+          title="Email" 
+          :class="['footer-icon']" 
+          target="_blank">
+          <mail />
+        </a>
+      </div>
+    </footer>
 
-	</div>
+  </div>
 
 </template>
 
@@ -118,7 +189,7 @@ String.prototype.capitalize = function() {
 };
 
 export default {
-  name: "home",
+  name: "Home",
   mixins: [H],
 
   computed: {

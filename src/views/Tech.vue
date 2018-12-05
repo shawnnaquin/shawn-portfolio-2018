@@ -1,14 +1,16 @@
 <template>
 
-	<div :class="['max-width']" style="overflow: hidden; min-height:75vh;" >
+  <div 
+    :class="['max-width']" 
+    style="overflow: hidden; min-height:75vh;" >
 
-		<h1>
-			Featured Web Technologies
-		</h1>
+    <h1>
+      Featured Web Technologies
+    </h1>
 
-		<techList :techList="localList" />
+    <techList :tech-list="localList" />
 
-	</div>
+  </div>
 
 </template>
 

@@ -1,5 +1,5 @@
-const imagemin = require("imagemin");
-const pngToJpeg = require("png-to-jpeg");
+// const imagemin = require("imagemin");
+// const pngToJpeg = require("png-to-jpeg");
 
 module.exports = function(grunt) {
   grunt.initConfig({

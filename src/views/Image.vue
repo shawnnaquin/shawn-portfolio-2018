@@ -1,45 +1,57 @@
 <template>
 
-	<div :class="[ 'background' ]" :style="{height:height}" ref="background" >
+  <div 
+    :class="[ 'background' ]" 
+    :style="{height:height}" 
+    ref="background" >
 
-		<div
-			:class="[ 'swipe' ]"
-			ref="swipe"
-			v-hammer:swipe="swipe"
-		> </div>
+    <div
+      :class="[ 'swipe' ]"
+      ref="swipe"
+      v-hammer:swipe="swipe"
+    />
 
-		<router-link :class="['close']" :to="routeBack" ><close></close></router-link>
+    <router-link 
+      :class="['close']" 
+      :to="routeBack" ><close/></router-link>
 
-		<button :class="['external']" @click="goToImage()" > &gt; </button>
-		<button :class="['external']" @click="goToPrevImage()" > &lt; </button>
+    <button 
+      :class="['external']" 
+      @click="goToImage()" > &gt; </button>
+    <button 
+      :class="['external']" 
+      @click="goToPrevImage()" > &lt; </button>
 
-		<div
-		  :class="[ orientation, 'grid' ]"
-		>
-
-
-			<div
-			>
-
-			<transition :name="trans" mode="out-in" appear >
-				<picture-query
-					:key="image.path"
-					v-if="image"
-					:type="type"
-					:path="image.path"
-					:alt="image.alt ? image.alt : '' "
-					ref="image"
-				>
-					<p>{{image.caption}}</p>
-				</picture-query>
-			</transition>
-
-			</div>
+    <div
+      :class="[ orientation, 'grid' ]"
+    >
 
 
-		</div>
+      <div
+      >
 
-	</div>
+        <transition 
+          :name="trans" 
+          mode="out-in" 
+          appear >
+          <picture-query
+            :key="image.path"
+            v-if="image"
+            :type="type"
+            :path="image.path"
+            :alt="image.alt ? image.alt : '' "
+            ref="image"
+          >
+            <p>{{ image.caption }}</p>
+          </picture-query>
+        </transition>
+
+      </div>
+
+
+    </div>
+
+  </div>
 
 </template>
 

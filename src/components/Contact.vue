@@ -1,87 +1,107 @@
 <template>
 
-	<div :class="['main', {['open']: $store.state.openContact}]" :style="{height:height}" >
+  <div 
+    :class="['main', {['open']: $store.state.openContact}]" 
+    :style="{height:height}" >
 
-	<div :class="['if-closed', { ['error']: error } ]">
-		<transition name="fade" appear>
-			<span v-if="showInterim">{{interimMessage}}</span>
-		</transition>
-	</div>
+    <div :class="['if-closed', { ['error']: error } ]">
+      <transition 
+        name="fade" 
+        appear>
+        <span v-if="showInterim">{{ interimMessage }}</span>
+      </transition>
+    </div>
 
-	<transition name="fade" appear >
+    <transition 
+      name="fade" 
+      appear >
 
-	<div :class="['flex-container']" :key="$store.state.openContact" v-if="$store.state.openContact" >
+      <div 
+        :class="['flex-container']" 
+        :key="$store.state.openContact" 
+        v-if="$store.state.openContact" >
 
-	<button @click="closeContact" :class="['close']" ><close></close></button>
+        <button 
+          @click="closeContact" 
+          :class="['close']" ><close/></button>
 
-	<form :class="['form']">
+        <form :class="['form']">
 
-		<template v-for="input in inputs">
+          <template v-for="input in inputs">
 
-			<div
-        :class="[
-  				'div-input',
-  				{ [ 'error' ]: input.error },
-  				{ [ 'focus' ]: input.focus },
-  				{ [ 'fill'  ]: input.data  }
-  			]"
-        :key="input.id"
-      >
+            <div
+              :class="[
+                'div-input',
+                { [ 'error' ]: input.error },
+                { [ 'focus' ]: input.focus },
+                { [ 'fill' ]: input.data }
+              ]"
+              :key="input.id"
+            >
 
-				<label :class="['label']" :for="input.id">
-					<span> {{ input.label }} </span>
-				</label>
+              <label 
+                :class="['label']" 
+                :for="input.id">
+                <span> {{ input.label }} </span>
+              </label>
 
-				<input
-					:tabindex="input.tabIndex"
-					:ref="input.id"
-					:name="input.id"
-					@focus="focus"
-					@blur="blur"
-					:class="[ 'input' ]"
-					:type="input.type"
-					:id="input.id"
-					:required="input.required"
-					:aria-label="input.label"
-					:pattern="input.pattern"
-					v-model="input.data"
-				>
+              <input
+                :tabindex="input.tabIndex"
+                :ref="input.id"
+                :name="input.id"
+                @focus="focus"
+                @blur="blur"
+                :class="[ 'input' ]"
+                :type="input.type"
+                :id="input.id"
+                :required="input.required"
+                :aria-label="input.label"
+                :pattern="input.pattern"
+                v-model="input.data"
+              >
 
-				<div :class="['top-label']" >
-					<span>{{input.label}}</span>
-				</div>
+              <div :class="['top-label']" >
+                <span>{{ input.label }}</span>
+              </div>
 
-				<div :class="['line']"></div>
+              <div :class="['line']"/>
 
-			</div>
+            </div>
 
-		</template>
+          </template>
 
-		<g-recaptcha
-		  :data-tabindex="String( Object.keys(inputs).length + 1 )"
-		  data-sitekey="6LcOPH4UAAAAAOAkGz3AiBzFJ0xugr2Cxh8ST4YQ"
-		  :data-validate="processForm"
-		  :data-callback="submitForm"
-		  :data-btn-disabled="sending || success || error"
-		  :class="['form-submit']"
-		>
-			<span :class="['external']" :tabindex="Object.keys(inputs).length + 1" >
-				<span>{{submitText}}</span>
-			</span>
+          <g-recaptcha
+            :data-tabindex="String( Object.keys(inputs).length + 1 )"
+            data-sitekey="6LcOPH4UAAAAAOAkGz3AiBzFJ0xugr2Cxh8ST4YQ"
+            :data-validate="processForm"
+            :data-callback="submitForm"
+            :data-btn-disabled="sending || success || error"
+            :class="['form-submit']"
+          >
+            <span 
+              :class="['external']" 
+              :tabindex="Object.keys(inputs).length + 1" >
+              <span>{{ submitText }}</span>
+            </span>
 
-		</g-recaptcha>
+          </g-recaptcha>
 
-	</form>
+        </form>
 
-	<transition name="fade" mode="out-in" >
-		<div v-if="errorMessage" :key="errorMessage" :class="[ 'error-message' ]">
-			{{ errorMessage }}
-		</div>
-	</transition>
+        <transition 
+          name="fade" 
+          mode="out-in" >
+          <div 
+            v-if="errorMessage" 
+            :key="errorMessage" 
+            :class="[ 'error-message' ]">
+            {{ errorMessage }}
+          </div>
+        </transition>
 
-	</div>
-	</transition>
-	</div>
+      </div>
+    </transition>
+  </div>
 
 </template>
 
