@@ -63,7 +63,7 @@
 
 	</nav>
 
-	<div class="trackback">
+	<div :class="['trackback']">
 
 		<ol itemscope="" itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
 
@@ -232,36 +232,37 @@ export default {
 <style lang="scss" scoped>
 
 	.trackback {
-		position: absolute;
-		top: 3rem;
-		width: 100%;
-		text-align: left;
-		left:12%;
-		@media only screen and (max-width: 1100px) {
-			left: 0;
-			top: 1rem;
-			text-align: center;
-		}
-		ol {
-			margin:0;
-			padding:0;
-			// background:green;
-			li {
-				list-style:none;
-				display:inline;
-				margin:0;
-				padding:0;
+	// background:green;
+		// position: absolute;
+		// top: 3rem;
+		// width: 100%;
+		// text-align: left;
+		// left:12%;
+		// @media only screen and (max-width: 1100px) {
+		// 	left: 0;
+		// 	top: 1rem;
+		// 	text-align: center;
+		// }
+		// ol {
+		// 	margin:0;
+		// 	padding:0;
+		// 	background: green;
+		// 	li {
+		// 		list-style:none;
+		// 		display:inline;
+		// 		margin:0;
+		// 		padding:0;
 
-				a {
-					padding:0;
-				}
+		// 		a {
+		// 			padding:0;
+		// 		}
 
-				&:not( :nth-last-child(1) ):after {
-					content: ' > '
-				}
+		// 		&:not( :nth-last-child(1) ):after {
+		// 			content: ' > ';
+		// 		}
 
-			}
-		}
+		// 	}
+		// }
 	}
 
 	.fake-nav {
