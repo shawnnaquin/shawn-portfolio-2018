@@ -115,6 +115,10 @@ import H from '@/mixins/height';
 
 import { mapGetters } from 'vuex';
 
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+};
+
 export default {
 
 	name: "home",
@@ -142,7 +146,7 @@ export default {
 	data() {
 
 		return {
-
+			title: 'home',
 			mod: '',
 			monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
 
@@ -150,7 +154,28 @@ export default {
 
 	},
 
+	head: {
+		title: function() {
+			return {
+			  inner: this.title.capitalize()
+			}
+		},
+		link: function() { return [
+		  { rel: 'canonical', href: `https://shawnnaquin.github.io/${this.title}`, id: 'canonical' },
+		]}
+	},
+
 	watch: {
+		'$store.state.openContact'(o) {
+			if ( o ) {
+				this.title = 'contact';
+			} else {
+				this.title = 'home';
+			}
+			this.$nextTick(()=> {
+				this.$emit('updateHead');
+			})
+		},
 		'getLoading'(l) {
 			if (!l) {
 				//destroy

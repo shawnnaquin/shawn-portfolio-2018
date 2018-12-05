@@ -19,6 +19,16 @@ export default {
 		Header,
 		Nav
 	},
+	head: {
+		title: function() {
+			return {
+			  inner: 'Home'
+			}
+		},
+		link: function() { return [
+		  { rel: 'canonical', href: `https://shawnnaquin.github.io/}`, id: 'canonical' },
+		]}
+	},
 	computed: {
 		...mapGetters([
 			'getLoading'

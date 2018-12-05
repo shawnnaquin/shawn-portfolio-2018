@@ -8,7 +8,11 @@ import { VLazyImagePlugin } from "v-lazy-image";
 import { VueHammer } from 'vue2-hammer'
 import VueScrollTo from 'vue-scrollto';
 import VueAnalytics from 'vue-analytics';
+import VueHead from 'vue-head'
 
+Vue.use(VueHead, {
+  complement: 'Shawn Naquin - Developer'
+});
 Vue.use(VueScrollTo);
 Vue.use(VueHammer)
 Vue.use(VLazyImagePlugin);

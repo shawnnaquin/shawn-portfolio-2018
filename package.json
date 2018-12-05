@@ -28,6 +28,7 @@
     "validator": "^10.9.0",
     "vue": "^2.5.17",
     "vue-analytics": "^5.16.1",
+    "vue-head": "^2.1.0",
     "vue-router": "^3.0.1",
     "vue-scrollto": "^2.13.0",
     "vue2-hammer": "^2.1.2",

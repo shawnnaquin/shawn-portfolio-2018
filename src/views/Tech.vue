@@ -28,6 +28,16 @@ export default {
 			localList: []
 		}
 	},
+	head: {
+		title: function() {
+			return {
+			  inner: 'Tech'
+			}
+		},
+		link: function() { return [
+		  { rel: 'canonical', href: `https://shawnnaquin.github.io/tech`, id: 'canonical' },
+		]}
+	},
 	mounted() {
 		this.setCompileList( this.$store.state.projects );
 		this.$scrollTo(':root');

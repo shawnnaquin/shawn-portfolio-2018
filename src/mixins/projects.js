@@ -88,6 +88,7 @@ export default {
 	watch: {
 
 		'$route'(to,from) {
+
 		},
 
 		'$store.state.projects'(p) {
@@ -100,7 +101,6 @@ export default {
 					this.$router.replace( '/'+this.$store.state.types[0] );
 				});
 			}
-
 		}
 
 	},

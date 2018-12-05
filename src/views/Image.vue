@@ -90,6 +90,16 @@ export default {
 			trans: 'fade-left',
 		}
 	},
+	head: {
+		title: function() {
+			return {
+			  inner: this.$route.params.image
+			}
+		},
+		link: function() { return [
+		  { rel: 'canonical', href: `https://shawnnaquin.github.io/${this.$route.params.type}/${this.$route.params.project}/${this.$route.params.image}`, id: 'canonical' },
+		]}
+	},
 	computed: {
 
 		orientation() {

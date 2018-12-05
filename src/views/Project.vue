@@ -218,6 +218,10 @@ import projects from '@/mixins/projects';
 
 import { mapGetters } from 'vuex';
 
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+};
+
 export default {
 
 	components: {
@@ -314,7 +318,16 @@ export default {
 			direction: ''
 		}
 	},
-
+	head: {
+		title: function() {
+			return {
+			  inner: (this.project.title || '').capitalize()
+			}
+		},
+		link: function() { return [
+		  { rel: 'canonical', href: `https://shawnnaquin.github.io/${this.$route.params.type}/${this.$route.params.project}`, id: 'canonical' },
+		]}
+	},
 	mounted() {
 		this.checkPhone();
 		this.startProject = this.$route.params.project;
@@ -323,6 +336,11 @@ export default {
 	},
 	watch: {
 		'$route'(to,from) {
+		},
+		'project'(p){
+			if (p){
+				this.$emit('updateHead');
+			}
 		},
 		'$store.state.projects'(p) {
 			if ( !this.projectNames.includes(this.$route.params.project ) ) {

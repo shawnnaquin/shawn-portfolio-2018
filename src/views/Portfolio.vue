@@ -87,7 +87,7 @@
 
 			</div>
 		</transition>
-		
+
 	</div>
 
 </template>
@@ -99,6 +99,10 @@
 	import Picture from '@/components/Picture.vue';
 	import animateIn from '@/mixins/animateIn';
 	import projects from '@/mixins/projects';
+
+	String.prototype.capitalize = function() {
+	    return this.charAt(0).toUpperCase() + this.slice(1);
+	};
 
 	export default {
 
@@ -114,6 +118,16 @@
 			}
 		},
 
+		head: {
+			title: function() {
+				return {
+				  inner: (this.type || '').capitalize()
+				}
+			},
+			link: function() { return [
+			  { rel: 'canonical', href: `https://shawnnaquin.github.io/${this.$route.params.type}`, id: 'canonical' },
+			]}
+		},
 		computed: {
 
 			...mapGetters({
@@ -223,6 +237,11 @@
 		watch: {
 			'$route'(to,from) {
 				this.setProjects(to.params.type);
+			},
+			'type'(t) {
+				if ( t) {
+					this.$emit('updateHead');
+				}
 			},
 			'projects'(p) {
 				let k = this.typeKey - 1;
