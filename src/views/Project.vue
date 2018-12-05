@@ -1,6 +1,6 @@
 <template>
 
-	<div :class="[ 'project', 'max-width' ]"  style="overflow: hidden;" >
+	<main :class="[ 'project', 'max-width' ]"  style="overflow: hidden;" >
 
 	<transition :name="mainTrans.trans" :mode="mainTrans.mode" appear v-on:afterLeave="pageAfterLeave" v-on:enter="pageEnter" >
 
@@ -24,7 +24,7 @@
 			LOADING
 			<Loader :go=" !project " />
 		</p>
-		
+
 		</div>
 
 		<div v-else :class="[ 'article-header' ]" >
@@ -207,7 +207,7 @@
 		</transition>
 	</article>
 	</transition>
-	</div>
+	</main>
 
 </template>
 
@@ -408,6 +408,22 @@ export default {
 .loading {
 	margin-top:112px;
 }
+
+.link {
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border:1px solid transparent;
+	transition: border 100ms ease;
+	&:focus {
+		border:1px solid Purple;
+		outline:0;
+	}
+}
+
 h1 {
 	// font-size:32px;
 }
@@ -444,6 +460,12 @@ h3 {
 					// }
 				}
 			}
+		}
+	}
+
+	.grid.mobile, .grid.horiz {
+		.link {
+			border-radius:30px;
 		}
 	}
 

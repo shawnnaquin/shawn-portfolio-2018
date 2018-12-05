@@ -1,9 +1,35 @@
 <template>
 
 	<div :class="['home', 'push', 'max-width' ]">
-		<router-link name="Website" aria-label="Website" title="Website" to="/website" :class="['external']" >
-			View More
-		</router-link>
+
+		<main :class="['flex-on-em']">
+
+			<h2>View More Work</h2>
+			<div>
+				<div>
+					<router-link name="Marketing" aria-label="Marketing" title="Marketing" :class="['external']" to="/marketing" >Marketing</router-link>
+					<p>Marketing includes Banner advertisemnts, One-page call to action, sales tools and much more!</p>
+				</div>
+				<div>
+					<router-link name="Website" aria-label="Website" title="Website" :class="['external']" to="/website" >Website</router-link>
+					<p>View projects created to be a standalone website. Websites display various technologies and CMS systems.</p>
+				</div>
+				<div>
+					<router-link name="Interactive" aria-label="Interactive" title="Interactive" :class="['external']" to="/interactive" >Interactive / 3D</router-link>
+					<p>Interactive projects have something more! These include 3d experiences and games.</p>
+				</div>
+				<div>
+					<router-link name="Technology" aria-label="Technology" title="Technology" :class="['external']" to="/tech" >Technology</router-link>
+					<p>View a stack of technologies used in Shawn's front-end development.</p>
+				</div>
+				<div>
+					<a ref="noopener" name="Github" aria-label="Github" title="Github" :class="['external']" href="https://github.com/shawnnaquin" >Github</a>
+					<p>View other projects on Github from Shawn.</p>
+				</div>
+			</div>
+
+		</main>
+
 	</div>
 
 </template>
@@ -43,6 +69,42 @@ export default {
 
 </script>
 <style lang="scss" scoped>
+
+	h2 {
+		width:100%;
+		margin:2rem auto;
+		margin-bottom:3rem;
+		margin-top:0;
+		display:block;
+	}
+
+	.flex-on-em {
+		// display: flex;
+		justify-content: center;
+		background:darken( white, 3%);
+		margin:2rem auto;
+		padding:2rem;
+		max-width: 800px;
+
+		.external {
+			margin-bottom:0;
+			margin-top:0;
+			background:transparent;
+		}
+		> div {
+		margin: 0 auto;
+		flex-wrap: wrap;
+
+		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+		display:grid;
+		justify-items: center;
+		> div {
+			max-width: 250px;
+			margin-bottom:1rem;
+		}
+
+		}
+	}
 	.external {
 		display:inline-block;
 		margin-top: 32px;

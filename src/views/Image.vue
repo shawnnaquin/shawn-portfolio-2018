@@ -345,6 +345,11 @@ export default {
 			color: darken(white, 20%);
 		}
 
+		&:focus {
+			color: darken(white, 20%);
+			filter:blur(2px);
+		}
+
 		&:nth-of-type(1) {
 			left:auto;
 			right:0;
@@ -399,9 +404,10 @@ export default {
 			transition: fill 200ms ease;
 			transition-property: fill, filter;
 			filter: blur(0px);
-			margin-left:10px;
 		}
 		&:focus, &:active {
+			outline:0;
+			border:0;
 			> svg {
 				fill: darken(white,20%);
 				filter: blur(2px);

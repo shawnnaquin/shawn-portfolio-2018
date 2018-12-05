@@ -46,13 +46,9 @@
     "@vue/test-utils": "^1.0.0-beta.20",
     "chai": "^4.1.2",
     "jimp": "^0.5.6",
-    "mini-css-extract-plugin": "^0.4.5",
     "node-sass": "^4.10.0",
-    "purify-css": "^1.2.5",
-    "purifycss-webpack": "^0.7.0",
     "responsive-loader": "^1.1.0",
     "sass-loader": "^7.0.1",
-    "vue-cli-plugin-critical": "^1.1.0",
     "vue-template-compiler": "^2.5.17"
   }
 }

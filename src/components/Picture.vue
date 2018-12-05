@@ -157,6 +157,9 @@
 		transition: opacity 200ms ease, filter 0.5s ease-in;
 		opacity:1;
 		pointer-events: auto;
+		> h3 {
+		font-size:1rem;
+	}
 		&.blur {
 			filter:blur(10px);
 		}

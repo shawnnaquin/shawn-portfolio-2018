@@ -314,7 +314,14 @@ export default {
 		transition: transform 200ms ease;
 		transition-property: transform, fill;
 	}
-
+	&:focus {
+		> svg {
+			transform: scale(1.2);
+			fill: black;
+		}
+		outline:0;
+		border:0;
+	}
 	@media only screen and (min-width:630px) {
 		&:hover {
 			> svg {

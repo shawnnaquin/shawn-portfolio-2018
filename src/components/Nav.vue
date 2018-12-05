@@ -27,33 +27,33 @@
 			<transition name="fade">
 
 				<li v-if="$route.name !== 'home' && $route.name !== 'contact' " >
-					<router-link to="/"  name="Home" aria-label="Home" title="Home" :class="[ { [ 'is-active' ]: isActive('/')} ]" @click="click('/')" >Home</router-link>
+					<router-link tabindex="1" to="/"  name="Home" aria-label="Home" title="Home" :class="[ { [ 'is-active' ]: isActive('/')} ]" @click.native="click('/')" >Home</router-link>
 				</li>
 
 			</transition>
 
 			<li >
 
-				<router-link to="/marketing"  name="Marketing" aria-label="Marketing" title="Marketing" :class="[ { [ 'is-active' ]: isActive('/marketing')} ]" @click="click('/marketing')" >Marketing</router-link>
+				<router-link tabindex="1" to="/marketing"  name="Marketing" aria-label="Marketing" title="Marketing" :class="[ { [ 'is-active' ]: isActive('/marketing')} ]" @click.native="click('/marketing')" >Marketing</router-link>
 
 			</li>
 
 			<li >
 
-				<router-link to="/interactive" name="Interactive / 3D" aria-label="Interactive / 3D" title="Interactive / 3D" :class="[ { [ 'is-active' ]: isActive('/interactive')} ]"  @click="click('/interactive')" >Interactive / 3D</router-link>
+				<router-link tabindex="1" to="/interactive" name="Interactive / 3D" aria-label="Interactive / 3D" title="Interactive / 3D" :class="[ { [ 'is-active' ]: isActive('/interactive')} ]"  @click.native="click('/interactive')" >Interactive / 3D</router-link>
 
 			</li>
 
 			<li>
 
-				<router-link to="/website" name="Website" aria-label="Website" title="Website" :class="[ { [ 'is-active' ]: isActive('/website')} ]"  @click="click('/website')" >Website</router-link>
+				<router-link tabindex="1" to="/website" name="Website" aria-label="Website" title="Website" :class="[ { [ 'is-active' ]: isActive('/website')} ]"  @click.native="click('/website')" >Website</router-link>
 
 			</li>
 
 
 			<li>
 
-				<a href="https://github.com/shawnnaquin/" rel="noopener" name="Shawn's Github" title="Shawn's Github" aria-label="Shawn's Github" target="_blank" @click="click()" >
+				<a tabindex="1" href="https://github.com/shawnnaquin/" rel="noopener" name="Shawn's Github" title="Shawn's Github" aria-label="Shawn's Github" target="_blank" @click="click()" >
 					<github/>&nbsp;<span :class="['external-span']" ><external/></span>
 				</a>
 
@@ -62,6 +62,27 @@
 		</ul>
 
 	</nav>
+
+	<div class="trackback">
+
+		<ol itemscope="" itemtype="https://schema.org/BreadcrumbList" class="breadcrumb">
+
+			<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+				<a itemprop="item" href="/">
+					<span itemprop="name">Meineke</span>
+				</a>
+				<meta itemprop="position" content="1">
+			</li>
+
+			<li itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+				<span itemprop="name">Coupons And Deals</span>
+				<meta itemprop="position" content="2">
+			</li>
+
+		</ol>
+
+	</div>
+
 	</div>
 </template>
 
@@ -176,6 +197,7 @@ export default {
 		},
 
 		click(path) {
+			console.log(!path, this.$route.path);
 			if ( !path || path == this.$route.path ) {
 				this.setScrollAndToggle();
 			}
@@ -209,6 +231,39 @@ export default {
 
 <style lang="scss" scoped>
 
+	.trackback {
+		position: absolute;
+		top: 3rem;
+		width: 100%;
+		text-align: left;
+		left:12%;
+		@media only screen and (max-width: 1100px) {
+			left: 0;
+			top: 1rem;
+			text-align: center;
+		}
+		ol {
+			margin:0;
+			padding:0;
+			// background:green;
+			li {
+				list-style:none;
+				display:inline;
+				margin:0;
+				padding:0;
+
+				a {
+					padding:0;
+				}
+
+				&:not( :nth-last-child(1) ):after {
+					content: ' > '
+				}
+
+			}
+		}
+	}
+
 	.fake-nav {
 		position:absolute;
 		top:48px;
@@ -232,24 +287,31 @@ export default {
 		width:100%;
 		box-shadow: 2px 2px 3px rgba(black,0.05);
 		background:rgba( darken( white, 4%), 0.95 );
-	}
 
-	ul {
-		margin:0;
-		display: flex;
-		flex-direction:column;
-	}
+		ul {
+			margin:0;
+			display: flex;
+			flex-direction:column;
+		}
 
-	li {
+		li {
 
-		text-align: center;
-		background:darken(white, 5%);
-		list-style:none;
-		cursor: pointer;
-		transition: background 200ms ease;
-		margin: 0;
-		padding: 0;
-		padding-left:0;
+			text-align: center;
+			background:darken(white, 5%);
+			list-style:none;
+			cursor: pointer;
+			transition: background 200ms ease;
+			margin: 0;
+			padding: 0;
+			padding-left:0;
+		}
+		li.dark {
+			background: black;
+			button {
+				color: white;
+			}
+		}
+
 	}
 
 	button, a {
@@ -266,14 +328,24 @@ export default {
 		outline: none;
 		border:0;
 		transition: color 200ms ease-in;
+		color:black;
 		&:focus {
-			border:1px solid Purple;
+			color: darken(aqua, 25%);
+			> svg {
+				color: darken(aqua, 25%);
+				fill: darken(aqua, 25%);
+			}
+			.external-span svg {
+				fill: darken(aqua, 25%);
+			}
 		}
+
 		@media only screen and (min-width:630px) {
 			&:hover {
 				color: darken(aqua, 25%);
 				svg {
 					fill: darken(aqua, 25%);
+					color: darken(aqua, 25%);
 				}
 
 			}
@@ -297,12 +369,7 @@ export default {
 
 	}
 
-	li.dark {
-		background: black;
-		button {
-			color: white;
-		}
-	}
+
 
 	small {
 		display:block;
@@ -366,21 +433,6 @@ export default {
 			display:none;
 		}
 
-		li.dark {
-			display: none;
-		}
-
-		ul {
-			order: 0;
-			flex-direction:row;
-			justify-content:center;
-		}
-		li {
-			button,a {
-				text-align:center;
-			}
-		}
-
 		#nav {
 			&.sticky {
 				position: fixed;
@@ -390,6 +442,20 @@ export default {
 				li  {
 					button, a {
 					}
+				}
+			}
+			li.dark {
+				display: none;
+			}
+
+			ul {
+				order: 0;
+				flex-direction:row;
+				justify-content:center;
+			}
+			li {
+				button,a {
+					text-align:center;
 				}
 			}
 		}
@@ -462,15 +528,17 @@ export default {
 				}
 			}
 
-		}
-		ul {
-			margin-bottom: 100px;
-		}
-		li {
-			text-align: left;
-			button, a  {
-				width:100%;
+			ul {
+				margin-bottom: 100px;
 			}
+
+			li {
+				text-align: left;
+				button, a  {
+					width:100%;
+				}
+			}
+
 		}
 
 	}

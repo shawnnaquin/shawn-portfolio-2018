@@ -23,7 +23,7 @@
 			</h1>
 		</transition>
 
-		<div :style="{position:'relative',minHeight: '500px'}">
+		<main :style="{position:'relative',minHeight: '500px'}">
 
 			<transition :name=" 'fade' " appear >
 				<p :key="type" v-if="!Object.keys(projects).length" :class="[ 'loading' ]">LOADING <Loader :go=" ( !Object.keys(projects).length ) " /> </p>
@@ -55,7 +55,7 @@
 						:title="p.title"
 					>
 						<div :class="[ 'main-description' ]" >
-							<h3>{{ p.title }}</h3>
+							<h2>{{ p.title }}</h2>
 							<small>{{ p.projectDescription }}</small>
 						</div>
 
@@ -75,7 +75,7 @@
 
 			</transition>
 
-		</div>
+		</main>
 
 		<transition name="fade" appear>
 			<div :class="['buttons']" v-if="showButtons" :key="showButtons" >
@@ -405,7 +405,9 @@
 			bottom: 0px;
 		}
 	}
-
+	h2 {
+		font-size:1.25rem
+	}
 	.loading {
 		display:block;
 		position:absolute;
@@ -424,7 +426,7 @@ router-link
 			source
 			img
 		figcaption
-			h3
+			h2
 			p
 */
 	a {
@@ -435,6 +437,11 @@ router-link
 
 		&:active, &:visited, &:focus {
 			color: black;
+		}
+		&:focus {
+			border:0;
+			outline:0;
+			border:1px solid Purple;
 		}
 		@media only screen and (min-width:630px) {
 			&:hover {
