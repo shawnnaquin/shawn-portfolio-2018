@@ -294,7 +294,7 @@ export default {
     },
 
     click(path) {
-      console.log(!path, this.$route.path);
+      // console.log(!path, this.$route.path);
       if (!path || path == this.$route.path) {
         this.setScrollAndToggle();
       }
