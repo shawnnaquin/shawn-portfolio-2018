@@ -4,7 +4,7 @@
     id="app" 
     :class="[{['no-scroll']: $store.state.noScroll } ]" >
 
-    <Contact :showGeneralMessage="getShowGeneral()" :generalMessage="getGeneralMessage()"/>
+    <Contact :showGeneralMessage="showGeneralMessage" :generalMessage="generalMessage"/>
 
     <transition name="fade" >
       <div 
@@ -200,7 +200,27 @@ export default {
     getDate() {
       let d = new Date();
       return `${this.monthNames[d.getMonth()]} ${d.getFullYear()}`;
-    }
+    },
+
+    showGeneralMessage: {
+      get: function () {
+        if ( !sessionStorage.getItem( 'showGeneralMessage' ) ) return false;
+        return 'true' === sessionStorage.getItem( 'showGeneralMessage' );
+      },
+      set: function (value) {
+        sessionStorage.setItem('showGeneralMessage', value );
+      }
+    },
+
+    generalMessage: {
+      get: function () {
+        return sessionStorage.getItem('generalMessage') || '';
+      },
+      set: function (value) {
+        sessionStorage.setItem('showGeneralMessage', value );
+      }
+    },
+
   },
 
   data() {
@@ -267,14 +287,6 @@ export default {
   },
 
   methods: {
-    getShowGeneral() {
-      console.log(window.sessionStorage.getItem('generalMessage'));
-      return window.sessionStorage.getItem('generalMessage');
-    },
-    getShowGeneralMessage() {
-      console.log(window.sessionStorage.getItem('showGeneralMessage'));
-      return window.sessionStorage.getItem('showGeneralMessage');
-    },
     openContact(p) {
       const scrollTop = () => {
         const el = document.scrollingElement || document.documentElement;
@@ -300,6 +312,8 @@ export default {
   },
 
   mounted() {
+    console.log( 'g: ' + this.generalMessage );
+    console.log( 'g: ' + this.showGeneralMessage );
 
     if (this.$route.name == "contact") {
       this.$store.commit("setOpenContact", true);

@@ -3,10 +3,10 @@ import { register } from "register-service-worker";
 
 let playMessage = ()=> {
   setTimeout(()=> {
-    window.sessionStorage.getItem( 'showGeneralMessage', '' );
+    window.sessionStorage.setItem( 'showGeneralMessage', false );
     console.log('played');
     setTimeout(()=> {
-      window.sessionStorage.getItem( 'generalMessage', '' );
+      window.sessionStorage.setItem( 'generalMessage', '' );
     },1000);
   }, 1500 );
 };
@@ -17,28 +17,28 @@ if (process.env.NODE_ENV === "production") {
     ready() {
       console.log('ready');
       window.sessionStorage.setItem('generalMessage', "App is being served from cache by a service worker.");
-      window.sessionStorage.setItem('showGeneralMessage', 'true');
+      window.sessionStorage.setItem('showGeneralMessage', true );
       playMessage();
     },
 
     cached() {
       console.log('cache');
       window.sessionStorage.setItem('generalMessage', "Content has been cached for offline use.");
-      window.sessionStorage.setItem('showGeneralMessage', 'true');
+      window.sessionStorage.setItem('showGeneralMessage', true );
       playMessage();
     },
 
     updated() {
       console.log('updated');
       window.sessionStorage.setItem('generalMessage', "New content is available, please refresh.");
-      window.sessionStorage.setItem('showGeneralMessage', 'true');
+      window.sessionStorage.setItem('showGeneralMessage', true );
       playMessage();
     },
 
     offline() {
       console.log('offline');
       window.sessionStorage.setItem('generalMessage', "No internet connection found. App is running in offline mode.");
-      window.sessionStorage.setItem('showGeneralMessage', 'true');
+      window.sessionStorage.setItem('showGeneralMessage', true );
       playMessage();
 
     },
@@ -46,7 +46,7 @@ if (process.env.NODE_ENV === "production") {
     error(error) {
       console.log('error');
       window.sessionStorage.setItem( 'generalMessage', "Error during service worker registration: " + error );
-      window.sessionStorage.setItem('showGeneralMessage', 'true');
+      window.sessionStorage.setItem('showGeneralMessage', true );
       playMessage();
     }
 
