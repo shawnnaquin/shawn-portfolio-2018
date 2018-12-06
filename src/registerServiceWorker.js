@@ -11,8 +11,8 @@ let playMessage = ()=> {
   }, 1500 );
 };
 
-if ( process.env.NODE_ENV == "production" ) {
-  console.log('yes');
+if (process.env.NODE_ENV === "production") {
+
   register(`${process.env.BASE_URL}service-worker.js`, {
 
     ready() {

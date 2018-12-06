@@ -204,20 +204,20 @@ export default {
 
     showGeneralMessage: {
       get: function () {
-        if ( !sessionStorage.getItem( 'showGeneralMessage' ) ) return false;
-        return 'true' === sessionStorage.getItem( 'showGeneralMessage' );
+        if ( !window.sessionStorage.getItem( 'showGeneralMessage' ) ) return false;
+        return 'true' === window.sessionStorage.getItem( 'showGeneralMessage' );
       },
       set: function (value) {
-        sessionStorage.setItem('showGeneralMessage', value );
+        window.sessionStorage.setItem('showGeneralMessage', value );
       }
     },
 
     generalMessage: {
       get: function () {
-        return sessionStorage.getItem('generalMessage') || '';
+        return window.sessionStorage.getItem('generalMessage') || '';
       },
       set: function (value) {
-        sessionStorage.setItem('showGeneralMessage', value );
+        window.sessionStorage.setItem('showGeneralMessage', value );
       }
     },
 
