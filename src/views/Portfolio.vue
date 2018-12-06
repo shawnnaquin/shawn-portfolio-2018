@@ -152,21 +152,22 @@ export default {
   data() {
     return {
       direction: "",
-      showButtons: false
+      showButtons: false,
+      title: this.$route.params.type
     };
   },
 
   head: {
     title: function() {
       return {
-        inner: (this.type || "").capitalize()
+        inner: this.title
       };
     },
     link: function() {
       return [
         {
           rel: "canonical",
-          href: `https://shawnnaquin.github.io/${this.$route.params.type}`,
+          href: `https://shawnnaquin.github.io/${this.title}`,
           id: "canonical"
         }
       ];
@@ -178,7 +179,6 @@ export default {
       types: "getTypes",
       getTrans: "getTrans"
     }),
-
     typeKey() {
       let n = this.types.indexOf(this.$route.params.type);
 
@@ -272,11 +272,10 @@ export default {
   watch: {
     $route(to) {
       this.setProjects(to.params.type);
-    },
-    type(t) {
-      if (t) {
-        this.$emit("updateHead");
-      }
+      this.title = to.params.type;
+      this.$nextTick(()=> {
+        this.$emit('updateHead');
+      });
     },
     projects() {
       let k = this.typeKey - 1;

@@ -1,3 +1,4 @@
+
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
@@ -29,11 +30,8 @@ new Vue({
   render: h => h(App)
 }).$mount("#app");
 
-// router.afterEach( (to,from)=> {
-// 	console.log( from.name == 'contact' );
-// });
-
 router.beforeEach((to, from, next) => {
+
   store.commit("setResetScroll", false);
 
   if (!store.state.menuOpen && !from.params.image && !store.state.openContact) {
@@ -60,4 +58,5 @@ router.beforeEach((to, from, next) => {
   // }
 
   next();
+
 });

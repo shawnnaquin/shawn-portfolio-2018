@@ -4,7 +4,7 @@
     id="app" 
     :class="[{['no-scroll']: $store.state.noScroll } ]" >
 
-    <Contact/>
+    <Contact :showGeneralMessage="showGeneralMessage" :generalMessage="generalMessage"/>
 
     <transition name="fade" >
       <div 
@@ -179,10 +179,9 @@ import lin from "@/components/icons/in";
 import you from "@/components/icons/youtube";
 import be from "@/components/icons/be";
 import mail from "@/components/icons/mail";
-
 import H from "@/mixins/height";
-
 import { mapGetters } from "vuex";
+import { register } from "register-service-worker";
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
@@ -209,6 +208,8 @@ export default {
     return {
       title: "home",
       mod: "",
+      generalMessage: '',
+      showGeneralMessage: '',
       monthNames: [
         "January",
         "February",
@@ -269,6 +270,56 @@ export default {
   },
 
   methods: {
+    startServiceWorker() {
+      if (process.env.NODE_ENV === "production") {
+        register(`${process.env.BASE_URL}service-worker.js`, {
+          ready() {
+            console.log('ready');
+            this.generalMessage = "App is being served from cache by a service worker.";
+            this.showGeneralMessage = 'true';
+            this.playMessage();
+          },
+
+          cached() {
+            console.log('cache');
+            this.generalMessage = "Content has been cached for offline use.";
+            this.showGeneralMessage = 'true';
+            this.playMessage();
+          },
+
+          updated() {
+            console.log('updated');
+            this.generalMessage = "New content is available; please refresh.";
+            this.showGeneralMessage = 'true';
+            this.playMessage();
+          },
+
+          offline() {
+            console.log('offline');
+            this.generalMessage = "No internet connection found. App is running in offline mode.";
+            this.showGeneralMessage = 'true';
+            this.playMessage();
+
+          },
+
+          error() {
+            console.log('error');
+            this.generalMessage = "Error during service worker registration: " + error;
+            this.showGeneralMessage = 'true';
+            this.playMessage();
+          }
+        });
+      }
+    },
+    playMessage() {
+      setTimeout(()=> {
+        this.showGeneralMessage = '';
+        console.log('played');
+        setTimeout(()=> {
+          this.generalMessage = '';
+        },1000);
+      }, 1500 );
+    },
     openContact(p) {
       const scrollTop = () => {
         const el = document.scrollingElement || document.documentElement;
@@ -294,6 +345,9 @@ export default {
   },
 
   mounted() {
+
+    this.startServiceWorker();
+
     if (this.$route.name == "contact") {
       this.$store.commit("setOpenContact", true);
     }
@@ -304,6 +358,7 @@ export default {
         this.heightTrigger = true;
       });
     }
+
   },
 
   components: {

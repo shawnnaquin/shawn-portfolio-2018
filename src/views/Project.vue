@@ -378,20 +378,20 @@ export default {
       show: false, // show the page
       showBlurb: false,
       direction: "",
-      title: ""
+      title: this.$route.params.project
     };
   },
   head: {
     title: function() {
       return {
-        inner: this.title.capitalize()
+        inner: this.title
       };
     },
     link: function() {
       return [
         {
           rel: "canonical",
-          href: `https://shawnnaquin.github.io/${this.$route.params.type}/${
+          href: `https://shawnnaquin.github.io/${this.title}/${
             this.$route.params.project
           }`,
           id: "canonical"
@@ -406,11 +406,11 @@ export default {
     // console.log( this.getBase );
   },
   watch: {
-    project(p) {
-      if (p) {
-        this.title = p.title;
-        this.$emit("updateHead");
-      }
+    "$route"(to){
+      this.title = to.params.project;
+      this.$nextTick(()=> {
+        this.$emit('updateHead');
+      });
     },
     "$store.state.projects"() {
       if (!this.projectNames.includes(this.$route.params.project)) {

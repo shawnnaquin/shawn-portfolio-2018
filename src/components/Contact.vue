@@ -8,7 +8,10 @@
       <transition 
         name="fade" 
         appear>
-        <span v-if="showInterim">{{ interimMessage }}</span>
+        <span v-if="showInterim || showGeneralMessage.length">
+          <b v-if="showGeneralMessage.length" >{{ generalMessage }}</b>
+          <b v-if="showInterim">{{ showInterim }}</b>
+        </span>
       </transition>
     </div>
 
@@ -120,7 +123,18 @@ export default {
   },
 
   mixins: [H],
-
+  props: {
+    generalMessage: {
+      default: '',
+      type: String,
+      required: true
+    },
+    showGeneralMessage: {
+      default: false,
+      type: Boolean,
+      required: true
+    }
+  },
   data() {
     return {
       showInterim: false,

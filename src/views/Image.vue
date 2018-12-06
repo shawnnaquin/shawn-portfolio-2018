@@ -96,13 +96,14 @@ export default {
     return {
       index: 0,
       imageTypes: ["mobile", "horiz", "regular"],
-      trans: "fade-left"
+      trans: "fade-left",
+      title: this.$route.params.image
     };
   },
   head: {
     title: function() {
       return {
-        inner: this.$route.params.image
+        inner: this.title
       };
     },
     link: function() {
@@ -111,7 +112,7 @@ export default {
           rel: "canonical",
           href: `https://shawnnaquin.github.io/${this.$route.params.type}/${
             this.$route.params.project
-          }/${this.$route.params.image}`,
+          }/${this.title}`,
           id: "canonical"
         }
       ];
@@ -197,12 +198,15 @@ export default {
   watch: {
     $route(to, from) {
       if (!this.images) return;
-
+      this.title  = to.params.image;
       if (from.params.image == this.prevImagePath) {
         this.trans = "fade-left";
       } else if (from.params.image == this.nextImagePath) {
         this.trans = "fade-right";
       }
+      this.$nextTick(()=> {
+        this.$emit('updateHead');
+      });
     }
   },
   methods: {
