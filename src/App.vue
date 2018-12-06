@@ -4,7 +4,7 @@
     id="app" 
     :class="[{['no-scroll']: $store.state.noScroll } ]" >
 
-    <Contact :showGeneralMessage="$store.state.showGeneralMessage" :generalMessage="$store.state.generalMessage"/>
+    <Contact :showGeneralMessage="getShowGeneral()" :generalMessage="getGeneralMessage()"/>
 
     <transition name="fade" >
       <div 
@@ -267,6 +267,14 @@ export default {
   },
 
   methods: {
+    getShowGeneral() {
+      console.log(window.sessionStorage.getItem('generalMessage'));
+      return window.sessionStorage.getItem('generalMessage');
+    },
+    getShowGeneralMessage() {
+      console.log(window.sessionStorage.getItem('showGeneralMessage'));
+      return window.sessionStorage.getItem('showGeneralMessage');
+    },
     openContact(p) {
       const scrollTop = () => {
         const el = document.scrollingElement || document.documentElement;
