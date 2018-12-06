@@ -10,7 +10,8 @@
     "build": "mv dist/.git .gitl && vue-cli-service build && mv .gitl dist/.git",
     "lint": "vue-cli-service lint --fix",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "deploy": "npm run build && cd dist && git add . && git commit -m \"build\" && git push && cd ../ && git add . && git commit -m \"deploy\" && git push && echo \"done\""
   },
   "dependencies": {
     "@cypress/webpack-preprocessor": "^4.0.2",
