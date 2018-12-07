@@ -358,9 +358,10 @@ export default {
       this.installBtn = false;
       installPrompt.prompt();
       installPrompt.userChoice.then(result=>{
+        console.log(result.outcome);
         if (result.outcome == 'accepted'){
           // console.log('accept');
-          window.sendDesktopNotification('Thanks for accepting! Stay tuned!');
+          window.sendDesktopNotification('Thanks for installing! Stay tuned!');
         } else {
           // console.log('deny');
         }
@@ -368,11 +369,18 @@ export default {
       })
     };
     if ( Notification && Notification.permission === 'default') {
-      Notification.requestPermission(function (permission) {
-         if(!('permission' in Notification)) {
-           Notification.permission = permission;
-         }
-      });
+
+      let resolve = (permission)=> {
+          if(!('permission' in Notification)) {
+             Notification.permission = permission;
+          }
+          if( permission == 'granted' ) {
+            window.sendDesktopNotification('Thanks for accepting! Stay tuned!');
+          }
+      };
+
+      let request = Notification.requestPermission(resolve);
+
     }
   },
   mounted() {
