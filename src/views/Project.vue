@@ -57,6 +57,7 @@
             </transition>
 
             <youtube-video 
+              :class="['video']"
               v-if="project.content.video.length" 
               :video-id="project.content.video" 
               :video-img=" `${getBase}${ type }/${ images.video }`" />

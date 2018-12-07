@@ -6,14 +6,17 @@
 
     <Contact
       :show-general-message="$store.state.showGeneralMessage"
-      :general-message="$store.state.generalMessage"/>
+      :general-message="$store.state.generalMessage"
+      :aria-hidden="$store.state.modalOpen != 'contact'"
+      ref="contact" />
 
     <transition name="fade" >
       <div
         :class="[ 'loader' ]"
         v-if="getLoading"
         ref="background"
-        :style="{height:height}" >
+        :style="{height:height}"
+        :aria-hidden="$store.state.modalOpen !== false" >
         <p :class="[ 'paragraph' ]" >
           <span v-if="getLoading" >Loading <Loader :go="getLoading" /></span>
           <span v-else >Content Loaded!</span>
@@ -21,23 +24,30 @@
       </div>
     </transition>
 
-    <div :class="'flex-column'" >
+    <div
+      :class="'flex-column'" >
       <Nav />
-      <Header :loaded="!getLoading" />
+      <Header
+        :loaded="!getLoading"
+        :aria-hidden="$store.state.modalOpen !== false" />
     </div>
 
-    <transition
-      :name="mainTrans.trans"
-      :mode="mainTrans.mode"
-      appear >
-      <router-view/>
-    </transition>
+    <div
+      :aria-hidden="$store.state.modalOpen !== false" >
+      <transition
+        :name="mainTrans.trans"
+        :mode="mainTrans.mode"
+        appear >
+        <router-view/>
+      </transition>
+    </div>
 
     <transition
       name="fade"
       appear >
       <button
         v-if="getSticky && $route.name != 'home' || getSticky && $route.name != 'contact' "
+        :aria-hidden="$store.state.modalOpen !== false"
         v-scroll-to="{
           el: ':root',
           duration: 200,
@@ -49,7 +59,9 @@
       </button>
     </transition>
 
-    <aside :class="[ 'aside' ]" >
+    <aside
+      :class="[ 'aside' ]"
+      :aria-hidden="$store.state.modalOpen !== false" >
 
       <div :class="['footer-buttons']" >
         <button
@@ -108,7 +120,9 @@
 
     </aside>
 
-    <footer :class="['footer']" >
+    <footer 
+      :class="['footer']"
+      :aria-hidden="$store.state.modalOpen !== false" >
       <div :class="['footer-copy']" ><small>Shawn Naquin | Front-End Portfolio | &copy; {{ getDate }}</small></div>
       <div :class="['footer-icons']">
         <a
@@ -198,7 +212,6 @@ export default {
       mainTrans: "getTrans",
       getSticky: "getSticky"
     }),
-
     getDate() {
       let d = new Date();
       return `${this.monthNames[d.getMonth()]} ${d.getFullYear()}`;
@@ -250,7 +263,7 @@ export default {
         this.playMessage();
       }
     },
-    "$store.state.openContact"(o) {
+    "$store.state.modalOpen"(o) {
       if (o) {
         this.title = "contact";
       } else {
@@ -320,15 +333,14 @@ export default {
           })
         });
       }
-
       this.$nextTick(() => {
-        this.$store.commit("setOpenContact", true);
+        this.$store.dispatch("openContact", true);
       });
     }
   },
   mounted() {
     if (this.$route.name == "contact") {
-      this.$store.commit("setOpenContact", true);
+      this.$store.dispatch("openContact", true);
     }
 
     if (this.getLoading) {

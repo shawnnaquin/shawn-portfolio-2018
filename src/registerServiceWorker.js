@@ -8,7 +8,7 @@ register(`${process.env.BASE_URL}service-worker.js`, {
   // must be served from route dir
   ready() {
     // only fires on localhost?!
-    console.log("ready");
+    // console.log("ready");
   },
 
   cached() {
@@ -27,7 +27,7 @@ register(`${process.env.BASE_URL}service-worker.js`, {
     }
   },
   updateFound() {
-    console.log("New content is downloading.");
+    store.state.generalMessage = "Offline Mode: Serving content from cache!";
   },
   updated(registration) {
     store.state.generalMessage = "New content is available; please refresh!";

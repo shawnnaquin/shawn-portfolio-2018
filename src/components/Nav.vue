@@ -4,6 +4,9 @@
       name="fade"
       appear>
       <button
+        aria-role="button"
+        tabindex="1"
+        ref="hamburger"
         aria-label="Menu"
         :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]"
         v-if="!menuOpen"
@@ -20,94 +23,95 @@
       id="nav"
       :class="[ { ['menu-open']: menuOpen }, { ['sticky']: getSticky } ]"
       ref="nav" >
+      <FocusLock
+        :disabled="$store.state.modalOpen != 'nav' " >
+        <ul>
 
-      <ul>
+          <transition name="fade">
 
-        <transition name="fade">
+            <li
+              v-if="menuOpen"
+              @click="setScrollAndToggle()"
+              :class="['dark']"
+            >
+              <button ref="close">Close X</button>
+            </li>
 
-          <li
-            v-if="menuOpen"
-            @click="setScrollAndToggle()"
-            :class="['dark']"
-          >
-            <button>Close X</button>
-          </li>
+          </transition>
 
-        </transition>
+          <transition name="fade">
 
-        <transition name="fade">
+            <li v-if="$route.name !== 'home' && $route.name !== 'contact' " >
+              <router-link
+                tabindex="1"
+                to="/"
+                name="Home"
+                aria-label="Home"
+                title="Home"
+                :class="[ { [ 'is-active' ]: isActive('/')} ]"
+                @click.native="click('/')" >Home</router-link>
+            </li>
 
-          <li v-if="$route.name !== 'home' && $route.name !== 'contact' " >
+          </transition>
+
+          <li >
+
             <router-link
               tabindex="1"
-              to="/"
-              name="Home"
-              aria-label="Home"
-              title="Home"
-              :class="[ { [ 'is-active' ]: isActive('/')} ]"
-              @click.native="click('/')" >Home</router-link>
+              to="/marketing"
+              name="Marketing"
+              aria-label="Marketing"
+              title="Marketing"
+              :class="[ { [ 'is-active' ]: isActive('/marketing')} ]"
+              @click.native="click('/marketing')" >Marketing</router-link>
+
           </li>
 
-        </transition>
+          <li >
 
-        <li >
+            <router-link
+              tabindex="1"
+              to="/interactive"
+              name="Interactive / 3D"
+              aria-label="Interactive / 3D"
+              title="Interactive / 3D"
+              :class="[ { [ 'is-active' ]: isActive('/interactive')} ]"
+              @click.native="click('/interactive')" >Interactive / 3D</router-link>
 
-          <router-link
-            tabindex="1"
-            to="/marketing"
-            name="Marketing"
-            aria-label="Marketing"
-            title="Marketing"
-            :class="[ { [ 'is-active' ]: isActive('/marketing')} ]"
-            @click.native="click('/marketing')" >Marketing</router-link>
+          </li>
 
-        </li>
+          <li>
 
-        <li >
+            <router-link
+              tabindex="1"
+              to="/website"
+              name="Website"
+              aria-label="Website"
+              title="Website"
+              :class="[ { [ 'is-active' ]: isActive('/website')} ]"
+              @click.native="click('/website')" >Website</router-link>
 
-          <router-link
-            tabindex="1"
-            to="/interactive"
-            name="Interactive / 3D"
-            aria-label="Interactive / 3D"
-            title="Interactive / 3D"
-            :class="[ { [ 'is-active' ]: isActive('/interactive')} ]"
-            @click.native="click('/interactive')" >Interactive / 3D</router-link>
-
-        </li>
-
-        <li>
-
-          <router-link
-            tabindex="1"
-            to="/website"
-            name="Website"
-            aria-label="Website"
-            title="Website"
-            :class="[ { [ 'is-active' ]: isActive('/website')} ]"
-            @click.native="click('/website')" >Website</router-link>
-
-        </li>
+          </li>
 
 
-        <li>
+          <li>
 
-          <a
-            tabindex="1"
-            href="https://github.com/shawnnaquin/"
-            rel="noopener"
-            name="Shawn's Github"
-            title="Shawn's Github"
-            aria-label="Shawn's Github"
-            target="_blank"
-            @click="click()" >
-            <github/>&nbsp;<span :class="['external-span']" ><external/></span>
-          </a>
+            <a
+              tabindex="1"
+              href="https://github.com/shawnnaquin/"
+              rel="noopener"
+              name="Shawn's Github"
+              title="Shawn's Github"
+              aria-label="Shawn's Github"
+              target="_blank"
+              @click="click()" >
+              <github/>&nbsp;<span :class="['external-span']" ><external/></span>
+            </a>
 
-        </li>
+          </li>
 
-      </ul>
-
+        </ul>
+      </FocusLock>
     </nav>
 
     <div :class="['trackback']">
@@ -193,6 +197,7 @@ import hamburger from "@/components/icons/hamburger";
 import external from "@/components/icons/external";
 import { mapGetters } from "vuex";
 import { debounce } from "lodash";
+import FocusLock from "vue-focus-lock";
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
@@ -202,7 +207,8 @@ export default {
   components: {
     github,
     hamburger,
-    external
+    external,
+    FocusLock
   },
 
   data() {
@@ -235,8 +241,10 @@ export default {
     menuOpen(o) {
       if (o) {
         this.keyPress();
+        this.openModal();
       } else {
         window.onkeydown = null;
+        this.closeModal();
       }
     }
   },
@@ -255,6 +263,27 @@ export default {
   },
 
   methods: {
+    openModal() {
+      this.$store.commit("setModalOpen", "nav");
+      setTimeout(() => {
+        this.$refs.close.focus();
+      }, 300);
+    },
+    closeModal() {
+      this.$store.commit("setModalOpen", false);
+
+      setTimeout(() => {
+        let $a =
+          document.activeElement ||
+          document.querySelector('a[name="marketing"]');
+        let $b = this.$refs.hamburger;
+        if (window.innerWidth > 1100 && $a) {
+          $a.focus();
+        } else {
+          $b.focus();
+        }
+      }, 300);
+    },
     nameify(a) {
       return a;
     },
@@ -323,6 +352,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.menu {
+  border: 1px solid transparent;
+  transition: border 200ms ease;
+  &:focus,
+  &:active {
+    border: 1px solid Purple;
+  }
+}
 .trackback {
   position: absolute;
   top: 3rem;
@@ -403,6 +440,15 @@ export default {
     background: black;
     button {
       color: white;
+      &:focus,
+      &:active {
+        color: darken(aqua, 10%);
+      }
+      @media only screen and (min-width: 630px) {
+        &:hover {
+          color: darken(aqua, 25%);
+        }
+      }
     }
   }
   button,

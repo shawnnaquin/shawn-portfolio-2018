@@ -38,7 +38,9 @@
         </transition>
       </div>
 
-      <div id="player" v-if="getOnline()" />
+      <div 
+        id="player" 
+        v-if="getOnline()" />
 
     </div>
 

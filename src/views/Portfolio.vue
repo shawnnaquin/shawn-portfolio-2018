@@ -343,7 +343,7 @@ export default {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
 
-  @media only screen and (min-width: 1100px) {
+  @media only screen and (min-width: 630px) {
     &.one,
     &.two,
     &.three {

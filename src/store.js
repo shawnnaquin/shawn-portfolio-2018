@@ -19,6 +19,7 @@ export default new Vuex.Store({
     types: ["marketing", "interactive", "website"],
     sticky: false,
     resetScroll: false,
+    modalOpen: false,
     mainTrans: {
       trans: "fade-up",
       mode: ""
@@ -83,13 +84,18 @@ export default new Vuex.Store({
     setTrans(state, p = { trans: "fade-up", mode: "" }) {
       state.mainTrans = p;
     },
-
+    setModalOpen(state, p) {
+      state.modalOpen = p;
+    },
     setProjects(state, p) {
       state.projects = p;
     }
   },
 
   actions: {
+    openContact({ commit }, o) {
+      commit("setOpenContact", o);
+    },
     setToggleMenu({ commit, state }) {
       const scrollTop = () => {
         const el = document.scrollingElement || document.documentElement;

@@ -1,12 +1,12 @@
 <template>
 
-  <div 
-    :class="['main', {['open']: $store.state.openContact}]" 
+  <div
+    :class="['main', {['open']: $store.state.openContact}]"
     :style="{height:height}" >
 
     <div :class="['if-closed', { ['error']: error } ]">
-      <transition 
-        name="fade" 
+      <transition
+        name="fade"
         appear>
         <span v-if="showInterim || showGeneralMessage.length">
           <b v-if="showGeneralMessage.length" >{{ generalMessage }}</b>
@@ -15,95 +15,98 @@
       </transition>
     </div>
 
-    <transition 
-      name="fade" 
+    <transition
+      name="fade"
       appear >
-
-      <div 
-        :class="['flex-container']" 
-        :key="$store.state.openContact" 
+      <FocusLock
+        :disabled="!$store.state.modalOpen"
         v-if="$store.state.openContact" >
+        <div
+          :class="['flex-container']"
+          :key="$store.state.openContact"
+          v-if="$store.state.openContact" >
 
-        <button 
-          @click="closeContact"
-          v-if="!showInterim"
-          :class="['close']" ><close/></button>
+          <button
+            @click="closeContact"
+            v-if="!showInterim"
+            :class="['close']" ><close/></button>
 
-        <form :class="['form']">
+          <form :class="['form']">
 
-          <template v-for="input in inputs">
+            <template v-for="input in inputs">
 
-            <div
-              :class="[
-                'div-input',
-                { [ 'error' ]: input.error },
-                { [ 'focus' ]: input.focus },
-                { [ 'fill' ]: input.data }
-              ]"
-              :key="input.id"
-            >
-
-              <label 
-                :class="['label']" 
-                :for="input.id">
-                <span> {{ input.label }} </span>
-              </label>
-
-              <input
-                :tabindex="input.tabIndex"
-                :ref="input.id"
-                :name="input.id"
-                @focus="focus"
-                @blur="blur"
-                :class="[ 'input' ]"
-                :type="input.type"
-                :id="input.id"
-                :required="input.required"
-                :aria-label="input.label"
-                :pattern="input.pattern"
-                v-model="input.data"
+              <div
+                :class="[
+                  'div-input',
+                  { [ 'error' ]: input.error },
+                  { [ 'focus' ]: input.focus },
+                  { [ 'fill' ]: input.data }
+                ]"
+                :key="input.id"
               >
 
-              <div :class="['top-label']" >
-                <span>{{ input.label }}</span>
+                <label
+                  :class="['label']"
+                  :for="input.id">
+                  <span> {{ input.label }} </span>
+                </label>
+
+                <input
+                  :tabindex="input.tabIndex"
+                  :ref="input.id"
+                  :name="input.id"
+                  @focus="focus"
+                  @blur="blur"
+                  :class="[ 'input' ]"
+                  :type="input.type"
+                  :id="input.id"
+                  :required="input.required"
+                  :aria-label="input.label"
+                  :pattern="input.pattern"
+                  v-model="input.data"
+                >
+
+                <div :class="['top-label']" >
+                  <span>{{ input.label }}</span>
+                </div>
+
+                <div :class="['line']"/>
+
               </div>
 
-              <div :class="['line']"/>
+            </template>
 
+            <g-recaptcha
+              :data-tabindex="String( Object.keys(inputs).length + 1 )"
+              data-sitekey="6LcOPH4UAAAAAOAkGz3AiBzFJ0xugr2Cxh8ST4YQ"
+              :data-validate="processForm"
+              :data-callback="submitForm"
+              :data-btn-disabled="sending || success || error"
+              :class="['form-submit']"
+            >
+              <span
+                :class="['external']"
+                :tabindex="Object.keys(inputs).length + 1" >
+                <span>{{ submitText }}</span>
+              </span>
+
+            </g-recaptcha>
+
+          </form>
+
+          <transition
+            name="fade"
+            mode="out-in" >
+            <div
+              v-if="errorMessage"
+              :key="errorMessage"
+              :class="[ 'error-message' ]">
+              {{ errorMessage }}
             </div>
+          </transition>
 
-          </template>
-
-          <g-recaptcha
-            :data-tabindex="String( Object.keys(inputs).length + 1 )"
-            data-sitekey="6LcOPH4UAAAAAOAkGz3AiBzFJ0xugr2Cxh8ST4YQ"
-            :data-validate="processForm"
-            :data-callback="submitForm"
-            :data-btn-disabled="sending || success || error"
-            :class="['form-submit']"
-          >
-            <span 
-              :class="['external']" 
-              :tabindex="Object.keys(inputs).length + 1" >
-              <span>{{ submitText }}</span>
-            </span>
-
-          </g-recaptcha>
-
-        </form>
-
-        <transition 
-          name="fade" 
-          mode="out-in" >
-          <div 
-            v-if="errorMessage" 
-            :key="errorMessage" 
-            :class="[ 'error-message' ]">
-            {{ errorMessage }}
-          </div>
-        </transition>
-
-      </div>
+        </div>
+      </FocusLock>
     </transition>
   </div>
 
@@ -116,11 +119,13 @@ import H from "@/mixins/height";
 import gRecaptcha from "@finpo/vue2-recaptcha-invisible";
 import validator from "validator";
 import xssFilters from "xss-filters";
+import FocusLock from "vue-focus-lock";
 
 export default {
   components: {
     gRecaptcha,
-    close
+    close,
+    FocusLock
   },
 
   mixins: [H],
@@ -247,6 +252,7 @@ export default {
         }
 
         setTimeout(() => {
+          this.$store.commit("setModalOpen", "contact");
           this.$store.commit("toggleNoScroll");
         }, 300);
       } else {
@@ -260,10 +266,19 @@ export default {
         window.onkeydown = false;
         this.$store.commit("toggleNoScroll");
         this.$scrollTo(":root", 100, { offset: this.$store.state.lastScroll });
+        this.closeModal();
       }
     }
   },
   methods: {
+    closeModal() {
+      this.$store.commit("setModalOpen", false);
+      this.$nextTick(() => {
+        if (document.querySelector(`button[name="Contact"]`)) {
+          document.querySelector(`button[name="Contact"]`).focus();
+        }
+      });
+    },
     getString(v) {
       if (typeof v == "string") {
         return decodeURI(v.trim());
@@ -272,13 +287,13 @@ export default {
       }
     },
     closeContact() {
-      this.$store.commit("setOpenContact", false);
+      this.$store.dispatch("openContact", false);
     },
     keyPress() {
       window.onkeydown = event => {
         switch (event.keyCode) {
           case 27:
-            this.$store.commit("setOpenContact", false);
+            this.$store.dispatch("openContact", false);
             break;
           default:
             return;
@@ -287,8 +302,6 @@ export default {
     },
     processForm() {
       let error = false;
-
-      let blurevt = new Event("blur");
 
       if (!navigator.onLine) {
         this.handleFormError(
@@ -302,7 +315,7 @@ export default {
 
       for (let v in this.inputs) {
         if (document.querySelector(`input[name="${v}"]`)) {
-          document.querySelector(`input[name="${v}"]`).dispatchEvent(blurevt);
+          document.querySelector(`input[name="${v}"]`).blur();
         }
 
         if (this.inputs[v].error || !this.inputs[v].data.length) {
@@ -435,7 +448,7 @@ export default {
 
       setTimeout(() => {
         setTimeout(() => {
-          this.$store.commit("setOpenContact", false);
+          this.$store.dispatch("setOpenContact", false);
           setTimeout(this.resetForm, 100);
         }, 500);
 
@@ -470,14 +483,12 @@ export default {
     },
 
     resetForm() {
-      let blurevt = new Event("blur");
-
       for (let v in this.inputs) {
         this.inputs[v].data = null;
         this.inputs[v].error = false;
         this.inputs[v].focus = false;
         if (document.querySelector(`input[name="${v}"]`)) {
-          document.querySelector(`input[name="${v}"]`).dispatchEvent(blurevt);
+          document.querySelector(`input[name="${v}"]`).blur();
         }
       }
 
