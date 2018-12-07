@@ -1,30 +1,32 @@
 <template>
 
-  <div 
+  <div
     :class="['player', { ['stuck']: stuck } ]"
     @mouseenter="mouseenter"
     @mouseleave="mouseleave"
     :ref=" 'player' "
+    v-if="getOnline() || !getOnline() && videoImg.length"
   >
 
     <div :class="[ 'frame' ]" >
 
 
-      <div 
-        :class="['loader']" 
-        style="overflow:hidden;" >
+      <div
+        :class="['loader']"
+        style="overflow:hidden;" 
+      >
         <transition name="fade">
           <span v-if="!playerReady && getOnline()" >Loading <Loader :go="!playerReady" /> </span>
         </transition>
         <transition name="fade">
-          <div 
+          <div
             v-if="getOnline()"
             :class="['sub-loader', { ['offline']: !getOnline() } ]"
             :style="{ backgroundImage: getMainImage() }" />
 
-          <div 
-            :class="['sub-loader', { ['offline']: !getOnline() } ]" 
-            v-else >
+          <div
+            :class="['sub-loader', { ['offline']: !getOnline() } ]"
+            v-if="!getOnline() && videoImg.length" >
             <picture-query
               v-if="getImageName().length"
               :type="$route.params.type"
@@ -36,7 +38,7 @@
         </transition>
       </div>
 
-      <div id="player"/>
+      <div id="player" v-if="getOnline()" />
 
     </div>
 

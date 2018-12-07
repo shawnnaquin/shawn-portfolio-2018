@@ -25,7 +25,8 @@
         v-if="$store.state.openContact" >
 
         <button 
-          @click="closeContact" 
+          @click="closeContact"
+          v-if="!showInterim"
           :class="['close']" ><close/></button>
 
         <form :class="['form']">
