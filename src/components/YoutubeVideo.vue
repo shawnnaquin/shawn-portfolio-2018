@@ -22,6 +22,7 @@
 
           <div :class="['sub-loader', { ['offline']: !getOnline() } ]" v-else="!getOnline()" >
             <picture-query
+              v-if="getImageName().length"
               :type="$route.params.type"
               :path="getImageName()"
               alt="Video Image"
@@ -134,6 +135,7 @@ export default {
       }
     },
     getImageName() {
+      if ( !this.videoImg || !this.$route.params.type ) return '';
       return this.videoImg.split( this.$route.params.type+'/' )[1];
     },
     getMainImage() {
