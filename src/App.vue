@@ -4,7 +4,7 @@
     id="app" 
     :class="[{['no-scroll']: $store.state.noScroll } ]" >
 
-    <Contact :showGeneralMessage="showGeneralMessage" :generalMessage="generalMessage"/>
+    <Contact :showGeneralMessage="$store.state.showGeneralMessage" :generalMessage="$store.state.generalMessage"/>
 
     <transition name="fade" >
       <div 
@@ -200,27 +200,7 @@ export default {
     getDate() {
       let d = new Date();
       return `${this.monthNames[d.getMonth()]} ${d.getFullYear()}`;
-    },
-
-    showGeneralMessage: {
-      get: function () {
-        if ( !window.sessionStorage.getItem( 'showGeneralMessage' ) ) return false;
-        return 'true' === window.sessionStorage.getItem( 'showGeneralMessage' );
-      },
-      set: function (value) {
-        window.sessionStorage.setItem('showGeneralMessage', value );
-      }
-    },
-
-    generalMessage: {
-      get: function () {
-        return window.sessionStorage.getItem('generalMessage') || '';
-      },
-      set: function (value) {
-        window.sessionStorage.setItem('showGeneralMessage', value );
-      }
-    },
-
+    }
   },
 
   data() {
@@ -287,6 +267,25 @@ export default {
   },
 
   methods: {
+    playMessage() {
+
+      this.$store.state.showGeneralMessage = 'true';
+
+      if ( this.$store.state.messageType == 'registered' && parseInt( (window.sessionStorage.getItem('registeredMessage') ) || 0 ) > 1 ) {
+        this.$store.state.showGeneralMessage = '';
+        this.$store.state.generalMessage = '';
+        return;
+      }
+
+      this.$store.state.messageType = '';
+
+      setTimeout(()=> {
+        this.$store.state.showGeneralMessage = '';
+        setTimeout(()=> {
+          this.$store.state.generalMessage = '';
+        }, 1000 );
+      }, 2000 );
+    },
     openContact(p) {
       const scrollTop = () => {
         const el = document.scrollingElement || document.documentElement;
@@ -310,10 +309,21 @@ export default {
       });
     }
   },
-
+  watch: {
+    '$store.state.loading'(l) {
+      // console.log('loading');
+      if ( !l && this.$store.state.generalMessage.length ) {
+        this.playMessage();
+      }
+    },
+    '$store.state.generalMessage'(m) {
+      // console.log('message');
+      if ( !this.$store.state.loading && m.length ) {
+        this.playMessage();
+      }
+    }
+  },
   mounted() {
-    console.log( 'g: ' + this.generalMessage );
-    console.log( 'g: ' + this.showGeneralMessage );
 
     if (this.$route.name == "contact") {
       this.$store.commit("setOpenContact", true);
@@ -517,6 +527,7 @@ body {
   background: darken(white, 2%);
   min-height: 100%;
   transition: background 300ms ease;
+  overflow-x:hidden;
 }
 
 #app {

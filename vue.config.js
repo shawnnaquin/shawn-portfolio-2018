@@ -6,5 +6,15 @@ module.exports = {
       width: 375,
       height: 565
     }
+  },
+  pwa: {
+      // configure the workbox plugin
+      workboxPluginMode: 'InjectManifest',
+      workboxOptions: {
+          // swSrc is required in InjectManifest mode.
+          importWorkboxFrom: "local",
+          swSrc: 'src/service-worker.js'
+          // ...other Workbox options...
+      }
   }
 };

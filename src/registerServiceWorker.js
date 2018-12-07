@@ -1,55 +1,47 @@
 // /* eslint-disable no-console */
 import { register } from "register-service-worker";
+import store from '@/store.js';
 
-let playMessage = ()=> {
-  setTimeout(()=> {
-    window.sessionStorage.setItem( 'showGeneralMessage', false );
-    console.log('played');
-    setTimeout(()=> {
-      window.sessionStorage.setItem( 'generalMessage', '' );
-    },1000);
-  }, 1500 );
-};
-
-if (process.env.NODE_ENV === "production") {
-
-  register(`${process.env.BASE_URL}service-worker.js`, {
-
+// if (process.env.NODE_ENV === "production") {
+// localhost is safe to use now. everything including workbox is made on dev.
+  register(`${process.env.BASE_URL}service-worker.js`, { // must be served from route dir
     ready() {
+      // only fires on localhost?!
       console.log('ready');
-      window.sessionStorage.setItem('generalMessage', "App is being served from cache by a service worker.");
-      window.sessionStorage.setItem('showGeneralMessage', true );
-      playMessage();
     },
 
     cached() {
-      console.log('cache');
-      window.sessionStorage.setItem('generalMessage', "Content has been cached for offline use.");
-      window.sessionStorage.setItem('showGeneralMessage', true );
-      playMessage();
+      store.state.generalMessage = 'Content has been cached for offline use!';
     },
-
-    updated() {
-      console.log('updated');
-      window.sessionStorage.setItem('generalMessage', "New content is available, please refresh.");
-      window.sessionStorage.setItem('showGeneralMessage', true );
-      playMessage();
+    registered() {
+      if ( !window.navigator.onLine ) {
+        store.state.generalMessage = 'Offline Mode: Serving content from cache!';
+      } else {
+        let w = ( parseInt( window.sessionStorage.getItem('registeredMessage') ) || 0 ) + 1;
+        window.sessionStorage.setItem( 'registeredMessage', w );
+        store.state.messageType = 'registered';
+        store.state.generalMessage = 'Content cache registered. Content available offline!';
+      }
+    },
+    updateFound() {
+      console.log('New content is downloading.')
+    },
+    updated(registration) {
+      store.state.generalMessage = 'New content is available; please refresh!';
+      let worker = registration.waiting;
+      worker.postMessage({action: 'skipWaiting'})
     },
 
     offline() {
-      console.log('offline');
-      window.sessionStorage.setItem('generalMessage', "No internet connection found. App is running in offline mode.");
-      window.sessionStorage.setItem('showGeneralMessage', true );
-      playMessage();
-
+      // only fires on localhost?!
+      store.state.generalMessage = 'No internet connection found. App is running in offline mode.';
     },
 
     error(error) {
-      console.log('error');
-      window.sessionStorage.setItem( 'generalMessage', "Error during service worker registration: " + error );
-      window.sessionStorage.setItem('showGeneralMessage', true );
-      playMessage();
+      // only fires on localhost?!
+      store.state.generalMessage = 'No internet connection found. App is running in offline mode.';
     }
 
   });
-}
+
+// }

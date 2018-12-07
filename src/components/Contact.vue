@@ -8,8 +8,8 @@
       <transition 
         name="fade" 
         appear>
-        <span v-if="showInterim || showGeneralMessage">
-          <b v-if="showGeneralMessage" >{{ generalMessage }}</b>
+        <span v-if="showInterim || showGeneralMessage.length">
+          <b v-if="showGeneralMessage.length" >{{ generalMessage }}</b>
           <b v-if="showInterim">{{ showInterim }}</b>
         </span>
       </transition>
@@ -130,8 +130,8 @@ export default {
       required: true
     },
     showGeneralMessage: {
-      default: false,
-      type: Boolean,
+      default: '',
+      type: String,
       required: true
     }
   },
@@ -262,7 +262,6 @@ export default {
       }
     }
   },
-  mounted() {},
   methods: {
     getString(v) {
       if (typeof v == "string") {
