@@ -10,7 +10,7 @@
         appear>
         <span v-if="showInterim || showGeneralMessage.length">
           <b v-if="showGeneralMessage.length" >{{ generalMessage }}</b>
-          <b v-if="showInterim">{{ showInterim }}</b>
+          <b v-if="showInterim">{{ interimMessage }}</b>
         </span>
       </transition>
     </div>
@@ -285,9 +285,17 @@ export default {
       };
     },
     processForm() {
+
       let error = false;
 
       let blurevt = new Event("blur");
+
+      if ( !navigator.onLine ) {
+        this.handleFormError('Contact Form is Offline. 1337, Please try again l8r sk8r.', "offline");
+        return !error;
+      } else {
+        this.errorMessage = '';
+      }
 
       for (let v in this.inputs) {
         if (document.querySelector(`input[name="${v}"]`)) {
@@ -303,6 +311,7 @@ export default {
     },
 
     submitForm(token) {
+
       if (token) {
         this.errorMessage = "";
 
@@ -328,7 +337,7 @@ export default {
 
         axios({
           method: "POST",
-          url: "https://shawns-contact-form.herokuapp.com/",
+          url: "http://localhost:5000",
           data: bodyFormData,
           config: {
             headers: {
@@ -348,7 +357,7 @@ export default {
         // if you use data-size show reCAPTCHA , maybe you will get empty token.
         // alert('please check you are not robot');
         // this.inputs.name.error = true;
-        this.handleFormError("please check you are not robot", "recaptcha");
+        this.handleFormError("please check you are not a robot", "recaptcha");
       }
     },
 
@@ -370,23 +379,34 @@ export default {
     },
 
     checkErrors($input) {
+
       let input = this.getInputData($input);
 
-      let v = $input.validity;
-      for (let error in v) {
-        if (error !== "valid" && v[error] === true) {
-          input.error = true;
-          if (error == "patternMismatch" || error == "valueMissing") {
-            this.errorMessage = "Whoops, looks like something is missing!";
+      if ( input.data !== null && input.type == 'email' && !validator.isEmail(input.data) ) {
+        input.error = true;
+        this.errorMessage = 'Please type a valid Email Address: **@**.**';
+      } else if ( input.type == 'email' ) {
+        input.error = false;
+        this.errorMessage = '';
+      } else {
+        let v = $input.validity;
+
+        for (let error in v) {
+          if (error !== "valid" && v[error] === true) {
+            input.error = true;
+            if (error == "patternMismatch" || error == "valueMissing") {
+              this.errorMessage = "Whoops, looks like something is missing!";
+            } else {
+              this.errorMessage = $input.validationMessage;
+            }
+            break;
           } else {
-            this.errorMessage = $input.validationMessage;
+            input.error = false;
+            // can't null message here, since others may have an error
           }
-          break;
-        } else {
-          input.error = false;
-          // can't null message here, since others may have an error
         }
       }
+
     },
 
     checkErrorMessage() {
@@ -466,6 +486,11 @@ export default {
 };
 </script>
 <style lang="scss">
+
+.outside-badge {
+  margin-bottom:1rem;
+}
+
 .form-submit {
   div > button {
     background: transparent;

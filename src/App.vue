@@ -269,6 +269,9 @@ export default {
   methods: {
     playMessage() {
 
+      clearTimeout(this.timer1);
+      clearTimeout(this.timer2);
+
       this.$store.state.showGeneralMessage = 'true';
 
       if ( this.$store.state.messageType == 'registered' && parseInt( (window.sessionStorage.getItem('registeredMessage') ) || 0 ) > 1 ) {
@@ -279,12 +282,14 @@ export default {
 
       this.$store.state.messageType = '';
 
-      setTimeout(()=> {
+      this.timer1 = setTimeout(()=> {
         this.$store.state.showGeneralMessage = '';
-        setTimeout(()=> {
-          this.$store.state.generalMessage = '';
-        }, 1000 );
       }, 2000 );
+
+      this.timer2 = setTimeout(()=> {
+        this.$store.state.generalMessage = '';
+      }, 3000 );
+
     },
     openContact(p) {
       const scrollTop = () => {
