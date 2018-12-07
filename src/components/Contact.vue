@@ -337,7 +337,7 @@ export default {
 
         axios({
           method: "POST",
-          url: "http://localhost:5000",
+          url: "https://shawns-contact-form.herokuapp.com/",
           data: bodyFormData,
           config: {
             headers: {
