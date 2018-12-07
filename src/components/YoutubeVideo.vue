@@ -10,13 +10,26 @@
     <div :class="[ 'frame' ]" >
 
 
-      <div :class="['loader']" >
+      <div :class="['loader']" style="overflow:hidden;" >
         <transition name="fade">
-          <span v-if="!playerReady" >Loading <Loader :go="!playerReady" /> </span>
+          <span v-if="!playerReady && getOnline()" >Loading <Loader :go="!playerReady" /> </span>
         </transition>
-        <div 
-          :class="['sub-loader']" 
-          :style="{ backgroundImage: getMainImage() }" />
+          <transition name="fade">
+          <div 
+            v-if="getOnline()"
+            :class="['sub-loader', { ['offline']: !getOnline() } ]"
+            :style="{ backgroundImage: getMainImage() }" />
+
+          <div :class="['sub-loader', { ['offline']: !getOnline() } ]" v-else="!getOnline()" >
+            <picture-query
+              :type="$route.params.type"
+              :path="getImageName()"
+              alt="Video Image"
+            >
+            </picture-query>
+          </div>
+
+        </transition>
       </div>
 
       <div id="player"/>
@@ -29,10 +42,12 @@
 
 <script>
 import Loader from "@/components/Loader.vue";
+import Picture from "@/components/Picture.vue";
 
 export default {
   components: {
-    Loader
+    Loader,
+    "picture-query": Picture
   },
   props: {
     videoImg: {
@@ -74,6 +89,9 @@ export default {
   },
 
   methods: {
+    getOnline() {
+      return navigator.onLine;
+    },
     mouseenter() {
       this.stuck = true;
       this.mousein = true;
@@ -115,6 +133,9 @@ export default {
         }
       }
     },
+    getImageName() {
+      return this.videoImg.split( this.$route.params.type+'/' )[1];
+    },
     getMainImage() {
       if (!this.videoImg) {
         return "none";
@@ -135,6 +156,8 @@ export default {
       return `url( ${image}${size}`;
     },
     createScript() {
+      if (!navigator.onLine) return;
+
       const tag = document.createElement("script");
       const firstScriptTag = document.getElementsByTagName("script")[0];
       tag.src = "https://www.youtube.com/iframe_api";
@@ -238,6 +261,9 @@ export default {
     background-position: center;
     filter: blur(10px);
     z-index: -1;
+    &.offline {
+      filter: blur(0);
+    }
   }
 }
 
