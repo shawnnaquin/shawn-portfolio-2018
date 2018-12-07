@@ -355,9 +355,11 @@ export default {
 .menu {
   border: 1px solid transparent;
   transition: border 200ms ease;
-  &:focus,
-  &:active {
-    border: 1px solid Purple;
+  @media only screen and (min-width: 1100px) {
+    &:focus,
+    &:active {
+      border: 1px solid Purple;
+    }
   }
 }
 .trackback {

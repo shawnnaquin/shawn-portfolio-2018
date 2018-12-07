@@ -76,6 +76,13 @@
           title="Contact"
           @click="openContact(false)"
           :class="['external']">Contact</button>
+        <button
+          name="Install"
+          aria-label="Install"
+          title="Install"
+          @click="installer()"
+          v-if="installBtn"
+          :class="['external']">Install to Home Screen</button>
         <router-link
           name="Technology List"
           aria-label="Technology List"
@@ -221,6 +228,8 @@ export default {
   data() {
     return {
       title: "home",
+      installBtn: false,
+      installer: undefined,
       mod: "",
       monthNames: [
         "January",
@@ -338,7 +347,36 @@ export default {
       });
     }
   },
+  created() {
+    let installPrompt;
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      installPrompt = e;
+      this.installBtn = true;
+    });
+    this.installer = () => {
+      this.installBtn = false;
+      installPrompt.prompt();
+      installPrompt.userChoice.then(result=>{
+        if (result.outcome == 'accepted'){
+          // console.log('accept');
+          window.sendDesktopNotification('Thanks for accepting! Stay tuned!');
+        } else {
+          // console.log('deny');
+        }
+        installPrompt = null;
+      })
+    };
+    if ( Notification && Notification.permission === 'default') {
+      Notification.requestPermission(function (permission) {
+         if(!('permission' in Notification)) {
+           Notification.permission = permission;
+         }
+      });
+    }
+  },
   mounted() {
+    // window.sendDesktopNotification('hey');
     if (this.$route.name == "contact") {
       this.$store.dispatch("openContact", true);
     }

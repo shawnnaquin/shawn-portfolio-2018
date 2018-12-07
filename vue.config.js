@@ -9,11 +9,13 @@ module.exports = {
   },
   pwa: {
     // configure the workbox plugin
-    workboxPluginMode: "InjectManifest",
+    // workboxPluginMode: "InjectManifest",
     workboxOptions: {
       // swSrc is required in InjectManifest mode.
+      skipWaiting: true,
       importWorkboxFrom: "local",
-      swSrc: "src/service-worker.js"
+      importScripts: ['js/extend-sw.js']
+      // swSrc: "src/service-worker.js"r
       // ...other Workbox options...
     }
   }

@@ -27,12 +27,12 @@ register(`${process.env.BASE_URL}service-worker.js`, {
     }
   },
   updateFound() {
-    store.state.generalMessage = "Offline Mode: Serving content from cache!";
+    store.state.generalMessage = "New Content is available! Downloading...";
   },
   updated(registration) {
     store.state.generalMessage = "New content is available; please refresh!";
     let worker = registration.waiting;
-    worker.postMessage({ action: "skipWaiting" });
+    worker.postMessage({ action: "skipWaiting", msg: 'New content is available!' });
   },
 
   offline() {
@@ -41,11 +41,25 @@ register(`${process.env.BASE_URL}service-worker.js`, {
       "No internet connection found. App is running in offline mode.";
   },
 
-  error() {
+  error(error) {
     // only fires on localhost?!
-    store.state.generalMessage =
-      "No internet connection found. App is running in offline mode.";
+    store.state.generalMessage = error;
   }
 });
+
+window.sendDesktopNotification = (text) => {
+
+  if (Notification.permission == 'granted') {
+
+    var n = new Notification('Shawn Naquin | Developer', {
+      body: text
+    }).onclick = () => {
+      parent.focus();
+      window.focus(); //just in case, older browsers
+    };
+
+  }
+
+};
 
 // }
