@@ -406,10 +406,10 @@ export default {
     // console.log( this.getBase );
   },
   watch: {
-    "$route"(to){
+    $route(to) {
       this.title = to.params.project;
-      this.$nextTick(()=> {
-        this.$emit('updateHead');
+      this.$nextTick(() => {
+        this.$emit("updateHead");
       });
     },
     "$store.state.projects"() {

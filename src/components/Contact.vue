@@ -125,12 +125,12 @@ export default {
   mixins: [H],
   props: {
     generalMessage: {
-      default: '',
+      default: "",
       type: String,
       required: true
     },
     showGeneralMessage: {
-      default: '',
+      default: "",
       type: String,
       required: true
     }
@@ -285,16 +285,18 @@ export default {
       };
     },
     processForm() {
-
       let error = false;
 
       let blurevt = new Event("blur");
 
-      if ( !navigator.onLine ) {
-        this.handleFormError('Contact Form is Offline. 1337, Please try again l8r sk8r.', "offline");
+      if (!navigator.onLine) {
+        this.handleFormError(
+          "Contact Form is Offline. 1337, Please try again l8r sk8r.",
+          "offline"
+        );
         return !error;
       } else {
-        this.errorMessage = '';
+        this.errorMessage = "";
       }
 
       for (let v in this.inputs) {
@@ -311,7 +313,6 @@ export default {
     },
 
     submitForm(token) {
-
       if (token) {
         this.errorMessage = "";
 
@@ -379,15 +380,18 @@ export default {
     },
 
     checkErrors($input) {
-
       let input = this.getInputData($input);
 
-      if ( input.data !== null && input.type == 'email' && !validator.isEmail(input.data) ) {
+      if (
+        input.data !== null &&
+        input.type == "email" &&
+        !validator.isEmail(input.data)
+      ) {
         input.error = true;
-        this.errorMessage = 'Please type a valid Email Address: **@**.**';
-      } else if ( input.type == 'email' ) {
+        this.errorMessage = "Please type a valid Email Address: **@**.**";
+      } else if (input.type == "email") {
         input.error = false;
-        this.errorMessage = '';
+        this.errorMessage = "";
       } else {
         let v = $input.validity;
 
@@ -406,7 +410,6 @@ export default {
           }
         }
       }
-
     },
 
     checkErrorMessage() {
@@ -486,9 +489,8 @@ export default {
 };
 </script>
 <style lang="scss">
-
 .outside-badge {
-  margin-bottom:1rem;
+  margin-bottom: 1rem;
 }
 
 .form-submit {

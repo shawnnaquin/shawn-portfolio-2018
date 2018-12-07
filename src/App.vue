@@ -1,16 +1,18 @@
 <template>
 
-  <div 
-    id="app" 
+  <div
+    id="app"
     :class="[{['no-scroll']: $store.state.noScroll } ]" >
 
-    <Contact :showGeneralMessage="$store.state.showGeneralMessage" :generalMessage="$store.state.generalMessage"/>
+    <Contact
+      :show-general-message="$store.state.showGeneralMessage"
+      :general-message="$store.state.generalMessage"/>
 
     <transition name="fade" >
-      <div 
-        :class="[ 'loader' ]" 
-        v-if="getLoading" 
-        ref="background" 
+      <div
+        :class="[ 'loader' ]"
+        v-if="getLoading"
+        ref="background"
         :style="{height:height}" >
         <p :class="[ 'paragraph' ]" >
           <span v-if="getLoading" >Loading <Loader :go="getLoading" /></span>
@@ -24,15 +26,15 @@
       <Header :loaded="!getLoading" />
     </div>
 
-    <transition 
-      :name="mainTrans.trans" 
-      :mode="mainTrans.mode" 
+    <transition
+      :name="mainTrans.trans"
+      :mode="mainTrans.mode"
       appear >
       <router-view/>
     </transition>
 
-    <transition 
-      name="fade" 
+    <transition
+      name="fade"
       appear >
       <button
         v-if="getSticky && $route.name != 'home' || getSticky && $route.name != 'contact' "
@@ -50,31 +52,31 @@
     <aside :class="[ 'aside' ]" >
 
       <div :class="['footer-buttons']" >
-        <button 
-          name="Resumé" 
-          aria-label="Resumé" 
-          title="Resumé" 
-          @click="openContact(true)" 
+        <button
+          name="Resumé"
+          aria-label="Resumé"
+          title="Resumé"
+          @click="openContact(true)"
           :class="['external']">Resumé</button>
-        <button 
-          name="Contact" 
-          aria-label="Contact" 
-          title="Contact" 
-          @click="openContact(false)" 
+        <button
+          name="Contact"
+          aria-label="Contact"
+          title="Contact"
+          @click="openContact(false)"
           :class="['external']">Contact</button>
-        <router-link 
-          name="Technology List" 
-          aria-label="Technology List" 
-          title="Technology List" 
-          v-if="$route.name != 'tech' " 
-          :class="['external']" 
+        <router-link
+          name="Technology List"
+          aria-label="Technology List"
+          title="Technology List"
+          v-if="$route.name != 'tech' "
+          :class="['external']"
           to="/tech" >Technology List</router-link>
-        <router-link 
-          name="More Work" 
-          aria-label="More Work" 
-          title="More Work" 
-          v-else 
-          :class="['external']" 
+        <router-link
+          name="More Work"
+          aria-label="More Work"
+          title="More Work"
+          v-else
+          :class="['external']"
           to="/marketing" >More Work</router-link>
       </div>
 
@@ -85,18 +87,18 @@
           Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects. More of his work can be found on Github. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility.
 
           <span v-if="$route.name != 'tech' " >
-            Click below for <router-link 
-              name="Technology List" 
-              aria-label="Technology List" 
-              title="Technology List" 
+            Click below for <router-link
+              name="Technology List"
+              aria-label="Technology List"
+              title="Technology List"
               to="/tech"> a complete list</router-link>
             of all technologies used in this portfolio!
           </span>
           <span v-else >
-            Click below to see <router-link 
-              name="Marketing" 
-              aria-label="Marketing" 
-              title="Marketing" 
+            Click below to see <router-link
+              name="Marketing"
+              aria-label="Marketing"
+              title="Marketing"
               to="/marketing">more work</router-link> from Shawn's portfolio.
           </span>
 
@@ -109,52 +111,52 @@
     <footer :class="['footer']" >
       <div :class="['footer-copy']" ><small>Shawn Naquin | Front-End Portfolio | &copy; {{ getDate }}</small></div>
       <div :class="['footer-icons']">
-        <a 
-          href="#" 
-          name="Github" 
-          aria-label="Github" 
-          title="Github" 
-          :class="['footer-icon']" 
+        <a
+          href="#"
+          name="Github"
+          aria-label="Github"
+          title="Github"
+          :class="['footer-icon']"
           target="_blank">
           <git />
         </a>
 
-        <a 
-          href="#" 
-          name="LinkedIn" 
-          aria-label="LinkedIn" 
-          title="LinkedIn" 
-          :class="['footer-icon']" 
+        <a
+          href="#"
+          name="LinkedIn"
+          aria-label="LinkedIn"
+          title="LinkedIn"
+          :class="['footer-icon']"
           target="_blank">
           <lin />
         </a>
 
-        <a 
-          href="#" 
-          name="Youtube" 
-          aria-label="Youtube" 
-          title="Youtube" 
-          :class="['footer-icon']" 
+        <a
+          href="#"
+          name="Youtube"
+          aria-label="Youtube"
+          title="Youtube"
+          :class="['footer-icon']"
           target="_blank">
           <you />
         </a>
 
-        <a 
-          href="#" 
-          name="Behance" 
-          aria-label="Behance" 
-          title="Behance" 
-          :class="['footer-icon']" 
+        <a
+          href="#"
+          name="Behance"
+          aria-label="Behance"
+          title="Behance"
+          :class="['footer-icon']"
           target="_blank">
           <be />
         </a>
 
-        <a 
-          href="#" 
-          name="Email" 
-          aria-label="Email" 
-          title="Email" 
-          :class="['footer-icon']" 
+        <a
+          href="#"
+          name="Email"
+          aria-label="Email"
+          title="Email"
+          :class="['footer-icon']"
           target="_blank">
           <mail />
         </a>
@@ -242,6 +244,12 @@ export default {
   },
 
   watch: {
+    "$store.state.generalMessage"(m) {
+      // console.log('message');
+      if (!this.$store.state.loading && m.length) {
+        this.playMessage();
+      }
+    },
     "$store.state.openContact"(o) {
       if (o) {
         this.title = "contact";
@@ -253,6 +261,9 @@ export default {
       });
     },
     getLoading(l) {
+      if (!l && this.$store.state.generalMessage.length) {
+        this.playMessage();
+      }
       if (!l) {
         //destroy
         this.forceNoTouchMove = false;
@@ -268,28 +279,29 @@ export default {
 
   methods: {
     playMessage() {
-
       clearTimeout(this.timer1);
       clearTimeout(this.timer2);
 
-      this.$store.state.showGeneralMessage = 'true';
+      this.$store.state.showGeneralMessage = "true";
 
-      if ( this.$store.state.messageType == 'registered' && parseInt( (window.sessionStorage.getItem('registeredMessage') ) || 0 ) > 1 ) {
-        this.$store.state.showGeneralMessage = '';
-        this.$store.state.generalMessage = '';
+      if (
+        this.$store.state.messageType == "registered" &&
+        parseInt(window.sessionStorage.getItem("registeredMessage") || 0) > 1
+      ) {
+        this.$store.state.showGeneralMessage = "";
+        this.$store.state.generalMessage = "";
         return;
       }
 
-      this.$store.state.messageType = '';
+      this.$store.state.messageType = "";
 
-      this.timer1 = setTimeout(()=> {
-        this.$store.state.showGeneralMessage = '';
-      }, 2000 );
+      this.timer1 = setTimeout(() => {
+        this.$store.state.showGeneralMessage = "";
+      }, 2000);
 
-      this.timer2 = setTimeout(()=> {
-        this.$store.state.generalMessage = '';
-      }, 3000 );
-
+      this.timer2 = setTimeout(() => {
+        this.$store.state.generalMessage = "";
+      }, 3000);
     },
     openContact(p) {
       const scrollTop = () => {
@@ -314,22 +326,7 @@ export default {
       });
     }
   },
-  watch: {
-    '$store.state.loading'(l) {
-      // console.log('loading');
-      if ( !l && this.$store.state.generalMessage.length ) {
-        this.playMessage();
-      }
-    },
-    '$store.state.generalMessage'(m) {
-      // console.log('message');
-      if ( !this.$store.state.loading && m.length ) {
-        this.playMessage();
-      }
-    }
-  },
   mounted() {
-
     if (this.$route.name == "contact") {
       this.$store.commit("setOpenContact", true);
     }
@@ -340,7 +337,6 @@ export default {
         this.heightTrigger = true;
       });
     }
-
   },
 
   components: {
@@ -532,7 +528,7 @@ body {
   background: darken(white, 2%);
   min-height: 100%;
   transition: background 300ms ease;
-  overflow-x:hidden;
+  overflow-x: hidden;
 }
 
 #app {

@@ -198,14 +198,14 @@ export default {
   watch: {
     $route(to, from) {
       if (!this.images) return;
-      this.title  = to.params.image;
+      this.title = to.params.image;
       if (from.params.image == this.prevImagePath) {
         this.trans = "fade-left";
       } else if (from.params.image == this.nextImagePath) {
         this.trans = "fade-right";
       }
-      this.$nextTick(()=> {
-        this.$emit('updateHead');
+      this.$nextTick(() => {
+        this.$emit("updateHead");
       });
     }
   },

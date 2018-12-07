@@ -273,8 +273,8 @@ export default {
     $route(to) {
       this.setProjects(to.params.type);
       this.title = to.params.type;
-      this.$nextTick(()=> {
-        this.$emit('updateHead');
+      this.$nextTick(() => {
+        this.$emit("updateHead");
       });
     },
     projects() {

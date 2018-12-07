@@ -39,7 +39,12 @@
 import YoutubeVideo from "@/components/YoutubeVideo";
 
 export default {
-  props: ["loaded"],
+  props: {
+    loaded: {
+      default: false,
+      type: Boolean
+    }
+  },
 
   data() {
     return {

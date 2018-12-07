@@ -6,9 +6,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    messageType: '',
-    generalMessage: '',
-    showGeneralMessage: '',
+    messageType: "",
+    generalMessage: "",
+    showGeneralMessage: "",
     projects: {},
     lastRoute: "/",
     openContact: false,

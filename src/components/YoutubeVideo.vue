@@ -10,24 +10,27 @@
     <div :class="[ 'frame' ]" >
 
 
-      <div :class="['loader']" style="overflow:hidden;" >
+      <div 
+        :class="['loader']" 
+        style="overflow:hidden;" >
         <transition name="fade">
           <span v-if="!playerReady && getOnline()" >Loading <Loader :go="!playerReady" /> </span>
         </transition>
-          <transition name="fade">
+        <transition name="fade">
           <div 
             v-if="getOnline()"
             :class="['sub-loader', { ['offline']: !getOnline() } ]"
             :style="{ backgroundImage: getMainImage() }" />
 
-          <div :class="['sub-loader', { ['offline']: !getOnline() } ]" v-else="!getOnline()" >
+          <div 
+            :class="['sub-loader', { ['offline']: !getOnline() } ]" 
+            v-else >
             <picture-query
               v-if="getImageName().length"
               :type="$route.params.type"
               :path="getImageName()"
               alt="Video Image"
-            >
-            </picture-query>
+            />
           </div>
 
         </transition>
@@ -52,6 +55,7 @@ export default {
   },
   props: {
     videoImg: {
+      default: "",
       required: false,
       type: String
     },
@@ -135,8 +139,8 @@ export default {
       }
     },
     getImageName() {
-      if ( !this.videoImg || !this.$route.params.type ) return '';
-      return this.videoImg.split( this.$route.params.type+'/' )[1];
+      if (!this.videoImg || !this.$route.params.type) return "";
+      return this.videoImg.split(this.$route.params.type + "/")[1];
     },
     getMainImage() {
       if (!this.videoImg) {
