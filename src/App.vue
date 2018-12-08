@@ -300,6 +300,17 @@ export default {
   },
 
   methods: {
+    sendMessage(message) {
+
+      if ( `Notification` in window ) {
+        if ( Notification && Notification.permission == 'granted') {
+          var n = new Notification('Shawn Naquin | Developer', {
+            body: message
+          });
+        }
+      }
+
+    },
     playMessage() {
       clearTimeout(this.timer1);
       clearTimeout(this.timer2);
@@ -358,30 +369,33 @@ export default {
       this.installBtn = false;
       installPrompt.prompt();
       installPrompt.userChoice.then(result=>{
-        console.log(result.outcome);
+        // console.log(result.outcome);
         if (result.outcome == 'accepted'){
-          // console.log('accept');
-          window.sendDesktopNotification('Thanks for installing! Stay tuned!');
+          this.sendMessage('Thanks for installing! Stay tuned!');
         } else {
           // console.log('deny');
         }
         installPrompt = null;
       })
     };
-    if ( Notification && Notification.permission === 'default') {
 
-      let resolve = (permission)=> {
-          if(!('permission' in Notification)) {
-             Notification.permission = permission;
-          }
-          if( permission == 'granted' ) {
-            window.sendDesktopNotification('Thanks for accepting! Stay tuned!');
-          }
-      };
+    if( `Notification` in window ) {
+      if ( Notification && Notification.permission === 'default') {
 
-      let request = Notification.requestPermission(resolve);
+        let resolve = (permission)=> {
+            if(!('permission' in Notification)) {
+               Notification.permission = permission;
+            }
+            if( permission == 'granted' ) {
+              this.sendMessage('Thanks for accepting! Stay tuned!');
+            }
+        };
 
+        let request = Notification.requestPermission(resolve);
+
+      }
     }
+
   },
   mounted() {
     // window.sendDesktopNotification('hey');

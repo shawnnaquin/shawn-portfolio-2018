@@ -266,8 +266,10 @@ export default {
     openModal() {
       this.$store.commit("setModalOpen", "nav");
       setTimeout(() => {
-        this.$refs.close.focus();
-      }, 300);
+        if ( this.$refs.close ) {
+          this.$refs.close.focus();
+        }
+      }, 1000);
     },
     closeModal() {
       this.$store.commit("setModalOpen", false);

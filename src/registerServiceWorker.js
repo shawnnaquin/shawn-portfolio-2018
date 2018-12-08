@@ -22,8 +22,7 @@ register(`${process.env.BASE_URL}service-worker.js`, {
         (parseInt(window.sessionStorage.getItem("registeredMessage")) || 0) + 1;
       window.sessionStorage.setItem("registeredMessage", w);
       store.state.messageType = "registered";
-      store.state.generalMessage =
-        "Content cache registered. Content available offline!";
+      store.state.generalMessage = "Content cache registered. Content available offline!";
     }
   },
   updateFound() {
@@ -37,8 +36,7 @@ register(`${process.env.BASE_URL}service-worker.js`, {
 
   offline() {
     // only fires on localhost?!
-    store.state.generalMessage =
-      "No internet connection found. App is running in offline mode.";
+    store.state.generalMessage = "No internet connection found. App is running in offline mode.";
   },
 
   error(error) {
@@ -46,20 +44,4 @@ register(`${process.env.BASE_URL}service-worker.js`, {
     store.state.generalMessage = error;
   }
 });
-
-window.sendDesktopNotification = (text) => {
-
-  if (Notification.permission == 'granted') {
-
-    var n = new Notification('Shawn Naquin | Developer', {
-      body: text
-    }).onclick = () => {
-      parent.focus();
-      window.focus(); //just in case, older browsers
-    };
-
-  }
-
-};
-
 // }
