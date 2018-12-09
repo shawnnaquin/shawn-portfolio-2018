@@ -4,7 +4,7 @@ import store from "@/store.js";
 
 // if (process.env.NODE_ENV === "production") {
 // localhost is safe to use now. everything including workbox is made on dev.
-register(`${process.env.BASE_URL}service-worker.js`, {
+register(`./service-worker.js`, {
   // must be served from route dir
   ready() {
     // only fires on localhost?!
@@ -14,7 +14,8 @@ register(`${process.env.BASE_URL}service-worker.js`, {
   cached() {
     store.state.generalMessage = "Content has been cached for offline use!";
   },
-  registered() {
+  registered(regis) {
+    console.log('scope: ', regis.scope, regis);
     // if (!window.navigator.onLine) {
       // store.state.generalMessage = "Offline Mode: Serving content from cache!";
     // } else {

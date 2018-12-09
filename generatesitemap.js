@@ -8,12 +8,12 @@ let te = [];
 for (let type in types) {
   type = types[type];
 
-  if (!all.includes(type)) {
+  if (!all.includes('/'+type)) {
     all.push({
-      path: type,
+      path: '/'+type,
       priority: "0.8",
       changefreq: "dailly",
-      lastmod: "2018-12-05"
+      lastmod: "2018-12-09"
     });
   }
 
@@ -23,31 +23,38 @@ for (let type in types) {
     for (let project in data) {
       let techList = data[project].content["techList"];
       for (let tech in techList) {
-        tech = encodeURI(techList[tech]);
+        tech = encodeURI( techList[tech].toLocaleLowerCase() );
         if (!te.includes(tech)) {
-          te.push(tech);
+
+          te.push({
+            path: '/tech/'+tech,
+            priority: "0.6",
+            changefreq: "daily",
+            lastmod: "2018-12-09"
+          });
+
         }
       }
     }
 
     Object.keys(data).forEach(key => {
-      if (!all.includes(type + "/" + key)) {
+      if (!all.includes('/' + type + "/" + key)) {
         all.push({
-          path: type + "/" + key,
+          path: '/'+type + "/" + key,
           priority: "0.6",
           changefreq: "daily",
-          lastmod: "2018-12-05"
+          lastmod: "2018-12-09"
         });
       }
 
       if (data[key].content.images && data[key].content.images.length) {
         data[key].content.images.forEach(image => {
-          if (!all.includes(type + "/" + key + "/" + image.path)) {
+          if (!all.includes('/' + type + "/" + key + "/" + image.path)) {
             all.push({
-              path: type + "/" + key + "/" + image.path,
+              path: '/' + type + "/" + key + "/" + image.path,
               priority: "0.4",
               changefreq: "monthly",
-              lastmod: "2018-12-05"
+              lastmod: "2018-12-09"
             });
           }
         });
@@ -62,7 +69,7 @@ let t = builder
 t.ele("url")
   .ele("loc", "https://shawnnaquin.github.io/")
   .up()
-  .ele("lastmod", "2018-12-05")
+  .ele("lastmod", "2018-12-09")
   .up()
   .ele("changefreq", "daily")
   .up()
@@ -83,7 +90,19 @@ Object.keys(all).forEach(a => {
     .up();
 });
 
-// fs.writeFile(`./public/sitemap.xml`, t.end({ pretty: true }), function(err) {
-//   if (err) throw err;
-// });
-console.log( te );
+Object.keys(te).forEach(a => {
+  t.ele("url")
+    .ele("loc", "https://shawnnaquin.github.io/?p=" + te[a].path)
+    .up()
+    .ele("lastmod", te[a].lastmod)
+    .up()
+    .ele("changefreq", te[a].changefreq)
+    .up()
+    .ele("priority", te[a].priority)
+    .up()
+    .up();
+});
+
+fs.writeFile(`./public/sitemap.xml`, t.end({ pretty: true }), function(err) {
+  if (err) throw err;
+});
