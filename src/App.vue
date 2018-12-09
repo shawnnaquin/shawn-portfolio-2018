@@ -103,7 +103,7 @@
 
         <p>
 
-          Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects. More of his work can be found on Github. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility.
+          Shawn is a Front-End developer focused on writing beautiful and maintainable <router-link to="/tech/javascript" name="JavaScript" aria-label="JavaScript">JavaScript</router-link>, <router-link to="/html" name="HTML" aria-label="HTML">HTML</router-link>, and <router-link to="/tech/css" name="CSS" aria-label="CSS">CSS</router-link> projects. More of his work can be found on <a href="https://github.com/shawnnaqion" rel="noopener" target="_blank">GitHub</a>. Some specialties include: <router-link to="/greensock" name="Greensock" aria-label="Greensock">Greensock</router-link>, <router-link to="/tech/svg" name="SVG" aria-label="SVG">SVG</router-link>, <router-link to="/tech/webpack" name="Webpack" aria-label="Webpack">Webpack</router-link>, <router-link to="/tech/vuejs" name="VueJS" aria-label="VueJS" >VueJS</router-link>, UX, performance testing, and accesbility.
 
           <span v-if="$route.name != 'tech' " >
             Click below for <router-link

@@ -15,15 +15,15 @@ register(`${process.env.BASE_URL}service-worker.js`, {
     store.state.generalMessage = "Content has been cached for offline use!";
   },
   registered() {
-    if (!window.navigator.onLine) {
-      store.state.generalMessage = "Offline Mode: Serving content from cache!";
-    } else {
-      let w =
-        (parseInt(window.sessionStorage.getItem("registeredMessage")) || 0) + 1;
-      window.sessionStorage.setItem("registeredMessage", w);
+    // if (!window.navigator.onLine) {
+      // store.state.generalMessage = "Offline Mode: Serving content from cache!";
+    // } else {
+      // let w =
+        // (parseInt(window.sessionStorage.getItem("registeredMessage")) || 0) + 1;
+      // window.sessionStorage.setItem("registeredMessage", w);
       store.state.messageType = "registered";
       store.state.generalMessage = "Content cache registered. Content available offline!";
-    }
+    // }
   },
   updateFound() {
     store.state.generalMessage = "New Content is available! Downloading...";

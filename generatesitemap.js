@@ -3,6 +3,8 @@ var builder = require("xmlbuilder");
 
 let types = ["marketing", "interactive", "website", "tech", "contact"];
 let all = [];
+let te = [];
+
 for (let type in types) {
   type = types[type];
 
@@ -17,6 +19,16 @@ for (let type in types) {
 
   if (type == "marketing" || type == "interactive" || type == "website") {
     let data = require(`./public/json/${type}.json`);
+
+    for (let project in data) {
+      let techList = data[project].content["techList"];
+      for (let tech in techList) {
+        tech = encodeURI(techList[tech]);
+        if (!te.includes(tech)) {
+          te.push(tech);
+        }
+      }
+    }
 
     Object.keys(data).forEach(key => {
       if (!all.includes(type + "/" + key)) {
@@ -71,6 +83,7 @@ Object.keys(all).forEach(a => {
     .up();
 });
 
-fs.writeFile(`./public/sitemap.xml`, t.end({ pretty: true }), function(err) {
-  if (err) throw err;
-});
+// fs.writeFile(`./public/sitemap.xml`, t.end({ pretty: true }), function(err) {
+//   if (err) throw err;
+// });
+console.log( te );
