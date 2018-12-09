@@ -26,7 +26,6 @@ export default {
             let techList = this.$store.state.projects[type][project].content[
               "techList"
             ];
-
             let r = decodeURI(this.$route.params.type);
             // console.log( r )
             if (!this.$store.state.types.includes(r.toLocaleLowerCase())) {

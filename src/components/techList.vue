@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     getProjectLink(t) {
-      return window.encodeURI(t);
+      return window.encodeURI( t.toLocaleLowerCase() );
     }
   }
 };

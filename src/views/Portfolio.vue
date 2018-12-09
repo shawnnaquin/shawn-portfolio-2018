@@ -210,13 +210,19 @@ export default {
       return this.types[this.nextTypeKey];
     }
   },
-
   beforeRouteUpdate(to, from, next) {
     this.showButtons = false;
     next();
   },
   beforeRouteEnter(to,from,next) {
-    console.log('enter');
+
+    if (
+      to.name == 'techtype' &&
+      ( to.params.type == 'marketing' || to.params.type == 'website' || to.params.type == 'interactive' )
+    ) {
+      next("/tech");
+    }
+
     if (
       to.params.type !== "website" &&
       to.params.type !== "marketing" &&
@@ -231,6 +237,12 @@ export default {
   },
   beforeRouteUpdate(to,from,next) {
     if (
+      to.name == 'techtype' &&
+      ( to.params.type == 'marketing' || to.params.type == 'website' || to.params.type == 'interactive' )
+    ) {
+      this.$router.replace("/tech");
+    }
+    if (
       to.params.type !== "website" &&
       to.params.type !== "marketing" &&
       to.params.type !== "interactive" &&
@@ -241,15 +253,15 @@ export default {
     } else {
       next();
     }
+
   },
   beforeRouteLeave(to,from,next) {
-      // let n;
-      // if ( to.name == 'techtype' ) {
-      //   if ( store.state.types.includes(to.params.type) ) {
-      //     n = '/tech';
-      //   }
-      //   // console.log('has this', t);
-      // }
+      if (
+        to.name == 'techtype' &&
+        ( to.params.type == 'marketing' || to.params.type == 'website' || to.params.type == 'interactive' )
+      ) {
+        this.$router.replace("/tech");
+      }
 
       if (
         to.params.type !== "website" &&
@@ -265,7 +277,24 @@ export default {
 
   },
   mixins: [animateIn, projects],
+  created() {
+    if (
+      this.$route.name == 'techtype' &&
+      ( this.$route.params.type == 'marketing' || this.$route.params.type == 'website' || this.$route.params.type == 'interactive' )
+    ) {
+      this.$router.replace("/tech");
+    }
 
+    if (
+      this.$route.params.type !== "website" &&
+      this.$route.params.type !== "marketing" &&
+      this.$route.params.type !== "interactive" &&
+      this.$route.name !== "tech" &&
+      this.$route.name !== "techtype"
+    ) {
+      this.$router.replace("/" + store.state.types[0]);
+    }
+  },
   mounted() {
     this.showButtons = true;
   },
