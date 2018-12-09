@@ -170,7 +170,7 @@
             itemprop="name">{{ nameify( $route.params.type ) }}</span>
           <meta
             itemprop="position"
-            content="2">
+            :content="$route.name == 'techtype' ? 3 : 2">
         </li>
 
         <li
