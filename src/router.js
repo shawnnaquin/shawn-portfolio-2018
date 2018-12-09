@@ -29,6 +29,12 @@ export default new Router({
     },
 
     {
+      path: "/tech/:type",
+      name: "techtype",
+      component: Portfolio
+    },
+
+    {
       path: "/contact",
       name: "contact",
       component: Home
@@ -36,6 +42,7 @@ export default new Router({
 
     {
       path: "/:type",
+      name: 'portfolio',
       component: Portfolio
     },
 
