@@ -1,8 +1,8 @@
 <template>
 
-  <div 
-    :class="[ 'background' ]" 
-    :style="{height:height}" 
+  <div
+    :class="[ 'background' ]"
+    :style="{height:height}"
     ref="background" >
 
     <div
@@ -11,15 +11,15 @@
       v-hammer:swipe="swipe"
     />
 
-    <router-link 
-      :class="['close']" 
+    <router-link
+      :class="['close']"
       :to="routeBack" ><close/></router-link>
 
-    <button 
-      :class="['external']" 
+    <button
+      :class="['external']"
       @click="goToImage()" > &gt; </button>
-    <button 
-      :class="['external']" 
+    <button
+      :class="['external']"
       @click="goToPrevImage()" > &lt; </button>
 
     <div
@@ -30,9 +30,9 @@
       <div
       >
 
-        <transition 
-          :name="trans" 
-          mode="out-in" 
+        <transition
+          :name="trans"
+          mode="out-in"
           appear >
           <picture-query
             :key="image.path"
@@ -196,6 +196,11 @@ export default {
     }
   },
   watch: {
+    'projects'(p) {
+      if(!this.image){
+        this.$router.replace('/'+this.$route.params.type+'/'+this.$route.params.project);
+      }
+    },
     $route(to, from) {
       if (!this.images) return;
       this.title = to.params.image;
