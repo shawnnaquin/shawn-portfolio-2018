@@ -1,26 +1,26 @@
 <template>
 
-  <div 
-    :class="['max-width']" 
+  <div
+    :class="['max-width']"
     style="overflow: hidden;" >
 
-    <transition 
-      name="fade" 
-      mode="out-in" 
+    <transition
+      name="fade"
+      mode="out-in"
       appear >
-      <h1 
-        :key="type" 
-        class="push" 
+      <h1
+        :key="type"
+        class="push"
         v-if="type" >
 
-        <b 
-          style="" 
+        <b
+          style=""
           v-if="!Object.keys(projects).length" >
           Loading Projects
         </b>
 
         <b v-else>
-          {{ getTrueCaps(type) }} 
+          {{ getTrueCaps(type) }}
           <b v-if="Object.keys(projects).length > 1" >Projects</b>
           <b v-else >Project</b>
         </b>
@@ -35,30 +35,30 @@
 
     <main :style="{position:'relative',minHeight: '500px'}">
 
-      <transition 
-        :name=" 'fade' " 
+      <transition
+        :name=" 'fade' "
         appear >
-        <p 
-          :key="type" 
-          v-if="!Object.keys(projects).length" 
+        <p
+          :key="type"
+          v-if="!Object.keys(projects).length"
           :class="[ 'loading' ]">LOADING <Loader :go=" ( !Object.keys(projects).length ) " /> </p>
       </transition>
 
-      <transition 
-        name="fade" 
-        mode="out-in" 
-        @afterEnter="pageAfterEnter" 
+      <transition
+        name="fade"
+        mode="out-in"
+        @afterEnter="pageAfterEnter"
         appear >
 
         <div
           :key="type"
           v-if="projects"
-          :class="[ 
-            'portfolio', 
-            direction, 
+          :class="[
+            'portfolio',
+            direction,
             { ['one']: Object.keys(projects).length === 1 },
             { ['two']: Object.keys(projects).length === 2 },
-            { ['three']: Object.keys(projects).length === 3 } 
+            { ['three']: Object.keys(projects).length === 3 }
           ]"
           ref="portfolio"
         >
@@ -97,30 +97,30 @@
 
     </main>
 
-    <transition 
-      name="fade" 
+    <transition
+      name="fade"
       appear>
-      <div 
-        :class="['buttons']" 
-        v-if="showButtons" 
+      <div
+        :class="['buttons']"
+        v-if="showButtons"
         :key="showButtons" >
 
-        <router-link 
-          :name="prevType" 
-          :aria-label="prevType" 
-          :title="prevType" 
-          :to="`/${prevType}`" 
-          @click.native="setDirection('left')" 
+        <router-link
+          :name="prevType"
+          :aria-label="prevType"
+          :title="prevType"
+          :to="`/${prevType}`"
+          @click.native="setDirection('left')"
           :class="['external']">
           &lt;
         </router-link>
 
-        <router-link 
-          :name="nextType" 
-          :aria-label="nextType" 
-          :title="nextType" 
-          :to="`/${nextType}`" 
-          @click.native="setDirection('right')" 
+        <router-link
+          :name="nextType"
+          :aria-label="nextType"
+          :title="nextType"
+          :to="`/${nextType}`"
+          @click.native="setDirection('right')"
           :class="['external']">
           &gt;
         </router-link>
@@ -236,31 +236,6 @@ export default {
     // setTimeout( ()=> {
     next();
     // }, ( t * 50 ) + 100 );
-  },
-
-  beforeRouteLeave(to, from, next) {
-    // called when the route that renders this component is about to
-    // be navigated away from.
-    // has access to `this` component instance.
-
-    // this.$refs.portfolio.children.style.opacity = 0;
-    this.direction = "";
-    this.showButtons = false;
-    let t = 0;
-
-    for (let c of this.$refs.portfolio.children) {
-      c.style.transition = "opacity 200ms ease-out";
-      c.style.transitionDelay = t * 50 + "ms";
-
-      if (c.getAttribute("data-name") != to.params.project) {
-        c.style.opacity = 0;
-      }
-
-      t++;
-    }
-    setTimeout(() => {
-      next();
-    }, t * 50 + 100);
   },
 
   mixins: [animateIn, projects],
