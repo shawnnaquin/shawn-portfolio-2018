@@ -2,7 +2,7 @@
 
   <div 
     :class="['max-width']" 
-    style="overflow: hidden;" >
+    style="overflow: hidden; min-height:520px" >
 
     <h1>
       Featured Web Technologies

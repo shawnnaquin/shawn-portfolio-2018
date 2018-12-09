@@ -272,7 +272,23 @@ export default {
       ) {
         this.$router.replace("/" + store.state.types[0]);
       } else {
-        next();
+        this.direction = "";
+        this.showButtons = false;
+        let t = 0;
+
+        for (let c of this.$refs.portfolio.children) {
+          c.style.transition = "opacity 200ms ease-out";
+          c.style.transitionDelay = t * 50 + "ms";
+
+          if (c.getAttribute("data-name") != to.params.project) {
+            c.style.opacity = 0;
+          }
+
+          t++;
+        }
+        setTimeout(() => {
+          next();
+        }, t * 50 + 100);
       }
 
   },

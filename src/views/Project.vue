@@ -1,27 +1,27 @@
 <template>
 
-  <main 
-    :class="[ 'project', 'max-width' ]" 
+  <main
+    :class="[ 'project', 'max-width' ]"
     style="overflow: hidden;" >
 
-    <transition 
-      :name="mainTrans.trans" 
-      :mode="mainTrans.mode" 
-      appear 
-      @afterLeave="pageAfterLeave" 
+    <transition
+      :name="mainTrans.trans"
+      :mode="mainTrans.mode"
+      appear
+      @afterLeave="pageAfterLeave"
       @enter="pageEnter" >
 
-      <article 
-        class="" 
+      <article
+        class=""
         v-if="show" >
 
-        <transition 
-          name="fade" 
-          appear 
+        <transition
+          name="fade"
+          appear
           mode="out-in">
-          <div 
-            :style="{minHeight:'500px'}" 
-            v-if="!project" 
+          <div
+            :style="{minHeight:'500px'}"
+            v-if="!project"
             :class="['article-header']">
             <div>
               <h1>
@@ -42,13 +42,13 @@
 
           </div>
 
-          <div 
-            v-else 
+          <div
+            v-else
             :class="[ 'article-header' ]" >
 
-            <transition 
-              name="fade" 
-              appear 
+            <transition
+              name="fade"
+              appear
               mode="out-in" >
               <div>
                 <h1> {{ project.title }}</h1>
@@ -56,29 +56,29 @@
               </div>
             </transition>
 
-            <youtube-video 
+            <youtube-video
               :class="['video']"
-              v-if="project.content.video.length" 
-              :video-id="project.content.video" 
+              v-if="project.content.video.length"
+              :video-id="project.content.video"
               :video-img=" `${getBase}${ type }/${ images.video }`" />
 
-            <div 
-              v-if="project && ( project.content.code || project.content.externalSite )" 
+            <div
+              v-if="project && ( project.content.code || project.content.externalSite )"
               class="buttons" >
 
-              <a 
-                ref="noopener" 
-                :href="project.content.externalSite" 
-                v-if="project.content.externalSite" 
-                target="_blank" 
+              <a
+                ref="noopener"
+                :href="project.content.externalSite"
+                v-if="project.content.externalSite"
+                target="_blank"
                 :class="[ 'external' ]" > Live Site <span :class="['external-span']"><external/></span> </a>
               &nbsp;
 
-              <a 
-                :href="project.content.code" 
-                ref="noopener" 
-                v-if="project.content.code" 
-                target="_blank" 
+              <a
+                :href="project.content.code"
+                ref="noopener"
+                v-if="project.content.code"
+                target="_blank"
                 :class="[ 'external' ]" >
                 //code
               </a>
@@ -99,8 +99,8 @@
 
         </transition>
 
-        <div 
-          :class="[ 'image-container' ]" 
+        <div
+          :class="[ 'image-container' ]"
           v-if="images.mobile && images.mobile.length" >
 
           <transition-group
@@ -142,8 +142,8 @@
 
         </div>
 
-        <div 
-          :class="[ 'image-container' ]" 
+        <div
+          :class="[ 'image-container' ]"
           v-if="images.horiz && images.horiz.length" >
 
           <transition-group
@@ -184,8 +184,8 @@
 
         </div>
 
-        <div 
-          :class="[ 'image-container' ]" 
+        <div
+          :class="[ 'image-container' ]"
           v-if="images.regular && images.regular.length" >
 
           <transition-group
@@ -226,36 +226,35 @@
           </transition-group>
 
         </div>
-        <transition 
-          name="fade" 
+        <transition
+          name="fade"
           appear >
-          <div 
-            v-if="showBlurb && project" 
-            :class="[ 'article-header' ]" 
+          <div
+            v-if="showBlurb && project"
+            :class="[ 'article-header' ]"
             style="transition-delay: 1000ms" >
 
-            <p 
-              v-if="project.content.article" 
-              :class="['description']">
-              {{ project.content.article }}
-            </p>
+            <p
+              v-if="project.content.article"
+              :class="['description']"
+              v-html="project.content.article" />
 
             <div class="buttons" >
 
-              <router-link 
-                :name="prevProject.title" 
-                :aria-label="prevProject.title" 
-                :title="prevProject.title" 
-                :to="`/${type}/${ prevProject.link }`" 
+              <router-link
+                :name="prevProject.title"
+                :aria-label="prevProject.title"
+                :title="prevProject.title"
+                :to="`/${type}/${ prevProject.link }`"
                 :class="['external']">
                 &lt;
               </router-link>
 
-              <router-link 
-                :name="nextProject.title" 
-                :aria-label="nextProject.title" 
-                :title="nextProject.title" 
-                :to="`/${type}/${ nextProject.link }`" 
+              <router-link
+                :name="nextProject.title"
+                :aria-label="nextProject.title"
+                :title="nextProject.title"
+                :to="`/${type}/${ nextProject.link }`"
                 :class="['external']">
                 &gt;
               </router-link>
