@@ -12,7 +12,7 @@ for (let type in types) {
     all.push({
       path: '/'+type,
       priority: "0.8",
-      changefreq: "dailly",
+      changefreq: "daily",
       lastmod: "2018-12-09"
     });
   }
@@ -29,7 +29,7 @@ for (let type in types) {
           te.push({
             path: '/tech/'+tech,
             priority: "0.6",
-            changefreq: "daily",
+            changefreq: "monthly",
             lastmod: "2018-12-09"
           });
 
@@ -42,7 +42,7 @@ for (let type in types) {
         all.push({
           path: '/'+type + "/" + key,
           priority: "0.6",
-          changefreq: "daily",
+          changefreq: "monthly",
           lastmod: "2018-12-09"
         });
       }

@@ -7,7 +7,7 @@
     "removeImages": "./removeImages.sh",
     "beforebuild": "grunt && npm run removeImages && node ./portfolioqueries.js",
     "serve": "vue-cli-service serve",
-    "build": "mv dist/.git .gitl && vue-cli-service build && mv .gitl dist/.git",
+    "build": "mv dist/.git .gitl && vue-cli-service build && node ./generatesitemap.js && mv .gitl dist/.git",
     "lint": "vue-cli-service lint --fix",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",
