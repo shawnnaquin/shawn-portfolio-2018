@@ -1,4 +1,5 @@
 import { mapGetters } from "vuex";
+import store from '@/store';
 
 export default {
   data() {
@@ -119,7 +120,33 @@ export default {
     }
 
   },
+  beforeRouteEnter(to,from,next) {
+    let n;
 
+    if ( to.name == 'techtype' ) {
+      if ( store.state.types.includes(to.params.type) ) {
+        n = '/tech';
+      }
+      // console.log('has this', t);
+    }
+
+    if (
+      to.params.type !== "website" &&
+      to.params.type !== "marketing" &&
+      to.params.type !== "interactive" &&
+      to.name !== "tech" &&
+      to.name !== "techtype"
+    ) {
+      n = "/" + store.state.types[0];
+    }
+
+    if ( n ) {
+      next(n);
+    } else {
+      next();
+    }
+
+  },
   mounted() {
     this.setProjects(this.$route.params.type);
   },
