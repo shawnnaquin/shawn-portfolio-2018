@@ -136,6 +136,25 @@
         </li>
 
         <li
+          v-if="$route.name == 'tech' || $route.name == 'techtype' "
+          itemprop="itemListElement"
+          itemscope=""
+          itemtype="https://schema.org/ListItem">
+          <router-link
+            v-if="$route.name == 'techtype' "
+            itemprop="item"
+            :to="`/tech`">
+            <span itemprop="name">tech</span>
+          </router-link>
+          <span 
+            v-else 
+            itemprop="name">tech</span>
+          <meta
+            itemprop="position"
+            content="2">
+        </li>
+
+        <li
           v-if="$route.params.type"
           itemprop="itemListElement"
           itemscope=""
