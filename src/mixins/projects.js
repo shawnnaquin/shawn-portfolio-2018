@@ -1,12 +1,11 @@
 import { mapGetters } from "vuex";
-import store from '@/store';
 
 export default {
   data() {
     return {
       type: false,
       projectError: false,
-      techList: null
+      techList: []
     };
   },
   computed: {
@@ -22,10 +21,6 @@ export default {
 
         n = {};
 
-        if ( !Array.isArray(this.techList) ) {
-          this.techList = [];
-        }
-
         for (let type in this.$store.state.projects) {
           for (let project in this.$store.state.projects[type]) {
             let techList = this.$store.state.projects[type][project].content[
@@ -37,7 +32,7 @@ export default {
             if (!this.$store.state.types.includes(r.toLocaleLowerCase())) {
 
               for (let tech in techList) {
-                if ( !this.techList.includes( techList[tech] ) ) {
+                if ( !this.techList.includes( techList[tech] )) {
                   this.techList.push(techList[tech]);
                 }
                 if (
@@ -84,73 +79,9 @@ export default {
       );
     }
   },
-  watch: {
-    "$store.state.projects"(p) {
-      // slightly confusing as to why:
-      // 0 projects are available, the store has loaded all types, and this instance projects are 0
-      // no project name matches!;
-      // then replace state
-      if (
-        Object.keys(p).length >= this.$store.state.types.length &&
-        !Object.keys(this.projects).length &&
-        this.$route.name !== "tech" &&
-        this.$route.name !== "techtype"
-      ) {
-        this.$nextTick(() => {
-          this.$router.replace("/" + this.$store.state.types[0]);
-        });
-      }
-    },
-
-    'techList'(t) {
-
-      if (
-        Object.keys(this.$store.state.projects).length >= this.$store.state.types.length &&
-        Array.isArray(t) &&
-        !Object.keys(this.projects).length &&
-        this.$route.name == 'techtype'
-      ) {
-        // console.log('hey');
-      this.$nextTick(()=> {
-        this.$router.replace('/tech');
-      });
-      }
-      // if ( !this.techList.length && this.$route.name == 'techtype' && !Object.keys(p).length ) {
-      // }
-    }
-
-  },
-  beforeRouteEnter(to,from,next) {
-    let n;
-
-    if ( to.name == 'techtype' ) {
-      if ( store.state.types.includes(to.params.type) ) {
-        n = '/tech';
-      }
-      // console.log('has this', t);
-    }
-
-    if (
-      to.params.type !== "website" &&
-      to.params.type !== "marketing" &&
-      to.params.type !== "interactive" &&
-      to.name !== "tech" &&
-      to.name !== "techtype"
-    ) {
-      n = "/" + store.state.types[0];
-    }
-
-    if ( n ) {
-      next(n);
-    } else {
-      next();
-    }
-
-  },
   mounted() {
     this.setProjects(this.$route.params.type);
   },
-
   methods: {
     getType(name) {
       // console.log(name);
@@ -160,10 +91,8 @@ export default {
         return this.projects[name].type;
       }
     },
-
     setProjects(type) {
       this.type = type;
-
       this.$nextTick(() => {
         this.$store.dispatch("setProjects", type);
       });

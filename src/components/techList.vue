@@ -9,7 +9,7 @@
           :aria-label="t" 
           :title="t" 
           :class="[ 'external', 'tech-link' ]" 
-          :to="`/${ getProjectLink(t) }`" >{{ t }}</router-link>
+          :to="`/tech/${ getProjectLink(t) }`" >{{ t }}</router-link>
       </li>
     </template>
   </ul>

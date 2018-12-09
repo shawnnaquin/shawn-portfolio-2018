@@ -138,6 +138,7 @@ import Loader from "@/components/Loader.vue";
 import Picture from "@/components/Picture.vue";
 import animateIn from "@/mixins/animateIn";
 import projects from "@/mixins/projects";
+import store from "@/store";
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
@@ -211,33 +212,58 @@ export default {
   },
 
   beforeRouteUpdate(to, from, next) {
-    // called when the route that renders this component is about to
-    // be navigated away from.
-    // has access to `this` component instance.
-
-    // this.$refs.portfolio.children.style.opacity = 0;
-
-    // let t = 0;
-
-    // for (let c of this.$refs.portfolio.children ) {
-
-    // 	c.style.transition = 'opacity 200ms ease-out';
-    // 	c.style.transitionDelay = (t*50)+'ms';
-
-    // 	if ( c.getAttribute('data-name') != to.params.project ) {
-    // 		c.style.opacity = 0;
-    // 	}
-
-    // 	t++;
-
-    // }
     this.showButtons = false;
-
-    // setTimeout( ()=> {
     next();
-    // }, ( t * 50 ) + 100 );
   },
+  beforeRouteEnter(to,from,next) {
+    console.log('enter');
+    if (
+      to.params.type !== "website" &&
+      to.params.type !== "marketing" &&
+      to.params.type !== "interactive" &&
+      to.name !== "tech" &&
+      to.name !== "techtype"
+    ) {
+      next("/" + store.state.types[0]);
+    } else {
+      next();
+    }
+  },
+  beforeRouteUpdate(to,from,next) {
+    if (
+      to.params.type !== "website" &&
+      to.params.type !== "marketing" &&
+      to.params.type !== "interactive" &&
+      to.name !== "tech" &&
+      to.name !== "techtype"
+    ) {
+      this.$router.replace("/" + store.state.types[0]);
+    } else {
+      next();
+    }
+  },
+  beforeRouteLeave(to,from,next) {
+      // let n;
+      // if ( to.name == 'techtype' ) {
+      //   if ( store.state.types.includes(to.params.type) ) {
+      //     n = '/tech';
+      //   }
+      //   // console.log('has this', t);
+      // }
 
+      if (
+        to.params.type !== "website" &&
+        to.params.type !== "marketing" &&
+        to.params.type !== "interactive" &&
+        to.name !== "tech" &&
+        to.name !== "techtype"
+      ) {
+        this.$router.replace("/" + store.state.types[0]);
+      } else {
+        next();
+      }
+
+  },
   mixins: [animateIn, projects],
 
   mounted() {
@@ -252,13 +278,14 @@ export default {
         this.$emit("updateHead");
       });
     },
-    projects() {
+    projects(p) {
       let k = this.typeKey - 1;
-      // console.log(this.typeKey);
       if (k < 0) {
         k = this.types.length - 1;
       }
-      // console.log(k);
+      if ( this.$route.name == 'techtype' && !Object.keys(p).length && this.techList.length ) {
+        this.$router.replace('/tech');
+      }
     }
   },
 
