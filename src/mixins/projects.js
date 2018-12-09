@@ -3,7 +3,9 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      type: false
+      type: false,
+      projectError: false,
+      techList: null
     };
   },
   computed: {
@@ -19,22 +21,33 @@ export default {
 
         n = {};
 
+        if ( !Array.isArray(this.techList) ) {
+          this.techList = [];
+        }
+
         for (let type in this.$store.state.projects) {
           for (let project in this.$store.state.projects[type]) {
             let techList = this.$store.state.projects[type][project].content[
               "techList"
             ];
-            let r = decodeURI(this.$route.params.type);
 
+            let r = decodeURI(this.$route.params.type);
+            // console.log( r )
             if (!this.$store.state.types.includes(r.toLocaleLowerCase())) {
+
               for (let tech in techList) {
+                if ( !this.techList.includes( techList[tech] ) ) {
+                  this.techList.push(techList[tech]);
+                }
                 if (
                   techList[tech].toLocaleLowerCase() == r.toLocaleLowerCase()
                 ) {
                   n[project] = this.$store.state.projects[type][project];
                   n[project].type = type;
+                } else {
                 }
               }
+
             }
           }
         }
@@ -42,7 +55,6 @@ export default {
 
       return n;
     },
-
     project() {
       if (!this.$route.params.project) return false;
       return this.projects[this.$route.params.project];
@@ -80,13 +92,32 @@ export default {
       if (
         Object.keys(p).length >= this.$store.state.types.length &&
         !Object.keys(this.projects).length &&
-        this.$route.name !== "tech"
+        this.$route.name !== "tech" &&
+        this.$route.name !== "techtype"
       ) {
         this.$nextTick(() => {
           this.$router.replace("/" + this.$store.state.types[0]);
         });
       }
+    },
+
+    'techList'(t) {
+
+      if (
+        Object.keys(this.$store.state.projects).length >= this.$store.state.types.length &&
+        Array.isArray(t) &&
+        !Object.keys(this.projects).length &&
+        this.$route.name == 'techtype'
+      ) {
+        // console.log('hey');
+      this.$nextTick(()=> {
+        this.$router.replace('/tech');
+      });
+      }
+      // if ( !this.techList.length && this.$route.name == 'techtype' && !Object.keys(p).length ) {
+      // }
     }
+
   },
 
   mounted() {
