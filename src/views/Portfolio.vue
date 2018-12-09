@@ -210,10 +210,6 @@ export default {
       return this.types[this.nextTypeKey];
     }
   },
-  beforeRouteUpdate(to, from, next) {
-    this.showButtons = false;
-    next();
-  },
   beforeRouteEnter(to,from,next) {
 
     if (
@@ -236,6 +232,8 @@ export default {
     }
   },
   beforeRouteUpdate(to,from,next) {
+    this.showButtons = false;
+    next();
     if (
       to.name == 'techtype' &&
       ( to.params.type == 'marketing' || to.params.type == 'website' || to.params.type == 'interactive' )
@@ -263,7 +261,12 @@ export default {
         this.$router.replace("/tech");
       }
 
+      if ( !to.params.type ){
+        next();
+      }
+
       if (
+        to.params.type &&
         to.params.type !== "website" &&
         to.params.type !== "marketing" &&
         to.params.type !== "interactive" &&
@@ -294,6 +297,7 @@ export default {
   },
   mixins: [animateIn, projects],
   created() {
+
     if (
       this.$route.name == 'techtype' &&
       ( this.$route.params.type == 'marketing' || this.$route.params.type == 'website' || this.$route.params.type == 'interactive' )
@@ -310,6 +314,7 @@ export default {
     ) {
       this.$router.replace("/" + store.state.types[0]);
     }
+
   },
   mounted() {
     this.showButtons = true;
