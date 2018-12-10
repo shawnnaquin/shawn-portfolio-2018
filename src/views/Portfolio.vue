@@ -153,22 +153,80 @@ export default {
   data() {
     return {
       direction: "",
-      showButtons: false,
-      title: this.$route.params.type
+      showButtons: false
     };
   },
 
   head: {
     title: function() {
       return {
-        inner: this.title
+        inner: this.pageTitle
       };
+    },
+    meta: function() {
+      let image = `https://shawnnaquin.github.io/img/meta/code.jpg`;
+      let t = this.pageTitle;
+      let title = `${t}${window.metaTitle}`;
+      let content = `View Shawn's freelance ${t} portfolio projects. These ${t} projects demonstrate how various front-end technologies can be combined to display ${t} projects on your device. Please contact Shawn for more details.`
+      return [
+        {
+          id:'item-name',
+          itemprop: 'name',
+          content: title
+        },
+        {
+          id: 'twitter-title',
+          name: 'twitter:title',
+          content: title
+        },
+        {
+          id: 'og-title',
+          property: 'og:title',
+          content: title
+        },
+        {
+          id:'meta-description',
+          name: 'description',
+          content: content
+        },
+        {
+          id: 'item-description',
+          itemprop: 'description',
+          content: content
+        },
+        {
+          id:'twitter-description',
+          name: 'twitter:description',
+          content: content
+        },
+        {
+          id: 'og-description',
+          property:'og:description',
+          content: content
+        },
+        {
+          id: 'item-image',
+          itemprop: 'image',
+          content: image
+        },
+        {
+          id: 'twitter-image',
+          name: 'twitter:image',
+          content: image
+        },
+
+        {
+          id: 'og-image',
+          property:'og:image',
+          content: image
+        }
+      ];
     },
     link: function() {
       return [
         {
           rel: "canonical",
-          href: `https://shawnnaquin.github.io/${this.title}`,
+          href: `https://shawnnaquin.github.io/?p=${this.$route.path}`,
           id: "canonical"
         }
       ];
@@ -208,6 +266,13 @@ export default {
 
     nextType() {
       return this.types[this.nextTypeKey];
+    },
+    pageTitle() {
+      let n = this.getTrueCaps(this.type);
+      if ( n && n.length ) {
+        n = n.capitalize();
+      }
+      return this.type ? n : this.$route.params.type;
     }
   },
   beforeRouteEnter(to,from,next) {
@@ -279,16 +344,19 @@ export default {
         this.showButtons = false;
         let t = 0;
 
-        for (let c of this.$refs.portfolio.children) {
-          c.style.transition = "opacity 200ms ease-out";
-          c.style.transitionDelay = t * 50 + "ms";
+        if ( this.$refs.portfolio && this.$refs.portfolio.children && to.params.project ) {
+          for (let c of this.$refs.portfolio.children) {
+            c.style.transition = "opacity 200ms ease-out";
+            c.style.transitionDelay = t * 50 + "ms";
 
-          if (c.getAttribute("data-name") != to.params.project) {
-            c.style.opacity = 0;
+            if (c.getAttribute("data-name") != to.params.project) {
+              c.style.opacity = 0;
+            }
+
+            t++;
           }
-
-          t++;
         }
+
         setTimeout(() => {
           next();
         }, t * 50 + 100);
@@ -323,10 +391,7 @@ export default {
   watch: {
     $route(to) {
       this.setProjects(to.params.type);
-      this.title = to.params.type;
-      this.$nextTick(() => {
-        this.$emit("updateHead");
-      });
+      this.$emit("updateHead");
     },
     projects(p) {
       let k = this.typeKey - 1;

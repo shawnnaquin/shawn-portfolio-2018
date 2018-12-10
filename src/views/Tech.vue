@@ -34,6 +34,64 @@ export default {
         inner: "Tech"
       };
     },
+    meta: function() {
+      let image = `https://shawnnaquin.github.io/img/meta/code.jpg`;
+      let title = `Tech`;
+      let content = "A full list of all technoligies displayed in Shawn's portfolio. Shawn's skill include JavaScript, HTML, and CSS but some other specialties include: Greensock, SVG, Webpack, VueJS, UX, performance testing, and accesbility."
+      return [
+        {
+          id:'item-name',
+          itemprop: 'name',
+          content: title
+        },
+        {
+          id: 'twitter-title',
+          name: 'twitter:title',
+          content: title
+        },
+        {
+          id: 'og-title',
+          property: 'og:title',
+          content: title
+        },
+        {
+          id:'meta-description',
+          name: 'description',
+          content: content
+        },
+        {
+          id: 'item-description',
+          itemprop: 'description',
+          content: content
+        },
+        {
+          id:'twitter-description',
+          name: 'twitter:description',
+          content: content
+        },
+        {
+          id: 'og-description',
+          property:'og:description',
+          content: content
+        },
+        {
+          id: 'item-image',
+          itemprop: 'image',
+          content: image
+        },
+        {
+          id: 'twitter-image',
+          name: 'twitter:image',
+          content: image
+        },
+
+        {
+          id: 'og-image',
+          property:'og:image',
+          content: image
+        }
+      ];
+    },
     link: function() {
       return [
         {

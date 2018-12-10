@@ -75,7 +75,8 @@ export default {
       stuck: false,
       mousein: false,
       observer: null,
-      playerReady: false
+      playerReady: false,
+      YTPlayer: null
     };
   },
 
@@ -85,18 +86,45 @@ export default {
 
   watch: {
     $route(r) {
-      if (r.params.image && window.YTPlayer.getPlayerState() != 2) {
-        window.YTPlayer.pauseVideo();
+      if (r.params.image && this.YTPlayer.getPlayerState() != 2) {
+        this.YTPlayer.pauseVideo();
         this.stuck = false;
+      }
+      if ( this.YTPlayer ) {
+        this.YTPlayer.destroy();
+        this.YTPlayer = null;
       }
     }
   },
-
-  beforeDestroy() {
-    if (!this.observer) return;
-    this.observer.unobserve(this.$refs.player);
+  beforeRouteUpdate(to,from,next) {
+    if ( this.YTPlayer ){
+      this.YTPlayer.destroy();
+      this.YTPlayer = null;
+    }
+    next()
   },
-
+  beforeRouteLeave(to,from,next) {
+    if ( this.YTPlayer ){
+      this.YTPlayer.destroy();
+      this.YTPlayer = null;
+    }
+    next();
+  },
+  beforeDestroy() {
+    if ( this.YTPlayer ){
+      this.YTPlayer.destroy();
+      this.YTPlayer = null;
+    }
+    if ( this.observer) {
+      this.observer.unobserve(this.$refs.player);
+    }
+  },
+  created() {
+    if ( this.YTPlayer ){
+      this.YTPlayer.destroy();
+      this.YTPlayer = null;
+    }
+  },
   methods: {
     getOnline() {
       return navigator.onLine;
@@ -109,11 +137,11 @@ export default {
     mouseleave() {
       this.mousein = false;
 
-      if (!window.YTPlayer || !window.YTPlayer.getPlayerState) return;
+      if (!this.YTPlayer || !this.YTPlayer.getPlayerState) return;
 
       if (
-        window.YTPlayer.getPlayerState() != 1 &&
-        window.YTPlayer.getPlayerState() != 3
+        this.YTPlayer.getPlayerState() != 1 &&
+        this.YTPlayer.getPlayerState() != 3
       ) {
         this.stuck = false;
       }
@@ -135,8 +163,8 @@ export default {
         // console.log('!');
       }
       if (event.data == 0) {
-        window.YTPlayer.seekTo(0, true);
-        window.YTPlayer.pauseVideo();
+        this.YTPlayer.seekTo(0, true);
+        this.YTPlayer.pauseVideo();
         if (!this.mousein) {
           this.stuck = false;
         }
@@ -185,10 +213,11 @@ export default {
     },
 
     createPlayer() {
-      window.YTPlayer = new window.YT.Player("player", {
+      this.YTPlayer = new window.YT.Player("player", {
         videoId: this.videoId,
         playerVars: {
           rel: 0,
+          host: "https://youtube.com",
           origin: "https://shawnnaquin.github.io",
           width: "100%",
           height: "100%",
@@ -210,10 +239,10 @@ export default {
         entry.forEach(e => {
           if (
             e.intersectionRatio <= 0 &&
-            window.YTPlayer &&
-            window.YTPlayer.pauseVideo
+            this.YTPlayer &&
+            this.YTPlayer.pauseVideo
           ) {
-            window.YTPlayer.pauseVideo();
+            this.YTPlayer.pauseVideo();
           }
         });
       });

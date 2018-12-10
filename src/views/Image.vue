@@ -70,27 +70,27 @@ export default {
     close: close
   },
 
-  // created() {
+  created() {
 
-  // 	this.$router.beforeEach( (to,from,next)=> {
-  // 		next();
+  	// this.$router.beforeEach( (to,from,next)=> {
+  	// 	next();
 
-  // 		// if( !this.$refs.image ) return;
+  		// if( !this.$refs.image ) return;
 
-  // 		// this.$refs.image.$el.style.transition = 'transform 0.2s ease-out 0s, opacity 0.2s ease-out';
-  // 		// this.$refs.image.$el.style.opacity = '0';
+  		// this.$refs.image.$el.style.transition = 'transform 0.2s ease-out 0s, opacity 0.2s ease-out';
+  		// this.$refs.image.$el.style.opacity = '0';
 
-  // 		// if ( from.params.image == this.prevImagePath ) {
-  // 		// 	this.$refs.image.$el.style.transform = 'translateX(-20%)';
-  // 		// 	this.trans = 'fade-left';
-  // 		// } else if ( from.params.image == this.nextImagePath  ) {
-  // 		// 	this.trans = 'fade-right';
-  // 		// 	this.$refs.image.$el.style.transform = 'translateX(20%)';
-  // 		// }
+  		// if ( from.params.image == this.prevImagePath ) {
+  		// 	this.$refs.image.$el.style.transform = 'translateX(-20%)';
+  		// 	this.trans = 'fade-left';
+  		// } else if ( from.params.image == this.nextImagePath  ) {
+  		// 	this.trans = 'fade-right';
+  		// 	this.$refs.image.$el.style.transform = 'translateX(20%)';
+  		// }
 
-  // 	});
-
-  // },
+  	// });
+    this.$emit("updateHead");
+  },
 
   data() {
     return {
@@ -106,13 +106,69 @@ export default {
         inner: this.title
       };
     },
+    meta: function() {
+      let base = this.imageBase.split('/')[1];
+      let image = `https://shawnnaquin.github.io/img/portfolio/${ base }/${this.image.path}-lg_1x.jpg`;
+      let title = `${this.title}${window.metaTitle}`;
+      return [
+        {
+          id:'item-name',
+          itemprop: 'name',
+          content: title
+        },
+        {
+          id: 'twitter-title',
+          name: 'twitter:title',
+          content: title
+        },
+        {
+          id: 'og-title',
+          property: 'og:title',
+          content: title
+        },
+        {
+          id:'meta-description',
+          name: 'description',
+          content: this.image.caption
+        },
+        {
+          id: 'item-description',
+          itemprop: 'description',
+          content: this.image.caption
+        },
+        {
+          id:'twitter-description',
+          name: 'twitter:description',
+          content: this.image.caption
+        },
+        {
+          id: 'og-description',
+          property:'og:description',
+          content: this.image.caption
+        },
+        {
+          id: 'item-image',
+          itemprop: 'image',
+          content: image
+        },
+        {
+          id: 'twitter-image',
+          name: 'twitter:image',
+          content: image
+        },
+
+        {
+          id: 'og-image',
+          property:'og:image',
+          content: image
+        }
+      ];
+    },
     link: function() {
       return [
         {
           rel: "canonical",
-          href: `https://shawnnaquin.github.io/${this.$route.params.type}/${
-            this.$route.params.project
-          }/${this.title}`,
+          href: `https://shawnnaquin.github.io/?p=${this.$route.path}`,
           id: "canonical"
         }
       ];
@@ -164,6 +220,7 @@ export default {
       return this.getImageIndex - 1;
     },
     imageBase() {
+      if ( !this.type || !this.project || !this.project.link ) return '';
       return `/${this.type}/${this.project.link}/`;
     },
     prevImagePath() {
@@ -186,7 +243,7 @@ export default {
       }
     },
     image() {
-      if (!this.images) return false;
+      if (!this.images || !this.getImageIndex ) return false;
       return this.images[this.orientation][this.getImageIndex];
     },
 
@@ -200,6 +257,9 @@ export default {
       if(!this.image){
         this.$router.replace('/'+this.$route.params.type+'/'+this.$route.params.project);
       }
+    },
+    image(i) {
+      this.$emit("updateHead");
     },
     $route(to, from) {
       if (!this.images) return;

@@ -281,6 +281,7 @@ import PhoneHoriz from "@/assets/ui/mobile.horiz.png";
 
 import animateIn from "@/mixins/animateIn";
 import projects from "@/mixins/projects";
+import stripHtml from "string-strip-html";
 
 import { mapGetters } from "vuex";
 
@@ -351,6 +352,9 @@ export default {
     prevProject() {
       if (!this.projects) return;
       return this.projects[this.projectNames[this.prevProjectKey]];
+    },
+    pageTitle() {
+      return this.project ? this.project.title : this.$route.params.project;
     }
   },
 
@@ -377,23 +381,84 @@ export default {
       phoneVertLoaded: false,
       show: false, // show the page
       showBlurb: false,
-      direction: "",
-      title: this.$route.params.project
+      direction: ""
     };
   },
   head: {
     title: function() {
       return {
-        inner: this.title
+        inner: this.pageTitle
       };
+    },
+    script: function() { 
+      return [
+        {type: 'text/javascript', inner: ""}
+      ];
+    },
+    meta: function() {
+      let image = `https://shawnnaquin.github.io/img/portfolio/${this.type}/${this.images.video}-lg_1x.jpg`;
+      let title = `${this.pageTitle}${window.metaTitle}`;
+      let content = this.project ? stripHtml(this.project.content.article) : '';
+
+      return [
+        {
+          id:'item-name',
+          itemprop: 'name',
+          content: title
+        },
+        {
+          id: 'twitter-title',
+          name: 'twitter:title',
+          content: title
+        },
+        {
+          id: 'og-title',
+          property: 'og:title',
+          content: title
+        },
+        {
+          id:'meta-description',
+          name: 'description',
+          content: content
+        },
+        {
+          id: 'item-description',
+          itemprop: 'description',
+          content: content
+        },
+        {
+          id:'twitter-description',
+          name: 'twitter:description',
+          content: content
+        },
+        {
+          id: 'og-description',
+          property:'og:description',
+          content: content
+        },
+        {
+          id: 'item-image',
+          itemprop: 'image',
+          content: image
+        },
+        {
+          id: 'twitter-image',
+          name: 'twitter:image',
+          content: image
+        },
+
+        {
+          id: 'og-image',
+          property:'og:image',
+          content: image
+        }
+      ];
     },
     link: function() {
       return [
         {
           rel: "canonical",
-          href: `https://shawnnaquin.github.io/${this.title}/${
-            this.$route.params.project
-          }`,
+          href: `https://shawnnaquin.github.io/?p=${this.$route.path}`,
           id: "canonical"
         }
       ];

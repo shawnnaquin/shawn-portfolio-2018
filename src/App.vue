@@ -247,24 +247,6 @@ export default {
       ]
     };
   },
-
-  head: {
-    title: function() {
-      return {
-        inner: this.title.capitalize()
-      };
-    },
-    link: function() {
-      return [
-        {
-          rel: "canonical",
-          href: `https://shawnnaquin.github.io/${this.title}`,
-          id: "canonical"
-        }
-      ];
-    }
-  },
-
   watch: {
     "$store.state.generalMessage"(m) {
       // console.log('message');
@@ -317,15 +299,36 @@ export default {
 
       this.$store.state.showGeneralMessage = "true";
 
-      if (
-        this.$store.state.messageType == "registered" &&
-        parseInt(window.sessionStorage.getItem("registeredMessage") || 0) > 1
-      ) {
-        this.$store.state.showGeneralMessage = "";
-        this.$store.state.generalMessage = "";
-        return;
-      }
+      if ( this.$store.state.messageType == "registered" ) {
 
+        if ( !window.sessionStorage.getItem("registeredMessage") ) {
+          window.sessionStorage.setItem("registeredMessage", 1 );
+        } else {
+          window.sessionStorage.setItem( "registeredMessage", window.sessionStorage.getItem("registeredMessage") + 1 );
+        }
+
+        if (`navigator` in window ) {
+
+          if ( navigator.onLine ) {
+
+            if ( parseInt(window.sessionStorage.getItem("registeredMessage") || 0) > 1 ) {
+              this.$store.state.showGeneralMessage = "";
+              this.$store.state.generalMessage = "";
+              return;
+            }
+
+          } else {
+              this.$store.state.generalMessage = "Content Serving from offline!";
+          }
+
+
+        } else {
+          this.$store.state.showGeneralMessage = "";
+          this.$store.state.generalMessage = "";
+          return;
+        }
+
+      }
       this.$store.state.messageType = "";
 
       this.timer1 = setTimeout(() => {

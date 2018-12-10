@@ -54,7 +54,6 @@ export default {
       if (!this.$route.params.project) return false;
       return this.projects[this.$route.params.project];
     },
-
     images() {
       if (!this.project) return false;
 
@@ -76,6 +75,18 @@ export default {
         },
         { mobile: [], regular: [], horiz: [], video: false }
       );
+    }
+  },
+  watch: {
+    'projects'(p) {
+      if (p) {
+        this.$emit('updateHead');
+      }
+    },
+    'project'(p) {
+      if (p) {
+        this.$emit('updateHead');
+      }
     }
   },
   mounted() {
