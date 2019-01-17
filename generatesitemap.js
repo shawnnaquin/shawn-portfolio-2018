@@ -67,7 +67,7 @@ let t = builder
   .create("urlset", { encoding: "utf-8" })
   .att("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9");
 t.ele("url")
-  .ele("loc", "https://shawnnaquin.github.io/")
+  .ele("loc", "https://noladev.com/")
   .up()
   .ele("lastmod", "2018-12-09")
   .up()
@@ -79,7 +79,7 @@ t.ele("url")
 
 Object.keys(all).forEach(a => {
   t.ele("url")
-    .ele("loc", "https://shawnnaquin.github.io/?p=" + all[a].path)
+    .ele("loc", "https://noladev.com/" + all[a].path)
     .up()
     .ele("lastmod", all[a].lastmod)
     .up()
@@ -92,7 +92,7 @@ Object.keys(all).forEach(a => {
 
 Object.keys(te).forEach(a => {
   t.ele("url")
-    .ele("loc", "https://shawnnaquin.github.io/?p=" + te[a].path)
+    .ele("loc", "https://noladev.com/" + te[a].path)
     .up()
     .ele("lastmod", te[a].lastmod)
     .up()

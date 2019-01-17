@@ -14,8 +14,6 @@ module.exports = {
     appleMobileWebAppStatusBarStyle: 'black',
     workboxOptions: {
       // swSrc is required in InjectManifest mode.
-      skipWaiting: true,
-      clientsClaim:true,
       importWorkboxFrom: "local",
       importScripts: ['/js/extend-sw.js'],
       navigateFallback: "/index.html"
