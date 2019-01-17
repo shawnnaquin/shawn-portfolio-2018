@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://shawnnaquin.github.io/sitemap.xml
+Sitemap: https://devnola.com/sitemap.xml
