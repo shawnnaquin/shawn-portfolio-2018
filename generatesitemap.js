@@ -47,18 +47,18 @@ for (let type in types) {
         });
       }
 
-      if (data[key].content.images && data[key].content.images.length) {
-        data[key].content.images.forEach(image => {
-          if (!all.includes('/' + type + "/" + key + "/" + image.path)) {
-            all.push({
-              path: '/' + type + "/" + key + "/" + image.path,
-              priority: "0.4",
-              changefreq: "monthly",
-              lastmod: "2018-12-09"
-            });
-          }
-        });
-      }
+      // if (data[key].content.images && data[key].content.images.length) {
+      //   data[key].content.images.forEach(image => {
+      //     if (!all.includes('/' + type + "/" + key + "/" + image.path)) {
+      //       all.push({
+      //         path: '/' + type + "/" + key + "/" + image.path,
+      //         priority: "0.4",
+      //         changefreq: "monthly",
+      //         lastmod: "2018-12-09"
+      //       });
+      //     }
+      //   });
+      // }
     });
   }
 }
@@ -79,7 +79,7 @@ t.ele("url")
 
 Object.keys(all).forEach(a => {
   t.ele("url")
-    .ele("loc", "https://noladev.com/" + all[a].path)
+    .ele("loc", "https://noladev.com" + all[a].path)
     .up()
     .ele("lastmod", all[a].lastmod)
     .up()
@@ -92,7 +92,7 @@ Object.keys(all).forEach(a => {
 
 Object.keys(te).forEach(a => {
   t.ele("url")
-    .ele("loc", "https://noladev.com/" + te[a].path)
+    .ele("loc", "https://noladev.com" + te[a].path)
     .up()
     .ele("lastmod", te[a].lastmod)
     .up()
