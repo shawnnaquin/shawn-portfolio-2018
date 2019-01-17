@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "images": "./images.sh",
-    "removeImages": "./removeImages.sh",
+    "removeImages": "sh ./removeImages.sh",
     "beforebuild": "grunt && npm run removeImages && node ./portfolioqueries.js",
     "serve": "vue-cli-service serve",
     "build": "node ./generatesitemap.js && vue-cli-service build",
