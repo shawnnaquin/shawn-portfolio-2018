@@ -4,6 +4,7 @@ var builder = require("xmlbuilder");
 let types = ["marketing", "interactive", "website", "tech", "contact"];
 let all = [];
 let te = [];
+let paths = [];
 
 for (let type in types) {
   type = types[type];
@@ -66,6 +67,7 @@ for (let type in types) {
 let t = builder
   .create("urlset", { encoding: "utf-8" })
   .att("xmlns", "http://www.sitemaps.org/schemas/sitemap/0.9");
+
 t.ele("url")
   .ele("loc", "https://devnola.com/")
   .up()
@@ -77,7 +79,10 @@ t.ele("url")
   .up()
   .up();
 
+paths.push( "/" );
+
 Object.keys(all).forEach(a => {
+  
   t.ele("url")
     .ele("loc", "https://devnola.com" + all[a].path)
     .up()
@@ -88,6 +93,9 @@ Object.keys(all).forEach(a => {
     .ele("priority", all[a].priority)
     .up()
     .up();
+
+  paths.push( all[a].path );
+
 });
 
 Object.keys(te).forEach(a => {
@@ -101,6 +109,19 @@ Object.keys(te).forEach(a => {
     .ele("priority", te[a].priority)
     .up()
     .up();
+
+  paths.push( te[a].path );
+
+});
+ 
+let pathObj = {
+  "paths": paths,
+  "lazyload": false,
+  "metaOnly": false
+};
+
+fs.writeFile('./public/_ssr.json', JSON.stringify( pathObj ), (err) => {  
+    if (err) throw err;
 });
 
 fs.writeFile(`./public/sitemap.xml`, t.end({ pretty: true }), function(err) {

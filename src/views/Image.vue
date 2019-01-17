@@ -139,6 +139,11 @@ export default {
           content: this.image.caption
         },
         {
+          id: 'og-url',
+          property:'og:url',
+          content: `https://devnola.com${this.$route.path}/?imagelink=${this.imagelink}`
+        },
+        {
           id: 'og-description',
           property:'og:description',
           content: this.image.caption
@@ -165,7 +170,7 @@ export default {
       return [
         {
           rel: "canonical",
-          href: `https://devnola.com/${this.$route.path}/?imagelink=${this.imagelink}`,
+          href: `https://devnola.com${this.$route.path}/?imagelink=${this.imagelink}`,
           id: "canonical"
         }
       ];

@@ -126,6 +126,11 @@ export default {
           content: content
         },
         {
+          id: 'og-url',
+          property:'og:url',
+          content: `https://devnola.com`
+        },
+        {
           id: 'og-description',
           property:'og:description',
           content: content

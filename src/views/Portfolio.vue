@@ -200,6 +200,11 @@ export default {
           content: content
         },
         {
+          id: 'og-url',
+          property:'og:url',
+          content: `https://devnola.com${this.$route.path}`
+        },
+        {
           id: 'og-description',
           property:'og:description',
           content: content
@@ -226,7 +231,7 @@ export default {
       return [
         {
           rel: "canonical",
-          href: `https://devnola.com/${this.$route.path}`,
+          href: `https://devnola.com${this.$route.path}`,
           id: "canonical"
         }
       ];

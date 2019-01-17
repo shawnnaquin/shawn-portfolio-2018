@@ -405,7 +405,7 @@ export default {
       ];
     },
     meta: function() {
-      let image = `https://devnola.com/img/portfolio/${this.type}/${this.images.video}-lg_1x.jpg`;
+      let image = `https://devnola.com/img/portfolio/${this.type}/${this.images.video}-lg_2x.jpg`;
       let title = `${this.pageTitle}${window.metaTitle}`;
       let content = this.project ? stripHtml(this.project.content.article) : '';
 
@@ -441,6 +441,11 @@ export default {
           content: content
         },
         {
+          id: 'og-url',
+          property:'og:url',
+          content: `https://devnola.com${this.$route.path}`
+        },
+        {
           id: 'og-description',
           property:'og:description',
           content: content
@@ -467,7 +472,7 @@ export default {
       return [
         {
           rel: "canonical",
-          href: `https://devnola.com/${this.$route.path}`,
+          href: `https://devnola.com${this.$route.path}`,
           id: "canonical"
         }
       ];
