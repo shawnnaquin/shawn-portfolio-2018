@@ -11,27 +11,27 @@
     </transition>
 
     <picture>
+
+      <source
+        media="(min-width: 1200px)"
+        :srcset=" `${ imgBase }-lg_2x.webp` "
+        type="image/webp"
+      >
+
       <source
         media="(min-width: 900px)"
-        :srcset=" `${ getBase }${ type }/${ path }-lg_1x.webp 1x, ${ getBase }${ type }/${ path }-lg_2x.webp 2x` "
+        :srcset=" `${ imgBase }-md_2x.webp, ${ imgBase }-lg_2x.webp 2x` "
         type="image/webp"
       >
 
       <source
-        media="(min-width: 601px)"
-        :srcset=" `${ getBase }${ type }/${ path }-md_1x.webp 1x, ${ getBase }${ type }/${ path }-md_2x.webp 2x` "
-        type="image/webp"
-      >
-
-      <source
-        :srcset=" `${ getBase }${ type }/${ path }-sm_1x.webp 1x, ${ getBase }${ type }/${ path }-sm_2x.webp 2x` "
+        :srcset=" `${ imgBase }-sm_2x.webp, ${ imgBase }-md_2x.webp 2x, ${ imgBase }-lg_2x.webp 3x` "
         type="image/webp"
       >
 
       <v-lazy-image
         @load="setShowLoader"
-        :src="imgSrc"
-        :srcset=" `${ getBase }${ type }/${ path }-sm_1x.jpg 600w, ${ getBase }${ type }/${ path }-md_1x.jpg 900w, ${ getBase }${ type }/${ path }-lg_1x.jpg 1440w` "
+        :src=" `${ imgBase }${ imgSrc }` "
         type="image/jpeg"
         :alt=" alt "
       />
@@ -62,8 +62,11 @@ export default {
     getBase() {
       return `${process.env.BASE_URL}img/portfolio/`;
     },
+    imgBase() {
+      return `${this.getBase}${this.type}/${this.path}`;
+    },
     imgSrc() {
-      return `${this.getBase}${this.type}/${this.path}-lg_1x.jpg`;
+      return `-lg_2x.jpg`;
     }
   },
   methods: {
