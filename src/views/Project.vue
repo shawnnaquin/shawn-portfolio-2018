@@ -405,7 +405,7 @@ export default {
       ];
     },
     meta: function() {
-      let image = `https://shawnnaquin.github.io/img/portfolio/${this.type}/${this.images.video}-lg_1x.jpg`;
+      let image = `https://devnola.com/img/portfolio/${this.type}/${this.images.video}-lg_1x.jpg`;
       let title = `${this.pageTitle}${window.metaTitle}`;
       let content = this.project ? stripHtml(this.project.content.article) : '';
 
@@ -467,7 +467,7 @@ export default {
       return [
         {
           rel: "canonical",
-          href: `https://shawnnaquin.github.io/?p=${this.$route.path}`,
+          href: `https://devnola.com/${this.$route.path}`,
           id: "canonical"
         }
       ];

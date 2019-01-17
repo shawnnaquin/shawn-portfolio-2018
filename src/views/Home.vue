@@ -152,7 +152,7 @@ export default {
       return [
         {
           rel: "canonical",
-          href: `https://shawnnaquin.github.io/`,
+          href: `https://devnola.com/`,
           id: "canonical"
         }
       ];

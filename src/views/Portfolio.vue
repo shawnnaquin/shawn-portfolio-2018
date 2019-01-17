@@ -164,7 +164,7 @@ export default {
       };
     },
     meta: function() {
-      let image = `https://shawnnaquin.github.io/img/meta/code.jpg`;
+      let image = `https://devnola.com/img/meta/code.jpg`;
       let t = this.pageTitle;
       let title = `${t}${window.metaTitle}`;
       let content = `View Shawn's freelance ${t} portfolio projects. These ${t} projects demonstrate how various front-end technologies can be combined to display ${t} projects on your device. Please contact Shawn for more details.`
@@ -226,7 +226,7 @@ export default {
       return [
         {
           rel: "canonical",
-          href: `https://shawnnaquin.github.io/?p=${this.$route.path}`,
+          href: `https://devnola.com/${this.$route.path}`,
           id: "canonical"
         }
       ];

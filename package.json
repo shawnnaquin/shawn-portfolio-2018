@@ -7,12 +7,10 @@
     "removeImages": "./removeImages.sh",
     "beforebuild": "grunt && npm run removeImages && node ./portfolioqueries.js",
     "serve": "vue-cli-service serve",
-    "build": "mv ./dist/README.md ./README2.md && mv ./dist/.git .gitl && vue-cli-service build && node ./generatesitemap.js && mv .gitl dist/.git && mv ./README2.md ./dist/README.md",
+    "build": "node ./generatesitemap.js && vue-cli-service build",
     "lint": "vue-cli-service lint --fix",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit",
-    "deploy": "npm run build && cd ./dist && git add . && git commit -m \"build\" && git push && cd ../ && echo \"remember to push this dir!\"",
-    "recover": "mkdir dist && mv .gitl dist/.git"
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "@cypress/webpack-preprocessor": "^4.0.2",
@@ -26,6 +24,7 @@
     "lodash": "^4.17.11",
     "png-to-jpeg": "^1.0.1",
     "register-service-worker": "^1.0.0",
+    "roast": "^2.3.13",
     "string-strip-html": "^3.2.0",
     "v-lazy-image": "^1.2.2",
     "validator": "^10.9.0",

@@ -1,607 +1,607 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://noladev.com/</loc>
+    <loc>https://devnola.com/</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://noladev.com/marketing</loc>
+    <loc>https://devnola.com/marketing</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://noladev.com/marketing/kylotto-card-flip</loc>
+    <loc>https://devnola.com/marketing/kylotto-card-flip</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/marketing/kylotto-speed</loc>
+    <loc>https://devnola.com/marketing/kylotto-speed</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/marketing/trex-deck</loc>
+    <loc>https://devnola.com/marketing/trex-deck</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/interactive</loc>
-    <lastmod>2018-12-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://noladev.com/interactive/astec</loc>
-    <lastmod>2018-12-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://noladev.com/interactive/servpro-halloween</loc>
-    <lastmod>2018-12-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://noladev.com/interactive/servpro-prep</loc>
-    <lastmod>2018-12-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://noladev.com/interactive/servpro-holiday</loc>
-    <lastmod>2018-12-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://noladev.com/website</loc>
+    <loc>https://devnola.com/interactive</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://noladev.com/website/l2d</loc>
+    <loc>https://devnola.com/interactive/astec</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/website/sos</loc>
+    <loc>https://devnola.com/interactive/servpro-halloween</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/website/rtc</loc>
+    <loc>https://devnola.com/interactive/servpro-prep</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/website/crg</loc>
+    <loc>https://devnola.com/interactive/servpro-holiday</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/website/buntin</loc>
-    <lastmod>2018-12-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://noladev.com/website/drm</loc>
-    <lastmod>2018-12-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://noladev.com/tech</loc>
+    <loc>https://devnola.com/website</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://noladev.com/contact</loc>
+    <loc>https://devnola.com/website/l2d</loc>
+    <lastmod>2018-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devnola.com/website/sos</loc>
+    <lastmod>2018-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devnola.com/website/rtc</loc>
+    <lastmod>2018-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devnola.com/website/crg</loc>
+    <lastmod>2018-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devnola.com/website/buntin</loc>
+    <lastmod>2018-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devnola.com/website/drm</loc>
+    <lastmod>2018-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://devnola.com/tech</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/assemble.io</loc>
+    <loc>https://devnola.com/contact</loc>
     <lastmod>2018-12-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://devnola.com/tech/assemble.io</loc>
+    <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/jquery</loc>
+    <loc>https://devnola.com/tech/jquery</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/vanilla%20js%20/%20es7</loc>
+    <loc>https://devnola.com/tech/vanilla%20js%20/%20es7</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/grunt</loc>
+    <loc>https://devnola.com/tech/grunt</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/foundation</loc>
+    <loc>https://devnola.com/tech/foundation</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/scss</loc>
+    <loc>https://devnola.com/tech/scss</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/svg</loc>
+    <loc>https://devnola.com/tech/svg</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/font-awesome</loc>
+    <loc>https://devnola.com/tech/font-awesome</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/google%20fonts%20api</loc>
+    <loc>https://devnola.com/tech/google%20fonts%20api</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/html5</loc>
+    <loc>https://devnola.com/tech/html5</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/vanilla%20javascript</loc>
+    <loc>https://devnola.com/tech/vanilla%20javascript</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/sizmek%20api</loc>
+    <loc>https://devnola.com/tech/sizmek%20api</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/grunt</loc>
+    <loc>https://devnola.com/tech/grunt</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/scss</loc>
+    <loc>https://devnola.com/tech/scss</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/requestanimationframe</loc>
+    <loc>https://devnola.com/tech/requestanimationframe</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/html5</loc>
+    <loc>https://devnola.com/tech/html5</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/vanilla%20javascript</loc>
+    <loc>https://devnola.com/tech/vanilla%20javascript</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/sizmek%20api</loc>
+    <loc>https://devnola.com/tech/sizmek%20api</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/grunt</loc>
+    <loc>https://devnola.com/tech/grunt</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/scss</loc>
+    <loc>https://devnola.com/tech/scss</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/unreal%20engine%204</loc>
+    <loc>https://devnola.com/tech/unreal%20engine%204</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/blueprints</loc>
+    <loc>https://devnola.com/tech/blueprints</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/git</loc>
+    <loc>https://devnola.com/tech/git</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/visual%20studio</loc>
+    <loc>https://devnola.com/tech/visual%20studio</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/vue</loc>
+    <loc>https://devnola.com/tech/vue</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/webpack</loc>
+    <loc>https://devnola.com/tech/webpack</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/babel%7Ces7</loc>
+    <loc>https://devnola.com/tech/babel%7Ces7</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/svg</loc>
+    <loc>https://devnola.com/tech/svg</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/scss</loc>
+    <loc>https://devnola.com/tech/scss</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/html5</loc>
+    <loc>https://devnola.com/tech/html5</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/vue</loc>
+    <loc>https://devnola.com/tech/vue</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/webpack</loc>
+    <loc>https://devnola.com/tech/webpack</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/babel%7Ces7</loc>
+    <loc>https://devnola.com/tech/babel%7Ces7</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/svg</loc>
+    <loc>https://devnola.com/tech/svg</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/scss</loc>
+    <loc>https://devnola.com/tech/scss</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/html5</loc>
+    <loc>https://devnola.com/tech/html5</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/vue</loc>
+    <loc>https://devnola.com/tech/vue</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/webpack</loc>
+    <loc>https://devnola.com/tech/webpack</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/babel%7Ces7</loc>
+    <loc>https://devnola.com/tech/babel%7Ces7</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/svg</loc>
+    <loc>https://devnola.com/tech/svg</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/scss</loc>
+    <loc>https://devnola.com/tech/scss</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/html5</loc>
+    <loc>https://devnola.com/tech/html5</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/webpack</loc>
+    <loc>https://devnola.com/tech/webpack</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/babel%7Ces7</loc>
+    <loc>https://devnola.com/tech/babel%7Ces7</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/vue</loc>
+    <loc>https://devnola.com/tech/vue</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/greensock</loc>
+    <loc>https://devnola.com/tech/greensock</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/scss</loc>
+    <loc>https://devnola.com/tech/scss</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/html5</loc>
+    <loc>https://devnola.com/tech/html5</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/scss</loc>
+    <loc>https://devnola.com/tech/scss</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/grunt</loc>
+    <loc>https://devnola.com/tech/grunt</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/javascript</loc>
+    <loc>https://devnola.com/tech/javascript</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/assemble</loc>
+    <loc>https://devnola.com/tech/assemble</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/json</loc>
+    <loc>https://devnola.com/tech/json</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/compatibility</loc>
+    <loc>https://devnola.com/tech/compatibility</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/craft%20cms</loc>
+    <loc>https://devnola.com/tech/craft%20cms</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/foundation</loc>
+    <loc>https://devnola.com/tech/foundation</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/font-awesome</loc>
+    <loc>https://devnola.com/tech/font-awesome</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/grunt</loc>
+    <loc>https://devnola.com/tech/grunt</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/javascript</loc>
+    <loc>https://devnola.com/tech/javascript</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/wordpress</loc>
+    <loc>https://devnola.com/tech/wordpress</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/php</loc>
+    <loc>https://devnola.com/tech/php</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/foundation</loc>
+    <loc>https://devnola.com/tech/foundation</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/scss</loc>
+    <loc>https://devnola.com/tech/scss</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/grunt</loc>
+    <loc>https://devnola.com/tech/grunt</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/webpack</loc>
+    <loc>https://devnola.com/tech/webpack</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/javascript</loc>
+    <loc>https://devnola.com/tech/javascript</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/babel%7Ces7</loc>
+    <loc>https://devnola.com/tech/babel%7Ces7</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/vue</loc>
+    <loc>https://devnola.com/tech/vue</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/vuex</loc>
+    <loc>https://devnola.com/tech/vuex</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/css-next</loc>
+    <loc>https://devnola.com/tech/css-next</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/webpack</loc>
+    <loc>https://devnola.com/tech/webpack</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/greensock</loc>
+    <loc>https://devnola.com/tech/greensock</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/svg</loc>
+    <loc>https://devnola.com/tech/svg</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/craft%20cms</loc>
+    <loc>https://devnola.com/tech/craft%20cms</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/html5</loc>
+    <loc>https://devnola.com/tech/html5</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/video</loc>
+    <loc>https://devnola.com/tech/video</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/scss</loc>
+    <loc>https://devnola.com/tech/scss</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/foundation</loc>
+    <loc>https://devnola.com/tech/foundation</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/greensock</loc>
+    <loc>https://devnola.com/tech/greensock</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/babel%7Ces7</loc>
+    <loc>https://devnola.com/tech/babel%7Ces7</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/grunt</loc>
+    <loc>https://devnola.com/tech/grunt</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://noladev.com/tech/history%20api</loc>
+    <loc>https://devnola.com/tech/history%20api</loc>
     <lastmod>2018-12-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

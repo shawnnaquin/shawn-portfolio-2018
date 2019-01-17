@@ -35,7 +35,7 @@ export default {
       };
     },
     meta: function() {
-      let image = `https://shawnnaquin.github.io/img/meta/code.jpg`;
+      let image = `https://devnola.com/img/meta/code.jpg`;
       let title = `Tech`;
       let content = "A full list of all technoligies displayed in Shawn's portfolio. Shawn's skill include JavaScript, HTML, and CSS but some other specialties include: Greensock, SVG, Webpack, VueJS, UX, performance testing, and accessibility."
       return [
@@ -96,7 +96,7 @@ export default {
       return [
         {
           rel: "canonical",
-          href: `https://shawnnaquin.github.io/tech`,
+          href: `https://devnola.com/tech`,
           id: "canonical"
         }
       ];

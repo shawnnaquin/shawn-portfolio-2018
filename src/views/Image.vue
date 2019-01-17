@@ -105,7 +105,7 @@ export default {
     },
     meta: function() {
       let base = this.imageBase.split('/')[1];
-      let image = `https://shawnnaquin.github.io/img/portfolio/${ base }/${this.image.path}-lg_1x.jpg`;
+      let image = `https://devnola.com/img/portfolio/${ base }/${this.image.path}-lg_1x.jpg`;
       let title = `${this.title}${window.metaTitle}`;
       return [
         {
@@ -165,7 +165,7 @@ export default {
       return [
         {
           rel: "canonical",
-          href: `https://shawnnaquin.github.io/?p=${this.$route.path}`,
+          href: `https://devnola.com/${this.$route.path}/?imagelink=${this.imagelink}`,
           id: "canonical"
         }
       ];
