@@ -20,9 +20,7 @@
         </b>
 
         <b v-else>
-          {{ getTrueCaps(type) }}
-          <b v-if="Object.keys(projects).length > 1" >Projects</b>
-          <b v-else >Project</b>
+          {{ getTrueCaps(type) }} Projects
         </b>
 
         <transition name="fade" >
@@ -429,7 +427,7 @@ export default {
       }
 
       if (n === null) {
-        return type;
+        return type.capitalize();
       }
     },
 

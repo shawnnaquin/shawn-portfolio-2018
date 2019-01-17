@@ -114,15 +114,14 @@ Object.keys(te).forEach(a => {
 
 });
  
-let pathObj = {
-  "paths": paths,
-  "lazyLoad": false,
-  "metaOnly": false
-};
+// let pathObj = {
+//   "paths": paths,
+//   "lazyLoad": true,
+// };
 
-fs.writeFile('./public/_ssr.json', JSON.stringify( pathObj ), (err) => {  
-    if (err) throw err;
-});
+// fs.writeFile('./public/_ssr.json', JSON.stringify( pathObj ), (err) => {  
+//     if (err) throw err;
+// });
 
 fs.writeFile(`./public/sitemap.xml`, t.end({ pretty: true }), function(err) {
   if (err) throw err;
