@@ -3,6 +3,7 @@ node_modules
 server
 /tests/e2e/videos/
 /tests/e2e/screenshots/
+/dist
 
 # local env files
 .env.local
