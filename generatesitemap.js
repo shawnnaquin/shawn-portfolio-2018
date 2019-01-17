@@ -116,7 +116,7 @@ Object.keys(te).forEach(a => {
  
 let pathObj = {
   "paths": paths,
-  "lazyload": false,
+  "lazyLoad": false,
   "metaOnly": false
 };
 
