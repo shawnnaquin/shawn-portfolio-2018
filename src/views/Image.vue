@@ -25,11 +25,8 @@
     <div
       :class="[ orientation, 'grid' ]"
     >
-
-
       <div
       >
-
         <transition
           :name="trans"
           mode="out-in"
@@ -62,7 +59,7 @@ import projects from "@/mixins/projects";
 import H from "@/mixins/height";
 
 export default {
-  // props: [ 'images' ],
+  props: [ 'imagelink' ],
   mixins: [projects, H],
 
   components: {
@@ -97,9 +94,9 @@ export default {
       index: 0,
       imageTypes: ["mobile", "horiz", "regular"],
       trans: "fade-left",
-      title: this.$route.params.image
     };
   },
+
   head: {
     title: function() {
       return {
@@ -175,14 +172,17 @@ export default {
     }
   },
   computed: {
+    title() {
+      return this.$route.query.imagelink ? this.$route.query.imagelink : '';
+    },
     orientation() {
-      if (!this.$route.params.image) return;
+      if (!this.$route.query.imagelink) return;
 
       let h = ["mobile", "horiz"];
       let p = null;
 
       for (let v of h) {
-        if (this.$route.params.image.includes(v)) {
+        if (this.$route.query.imagelink.includes(v)) {
           p = v;
           break;
         }
@@ -201,11 +201,10 @@ export default {
       let p = null;
 
       this.images[this.orientation].forEach((obj, i) => {
-        if (obj.path == this.$route.params.image) {
+        if (obj.path == this.$route.query.imagelink) {
           p = i;
         }
       });
-
       return p;
     },
 
@@ -243,7 +242,8 @@ export default {
       }
     },
     image() {
-      if (!this.images || !this.getImageIndex ) return false;
+      if ( !this.images ) return false;
+      console.log( this.images[this.orientation][this.getImageIndex] );
       return this.images[this.orientation][this.getImageIndex];
     },
 
@@ -263,10 +263,10 @@ export default {
     },
     $route(to, from) {
       if (!this.images) return;
-      this.title = to.params.image;
-      if (from.params.image == this.prevImagePath) {
+      this.title = to.query.imagelink;
+      if (from.query.imagelink == this.prevImagePath) {
         this.trans = "fade-left";
-      } else if (from.params.image == this.nextImagePath) {
+      } else if (from.query.imagelink == this.nextImagePath) {
         this.trans = "fade-right";
       }
       this.$nextTick(() => {
@@ -335,11 +335,21 @@ export default {
     },
 
     goToImage() {
-      this.$router.replace(this.imageBase + this.nextImagePath);
+      this.$router.replace(
+        {
+          path: `${this.imageBase}image`,
+          query: { imagelink: `${this.nextImagePath}` }
+        }
+      );
     },
 
     goToPrevImage() {
-      this.$router.replace(this.imageBase + this.prevImagePath);
+      this.$router.replace(
+        {
+          path: `${this.imageBase}image`,
+          query: { imagelink: `${this.prevImagePath}` }
+        }
+      );
     },
 
     swipe(e) {

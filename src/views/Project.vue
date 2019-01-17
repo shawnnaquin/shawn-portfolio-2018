@@ -125,7 +125,10 @@
                 :name="image.path"
                 :arial-label="image.path"
                 :title="image.path"
-                :to=" `/${type}/${project.link}/${image.path}`"
+                :to=" {
+                  path: `/${type}/${project.link}/image`,
+                  query: { imagelink: `${image.path}` }
+                }"
                 :class="['link']"
               >
                 <picture-query
@@ -164,7 +167,10 @@
               v-if="phoneVertLoaded"
             >
               <router-link
-                :to=" `/${type}/${project.link}/${image.path}`"
+                :to=" {
+                  path: `/${type}/${project.link}/image`,
+                  query: { imagelink: `${image.path}` }
+                }"
                 :class="['link']"
                 :name="image.path"
                 :arial-label="image.path"
@@ -207,7 +213,10 @@
               :style="{ paddingBottom: project.content.imageRatio }"
             >
               <router-link
-                :to=" `/${type}/${project.link}/${image.path}`"
+                :to=" {
+                  path: `/${type}/${project.link}/image`,
+                  query: { imagelink: `${image.path}` }
+                }"
                 :class="['link']"
                 :name="image.path"
                 :arial-label="image.path"

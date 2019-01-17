@@ -86,7 +86,7 @@ export default {
 
   watch: {
     $route(r) {
-      if (r.params.image && this.YTPlayer.getPlayerState() != 2) {
+      if (r.query.imagelink && this.YTPlayer.getPlayerState() != 2) {
         this.YTPlayer.pauseVideo();
         this.stuck = false;
       }
@@ -126,7 +126,7 @@ export default {
     }
   },
   methods: {
-    getOnline() {
+  getOnline() {
       return navigator.onLine;
     },
     mouseenter() {

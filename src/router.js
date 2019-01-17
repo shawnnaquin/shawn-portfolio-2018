@@ -50,9 +50,8 @@ export default new Router({
       path: "/:type/:project",
       component: Project
     },
-
     {
-      path: "/:type/:project/:image",
+      path: "/:type/:project/image",
       component: Image
     },
 

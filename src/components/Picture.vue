@@ -6,7 +6,7 @@
       appear >
       <p 
         :class=" 'loader' " 
-        :style="{ color: $route.params.image ? 'white' : '' }" 
+        :style="{ color: $route.query.imagelink ? 'white' : '' }" 
         v-if="showLoader" >Loading <span><Loader :go=" showLoader " /></span></p>
     </transition>
 

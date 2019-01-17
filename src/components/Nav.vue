@@ -179,7 +179,7 @@
           itemscope=""
           itemtype="https://schema.org/ListItem">
           <router-link
-            v-if="$route.params.image"
+            v-if="$route.query.imagelink"
             itemprop="item"
             :to="`/${$route.params.project}`">
             <span itemprop="name">{{ nameify( $route.params.project ) }}</span>
@@ -193,11 +193,11 @@
         </li>
 
         <li
-          v-if="$route.params.image"
+          v-if="$route.query.imagelink"
           itemprop="itemListElement"
           itemscope=""
           itemtype="https://schema.org/ListItem">
-          <span itemprop="name">{{ nameify( $route.params.image ) }}</span>
+          <span itemprop="name">{{ nameify( $route.query.imagelink ) }}</span>
           <meta
             itemprop="position"
             content="4">
