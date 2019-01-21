@@ -465,6 +465,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 8px;
+  text-align: center;
 }
 
 .footer-icon {
@@ -654,6 +655,13 @@ p a {
     width: 12px;
   }
 }
+
+button, a {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
 .external {
   display: inline-block;
   padding: 0.75rem 2rem;
@@ -667,6 +675,9 @@ p a {
   color: black;
   outline: none;
   cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   @media only screen and (min-width: 630px) {
     &:hover,
     &:active,
