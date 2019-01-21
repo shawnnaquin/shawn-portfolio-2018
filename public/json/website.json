@@ -1,1 +1,652 @@
-{"l2d":{"link":"l2d","title":"L2D Agency","projectDescription":"Agency Website featuring a portfolio of work.","mainImage":{"path":"main.l2d","alt":"L2D Logo","caption":"The L2D Logo inside a custom ThreeJS script generated from a live video feed."},"content":{"video":"EYyELvmsw4c","article":"The L2D website reflects a portfolio of work in a single page. Everything on the page is custom and features Greensock animations. Everything from the icon to the content on-scroll is animated in. The inline forms are validated through native javascript and styled through SCSS. Each project is loaded from custom structured data.","externalSite":"//l2d.co/","code":false,"techList":["Webpack","Babel|ES7","Vue","Greensock","SCSS"],"imageRatio":"62.5%","images":[{"path":"eight.l2d","alt":"Desktop Forms","caption":"The contact information is displayed along side the contact form."},{"path":"five.l2d","alt":"Project Grid","caption":"The project grid contains advanced SCSS styles to display a dropshadow on hover."},{"path":"four.l2d","alt":"ThreeJS Styling","caption":"The ThreeJS script displays translated video in a 3d pattern with alternative styles."},{"path":"four.mobile.l2d","alt":"Form Data","caption":"The forms are styled with parallaxed background images. The forms are validated through native Javascript."},{"path":"one.horiz.l2d","alt":"Responsive Design","caption":"The L2D website is responsive and functions across a range of devices."},{"path":"one.l2d","alt":"Destop Header","caption":"If no one is at the office the ThreeJS script remains fairly static."},{"path":"one.mobile.l2d","alt":"ThreeJS Header","caption":"The ThreeJS script on mobile devices."},{"path":"seven.l2d","alt":"Client Page with open Menu","caption":"The menu opens in a dramatic animation over client logos while elements parralax in the background."},{"path":"three.l2d","alt":"80s Retro","caption":"The top of the page can be expanded into a dashboard which also interaction with the L2D employees as they work. Catch the at the right time, they might wave hello!"},{"path":"three.mobile.l2d","alt":"Client Logos","caption":"The Client logos load as the user scrolls towards the content. Once loaded the logos are animated in."},{"path":"two.mobile.l2d","alt":"Client Projects","caption":"Projects are displayed in a flexible grid with corresponding icons and animations."},{"path":"six.l2d"},{"path":"two.l2d"}]}},"sos":{"link":"sos","title":"Safe Online Surfing","projectDescription":"SOS features games butilt with HTML5 and Javascript ","mainImage":{"path":"main.sos","alt":"Online Surfing","caption":"A character makes surfs their way around several obstacles."},"content":{"video":"9XMh78_iCYs","article":"This website is built with sessionStorage to keep user data. User data is applied via a gamestate to keep track of student's interaction. This website largely leverages CSS transitions rather than javascript animation. SOS functions well even on deprecated browser and is built to be IE9 Strict! The content's data structure allows for easy language translation. An entire side project was built leveraging node.js to convert the site's data to spreadsheets and then back to JSON.","externalSite":"//sos.fbi.gov","code":false,"techList":["HTML5","SCSS","Grunt","Javascript","Assemble","JSON","compatibility"],"imageRatio":"62.5%","images":[{"path":"one.sos","alt":"Home Page","caption":"The Home landing page displays all of the critical information in a highly visible manner. Students can choose which grade level they'd like to play."},{"path":"eight.sos","alt":"Treasure Hunt","caption":"Students must collect all of the hidden coins. Once a coin is revealed the student must answer a challenge question. If the submitted answer is correct a coin is collected. The Health Bar displays the game status."},{"path":"eleven.sos","alt":"Crossing To Safety","caption":"Line up the board walk to create a path across to the other beach."},{"path":"fifteen.sos","alt":"6th Grade","caption":"Each grade has it's own character and color scheme. In addition the island is themed for the character."},{"path":"five.sos","alt":"A Challenge","caption":"Students must answer questions during the games in order to succesfully finish."},{"path":"four.sos","alt":"Flexible Challenges","caption":"Questions can be formatted in several ways but all use the same general structure and class names."},{"path":"fourteen.sos","alt":"Island View","caption":"Each island contains several themed challenges involving."},{"path":"nine.sos","alt":"Computer Health","caption":"In Computer Health students must keep their computer healthy by responding to a series of questions."},{"path":"seven.sos","alt":"Safe Surfing","caption":"A surfing character succesfully dodges an obstacle after a correct answer."},{"path":"six.sos","alt":"Finish Screen","caption":"A Congratulation screen after succesfully completing a challenge."},{"path":"sixteen.sos","alt":"Several Characters","caption":"The Island can be configured with dots placed at any point on the screen. The dots and numbers are mapped to various games."},{"path":"ten.sos","alt":"Personal Information","caption":"A challenge to unlock all the spaces within a game."},{"path":"three.sos","alt":"Modals","caption":"The modal present information about the contest in order to keep educators informed."},{"path":"thrirteen.sos","alt":"Onboarding Instructions","caption":"Users are presented a set of instructions for completing each seperate contest."},{"path":"twelve.sos","alt":"Marine Matching","caption":"The student must match the word with the definition."},{"path":"two.sos","alt":"Grid of Grades","caption":"The difficulty of the contest depends on the grade level."},{"path":"seventeen.sos","alt":"The Results","caption":"A succesfull completion of the surfing game before the final screen."}]}},"rtc":{"link":"rtc","title":"Ringgold Telecommunications Company","projectDescription":"Telecommunications Provider Website built with Foundation and Craft.","mainImage":{"path":"main.rtc","alt":"3d Animation","caption":"ThreeJS script featuring waveforms."},"content":{"video":"JqRtOz6CCsE","article":"RTC needed a proven front-end reliable enough for customers to gain access to essential services. Special attention was payed to accesibility and performance tests. RTC is sleek and stylish while serving the public.","externalSite":"//rtctel.com/","code":false,"techList":["Craft CMS","Foundation","Font-Awesome","Grunt","Javascript"],"imageRatio":"62.5%","images":[{"path":"five.rtc","alt":"Parallax","caption":"The site uses parallax to emphasize graphics in a two-column responsive layout."},{"path":"four.mobile.rtc","alt":"Animations","caption":"RTC features several animations including a three JS wave along with an SVG throttle animation."},{"path":"four.rtc","alt":"Informational Layout","caption":"Desktop layout featuring a header, SVG icons and a list. The Youtube video is animated in place."},{"path":"one.horiz.rtc","alt":"Flexible Home Page","caption":"Responsive view of the header content."},{"path":"one.mobile.rtc","alt":"Home Page","caption":"The Home page features a standard Header and text along with a very visible button and tagline."},{"path":"one.rtc","alt":"Home Page","caption":"The desktop home page featuring ThreeJS animations."},{"path":"seven.rtc","alt":"Integrated Forms","caption":"RTC features completely custom and styled forms. The forms use native Javascript along with server-side validation."},{"path":"six.rtc","alt":"Slider","caption":"A slider feaaturing unique content in a responsive format."},{"path":"three.horiz.rtc","alt":"Speed Graph","caption":"A CSS animated chart displaying compared internet speeds."},{"path":"three.mobile.rtc","alt":"Interior","caption":"An interior page featuring a video using the Youtube Javascript API."},{"path":"three.rtc","alt":"Footer","caption":"The footer is highly flexible and utilizes list styling."},{"path":"two.horiz.rtc","alt":"Interior Header","caption":"The Interior page headers include movies that autoplay on mobile and desktop."},{"path":"two.mobile.rtc","alt":"Forms","caption":"RTC users can easily connect by using the styled forms along with native validation."},{"path":"two.rtc","alt":"Interior Content","caption":"All of the interior content is created within a CMS and is template driven."}]}},"crg":{"link":"crg","title":"Chattanooga Roller Girls","projectDescription":"A Wordpress site built from the Foundation Sites Framework","mainImage":{"path":"main.crg","alt":"CRG Logo","caption":"The mascott of the CRG skates forward while the website loads."},"content":{"video":"","article":"This custom-built Wordpress Theme for the Chattanooga WFTDA Roller Derby team features several custom plugins. Advanced User Roles, Custom Categories, Custom Types, Google Analytics... the works! This theme was developed from the groundup to be versatile. Chattanooga Roller Girls features smooth page transitions for a seemless experience through javascript.","techList":["Wordpress","PHP","Foundation","SCSS","Grunt","Webpack","Javascript"],"code":"https://github.com/shawnnaquin/chattgirls_v2/","externalSite":"https://chattanoogarollergirls.com/","imageRatio":"62.5%","images":[{"path":"one.crg","alt":"Team Logo","caption":"Team mascott skates by while the data loads."},{"path":"five.crg","alt":"Individual Skater","caption":"Individual Skater pages are presented in slider which tracks the user's history using the history API."},{"path":"five.horiz.crg","alt":"Next Home Bout","caption":"the Next Home Bouts are displayed front and center even on odd sized devices."},{"path":"two.mobile.crg","alt":"Mobile Skater","caption":"An indiviual's skater pages takes up more of the frame on a mobile device."},{"path":"four.crg","alt":"Schedule Page","caption":"The Schedule page is a similar layout to the homepage so that users are presented information in a manner that feels familiar."},{"path":"four.horiz.crg","alt":"Instagram Feed","caption":"CRG connects live to the Instagram Feed so that images are always current."},{"path":"four.mobile.crg","alt":"Coaches and Staff","caption":"Coaches and Staff are also in a responsive format."},{"path":"one.horiz.crg","alt":"Mobile Skater Page","caption":"Skater's are presented in pairs on mobile."},{"path":"one.mobile.crg","alt":"Team Mascott Mobile","caption":"The Logo is made using SVG"},{"path":"seven.mobile.crg","alt":"Alternate Page Transition","caption":"When switching between interior views the page smoothly transitions and interupts the viewer with a loading screen."},{"path":"six.crg","alt":"Sponsor Logos","caption":"Sponsors are layed out in a responsive grid fixed to a ratio."},{"path":"six.mobile.crg","alt":"Custom Categories and Fieds","caption":"This theme depends on custom data and logic before presenting a readable schedule."},{"path":"three.crg","alt":"Desktop Homepage","caption":"The Homepage view on desktop for CRG."},{"path":"three.horiz.crg","alt":"Readable Page","caption":"The page content is still readable even on tiny devices!"},{"path":"three.mobile.crg","alt":"Recent Phots","caption":"Any device can fetch the most recent photos the the Instagram API."},{"path":"two.crg","alt":"Banner","caption":"Homepage Desktop view with banner."},{"path":"two.horiz.crg","alt":"Mobile Banner","caption":"Homepage Mobile view with banner."},{"path":"five.mobile.crg","alt":"Mobile Menu","caption":"On mobile devices the hamburger menu expands to reveal an offscreen menu."}]}},"buntin":{"link":"buntin","title":"Buntin Media Group","projectDescription":"Unique creative advertising agency website with Vue.js","mainImage":{"path":"main.buntin","alt":"Buntin Logo","caption":"The Buntin Logo show while the experience loads."},"content":{"video":"pjE0QVzCRZk","article":"","externalSite":"//www.buntingroup.com/","code":false,"techList":["Babel|ES7","Vue","VueX","CSS-Next","Webpack","Greensock","SVG"],"imageRatio":"62.5%","images":[{"path":"eight.buntin","alt":"parallaxing content","caption":"The parallaxing content enters on the screen while the user scrolls."},{"path":"eleven.buntin","alt":"Adhope Page","caption":"The Adhope page showing headline and logo on Desktop."},{"path":"five.buntin","alt":"Grid of images","caption":"A grid of portfolio images are presented on a client page."},{"path":"five.horiz.buntin","alt":"Station Page","caption":"Each agency card fits within all mobile devices."},{"path":"five.mobile.buntin","alt":"Buntin's Story","caption":"A poster series for multiple years presented in a responsive slider with progressive loading."},{"path":"four.buntin","alt":"Main section","caption":"Main section content while hovered reveals a CTA while moving in a 3d space."},{"path":"four.horiz.buntin","alt":"Buntin Logo","caption":"The Buntin Logo is presented on website load."},{"path":"four.mobile.buntin","alt":"Poster Page","caption":"An infomation box expanded from the info button on a agency history page."},{"path":"fourteen.buntin","alt":"Load Screen","caption":"The Loading screen for the entire experience."},{"path":"nine.buntin","alt":"Card Info","caption":"Informational cards for each employee staggers in from top to bottom as the page loads."},{"path":"one.buntin","alt":"Main Screen","caption":"The Home page on desktop plays a video in the background."},{"path":"one.horiz.buntin","alt":"Home Page","caption":"The Home page on mobile is very flexible and can respond to any size."},{"path":"one.mobile.buntin","alt":"Home Page","caption":"The Home page presents a powerful video and entices the user to scroll down with a clickable button."},{"path":"seven.buntin","alt":"Menu","caption":"The menu opens to reveal an entire screen and a map via the Google Maps API."},{"path":"six.buntin","alt":"Phone slider and Footer","caption":"The footer displays a reusable card component, used also on the home page just below a slider of images."},{"path":"ten.buntin","alt":"logo grid","caption":"A grid of logos which displays SVGs in a waterfall animation."},{"path":"thirteen.buntin","alt":"Contact","caption":"The contact page is the last station in the main view."},{"path":"three.buntin","alt":"A Section Header","caption":"Section Headers along with accompanying paragraph text with navigation bar below."},{"path":"three.horiz.buntin","alt":"Interior Page","caption":"The interior view showing a header image and title along with left and right arrows to advance between section content."},{"path":"three.mobile.buntin","alt":"Adhope Page","caption":"floating informatinal boxes along with logos tell a story."},{"path":"twelve.buntin","alt":"History Page","caption":"A view of the history page on desktop."},{"path":"two.horiz.buntin","alt":"Scrolling Through","caption":"The user can scroll through entire sections presented as cards."},{"path":"two.mobile.buntin","alt":"Main Station","caption":"Each section is presented on a card delivered along a scrollable path."},{"path":"two.buntin"}]}},"drm":{"link":"drm","title":"Deer Run Media","projectDescription":"Craft template featuring a unique boutique video agency content.","mainImage":{"path":"main.drm","caption":"Deer Run Media Logo","alt":"The Logo is presented to users on first load in a dramatic film-type presentation."},"content":{"externalSite":"//deerrunmedia.com/","video":"bDezQV75q74","code":false,"article":"Deer Run Media is a local Visual Art and Video Production Company. This project shows off their unique work while minimizing the UI. All the content is presented simply to the user. The project makes extensive use of the HTML5 video API and features an entirely from scratch HTML5 video player.","techList":["Craft CMS","HTML5","Video","SCSS","Foundation","Greensock","Babel|ES7","Grunt","History API"],"imageRatio":"56.25%","images":[{"path":"five.drm","alt":"Get a Quote","caption":"The form uses a javascript API to POST forms."},{"path":"five.mobile.drm","alt":"Projects","caption":"Projects are presented in similar ways on desktop and mobile."},{"path":"four.drm","alt":"Contact Page","caption":"The Contact Page on desktop."},{"path":"four.mobile.drm","alt":"Contact Us","caption":"The contact page on a mobile device."},{"path":"one.drm","alt":"Project Page","caption":"The project page features a slider of images or video supporting the project."},{"path":"one.mobile.drm","alt":"DRM Logo","caption":"The DRM Logo on mobile."},{"path":"seven.mobile.drm","alt":"Mobile Behind the Scenes","caption":"images are presented on a mobile device."},{"path":"six.mobile.drm","alt":"Project Page","caption":"example project page on a mobile device."},{"path":"three.drm","alt":"Home Page","caption":"The Home Page on desktop displays video segments on rollover."},{"path":"three.mobile.drm","alt":"About Page","caption":"Basic content presented on an about page."},{"path":"two.drm","alt":"Case Studies","caption":"Case Studies are presented in a grid format on desktop."},{"path":"two.mobile.drm","alt":"Home Page","caption":"Mobile Home Page with inline video."}]}}}
+{
+    "l2d": {
+        "link": "l2d",
+        "title": "L2D Agency",
+        "projectDescription": "Agency Website featuring a portfolio of work.",
+        "mainImage": {
+            "path": "main.l2d",
+            "alt": "L2D Logo",
+            "caption": "The L2D Logo inside a custom ThreeJS script generated from a live video feed."
+        },
+        "content": {
+            "video": "EYyELvmsw4c",
+            "article": "The L2D website reflects a portfolio of work in a single page. Everything on the page is custom and features Greensock animations. Everything from the icon to the content on-scroll is animated in. The inline forms are validated through native javascript and styled through SCSS. Each project is loaded from custom structured data.",
+            "externalSite": "//l2d.co/",
+            "code": false,
+            "techList": [
+                "Webpack",
+                "Babel|ES7",
+                "Vue",
+                "Greensock",
+                "SCSS"
+            ],
+            "imageRatio": "62.5%",
+            "images": [
+                {
+                    "path": "eight.l2d",
+                    "alt": "Desktop Forms",
+                    "caption": "The contact information is displayed along side the contact form."
+                },
+                {
+                    "path": "five.l2d",
+                    "alt": "Project Grid",
+                    "caption": "The project grid contains advanced SCSS styles to display a dropshadow on hover."
+                },
+                {
+                    "path": "four.l2d",
+                    "alt": "ThreeJS Styling",
+                    "caption": "The ThreeJS script displays translated video in a 3d pattern with alternative styles."
+                },
+                {
+                    "path": "four.mobile.l2d",
+                    "alt": "Form Data",
+                    "caption": "The forms are styled with parallaxed background images. The forms are validated through native Javascript."
+                },
+                {
+                    "path": "one.horiz.l2d",
+                    "alt": "Responsive Design",
+                    "caption": "The L2D website is responsive and functions across a range of devices."
+                },
+                {
+                    "path": "one.l2d",
+                    "alt": "Destop Header",
+                    "caption": "If no one is at the office the ThreeJS script remains fairly static."
+                },
+                {
+                    "path": "one.mobile.l2d",
+                    "alt": "ThreeJS Header",
+                    "caption": "The ThreeJS script on mobile devices."
+                },
+                {
+                    "path": "seven.l2d",
+                    "alt": "Client Page with open Menu",
+                    "caption": "The menu opens in a dramatic animation over client logos while elements parralax in the background."
+                },
+                {
+                    "path": "three.l2d",
+                    "alt": "80s Retro",
+                    "caption": "The top of the page can be expanded into a dashboard which also interaction with the L2D employees as they work. Catch the at the right time, they might wave hello!"
+                },
+                {
+                    "path": "three.mobile.l2d",
+                    "alt": "Client Logos",
+                    "caption": "The Client logos load as the user scrolls towards the content. Once loaded the logos are animated in."
+                },
+                {
+                    "path": "two.mobile.l2d",
+                    "alt": "Client Projects",
+                    "caption": "Projects are displayed in a flexible grid with corresponding icons and animations."
+                },
+                {
+                    "path": "six.l2d"
+                },
+                {
+                    "path": "two.l2d"
+                }
+            ]
+        }
+    },
+    "sos": {
+        "link": "sos",
+        "title": "Safe Online Surfing",
+        "projectDescription": "SOS features games butilt with HTML5 and Javascript ",
+        "mainImage": {
+            "path": "main.sos",
+            "alt": "Online Surfing",
+            "caption": "A character makes surfs their way around several obstacles."
+        },
+        "content": {
+            "video": "9XMh78_iCYs",
+            "article": "This website is built with sessionStorage to keep user data. User data is applied via a gamestate to keep track of student's interaction. This website largely leverages CSS transitions rather than javascript animation. SOS functions well even on deprecated browser and is built to be IE9 Strict! The content's data structure allows for easy language translation. An entire side project was built leveraging node.js to convert the site's data to spreadsheets and then back to JSON.",
+            "externalSite": "//sos.fbi.gov",
+            "code": false,
+            "techList": [
+                "HTML5",
+                "SCSS",
+                "Grunt",
+                "Javascript",
+                "Assemble",
+                "JSON",
+                "compatibility"
+            ],
+            "imageRatio": "62.5%",
+            "images": [
+                {
+                    "path": "one.sos",
+                    "alt": "Home Page",
+                    "caption": "The Home landing page displays all of the critical information in a highly visible manner. Students can choose which grade level they'd like to play."
+                },
+                {
+                    "path": "eight.sos",
+                    "alt": "Treasure Hunt",
+                    "caption": "Students must collect all of the hidden coins. Once a coin is revealed the student must answer a challenge question. If the submitted answer is correct a coin is collected. The Health Bar displays the game status."
+                },
+                {
+                    "path": "eleven.sos",
+                    "alt": "Crossing To Safety",
+                    "caption": "Line up the board walk to create a path across to the other beach."
+                },
+                {
+                    "path": "fifteen.sos",
+                    "alt": "6th Grade",
+                    "caption": "Each grade has it's own character and color scheme. In addition the island is themed for the character."
+                },
+                {
+                    "path": "five.sos",
+                    "alt": "A Challenge",
+                    "caption": "Students must answer questions during the games in order to succesfully finish."
+                },
+                {
+                    "path": "four.sos",
+                    "alt": "Flexible Challenges",
+                    "caption": "Questions can be formatted in several ways but all use the same general structure and class names."
+                },
+                {
+                    "path": "fourteen.sos",
+                    "alt": "Island View",
+                    "caption": "Each island contains several themed challenges involving."
+                },
+                {
+                    "path": "nine.sos",
+                    "alt": "Computer Health",
+                    "caption": "In Computer Health students must keep their computer healthy by responding to a series of questions."
+                },
+                {
+                    "path": "seven.sos",
+                    "alt": "Safe Surfing",
+                    "caption": "A surfing character succesfully dodges an obstacle after a correct answer."
+                },
+                {
+                    "path": "six.sos",
+                    "alt": "Finish Screen",
+                    "caption": "A Congratulation screen after succesfully completing a challenge."
+                },
+                {
+                    "path": "sixteen.sos",
+                    "alt": "Several Characters",
+                    "caption": "The Island can be configured with dots placed at any point on the screen. The dots and numbers are mapped to various games."
+                },
+                {
+                    "path": "ten.sos",
+                    "alt": "Personal Information",
+                    "caption": "A challenge to unlock all the spaces within a game."
+                },
+                {
+                    "path": "three.sos",
+                    "alt": "Modals",
+                    "caption": "The modal present information about the contest in order to keep educators informed."
+                },
+                {
+                    "path": "thrirteen.sos",
+                    "alt": "Onboarding Instructions",
+                    "caption": "Users are presented a set of instructions for completing each seperate contest."
+                },
+                {
+                    "path": "twelve.sos",
+                    "alt": "Marine Matching",
+                    "caption": "The student must match the word with the definition."
+                },
+                {
+                    "path": "two.sos",
+                    "alt": "Grid of Grades",
+                    "caption": "The difficulty of the contest depends on the grade level."
+                },
+                {
+                    "path": "seventeen.sos",
+                    "alt": "The Results",
+                    "caption": "A succesfull completion of the surfing game before the final screen."
+                }
+            ]
+        }
+    },
+    "rtc": {
+        "link": "rtc",
+        "title": "Ringgold Telecommunications Company",
+        "projectDescription": "Telecommunications Provider Website built with Foundation and Craft.",
+        "mainImage": {
+            "path": "main.rtc",
+            "alt": "3d Animation",
+            "caption": "ThreeJS script featuring waveforms."
+        },
+        "content": {
+            "video": "JqRtOz6CCsE",
+            "article": "RTC needed a proven front-end reliable enough for customers to gain access to essential services. Special attention was payed to accesibility and performance tests. RTC is sleek and stylish while serving the public.",
+            "externalSite": "//rtctel.com/",
+            "code": false,
+            "techList": [
+                "Craft CMS",
+                "Foundation",
+                "Font-Awesome",
+                "Grunt",
+                "Javascript"
+            ],
+            "imageRatio": "62.5%",
+            "images": [
+                {
+                    "path": "five.rtc",
+                    "alt": "Parallax",
+                    "caption": "The site uses parallax to emphasize graphics in a two-column responsive layout."
+                },
+                {
+                    "path": "four.mobile.rtc",
+                    "alt": "Animations",
+                    "caption": "RTC features several animations including a three JS wave along with an SVG throttle animation."
+                },
+                {
+                    "path": "four.rtc",
+                    "alt": "Informational Layout",
+                    "caption": "Desktop layout featuring a header, SVG icons and a list. The Youtube video is animated in place."
+                },
+                {
+                    "path": "one.horiz.rtc",
+                    "alt": "Flexible Home Page",
+                    "caption": "Responsive view of the header content."
+                },
+                {
+                    "path": "one.mobile.rtc",
+                    "alt": "Home Page",
+                    "caption": "The Home page features a standard Header and text along with a very visible button and tagline."
+                },
+                {
+                    "path": "one.rtc",
+                    "alt": "Home Page",
+                    "caption": "The desktop home page featuring ThreeJS animations."
+                },
+                {
+                    "path": "seven.rtc",
+                    "alt": "Integrated Forms",
+                    "caption": "RTC features completely custom and styled forms. The forms use native Javascript along with server-side validation."
+                },
+                {
+                    "path": "six.rtc",
+                    "alt": "Slider",
+                    "caption": "A slider feaaturing unique content in a responsive format."
+                },
+                {
+                    "path": "three.horiz.rtc",
+                    "alt": "Speed Graph",
+                    "caption": "A CSS animated chart displaying compared internet speeds."
+                },
+                {
+                    "path": "three.mobile.rtc",
+                    "alt": "Interior",
+                    "caption": "An interior page featuring a video using the Youtube Javascript API."
+                },
+                {
+                    "path": "three.rtc",
+                    "alt": "Footer",
+                    "caption": "The footer is highly flexible and utilizes list styling."
+                },
+                {
+                    "path": "two.horiz.rtc",
+                    "alt": "Interior Header",
+                    "caption": "The Interior page headers include movies that autoplay on mobile and desktop."
+                },
+                {
+                    "path": "two.mobile.rtc",
+                    "alt": "Forms",
+                    "caption": "RTC users can easily connect by using the styled forms along with native validation."
+                },
+                {
+                    "path": "two.rtc",
+                    "alt": "Interior Content",
+                    "caption": "All of the interior content is created within a CMS and is template driven."
+                }
+            ]
+        }
+    },
+    "crg": {
+        "link": "crg",
+        "title": "Chattanooga Roller Girls",
+        "projectDescription": "A Wordpress site built from the Foundation Sites Framework",
+        "mainImage": {
+            "path": "main.crg",
+            "alt": "CRG Logo",
+            "caption": "The mascott of the CRG skates forward while the website loads."
+        },
+        "content": {
+            "video": "",
+            "article": "This custom-built Wordpress Theme for the Chattanooga WFTDA Roller Derby team features several custom plugins. Advanced User Roles, Custom Categories, Custom Types, Google Analytics... the works! This theme was developed from the groundup to be versatile. Chattanooga Roller Girls features smooth page transitions for a seemless experience through javascript.",
+            "techList": [
+                "Wordpress",
+                "PHP",
+                "Foundation",
+                "SCSS",
+                "Grunt",
+                "Webpack",
+                "Javascript"
+            ],
+            "code": "https://github.com/shawnnaquin/chattgirls_v2/",
+            "externalSite": "https://chattanoogarollergirls.com/",
+            "imageRatio": "62.5%",
+            "images": [
+                {
+                    "path": "one.crg",
+                    "alt": "Team Logo",
+                    "caption": "Team mascott skates by while the data loads."
+                },
+                {
+                    "path": "five.crg",
+                    "alt": "Individual Skater",
+                    "caption": "Individual Skater pages are presented in slider which tracks the user's history using the history API."
+                },
+                {
+                    "path": "five.horiz.crg",
+                    "alt": "Next Home Bout",
+                    "caption": "the Next Home Bouts are displayed front and center even on odd sized devices."
+                },
+                {
+                    "path": "two.mobile.crg",
+                    "alt": "Mobile Skater",
+                    "caption": "An indiviual's skater pages takes up more of the frame on a mobile device."
+                },
+                {
+                    "path": "four.crg",
+                    "alt": "Schedule Page",
+                    "caption": "The Schedule page is a similar layout to the homepage so that users are presented information in a manner that feels familiar."
+                },
+                {
+                    "path": "four.horiz.crg",
+                    "alt": "Instagram Feed",
+                    "caption": "CRG connects live to the Instagram Feed so that images are always current."
+                },
+                {
+                    "path": "four.mobile.crg",
+                    "alt": "Coaches and Staff",
+                    "caption": "Coaches and Staff are also in a responsive format."
+                },
+                {
+                    "path": "one.horiz.crg",
+                    "alt": "Mobile Skater Page",
+                    "caption": "Skater's are presented in pairs on mobile."
+                },
+                {
+                    "path": "one.mobile.crg",
+                    "alt": "Team Mascott Mobile",
+                    "caption": "The Logo is made using SVG"
+                },
+                {
+                    "path": "seven.mobile.crg",
+                    "alt": "Alternate Page Transition",
+                    "caption": "When switching between interior views the page smoothly transitions and interupts the viewer with a loading screen."
+                },
+                {
+                    "path": "six.crg",
+                    "alt": "Sponsor Logos",
+                    "caption": "Sponsors are layed out in a responsive grid fixed to a ratio."
+                },
+                {
+                    "path": "six.mobile.crg",
+                    "alt": "Custom Categories and Fieds",
+                    "caption": "This theme depends on custom data and logic before presenting a readable schedule."
+                },
+                {
+                    "path": "three.crg",
+                    "alt": "Desktop Homepage",
+                    "caption": "The Homepage view on desktop for CRG."
+                },
+                {
+                    "path": "three.horiz.crg",
+                    "alt": "Readable Page",
+                    "caption": "The page content is still readable even on tiny devices!"
+                },
+                {
+                    "path": "three.mobile.crg",
+                    "alt": "Recent Phots",
+                    "caption": "Any device can fetch the most recent photos the the Instagram API."
+                },
+                {
+                    "path": "two.crg",
+                    "alt": "Banner",
+                    "caption": "Homepage Desktop view with banner."
+                },
+                {
+                    "path": "two.horiz.crg",
+                    "alt": "Mobile Banner",
+                    "caption": "Homepage Mobile view with banner."
+                },
+                {
+                    "path": "five.mobile.crg",
+                    "alt": "Mobile Menu",
+                    "caption": "On mobile devices the hamburger menu expands to reveal an offscreen menu."
+                }
+            ]
+        }
+    },
+    "buntin": {
+        "link": "buntin",
+        "title": "Buntin Media Group",
+        "projectDescription": "Unique creative advertising agency website with Vue.js",
+        "mainImage": {
+            "path": "main.buntin",
+            "alt": "Buntin Logo",
+            "caption": "The Buntin Logo show while the experience loads."
+        },
+        "content": {
+            "video": "pjE0QVzCRZk",
+            "article": "",
+            "externalSite": "//www.buntingroup.com/",
+            "code": false,
+            "techList": [
+                "Babel|ES7",
+                "Vue",
+                "VueX",
+                "CSS-Next",
+                "Webpack",
+                "Greensock",
+                "SVG"
+            ],
+            "imageRatio": "62.5%",
+            "images": [
+                {
+                    "path": "eight.buntin",
+                    "alt": "parallaxing content",
+                    "caption": "The parallaxing content enters on the screen while the user scrolls."
+                },
+                {
+                    "path": "eleven.buntin",
+                    "alt": "Adhope Page",
+                    "caption": "The Adhope page showing headline and logo on Desktop."
+                },
+                {
+                    "path": "five.buntin",
+                    "alt": "Grid of images",
+                    "caption": "A grid of portfolio images are presented on a client page."
+                },
+                {
+                    "path": "five.horiz.buntin",
+                    "alt": "Station Page",
+                    "caption": "Each agency card fits within all mobile devices."
+                },
+                {
+                    "path": "five.mobile.buntin",
+                    "alt": "Buntin's Story",
+                    "caption": "A poster series for multiple years presented in a responsive slider with progressive loading."
+                },
+                {
+                    "path": "four.buntin",
+                    "alt": "Main section",
+                    "caption": "Main section content while hovered reveals a CTA while moving in a 3d space."
+                },
+                {
+                    "path": "four.horiz.buntin",
+                    "alt": "Buntin Logo",
+                    "caption": "The Buntin Logo is presented on website load."
+                },
+                {
+                    "path": "four.mobile.buntin",
+                    "alt": "Poster Page",
+                    "caption": "An infomation box expanded from the info button on a agency history page."
+                },
+                {
+                    "path": "fourteen.buntin",
+                    "alt": "Load Screen",
+                    "caption": "The Loading screen for the entire experience."
+                },
+                {
+                    "path": "nine.buntin",
+                    "alt": "Card Info",
+                    "caption": "Informational cards for each employee staggers in from top to bottom as the page loads."
+                },
+                {
+                    "path": "one.buntin",
+                    "alt": "Main Screen",
+                    "caption": "The Home page on desktop plays a video in the background."
+                },
+                {
+                    "path": "one.horiz.buntin",
+                    "alt": "Home Page",
+                    "caption": "The Home page on mobile is very flexible and can respond to any size."
+                },
+                {
+                    "path": "one.mobile.buntin",
+                    "alt": "Home Page",
+                    "caption": "The Home page presents a powerful video and entices the user to scroll down with a clickable button."
+                },
+                {
+                    "path": "seven.buntin",
+                    "alt": "Menu",
+                    "caption": "The menu opens to reveal an entire screen and a map via the Google Maps API."
+                },
+                {
+                    "path": "six.buntin",
+                    "alt": "Phone slider and Footer",
+                    "caption": "The footer displays a reusable card component, used also on the home page just below a slider of images."
+                },
+                {
+                    "path": "ten.buntin",
+                    "alt": "logo grid",
+                    "caption": "A grid of logos which displays SVGs in a waterfall animation."
+                },
+                {
+                    "path": "thirteen.buntin",
+                    "alt": "Contact",
+                    "caption": "The contact page is the last station in the main view."
+                },
+                {
+                    "path": "three.buntin",
+                    "alt": "A Section Header",
+                    "caption": "Section Headers along with accompanying paragraph text with navigation bar below."
+                },
+                {
+                    "path": "three.horiz.buntin",
+                    "alt": "Interior Page",
+                    "caption": "The interior view showing a header image and title along with left and right arrows to advance between section content."
+                },
+                {
+                    "path": "three.mobile.buntin",
+                    "alt": "Adhope Page",
+                    "caption": "floating informatinal boxes along with logos tell a story."
+                },
+                {
+                    "path": "twelve.buntin",
+                    "alt": "History Page",
+                    "caption": "A view of the history page on desktop."
+                },
+                {
+                    "path": "two.horiz.buntin",
+                    "alt": "Scrolling Through",
+                    "caption": "The user can scroll through entire sections presented as cards."
+                },
+                {
+                    "path": "two.mobile.buntin",
+                    "alt": "Main Station",
+                    "caption": "Each section is presented on a card delivered along a scrollable path."
+                },
+                {
+                    "path": "two.buntin"
+                }
+            ]
+        }
+    },
+    "drm": {
+        "link": "drm",
+        "title": "Deer Run Media",
+        "projectDescription": "Craft template featuring a unique boutique video agency content.",
+        "mainImage": {
+            "path": "main.drm",
+            "caption": "Deer Run Media Logo",
+            "alt": "The Logo is presented to users on first load in a dramatic film-type presentation."
+        },
+        "content": {
+            "externalSite": "//deerrunmedia.com/",
+            "video": "bDezQV75q74",
+            "code": false,
+            "article": "Deer Run Media is a local Visual Art and Video Production Company. This project shows off their unique work while minimizing the UI. All the content is presented simply to the user. The project makes extensive use of the HTML5 video API and features an entirely from scratch HTML5 video player.",
+            "techList": [
+                "Craft CMS",
+                "HTML5",
+                "Video",
+                "SCSS",
+                "Foundation",
+                "Greensock",
+                "Babel|ES7",
+                "Grunt",
+                "History API"
+            ],
+            "imageRatio": "56.25%",
+            "images": [
+                {
+                    "path": "five.drm",
+                    "alt": "Get a Quote",
+                    "caption": "The form uses a javascript API to POST forms."
+                },
+                {
+                    "path": "five.mobile.drm",
+                    "alt": "Projects",
+                    "caption": "Projects are presented in similar ways on desktop and mobile."
+                },
+                {
+                    "path": "four.drm",
+                    "alt": "Contact Page",
+                    "caption": "The Contact Page on desktop."
+                },
+                {
+                    "path": "four.mobile.drm",
+                    "alt": "Contact Us",
+                    "caption": "The contact page on a mobile device."
+                },
+                {
+                    "path": "one.drm",
+                    "alt": "Project Page",
+                    "caption": "The project page features a slider of images or video supporting the project."
+                },
+                {
+                    "path": "one.mobile.drm",
+                    "alt": "DRM Logo",
+                    "caption": "The DRM Logo on mobile."
+                },
+                {
+                    "path": "seven.mobile.drm",
+                    "alt": "Mobile Behind the Scenes",
+                    "caption": "images are presented on a mobile device."
+                },
+                {
+                    "path": "six.mobile.drm",
+                    "alt": "Project Page",
+                    "caption": "example project page on a mobile device."
+                },
+                {
+                    "path": "three.drm",
+                    "alt": "Home Page",
+                    "caption": "The Home Page on desktop displays video segments on rollover."
+                },
+                {
+                    "path": "three.mobile.drm",
+                    "alt": "About Page",
+                    "caption": "Basic content presented on an about page."
+                },
+                {
+                    "path": "two.drm",
+                    "alt": "Case Studies",
+                    "caption": "Case Studies are presented in a grid format on desktop."
+                },
+                {
+                    "path": "two.mobile.drm",
+                    "alt": "Home Page",
+                    "caption": "Mobile Home Page with inline video."
+                }
+            ]
+        }
+    }
+}

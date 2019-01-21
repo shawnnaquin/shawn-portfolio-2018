@@ -13,7 +13,7 @@
             title="Marketing"
             :class="['external']"
             to="/marketing" >Marketing</router-link>
-          <p>Marketing includes Banner advertisemnts, One-page call to action, sales tools and much more!</p>
+          <p>Marketing includes banner advertisements, one-page call to action, sales tools and much more!</p>
         </div>
         <div>
           <router-link
@@ -40,7 +40,7 @@
             title="Technology"
             :class="['external']"
             to="/tech" >Technology</router-link>
-          <p>View a stack of technologies used in Shawn's front-end development.</p>
+          <p>View a stack of technologies used in my front-end development.</p>
         </div>
         <div>
           <a
@@ -50,7 +50,7 @@
             title="Github"
             :class="['external']"
             href="https://github.com/shawnnaquin" >Github</a>
-          <p>View other projects on Github from Shawn.</p>
+          <p>View other projects on Github.</p>
         </div>
       </div>
 

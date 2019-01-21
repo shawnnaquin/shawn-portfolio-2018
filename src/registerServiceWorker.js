@@ -4,7 +4,7 @@ import store from "@/store.js";
 
 // if (process.env.NODE_ENV === "production") {
 // localhost is safe to use now. everything including workbox is made on dev.
-register(`/service-worker.js`, {
+register(`${process.env.BASE_URL}service-worker.js`, {
   // must be served from route dir
   ready() {
     // only fires on localhost?!
@@ -23,8 +23,8 @@ register(`/service-worker.js`, {
   },
   updated(registration) {
     store.state.generalMessage = "New content is available; please refresh!";
-    let worker = registration.waiting;
-    worker.postMessage({ action: "skipWaiting", msg: 'New content is available!' });
+    // let worker = registration.waiting;
+    // worker.postMessage({ action: "skipWaiting", msg: 'New content is available!' });
   },
 
   offline() {

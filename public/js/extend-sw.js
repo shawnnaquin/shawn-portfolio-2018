@@ -1,4 +1,5 @@
 self.addEventListener('message', event => {
+
 	event.waitUntil(
 	  self.registration.showNotification( 'Shawn Naquin - Developer', {
 	    body: event.data.msg

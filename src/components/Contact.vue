@@ -449,7 +449,10 @@ export default {
       setTimeout(() => {
         setTimeout(() => {
           this.$store.dispatch("setOpenContact", false);
+
           setTimeout(this.resetForm, 100);
+          setTimeout(this.closeContact, 110);
+
         }, 500);
 
         setTimeout(() => {
