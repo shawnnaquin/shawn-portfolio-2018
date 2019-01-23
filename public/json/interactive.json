@@ -23,7 +23,7 @@
             "images": [
                 {
                     "path": "eight.astec",
-                    "alt": "model with informational view",
+                    "alt": "Model With Informational View",
                     "caption": "Astec’s construction models are displayed alongside the sidebar."
                 },
                 {
@@ -33,42 +33,42 @@
                 },
                 {
                     "path": "four.astec",
-                    "alt": "astec info-graphic",
+                    "alt": "Astec Info-Graphic",
                     "caption": "Astec Interactive’s main product page is built to accommodate a variety of content types."
                 },
                 {
                     "path": "nine.astec",
-                    "alt": "3d main product model view",
+                    "alt": "Main 3D Product Model View",
                     "caption": "Astec Interactive’s main product page features Astec’s construction equipment as a bisected 3D model."
                 },
                 {
                     "path": "one.astec",
-                    "alt": "main project start page",
+                    "alt": "Start Screen",
                     "caption": "Astec Interactive’s initial view presents users with a planet for construction equipment. This view serves as both a screen-saver and a starting screen."
                 },
                 {
                     "path": "seven.astec",
-                    "alt": "main product rotation",
+                    "alt": "Main Product Rotation",
                     "caption": "Astec Interactive’s 3d models can be rotated by user’s touch input."
                 },
                 {
                     "path": "six.astec",
-                    "alt": "astec sales reps",
+                    "alt": "Astec Sales Representatives",
                     "caption": "Astec’s sales representatives are broken down by region or state, allowing users to choose which representative to contact."
                 },
                 {
                     "path": "ten.astec",
-                    "alt": "component types",
+                    "alt": "Component Types",
                     "caption": "Users can view Astec’s construction models through categorized views."
                 },
                 {
                     "path": "three.astec",
-                    "alt": "plant view",
+                    "alt": "Plant View",
                     "caption": "A specific plant component’s information is available to users on click."
                 },
                 {
                     "path": "two.astec",
-                    "alt": "plant type",
+                    "alt": "Plant Type",
                     "caption": "Astec Interactive’s users can select common preset plant configurations featuring models of Astec’s construction equipment."
                 }
             ]
@@ -80,7 +80,7 @@
         "projectDescription": "Reactive time-based Halloween themed game built with VueJS and HTML5 audio",
         "mainImage": {
             "path": "main.servpro-halloween",
-            "alt": "Too scary...",
+            "alt": "Too Scary...",
             "caption": "Grab the dangerous objects!"
         },
         "content": {
@@ -100,7 +100,7 @@
             "images": [
                 {
                     "path": "five.servpro-halloween",
-                    "alt": "SVG objects",
+                    "alt": "SVG Objects",
                     "caption": "SVG objects are layered into the background and made selectable to minimize external object calls."
                 },
                 {
@@ -110,7 +110,7 @@
                 },
                 {
                     "path": "one.horiz.servpro-halloween",
-                    "alt": "dialogue box",
+                    "alt": "Dialogue Box",
                     "caption": "Game instructions are presented prior to game play."
                 },
                 {
@@ -130,17 +130,17 @@
                 },
                 {
                     "path": "three.mobile.servpro-halloween",
-                    "alt": "responsive",
+                    "alt": "Responsive View",
                     "caption": "Servpro Halloween is based on a 16:9 ratio. The user's device must be rotated to continue game-play. Users are progressively warned."
                 },
                 {
                     "path": "three.servpro-halloween",
-                    "alt": "dialogue",
+                    "alt": "Dialogue",
                     "caption": "Users are presented various dialogue screens injected directly into the viewport."
                 },
                 {
                     "path": "two.horiz.servpro-halloween",
-                    "alt": "responsive game-play",
+                    "alt": "Responsive Game-Play",
                     "caption": "Servpro Halloween's game-play was built to be as flexible as possible while maintaining a specfic 16:9 ratio."
                 },
                 {
@@ -269,7 +269,7 @@
             "images": [
                 {
                     "path": "five.servpro-holiday",
-                    "alt": "Landing page",
+                    "alt": "Landing Page",
                     "caption": "Servpro Holiday's call-to-action is built to be responsive and flexible."
                 },
                 {

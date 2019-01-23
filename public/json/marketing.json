@@ -2,7 +2,7 @@
     "kylotto-card-flip": {
         "link": "kylotto-card-flip",
         "title": "Kentucky Lottery Card Matching",
-        "projectDescription": "Card matching game featuring a call-to-action for branded games.",
+        "projectDescription": "A card matching game featuring a call-to-action for branded online games.",
         "mainImage": {
             "path": "main.kylotto-card-flip",
             "caption": "Flip the cards.",
@@ -10,7 +10,7 @@
         },
         "content": {
             "video": "JpqKssj8B6I",
-            "article": "KY Lottery Card Flip uses information from structured data. A matched game is selected at random from the structured data via Javascript. The Javscript then distributes the cards ramdomly onto the table. Users are prompted to, \"Flip the cards and find a matching game!\" The cards are animated via CSS class names triggered from the game's logic. Both the performance and size of the Javascript was carefully considered in order to serve the largest set of browsers and devices.",
+            "article": "A matched game-type is selected at random from the structured data via Javascript. JavaScript then randomly distributes the branded playing cards. Users are prompted to, \"Flip the cards and find a matching game!\" The playing cards are animated with CSS and triggered by the game's JavaScript logic. Both the performance and size of the Javascript was carefully considered in order to serve the largest set of browsers and devices.",
             "externalSite": "//social.kylottery.com",
             "code": false,
             "techList": [
@@ -28,57 +28,57 @@
             "images": [
                 {
                     "path": "five.mobile.kylotto-card-flip",
-                    "alt": "Footer and Cards",
-                    "caption": "The cards are randomly choosen and placed on the table."
+                    "alt": "View showing the footer and branded playing cards.",
+                    "caption": "The cards are randomly chosen and placed on the table."
                 },
                 {
                     "path": "four.kylotto-card-flip",
-                    "alt": "Match found!",
+                    "alt": "A playing card's branded match is found!",
                     "caption": "Users are greeted with confetti and a CTA once the match is complete."
                 },
                 {
                     "path": "four.mobile.kylotto-card-flip",
-                    "alt": "Cards flipped",
-                    "caption": "Not all cards are a match! The brands are choosen randomly from the structured data."
+                    "alt": "KY Lotto branded cards are flipped over.",
+                    "caption": "Not all of the cards are a match! The brands are chosen randomly from the structured data."
                 },
                 {
                     "path": "one.kylotto-card-flip",
-                    "alt": "Landing Page",
-                    "caption": "A responsive landing page ready for a new game."
+                    "alt": "The KY Lotto landing page.",
+                    "caption": "A responsive landing page, ready for a new game."
                 },
                 {
                     "path": "one.mobile.kylotto-card-flip",
-                    "alt": "Header and Mast-Head",
-                    "caption": "The Header and Mast-Head are pulled from structured data."
+                    "alt": "A view of the KY Lotto header and mast-head",
+                    "caption": "The header and mast-head are pulled from structured data."
                 },
                 {
                     "path": "seven.mobile.kylotto-card-flip",
-                    "alt": "Mobile Match!",
-                    "caption": "The experience is similar both on mobile and Desktop."
+                    "alt": "A KY Lotto playing card's match is found on a mobile device.",
+                    "caption": "The user's experience is similar both on mobile and desktop."
                 },
                 {
                     "path": "six.mobile.kylotto-card-flip",
-                    "alt": "Flipped cards reveal a match",
-                    "caption": "Both the brand and card placement is chosen at random."
+                    "alt": "KY Lotto playing cards are flipped to reveal the match.",
+                    "caption": "Both the brand and card placement are chosen at random."
                 },
                 {
                     "path": "three.kylotto-card-flip",
-                    "alt": "Brands",
+                    "alt": "Any brand can be used to make a custom playing card.",
                     "caption": "The game can be configured for any brand game with some simple data."
                 },
                 {
                     "path": "three.mobile.kylotto-card-flip",
-                    "alt": "Alternate Win",
-                    "caption": "The win screen can accomodate any brand, even on mobile!"
+                    "alt": "Mobile view of a correct match.",
+                    "caption": "The win screen can accommodate any brand, even on mobile!"
                 },
                 {
                     "path": "two.kylotto-card-flip",
-                    "alt": "Random Games",
-                    "caption": "The games are choosen at random and placed on the table."
+                    "alt": "Randomly chosen games are displayed.",
+                    "caption": "The games are chosen at random and placed on the table."
                 },
                 {
                     "path": "two.mobile.kylotto-card-flip",
-                    "alt": "Mobile Styles",
+                    "alt": "KY Lotto's CSS is mobile friendly.",
                     "caption": "The game is complete with the same styles, even on mobile!"
                 }
             ]
@@ -87,7 +87,7 @@
     "kylotto-speed": {
         "link": "kylotto-speed",
         "title": "Kentucky Lottery Speedometer",
-        "projectDescription": "Multiple banner Advertisements featuring native javascript.",
+        "projectDescription": "Multiple banner advertisements featuring native JavaScript.",
         "mainImage": {
             "path": "main.kylotto-speed",
             "caption": "Need for speed.",
@@ -95,7 +95,7 @@
         },
         "content": {
             "video": "FivkIwUeUwE",
-            "article": "The KY Lotto Speedometer ads feature ultra-lightweight HTML5 built for specific viewport sizes. This project features SVG images and a lightweight project size (<= 200KB). This project leverages the Javascript build tool Grunt. A systematic approach was taken in order to reuse similar code throughout multiple banners. Each banner is programmatically produced based on variables, size and custom NPM Scripts. Each project included a testing dashboard and were validated through the Sizmek Media Platform.",
+            "article": "Each KY Lotto Speedometer banner features ultra-lightweight HTML5 and is built for specific viewport sizes. Each banner features SVG images and a lightweight project size (200KB). By leveraging Grunt, a JavaScript build tool, each banner is programmatically produced based on variables such as size and name. Each banner was eventually validated through the Sizmek Media Platform.",
             "externalSite": "//tbg.l2.design/kylotto-speedometer/kylotto-speedometer-300x600-build/index.html",
             "code": false,
             "techList": [
@@ -110,17 +110,17 @@
             "images": [
                 {
                     "path": "one.kylotto-speed",
-                    "alt": "Banner Ad",
-                    "caption": "This ad was built for multiple sizes, 728x90"
+                    "alt": "728x90",
+                    "caption": "This ad was built for multiple sizes, 728x90."
                 },
                 {
                     "path": "three.kylotto-speed",
-                    "alt": "Banner Ad",
-                    "caption": "The ad may also be used at 300x600"
+                    "alt": "300x600",
+                    "caption": "The ad may also be used at 300x600."
                 },
                 {
                     "path": "two.kylotto-speed",
-                    "alt": "Banner Ad",
+                    "alt": "300x250",
                     "caption": "a 300x250 version of the speedometer ad."
                 }
             ]
@@ -129,15 +129,15 @@
     "trex-deck": {
         "link": "trex-deck",
         "title": "Trex: Composite Decking",
-        "projectDescription": "Unique expandable banner ad utilizing a series of images.",
+        "projectDescription": "Unique expandable banner advertisement utilizing an animated series of images.",
         "mainImage": {
             "path": "main.trex-deck",
-            "alt": "Expandable Banner Ad",
-            "caption": "Unique banner experience featuring sets of images."
+            "alt": "A unique, expandable banner advertisement.",
+            "caption": "A unique banner experience featuring animated sets of images."
         },
         "content": {
             "video": "VFFuDbrauAM",
-            "article": "Trex: Composite Decking aims to emulate 3d animation in under 1.5MB project size. A team of animators developed the scenes and converted to low-framerate jpegs. The jpegs are then alternated in HTML to create the animation. A side-nav calls users to switch between the scenes. The entire ad was served and validated over the Sizmek Media Platform.",
+            "article": "In just under a 1.5MB project size, Trex: Composite Decking aims to emulate 3d-animation with a series of animated images. The images are then alternated using JavaScript to create keyframe animation. The sliding navigation prompts users to switch between different scenes. The banner advertisement was served and validated over the Sizmek Media Platform.",
             "externalSite": "//tbg.l2.design/trex-deck",
             "code": false,
             "techList": [
@@ -161,13 +161,13 @@
                 },
                 {
                     "path": "one.trex-deck",
-                    "alt": "Banner Ad",
-                    "caption": "The Ad can expand or collapse into a smaller banner ad."
+                    "alt": "Collapsing Advertisement",
+                    "caption": "The advertisement can expand or collapse into a smaller banner."
                 },
                 {
                     "path": "three.trex-deck",
                     "alt": "Infestation",
-                    "caption": "Composite Decking is not prone to infestations like some other traditional materials."
+                    "caption": "Trex's Composite Decking is not prone to infestations like some other traditional materials."
                 }
             ]
         }

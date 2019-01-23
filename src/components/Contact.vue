@@ -748,7 +748,7 @@ export default {
   cursor: pointer;
   position: fixed;
   top: 16px;
-  right: 16px;
+  left: 16px;
   opacity: 0;
   color: white;
   text-decoration: none;

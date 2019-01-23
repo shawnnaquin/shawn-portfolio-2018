@@ -125,11 +125,14 @@
           itemprop="itemListElement"
           itemscope=""
           itemtype="https://schema.org/ListItem">
+
           <router-link
+            v-if="$route.name != 'home' "
             itemprop="item"
-            to="/">
+            :to="`/`">
             <span itemprop="name">home</span>
           </router-link>
+
           <meta
             itemprop="position"
             content="1">

@@ -2,15 +2,15 @@
     "l2d": {
         "link": "l2d",
         "title": "L2D Agency",
-        "projectDescription": "Agency Website featuring a portfolio of work.",
+        "projectDescription": "L2D's website features a portfolio of their recent work.",
         "mainImage": {
             "path": "main.l2d",
             "alt": "L2D Logo",
-            "caption": "The L2D Logo inside a custom ThreeJS script generated from a live video feed."
+            "caption": "The L2D Logo is displayed inside a custom ThreeJS script generated from live video feed data."
         },
         "content": {
             "video": "EYyELvmsw4c",
-            "article": "The L2D website reflects a portfolio of work in a single page. Everything on the page is custom and features Greensock animations. Everything from the icon to the content on-scroll is animated in. The inline forms are validated through native javascript and styled through SCSS. Each project is loaded from custom structured data.",
+            "article": "The L2D website reflects a portfolio of work on built into a single page. The custom-built SPA features Greensock animations and transitions. L2D's website features reactivity based on scroll events. L2D also features inline forms validated through native JavaScript and styled with custom SCSS. Each project is loaded dynamically from custom structured data.",
             "externalSite": "//l2d.co/",
             "code": false,
             "techList": [
@@ -40,7 +40,7 @@
                 {
                     "path": "four.mobile.l2d",
                     "alt": "Form Data",
-                    "caption": "The forms are styled with parallaxed background images. The forms are validated through native Javascript."
+                    "caption": "The forms are styled with parallaxed background images. The forms are validated through native JavaScript."
                 },
                 {
                     "path": "one.horiz.l2d",
@@ -49,33 +49,33 @@
                 },
                 {
                     "path": "one.l2d",
-                    "alt": "Destop Header",
-                    "caption": "If no one is at the office the ThreeJS script remains fairly static."
+                    "alt": "Desktop Header",
+                    "caption": "If no one is at the office, the ThreeJS script remains fairly static."
                 },
                 {
                     "path": "one.mobile.l2d",
                     "alt": "ThreeJS Header",
-                    "caption": "The ThreeJS script on mobile devices."
+                    "caption": "The ThreeJS script works cross-device, even on mobile."
                 },
                 {
                     "path": "seven.l2d",
-                    "alt": "Client Page with open Menu",
-                    "caption": "The menu opens in a dramatic animation over client logos while elements parralax in the background."
+                    "alt": "Open Menu",
+                    "caption": "The menu opens with a dramatic animation over client logos. Meanwhile, other elements move parralax to the background."
                 },
                 {
                     "path": "three.l2d",
                     "alt": "80s Retro",
-                    "caption": "The top of the page can be expanded into a dashboard which also interaction with the L2D employees as they work. Catch the at the right time, they might wave hello!"
+                    "caption": "The top of the page can be expanded into a dashboard allowing interaction with the L2D employees as they work. Catch them at the right time, they might wave, \"Hello!\""
                 },
                 {
                     "path": "three.mobile.l2d",
                     "alt": "Client Logos",
-                    "caption": "The Client logos load as the user scrolls towards the content. Once loaded the logos are animated in."
+                    "caption": "Client logos are loaded as the user scrolls towards more content. Once loaded, the logos are animated in with the Greensock animation library."
                 },
                 {
                     "path": "two.mobile.l2d",
                     "alt": "Client Projects",
-                    "caption": "Projects are displayed in a flexible grid with corresponding icons and animations."
+                    "caption": "Projects are displayed in a flexible grid with corresponding icons and custom animations."
                 },
                 {
                     "path": "six.l2d"
@@ -89,15 +89,15 @@
     "sos": {
         "link": "sos",
         "title": "Safe Online Surfing",
-        "projectDescription": "SOS features games butilt with HTML5 and Javascript ",
+        "projectDescription": "SOS features educational games built with HTML5, JavaScript, and CSS. SOS supports legacy browsers, including IE9.",
         "mainImage": {
             "path": "main.sos",
             "alt": "Online Surfing",
-            "caption": "A character makes surfs their way around several obstacles."
+            "caption": "A player's character answers questions in order to avoid obstacles while surfing."
         },
         "content": {
             "video": "9XMh78_iCYs",
-            "article": "This website is built with sessionStorage to keep user data. User data is applied via a gamestate to keep track of student's interaction. This website largely leverages CSS transitions rather than javascript animation. SOS functions well even on deprecated browser and is built to be IE9 Strict! The content's data structure allows for easy language translation. An entire side project was built leveraging node.js to convert the site's data to spreadsheets and then back to JSON.",
+            "article": "SOS is built with sessionStorage to track users' data. User data is applied via game-state to track interaction. SOS leverages CSS transitions rather than JavaScript animation. SOS supports deprecated browsers such as IE9! The companion NodeJS project allows language translation.",
             "externalSite": "//sos.fbi.gov",
             "code": false,
             "techList": [
@@ -114,12 +114,12 @@
                 {
                     "path": "one.sos",
                     "alt": "Home Page",
-                    "caption": "The Home landing page displays all of the critical information in a highly visible manner. Students can choose which grade level they'd like to play."
+                    "caption": "SOS's landing page displays all critical information in a highly visible UI. Students can choose which grade-level character to play as."
                 },
                 {
                     "path": "eight.sos",
                     "alt": "Treasure Hunt",
-                    "caption": "Students must collect all of the hidden coins. Once a coin is revealed the student must answer a challenge question. If the submitted answer is correct a coin is collected. The Health Bar displays the game status."
+                    "caption": "Students must collect all of the hidden coins. Student users must answer a challenge question once a coin is revealed. The coin is collected if the student's answer is correct. The health bar displays the game's status."
                 },
                 {
                     "path": "eleven.sos",
@@ -129,57 +129,57 @@
                 {
                     "path": "fifteen.sos",
                     "alt": "6th Grade",
-                    "caption": "Each grade has it's own character and color scheme. In addition the island is themed for the character."
+                    "caption": "Each grade-level has a different island theme with a unique playable character."
                 },
                 {
                     "path": "five.sos",
                     "alt": "A Challenge",
-                    "caption": "Students must answer questions during the games in order to succesfully finish."
+                    "caption": "Students must answer questions during the games in order to successfully finish."
                 },
                 {
                     "path": "four.sos",
                     "alt": "Flexible Challenges",
-                    "caption": "Questions can be formatted in several ways but all use the same general structure and class names."
+                    "caption": "Questions can be formatted in several ways while using the same general structure and CSS class names."
                 },
                 {
                     "path": "fourteen.sos",
                     "alt": "Island View",
-                    "caption": "Each island contains several themed challenges involving."
+                    "caption": "Each grade-level island contains several themed challenges."
                 },
                 {
                     "path": "nine.sos",
                     "alt": "Computer Health",
-                    "caption": "In Computer Health students must keep their computer healthy by responding to a series of questions."
+                    "caption": "Students must keep their character's computer healthy by responding to a series of questions."
                 },
                 {
                     "path": "seven.sos",
                     "alt": "Safe Surfing",
-                    "caption": "A surfing character succesfully dodges an obstacle after a correct answer."
+                    "caption": "A surfing character successfully dodges an obstacle after a correct answer."
                 },
                 {
                     "path": "six.sos",
                     "alt": "Finish Screen",
-                    "caption": "A Congratulation screen after succesfully completing a challenge."
+                    "caption": "A congratulations screen after successfully completing a challenge."
                 },
                 {
                     "path": "sixteen.sos",
                     "alt": "Several Characters",
-                    "caption": "The Island can be configured with dots placed at any point on the screen. The dots and numbers are mapped to various games."
+                    "caption": "The island can be configured with placed markers. The markers are numbered and mapped as an individual game."
                 },
                 {
                     "path": "ten.sos",
                     "alt": "Personal Information",
-                    "caption": "A challenge to unlock all the spaces within a game."
+                    "caption": "To complete this game a user must unlock all the locked spaces."
                 },
                 {
                     "path": "three.sos",
                     "alt": "Modals",
-                    "caption": "The modal present information about the contest in order to keep educators informed."
+                    "caption": "This modal presents information about the general contest in order to keep the user's educators informed."
                 },
                 {
                     "path": "thrirteen.sos",
                     "alt": "Onboarding Instructions",
-                    "caption": "Users are presented a set of instructions for completing each seperate contest."
+                    "caption": "Users are presented with a set of instructions for completing each separate contest."
                 },
                 {
                     "path": "twelve.sos",
@@ -188,13 +188,13 @@
                 },
                 {
                     "path": "two.sos",
-                    "alt": "Grid of Grades",
-                    "caption": "The difficulty of the contest depends on the grade level."
+                    "alt": "A Grid of Grades",
+                    "caption": "The difficulty of the contest is dependent upon grade level."
                 },
                 {
                     "path": "seventeen.sos",
                     "alt": "The Results",
-                    "caption": "A succesfull completion of the surfing game before the final screen."
+                    "caption": "View of a successful completion of the surfing game before the final screen."
                 }
             ]
         }
@@ -202,15 +202,15 @@
     "rtc": {
         "link": "rtc",
         "title": "Ringgold Telecommunications Company",
-        "projectDescription": "Telecommunications Provider Website built with Foundation and Craft.",
+        "projectDescription": "A telecommunications provider website built with Foundation and Craft.",
         "mainImage": {
             "path": "main.rtc",
             "alt": "3d Animation",
-            "caption": "ThreeJS script featuring waveforms."
+            "caption": "Custom ThreeJS script featuring waveforms."
         },
         "content": {
             "video": "JqRtOz6CCsE",
-            "article": "RTC needed a proven front-end reliable enough for customers to gain access to essential services. Special attention was payed to accesibility and performance tests. RTC is sleek and stylish while serving the public.",
+            "article": "A proven front-end reliable enough for customers to gain access to essential services. Special attention was paid to accessibility and performance tests. RTC was built to serve the general public with a sleek and stylish performance.",
             "externalSite": "//rtctel.com/",
             "code": false,
             "techList": [
@@ -225,17 +225,17 @@
                 {
                     "path": "five.rtc",
                     "alt": "Parallax",
-                    "caption": "The site uses parallax to emphasize graphics in a two-column responsive layout."
+                    "caption": "RTC uses parallaxing elements to emphasize promotional graphics in a two-column responsive layout."
                 },
                 {
                     "path": "four.mobile.rtc",
                     "alt": "Animations",
-                    "caption": "RTC features several animations including a three JS wave along with an SVG throttle animation."
+                    "caption": "RTC features several animations, including a ThreeJS wave and a throttled SVG animation."
                 },
                 {
                     "path": "four.rtc",
                     "alt": "Informational Layout",
-                    "caption": "Desktop layout featuring a header, SVG icons and a list. The Youtube video is animated in place."
+                    "caption": "The desktop layout features custom styled elements. The YouTube video is progressivly lazy-loaded and then animated in."
                 },
                 {
                     "path": "one.horiz.rtc",
@@ -245,22 +245,22 @@
                 {
                     "path": "one.mobile.rtc",
                     "alt": "Home Page",
-                    "caption": "The Home page features a standard Header and text along with a very visible button and tagline."
+                    "caption": "The home page features a header hierarchy with header text, tagline and button."
                 },
                 {
                     "path": "one.rtc",
                     "alt": "Home Page",
-                    "caption": "The desktop home page featuring ThreeJS animations."
+                    "caption": "The desktop home page features ThreeJS animations."
                 },
                 {
                     "path": "seven.rtc",
                     "alt": "Integrated Forms",
-                    "caption": "RTC features completely custom and styled forms. The forms use native Javascript along with server-side validation."
+                    "caption": "RTC features completely custom and styled forms. The forms use native JavaScript along with server-side validation."
                 },
                 {
                     "path": "six.rtc",
                     "alt": "Slider",
-                    "caption": "A slider feaaturing unique content in a responsive format."
+                    "caption": "The slider features unique content in a responsive format."
                 },
                 {
                     "path": "three.horiz.rtc",
@@ -270,7 +270,7 @@
                 {
                     "path": "three.mobile.rtc",
                     "alt": "Interior",
-                    "caption": "An interior page featuring a video using the Youtube Javascript API."
+                    "caption": "An interior page featuring a video using the YouTube JavaScript API."
                 },
                 {
                     "path": "three.rtc",
@@ -280,17 +280,17 @@
                 {
                     "path": "two.horiz.rtc",
                     "alt": "Interior Header",
-                    "caption": "The Interior page headers include movies that autoplay on mobile and desktop."
+                    "caption": "Interior page headers include movies that autoplay on mobile and desktop."
                 },
                 {
                     "path": "two.mobile.rtc",
                     "alt": "Forms",
-                    "caption": "RTC users can easily connect by using the styled forms along with native validation."
+                    "caption": "RTC users can easily connect by using styled forms along with native validation."
                 },
                 {
                     "path": "two.rtc",
                     "alt": "Interior Content",
-                    "caption": "All of the interior content is created within a CMS and is template driven."
+                    "caption": "All interior content is created within a template driven CMS."
                 }
             ]
         }
@@ -298,15 +298,15 @@
     "crg": {
         "link": "crg",
         "title": "Chattanooga Roller Girls",
-        "projectDescription": "A Wordpress site built from the Foundation Sites Framework",
+        "projectDescription": "A Wordpress site built from the Foundation Sites framework",
         "mainImage": {
             "path": "main.crg",
             "alt": "CRG Logo",
-            "caption": "The mascott of the CRG skates forward while the website loads."
+            "caption": "The mascot of CRG skates forward while the website loads."
         },
         "content": {
             "video": "",
-            "article": "This custom-built Wordpress Theme for the Chattanooga WFTDA Roller Derby team features several custom plugins. Advanced User Roles, Custom Categories, Custom Types, Google Analytics... the works! This theme was developed from the groundup to be versatile. Chattanooga Roller Girls features smooth page transitions for a seemless experience through javascript.",
+            "article": "This custom Wordpress theme for the Chattanooga WFTDA Roller Derby features several custom plugins. Advanced User Roles, Custom Categories, Custom Types, Google Analytics... the works! The theme was developed from the ground-up to be versatile. The theme features smooth page transitions for a seamless experience through JavaScript requests.",
             "techList": [
                 "Wordpress",
                 "PHP",
@@ -323,92 +323,92 @@
                 {
                     "path": "one.crg",
                     "alt": "Team Logo",
-                    "caption": "Team mascott skates by while the data loads."
+                    "caption": "The team mascot skates by while the data loads."
                 },
                 {
                     "path": "five.crg",
                     "alt": "Individual Skater",
-                    "caption": "Individual Skater pages are presented in slider which tracks the user's history using the history API."
+                    "caption": "Individual skater pages are presented in a slider which tracks the user's page history via the HTML5 HistoryAPI."
                 },
                 {
                     "path": "five.horiz.crg",
                     "alt": "Next Home Bout",
-                    "caption": "the Next Home Bouts are displayed front and center even on odd sized devices."
+                    "caption": "The next home bouts are displayed front and center, even on odd sized devices."
                 },
                 {
                     "path": "two.mobile.crg",
                     "alt": "Mobile Skater",
-                    "caption": "An indiviual's skater pages takes up more of the frame on a mobile device."
+                    "caption": "An individual's skater page takes up more of the frame on a mobile device."
                 },
                 {
                     "path": "four.crg",
                     "alt": "Schedule Page",
-                    "caption": "The Schedule page is a similar layout to the homepage so that users are presented information in a manner that feels familiar."
+                    "caption": "The schedule page is a similar layout to the homepage so that users are presented information in a manner that feels familiar."
                 },
                 {
                     "path": "four.horiz.crg",
                     "alt": "Instagram Feed",
-                    "caption": "CRG connects live to the Instagram Feed so that images are always current."
+                    "caption": "CRG connects to the live Instagram feed ensuring always current content."
                 },
                 {
                     "path": "four.mobile.crg",
                     "alt": "Coaches and Staff",
-                    "caption": "Coaches and Staff are also in a responsive format."
+                    "caption": "Coaches and staff are also displayed in a responsive format."
                 },
                 {
                     "path": "one.horiz.crg",
                     "alt": "Mobile Skater Page",
-                    "caption": "Skater's are presented in pairs on mobile."
+                    "caption": "Skater's are presented in pairs on mobile devices."
                 },
                 {
                     "path": "one.mobile.crg",
-                    "alt": "Team Mascott Mobile",
-                    "caption": "The Logo is made using SVG"
+                    "alt": "Team Mascot Mobile",
+                    "caption": "The logo and animation are made using SVG and performant CSS animations."
                 },
                 {
                     "path": "seven.mobile.crg",
                     "alt": "Alternate Page Transition",
-                    "caption": "When switching between interior views the page smoothly transitions and interupts the viewer with a loading screen."
+                    "caption": "When switching between interior views, the template transitions smoothly while briefly displaying a small loading animation."
                 },
                 {
                     "path": "six.crg",
                     "alt": "Sponsor Logos",
-                    "caption": "Sponsors are layed out in a responsive grid fixed to a ratio."
+                    "caption": "Sponsors are laid out in a responsive grid fixed to an intrinsic ratio."
                 },
                 {
                     "path": "six.mobile.crg",
                     "alt": "Custom Categories and Fieds",
-                    "caption": "This theme depends on custom data and logic before presenting a readable schedule."
+                    "caption": "CRG's custom Wordpress theme uses custom data and logic to present the season's schedule."
                 },
                 {
                     "path": "three.crg",
                     "alt": "Desktop Homepage",
-                    "caption": "The Homepage view on desktop for CRG."
+                    "caption": "CRG's home page view on a desktop PC."
                 },
                 {
                     "path": "three.horiz.crg",
                     "alt": "Readable Page",
-                    "caption": "The page content is still readable even on tiny devices!"
+                    "caption": "CRG's page content is still readable even on tiny devices!"
                 },
                 {
                     "path": "three.mobile.crg",
                     "alt": "Recent Phots",
-                    "caption": "Any device can fetch the most recent photos the the Instagram API."
+                    "caption": "The Instagram API allows the most current team photos to be displayed."
                 },
                 {
                     "path": "two.crg",
                     "alt": "Banner",
-                    "caption": "Homepage Desktop view with banner."
+                    "caption": "The home page desktop view displays a banner."
                 },
                 {
                     "path": "two.horiz.crg",
                     "alt": "Mobile Banner",
-                    "caption": "Homepage Mobile view with banner."
+                    "caption": "The home page mobile view displays a banner."
                 },
                 {
                     "path": "five.mobile.crg",
                     "alt": "Mobile Menu",
-                    "caption": "On mobile devices the hamburger menu expands to reveal an offscreen menu."
+                    "caption": "On mobile devices, the hamburger menu expands to reveal an off-screen menu."
                 }
             ]
         }
@@ -416,11 +416,11 @@
     "buntin": {
         "link": "buntin",
         "title": "Buntin Media Group",
-        "projectDescription": "Unique creative advertising agency website with Vue.js",
+        "projectDescription": "The creative advertising agency's responsive unique website was built using VueJS.",
         "mainImage": {
             "path": "main.buntin",
             "alt": "Buntin Logo",
-            "caption": "The Buntin Logo show while the experience loads."
+            "caption": "The Buntin logo is presented while the unique experience loads."
         },
         "content": {
             "video": "pjE0QVzCRZk",
@@ -440,18 +440,18 @@
             "images": [
                 {
                     "path": "eight.buntin",
-                    "alt": "parallaxing content",
-                    "caption": "The parallaxing content enters on the screen while the user scrolls."
+                    "alt": "Parallaxing Content",
+                    "caption": "The parallaxing content enters the screen while the user scrolls."
                 },
                 {
                     "path": "eleven.buntin",
                     "alt": "Adhope Page",
-                    "caption": "The Adhope page showing headline and logo on Desktop."
+                    "caption": "The Adhope page displays a headline and logos on desktop."
                 },
                 {
                     "path": "five.buntin",
-                    "alt": "Grid of images",
-                    "caption": "A grid of portfolio images are presented on a client page."
+                    "alt": "Grid Of Images",
+                    "caption": "A grid of portfolio images are presented on the client page."
                 },
                 {
                     "path": "five.horiz.buntin",
@@ -465,43 +465,43 @@
                 },
                 {
                     "path": "four.buntin",
-                    "alt": "Main section",
-                    "caption": "Main section content while hovered reveals a CTA while moving in a 3d space."
+                    "alt": "Main Section",
+                    "caption": "While hovering, the main content section reveals a CTA moving in a 3D space."
                 },
                 {
                     "path": "four.horiz.buntin",
                     "alt": "Buntin Logo",
-                    "caption": "The Buntin Logo is presented on website load."
+                    "caption": "The Buntin logo is presented on the first page load."
                 },
                 {
                     "path": "four.mobile.buntin",
                     "alt": "Poster Page",
-                    "caption": "An infomation box expanded from the info button on a agency history page."
+                    "caption": "The infomation box is expanded from the info button on the agency's history page."
                 },
                 {
                     "path": "fourteen.buntin",
                     "alt": "Load Screen",
-                    "caption": "The Loading screen for the entire experience."
+                    "caption": "The loading screen is displayed before the entire experience."
                 },
                 {
                     "path": "nine.buntin",
                     "alt": "Card Info",
-                    "caption": "Informational cards for each employee staggers in from top to bottom as the page loads."
+                    "caption": "Informational cards for each employee stagger in from top to bottom as the page loads."
                 },
                 {
                     "path": "one.buntin",
                     "alt": "Main Screen",
-                    "caption": "The Home page on desktop plays a video in the background."
+                    "caption": "The home page on desktop plays a video in the background."
                 },
                 {
                     "path": "one.horiz.buntin",
                     "alt": "Home Page",
-                    "caption": "The Home page on mobile is very flexible and can respond to any size."
+                    "caption": "The home page on mobile is very flexible and can respond to any size."
                 },
                 {
                     "path": "one.mobile.buntin",
                     "alt": "Home Page",
-                    "caption": "The Home page presents a powerful video and entices the user to scroll down with a clickable button."
+                    "caption": "The home page presents a powerful video and entices the user to scroll down with a clickable button."
                 },
                 {
                     "path": "seven.buntin",
@@ -511,11 +511,11 @@
                 {
                     "path": "six.buntin",
                     "alt": "Phone slider and Footer",
-                    "caption": "The footer displays a reusable card component, used also on the home page just below a slider of images."
+                    "caption": "The footer also displays a reusable card component, used on the home page just below the image slider."
                 },
                 {
                     "path": "ten.buntin",
-                    "alt": "logo grid",
+                    "alt": "Logo Grid",
                     "caption": "A grid of logos which displays SVGs in a waterfall animation."
                 },
                 {
@@ -525,18 +525,18 @@
                 },
                 {
                     "path": "three.buntin",
-                    "alt": "A Section Header",
-                    "caption": "Section Headers along with accompanying paragraph text with navigation bar below."
+                    "alt": "Section Header",
+                    "caption": "A navigation bar is displayed below the section headers and accompanying paragraph text."
                 },
                 {
                     "path": "three.horiz.buntin",
                     "alt": "Interior Page",
-                    "caption": "The interior view showing a header image and title along with left and right arrows to advance between section content."
+                    "caption": "The interior view shows a header image and title along with left and right arrows advancing users between the section content."
                 },
                 {
                     "path": "three.mobile.buntin",
                     "alt": "Adhope Page",
-                    "caption": "floating informatinal boxes along with logos tell a story."
+                    "caption": "Floating information boxes of logos and text tells a story."
                 },
                 {
                     "path": "twelve.buntin",
@@ -546,7 +546,7 @@
                 {
                     "path": "two.horiz.buntin",
                     "alt": "Scrolling Through",
-                    "caption": "The user can scroll through entire sections presented as cards."
+                    "caption": "Users can scroll through entire sections presented as cards."
                 },
                 {
                     "path": "two.mobile.buntin",
@@ -562,17 +562,17 @@
     "drm": {
         "link": "drm",
         "title": "Deer Run Media",
-        "projectDescription": "Craft template featuring a unique boutique video agency content.",
+        "projectDescription": "Craft CMS template features a unique boutique video agency content.",
         "mainImage": {
             "path": "main.drm",
             "caption": "Deer Run Media Logo",
-            "alt": "The Logo is presented to users on first load in a dramatic film-type presentation."
+            "alt": "The logo is presented to users on the first load in a dramatic film-type presentation."
         },
         "content": {
             "externalSite": "//deerrunmedia.com/",
-            "video": "bDezQV75q74",
+            "video": "GqNosljNlTk",
             "code": false,
-            "article": "Deer Run Media is a local Visual Art and Video Production Company. This project shows off their unique work while minimizing the UI. All the content is presented simply to the user. The project makes extensive use of the HTML5 video API and features an entirely from scratch HTML5 video player.",
+            "article": "Deer Run Media, a local visual art and production company, shows off unique films while minimizing UI. Featuring a completely custom HTML5 video player this theme makes extensive use of the HTML5 Video API.",
             "techList": [
                 "Craft CMS",
                 "HTML5",
@@ -588,8 +588,8 @@
             "images": [
                 {
                     "path": "five.drm",
-                    "alt": "Get a Quote",
-                    "caption": "The form uses a javascript API to POST forms."
+                    "alt": "Get A Quote",
+                    "caption": "The form uses a JavaScript API to POST forms."
                 },
                 {
                     "path": "five.mobile.drm",
@@ -599,7 +599,7 @@
                 {
                     "path": "four.drm",
                     "alt": "Contact Page",
-                    "caption": "The Contact Page on desktop."
+                    "caption": "The contact page as viewed on a desktop PC."
                 },
                 {
                     "path": "four.mobile.drm",
@@ -609,42 +609,42 @@
                 {
                     "path": "one.drm",
                     "alt": "Project Page",
-                    "caption": "The project page features a slider of images or video supporting the project."
+                    "caption": "The project page features a slider with flexible content. The slider's content may contain images or supporting film pieces."
                 },
                 {
                     "path": "one.mobile.drm",
                     "alt": "DRM Logo",
-                    "caption": "The DRM Logo on mobile."
+                    "caption": "The DRM logo on mobile."
                 },
                 {
                     "path": "seven.mobile.drm",
                     "alt": "Mobile Behind the Scenes",
-                    "caption": "images are presented on a mobile device."
+                    "caption": "DRM's images are presented on a mobile device."
                 },
                 {
                     "path": "six.mobile.drm",
                     "alt": "Project Page",
-                    "caption": "example project page on a mobile device."
+                    "caption": "An example project page as viewed on a mobile device."
                 },
                 {
                     "path": "three.drm",
                     "alt": "Home Page",
-                    "caption": "The Home Page on desktop displays video segments on rollover."
+                    "caption": "The home page features interactive video segments that autoplay on mouse hover."
                 },
                 {
                     "path": "three.mobile.drm",
                     "alt": "About Page",
-                    "caption": "Basic content presented on an about page."
+                    "caption": "Some basic content is presented on an about page."
                 },
                 {
                     "path": "two.drm",
                     "alt": "Case Studies",
-                    "caption": "Case Studies are presented in a grid format on desktop."
+                    "caption": "Case studies are presented in a grid format on desktop."
                 },
                 {
                     "path": "two.mobile.drm",
                     "alt": "Home Page",
-                    "caption": "Mobile Home Page with inline video."
+                    "caption": "A view of the mobile home page with inline video."
                 }
             ]
         }
