@@ -1,13 +1,28 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
+import Home from "@/views/Home.vue";
+import Loader from "@/components/Loader";
 
-const Portfolio = () =>
-  import(/* webpackChunkName: "portfolio" */ "./views/Portfolio.vue");
-const Project = () =>
-  import(/* webpackChunkName: "project" */ "./views/Project.vue");
-const Image = () => import(/* webpackChunkName: "image" */ "./views/Image.vue");
-const Tech = () => import(/* webpackChunkName: "tech" */ "./views/Tech.vue");
+const Portfolio = () => ({
+  component: import(/* webpackChunkName: "portfolio" */ "@/views/Portfolio.vue"),
+  loading: Loader
+});
+
+const Project = () => ({
+  component: import(/* webpackChunkName: "project" */ "@/views/Project.vue"),
+  loading: Loader
+});
+
+const Image = () => ({
+  component: import(/* webpackChunkName: "image" */ "@/views/Image.vue"),
+  loading: Loader
+});
+
+const Tech = () => ({
+  component: import(/* webpackChunkName: "tech" */ "@/views/Tech.vue"),
+  loading: Loader
+});
+
 
 Vue.use(Router);
 
