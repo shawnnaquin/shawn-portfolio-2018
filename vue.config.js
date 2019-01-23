@@ -8,7 +8,8 @@ module.exports = {
     appleMobileWebAppStatusBarStyle: 'black',
     workboxOptions: {
       importWorkboxFrom: "local",
-      importScripts: ['/js/extend-sw.js']
+      importScripts: ['/js/extend-sw.js'],
+      navigateFallback: '/index.html'
     }
   }
 };
