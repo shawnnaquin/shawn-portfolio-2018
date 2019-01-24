@@ -132,10 +132,7 @@
             :to="`/`">
             <span itemprop="name">home</span>
           </router-link>
-
-          <meta
-            itemprop="position"
-            content="1">
+          <meta itemprop="position" content="1" />
         </li>
 
         <li

@@ -18,6 +18,7 @@
 	<link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
 	<link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
 	<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="512x512"  href="/icons/android-icon-512x512.png">
 	<link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
 	<link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
@@ -75,9 +76,21 @@
 						"@context": "http://schema.org",
 						"@type": "LocalBusiness",
 						"name": "Shawn Naquin",
-						"telephone": "+1 504 289 1990",
-						"url": "https://devnola.com",
-						"image": ["https://devnola.com/img/meta/shawn.jpg"],
+						"logo": "https://www.devnola.com/img/icons/android-icon-512x512.png",
+						"email": "mailto:shawn.naquin@gmail.com",
+						"telephone": "+1-504-289-1990",
+						"url": "https://devnola.com/",
+						"@id":"https://devnola.com/",
+						"hasMap": "https://www.google.com/maps?cid=16406579910209446971&hl=en",
+						"contactPoint" : [
+						   { "@type" : "ContactPoint",
+						     "telephone" : "+1-504-289-1990",
+						     "email": "mailto:shawn.naquin@gmail.com",
+						     "contactType" : "customer service",
+						     "areaServed" : "New Orleans"
+						   }
+						],
+						"image": ["https://www.devnola.com/img/meta/shawn.jpg"],
 						"potentialAction":{
 						  "@type":"ReserveAction",
 						  "target":{
@@ -95,26 +108,11 @@
 						    "name":"Book an appointment today!"
 						  }
 						},
-						"openingHoursSpecification": [
-						  {
-						    "@type": "OpeningHoursSpecification",
-						    "dayOfWeek": [
-						      "Monday",
-						      "Tuesday",
-						      "Wednesday",
-						      "Thursday",
-						      "Friday",
-						      "Saturday",
-						      "Sunday"
-						    ],
-						    "opens": "09:00",
-						    "closes": "21:00"
-						  }
-						],
+						"openingHours": "Mo,Tu,We,Th,Fr 09:00-21:00",
 						"description": "Shawn is a Front-End developer focused on writing beautiful and maintainable Javascript, HTML, and CSS projects based in New Orleans, LA. Some specialties include: Greensock, SVG, Webpack, Vue, UX, performance testing, and accesbility. Contact for more information.",
 						"address": {
 							"@type": "PostalAddress",
-							"streetAddress": "Prytania Street",
+							"streetAddress": "1017 Leontine Street",
 							"addressLocality": "New Orleans",
 							"addressRegion": "LA",
 							"postalCode":"70115",
@@ -125,6 +123,17 @@
 							"latitude": "29.9511",
 							"longitude": "-90.0715"
 						},
+						"sameAs" : [
+							"https://devnola.com",
+							"https://www.devnola.com",
+							"https://plus.google.com/117204419167943248362",
+							"https://www.google.com/search?ludocid=16406579910209446971&hl=en&q=Shawn%20Naquin%201017%20Leontine%20St%20New%20Orleans%2C%20LA%2070115#fpstate=lie",
+							"https://www.facebook.com/shawnnaquin",
+							"https://www.twitter.com/shawnnaquin",
+							"https://www.linkedin.com/shawnnaquin",
+							"https://github.com/shawnnaquin",
+							"https://youtube.com/user/crsuperman34"
+						],
 						"priceRange": "$$"
 		}
 	</script>
