@@ -4,8 +4,8 @@
       name="fade"
       appear>
       <button
-        aria-role="button"
-        tabindex="1"
+        role="button"
+        tabindex="0"
         ref="hamburger"
         aria-label="Menu"
         :class="[ 'external', 'menu', { ['menu-open']: menuOpen } ]"
@@ -43,7 +43,7 @@
 
             <li v-if="$route.name !== 'home' && $route.name !== 'contact' " >
               <router-link
-                tabindex="1"
+                tabindex="0"
                 to="/"
                 name="Home"
                 aria-label="Home"
@@ -57,7 +57,7 @@
           <li >
 
             <router-link
-              tabindex="1"
+              tabindex="0"
               to="/marketing"
               name="Marketing"
               aria-label="Marketing"
@@ -70,7 +70,7 @@
           <li >
 
             <router-link
-              tabindex="1"
+              tabindex="0"
               to="/interactive"
               name="Interactive / 3D"
               aria-label="Interactive / 3D"
@@ -83,7 +83,7 @@
           <li>
 
             <router-link
-              tabindex="1"
+              tabindex="0"
               to="/website"
               name="Website"
               aria-label="Website"
@@ -97,7 +97,7 @@
           <li>
 
             <a
-              tabindex="1"
+              tabindex="0"
               href="https://github.com/shawnnaquin/"
               rel="noopener"
               name="Shawn's Github"
