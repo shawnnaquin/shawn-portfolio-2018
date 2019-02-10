@@ -1,2 +1,5 @@
-/* /index.html 200
-http://competent-hopper-90284a.netlify.com/* http://www.devnola.com/:splat 301!
+http://competent-hopper-90284a.netlify.com/* http://www.devnola.com/:splat 301
+http://ads.denola.com/* https://festive-leakey-7c74c0.netlify.com/:splat 200
+https://ads.denola.com/* https://festive-leakey-7c74c0.netlify.com/:splat 200
+http://news.denola.com/* https://festive-leakey-7c74c0.netlify.com/:splat 200
+https://news.denola.com/* https://festive-leakey-7c74c0.netlify.com/:splat 200
