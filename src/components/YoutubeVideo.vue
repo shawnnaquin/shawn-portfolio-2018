@@ -8,6 +8,8 @@
     v-if="getOnline() || !getOnline() && videoImg.length"
   >
 
+    <div class="background"></div>
+
     <div :class="[ 'frame' ]" >
 
 
@@ -22,7 +24,7 @@
           <div
             v-if="getOnline()"
             :class="['sub-loader', { ['offline']: !getOnline() } ]"
-            :style="{ backgroundImage: getMainImage() }" />
+            :style="{ backgroundImage: 'url(' + getMainImage() + ')' }" />
 
           <div
             :class="['sub-loader', { ['offline']: !getOnline() } ]"
@@ -38,9 +40,26 @@
         </transition>
       </div>
 
-      <div 
-        id="player" 
-        v-if="getOnline()" />
+      <div
+        itemprop="video"
+        itemscope
+        itemtype="http://schema.org/VideoObject"
+      >
+
+        <meta itemprop="name" :content="videoTitle" />
+        <meta itemprop="duration" :content="videoDuration" />
+        <meta itemprop="thumbnailUrl" :content="getMainImage()" />
+        <meta itemprop="contentURL" :content=" `https://www.youtube.com/watch?v=${videoId}` " />
+        <meta itemprop="embedURL" :content="videoEmbed" />
+        <meta itemprop="height" content="1080" />
+        <meta itemprop="width" content="1920" />
+        <meta itemprop="description" :content="videoDescription" />
+
+        <div
+          id="player"
+          v-if="getOnline()" />
+
+      </div>
 
     </div>
 
@@ -58,6 +77,16 @@ export default {
     "picture-query": Picture
   },
   props: {
+    videoDescription:{
+      default: "",
+      required:false,
+      type:String
+    },
+    videoTitle: {
+      default: "",
+      required: false,
+      type:String
+    },
     videoImg: {
       default: "",
       required: false,
@@ -76,7 +105,9 @@ export default {
       mousein: false,
       observer: null,
       playerReady: false,
-      YTPlayer: null
+      YTPlayer: null,
+      videoEmbed: '',
+      videoDuration: '',
     };
   },
 
@@ -148,10 +179,13 @@ export default {
     },
 
     onPlayerReady() {
+
+      this.videoDuration = `PT${this.YTPlayer.getDuration()}S`;
+      this.videoEmbed = `http://www.youtube.com/embed/${this.videoId}?enablejsapi=1`
+
       this.playerReady = true;
       // console.log('ready');
     },
-
     onPlayerStateChange(event) {
       // -1 (unstarted)
       // 0 (ended)
@@ -159,16 +193,34 @@ export default {
       // 2 (paused)
       // 3 (buffering)
       // 5 (video cued)
-      if (event.data == -1) {
-        // console.log('!');
-      }
-      if (event.data == 0) {
+      let vidEnded = () => {
         this.YTPlayer.seekTo(0, true);
         this.YTPlayer.pauseVideo();
+
+        this.$store.commit('videoPlaying', false );
+
         if (!this.mousein) {
           this.stuck = false;
         }
+      };
+
+      switch(event.data) {
+        case -1:
+          break;
+        case 0:
+          vidEnded();
+          break;
+        case 1:
+          this.$store.commit('setVideoPlaying', true );
+          this.stuck = true;
+          break;
+        case 2:
+          this.$store.commit('setVideoPlaying', false );
+          this.stuck = false;
+          break;
+        default:
       }
+
     },
     getImageName() {
       if (!this.videoImg || !this.$route.params.type) return "";
@@ -180,18 +232,10 @@ export default {
       }
 
       let width = window.innerWidth;
-      let size = "-lg_1x.jpg";
+      let size = "-lg_2x.jpg";
       let image = this.videoImg;
 
-      if (width < 900) {
-        size = "-sm_1x.jpg";
-      } else if (width >= 900) {
-        size = "-md_1x.jpg";
-      } else {
-        size = "-lg_1x.jpg";
-      }
-
-      return `url( ${image}${size}`;
+      return `${image}${size}`;
     },
     createScript() {
       if (!navigator.onLine) return;
@@ -247,7 +291,10 @@ export default {
         });
       });
 
+      window.YTPlayerShawn = this.YTPlayer;
+
       this.observer.observe(this.$refs.player);
+
     }
   }
 };

@@ -63,7 +63,6 @@
 <script>
 import Header from "@/components/Header.vue";
 import Nav from "@/components/Nav.vue";
-import { mapGetters } from "vuex";
 
 export default {
   name: "Home",
@@ -72,18 +71,18 @@ export default {
     Nav
   },
   watch:{
-    '$store.state.openContact'(p) {
-      this.$emit('updateHead');
-    },
+    // '$store.state.openContact'(p) {
+    //   this.$emit('updateHead');
+    // },
     '$route'() {
       this.$emit('updateHead');
     }
   },
   head: {
     title: function() {
-      let t = this.$store.state.openContact ? 'Contact' : 'Home'
+      // let t = this.$store.state.openContact ? 'Contact' : 'Home'
       return {
-        inner: t
+        inner: 'Home'
       };
     },
     meta: function() {
@@ -91,7 +90,7 @@ export default {
       let t = this.$store.state.openContact ? 'Contact' : 'Home'
 
       let image = window.metaImage;
-      let title = t;
+      let title = 'Home';
       let content = this.$store.state.openContact ? 'Contact Shawn for more details on any project, request a project, or contact even if you just want to chat!' : window.metaDescription;
 
       return [
@@ -164,12 +163,11 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["getLoading"])
+  },
+  created() {
+    this.$store.dispatch("setLoading");
   },
   mounted() {
-    setTimeout(() => {
-      this.$store.dispatch("setLoading");
-    }, 1000);
   }
 };
 </script>

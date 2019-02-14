@@ -6,20 +6,17 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    messageType: "",
-    generalMessage: "",
-    showGeneralMessage: "",
+    message: "",
+    messageError: "false",
     projects: {},
     lastRoute: "/",
     openContact: false,
     loading: true,
     menuOpen: false,
-    noScroll: false,
-    lastScroll: 0,
     types: ["marketing", "interactive", "website"],
     sticky: false,
-    resetScroll: false,
     modalOpen: false,
+    videoPlaying: false,
     mainTrans: {
       trans: "fade-up",
       mode: ""
@@ -28,7 +25,8 @@ export default new Vuex.Store({
 
   getters: {
     getSticky: state => state.sticky,
-
+    getMessage: state => state.message,
+    getMessageError: state => state.messageError,
     getProject: state => p => {
       if (!state.projects[p.name]) {
         return false;
@@ -40,27 +38,32 @@ export default new Vuex.Store({
     },
 
     getLoading: state => state.loading,
-
+    getVideoPlaying: state => state.videoPlaying,
     getMenuOpen: state => state.menuOpen,
     getTrans: state => state.mainTrans,
     getTypes: state => state.types,
-    getResetScroll: state => state.resetScroll,
     getOpenContact: state => state.openContact,
     getLastRoute: state => state.lastRoute
   },
 
   mutations: {
+    setVideoPlaying(state, p) {
+      state.videoPlaying = p;
+    },
     setLastRoute(state, p) {
       state.lastRoute = p;
-    },
-    setResetScroll(state, p) {
-      state.resetScroll = p;
     },
     setOpenContact(state, p) {
       state.openContact = p;
     },
     loading(state) {
       state.loading = state.loading === true ? !state.loading : state.loading;
+    },
+    setMessage(state,s) {
+      state.message = s;
+    },
+    setMessageError(state,s) {
+      state.messageError = s;
     },
     setSticky(state, s) {
       state.sticky = s;
@@ -75,10 +78,6 @@ export default new Vuex.Store({
 
     toggleNoScroll(state) {
       state.noScroll = !state.noScroll;
-    },
-
-    setLastScroll(state, p) {
-      state.lastScroll = p.last;
     },
 
     setTrans(state, p = { trans: "fade-up", mode: "" }) {
@@ -97,22 +96,7 @@ export default new Vuex.Store({
       commit("setOpenContact", o);
     },
     setToggleMenu({ commit, state }) {
-      const scrollTop = () => {
-        const el = document.scrollingElement || document.documentElement;
-        return el.scrollTop;
-      };
-
       commit("toggleMenu");
-
-      setTimeout(() => {
-        if (!state.noScroll) {
-          commit("setLastScroll", {
-            last: scrollTop()
-          });
-        }
-
-        commit("toggleNoScroll");
-      }, state.menuOpen ? 150 : 0); // roughly the menu animate time
     },
 
     setLoading(context) {

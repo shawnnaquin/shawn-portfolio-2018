@@ -109,7 +109,6 @@ export default {
   },
   mounted() {
     this.setCompileList(this.$store.state.projects);
-    this.$scrollTo(":root");
   },
   watch: {
     "$store.state.projects"(p) {

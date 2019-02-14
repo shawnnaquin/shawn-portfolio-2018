@@ -16,7 +16,7 @@
             "techList": [
                 "Webpack",
                 "Babel|ES7",
-                "Vue",
+                "VueJS",
                 "Greensock",
                 "SCSS"
             ],
@@ -429,8 +429,7 @@
             "code": false,
             "techList": [
                 "Babel|ES7",
-                "Vue",
-                "VueX",
+                "VueJS",
                 "CSS-Next",
                 "Webpack",
                 "Greensock",

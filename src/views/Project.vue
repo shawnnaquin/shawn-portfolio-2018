@@ -44,7 +44,14 @@
 
           <div
             v-else
-            :class="[ 'article-header' ]" >
+            :class="[ 'article-header' ]"
+          >
+
+            <transition
+              name="fade"
+            >
+              <div v-if="$store.state.videoPlaying" @click="hideBackground()" :class="['background', { ['show']: $store.state.videoPlaying } ]"> </div>
+            </transition>
 
             <transition
               name="fade"
@@ -60,7 +67,11 @@
               :class="['video']"
               v-if="project.content.video.length"
               :video-id="project.content.video"
-              :video-img=" `${getBase}${ type }/${ images.video }`" />
+              :video-img=" `https://www.devnola.com${getBase}${ type }/${ images.video }`"
+              :video-title="project.title"
+              :video-description="project.projectDescription"
+              :style="{zIndex:1}"
+            />
 
             <div
               v-if="project && ( project.content.code || project.content.externalSite )"
@@ -126,8 +137,7 @@
                 :arial-label="image.path"
                 :title="image.path"
                 :to=" {
-                  path: `/${type}/${project.link}/image`,
-                  query: { imagelink: `${image.path}` }
+                  path: `/${type}/${project.link}/${image.path}`
                 }"
                 :class="['link']"
               >
@@ -168,8 +178,7 @@
             >
               <router-link
                 :to=" {
-                  path: `/${type}/${project.link}/image`,
-                  query: { imagelink: `${image.path}` }
+                  path: `/${type}/${project.link}/${image.path}`
                 }"
                 :class="['link']"
                 :name="image.path"
@@ -214,8 +223,7 @@
             >
               <router-link
                 :to=" {
-                  path: `/${type}/${project.link}/image`,
-                  query: { imagelink: `${image.path}` }
+                  path: `/${type}/${project.link}/${image.path}`
                 }"
                 :class="['link']"
                 :name="image.path"
@@ -390,7 +398,7 @@ export default {
       phoneVertLoaded: false,
       show: false, // show the page
       showBlurb: false,
-      direction: ""
+      direction: "",
     };
   },
   head: {
@@ -405,6 +413,7 @@ export default {
       ];
     },
     meta: function() {
+
       let image = `https://devnola.com/img/portfolio/${this.type}/${this.images.video}-lg_2x.jpg`;
       let title = `${this.pageTitle}${window.metaTitle}`;
       let content = this.project ? stripHtml(this.project.content.article) : '';
@@ -498,15 +507,11 @@ export default {
     }
   },
   methods: {
+    hideBackground() {
+      this.showBackground = false;
+      window.YTPlayerShawn.pauseVideo();
+    },
     pageEnter(el, done) {
-      if (this.$store.state.resetScroll) {
-        document.body.style.height =
-          this.$store.state.lastScroll + window.innerHeight + "px";
-        this.$scrollTo(":root", 100, { offset: this.$store.state.lastScroll });
-      } else {
-        this.$scrollTo(":root", 100);
-      }
-
       setTimeout(() => {
         this.showBlurb = true;
         document.body.style.height = "";
@@ -538,6 +543,30 @@ export default {
 </script>
 
 <style lang="scss" scoped >
+
+.background {
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,0.85) 50%,
+      rgba(0,0,0,1) 100%
+    );
+  z-index: 1;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  pointer-events:none;
+
+  &.show {
+    pointer-events:auto;
+    cursor:pointer;
+  }
+
+}
+
 .loading {
   margin-top: 112px;
 }
@@ -629,7 +658,7 @@ article {
 .article-header {
   padding-bottom: 5%;
   width: 100%;
-  margin-top: 48px;
+  margin-top: 64px;
   &.no-padding {
     padding-bottom: 0;
   }

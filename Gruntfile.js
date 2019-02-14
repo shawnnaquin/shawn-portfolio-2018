@@ -1,5 +1,6 @@
 // const imagemin = require("imagemin");
 // const pngToJpeg = require("png-to-jpeg");
+const webp = require("imagemin-webp");
 
 module.exports = function(grunt) {
   grunt.initConfig({
@@ -24,24 +25,25 @@ module.exports = function(grunt) {
         ]
       }
     },
-    cwebp: {
-      dynamic: {
+    imagemin: {
+      dist: {
         options: {
-          q: 60
+          use: [webp({
+            quality: 60
+          })]
         },
-        files: [
-          {
-            expand: true,
-            cwd: "./public/img/portfolio/",
-            src: ["**/*.{jpg,png}"],
-            dest: "./public/img/portfolio/"
-          }
-        ]
+        files: [{
+          expand: true,
+          cwd: "./public/img/portfolio/",
+          src: ["**/*.{jpg,png}"],
+          dest: "./public/img/portfolio/"
+          ext: ".webp"
+        }]
       }
     }
   });
 
   grunt.loadNpmTasks("grunt-responsive-images");
-  grunt.loadNpmTasks("grunt-cwebp");
-  grunt.registerTask("default", ["responsive_images", "cwebp"]);
+  grunt.loadNpmTasks("grunt-contrib-imagemin");
+  grunt.registerTask("default", ["responsive_images", "imagemin:dist"]);
 };

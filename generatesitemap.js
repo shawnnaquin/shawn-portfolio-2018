@@ -1,6 +1,17 @@
 var fs = require("fs");
 var builder = require("xmlbuilder");
 
+const lastmod = function formatDate(date) {
+    var d = new Date(),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    return [year, month, day].join('-');
+};
+
 let types = ["marketing", "interactive", "website", "tech", "contact"];
 let all = [];
 let te = [];
@@ -14,7 +25,7 @@ for (let type in types) {
       path: '/'+type,
       priority: "0.8",
       changefreq: "daily",
-      lastmod: "2018-12-09"
+      lastmod: lastmod()
     });
   }
 
@@ -31,7 +42,7 @@ for (let type in types) {
             path: '/tech/'+tech,
             priority: "0.6",
             changefreq: "monthly",
-            lastmod: "2018-12-09"
+            lastmod: lastmod()
           });
 
         }
@@ -44,22 +55,22 @@ for (let type in types) {
           path: '/'+type + "/" + key,
           priority: "0.6",
           changefreq: "monthly",
-          lastmod: "2018-12-09"
+          lastmod: lastmod()
         });
       }
 
-      // if (data[key].content.images && data[key].content.images.length) {
-      //   data[key].content.images.forEach(image => {
-      //     if (!all.includes('/' + type + "/" + key + "/" + image.path)) {
-      //       all.push({
-      //         path: '/' + type + "/" + key + "/" + image.path,
-      //         priority: "0.4",
-      //         changefreq: "monthly",
-      //         lastmod: "2018-12-09"
-      //       });
-      //     }
-      //   });
-      // }
+      if (data[key].content.images && data[key].content.images.length) {
+        data[key].content.images.forEach(image => {
+          if (!all.includes('/' + type + "/" + key + "/" + image.path)) {
+            all.push({
+              path: '/' + type + "/" + key + "/" + image.path,
+              priority: "0.4",
+              changefreq: "monthly",
+              lastmod: lastmod()
+            });
+          }
+        });
+      }
     });
   }
 }
@@ -71,7 +82,7 @@ let t = builder
 t.ele("url")
   .ele("loc", "https://devnola.com/")
   .up()
-  .ele("lastmod", "2018-12-09")
+  .ele("lastmod", lastmod() )
   .up()
   .ele("changefreq", "daily")
   .up()
@@ -113,13 +124,13 @@ Object.keys(te).forEach(a => {
   paths.push( te[a].path );
 
 });
- 
+
 // let pathObj = {
 //   "paths": paths,
 //   "lazyLoad": true,
 // };
 
-// fs.writeFile('./public/_ssr.json', JSON.stringify( pathObj ), (err) => {  
+// fs.writeFile('./public/_ssr.json', JSON.stringify( pathObj ), (err) => {
 //     if (err) throw err;
 // });
 

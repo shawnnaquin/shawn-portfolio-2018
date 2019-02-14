@@ -20,6 +20,7 @@
       ref="fakenav"/>
 
     <nav
+      itemscope itemtype="http://www.schema.org/SiteNavigationElement"
       id="nav"
       :class="[ { ['menu-open']: menuOpen }, { ['sticky']: getSticky } ]"
       ref="nav" >
@@ -31,7 +32,7 @@
 
             <li
               v-if="menuOpen"
-              @click="setScrollAndToggle()"
+              @click="toggleMenu()"
               :class="['dark']"
             >
               <button ref="close">Close X</button>
@@ -41,8 +42,11 @@
 
           <transition name="fade">
 
-            <li v-if="$route.name !== 'home' && $route.name !== 'contact' " >
+            <li v-if="$route.name !== 'home' && $route.name !== 'contact' " 
+              itemprop="name"
+            >
               <router-link
+                itemprop="url"
                 tabindex="0"
                 to="/"
                 name="Home"
@@ -54,9 +58,12 @@
 
           </transition>
 
-          <li >
+          <li 
+          itemprop="name"
+          >
 
             <router-link
+              itemprop="url"
               tabindex="0"
               to="/marketing"
               name="Marketing"
@@ -67,9 +74,12 @@
 
           </li>
 
-          <li >
+          <li 
+            itemprop="name"
+          >
 
             <router-link
+              itemprop="url"
               tabindex="0"
               to="/interactive"
               name="Interactive / 3D"
@@ -80,9 +90,12 @@
 
           </li>
 
-          <li>
+          <li
+            itemprop="name"
+          >
 
             <router-link
+              itemprop="url"
               tabindex="0"
               to="/website"
               name="Website"
@@ -94,9 +107,12 @@
           </li>
 
 
-          <li>
+          <li
+            itemprop="name"
+          >
 
             <a
+              itemprop="url"
               tabindex="0"
               href="https://github.com/shawnnaquin/"
               rel="noopener"
@@ -104,7 +120,7 @@
               title="Shawn's Github"
               aria-label="Shawn's Github"
               target="_blank"
-              @click="click()" >
+            >
               <github/>&nbsp;<span :class="['external-span']" ><external/></span>
             </a>
 
@@ -114,98 +130,7 @@
       </FocusLock>
     </nav>
 
-    <div :class="['trackback']">
-
-      <ol
-        itemscope=""
-        itemtype="https://schema.org/BreadcrumbList"
-        class="breadcrumb">
-
-        <li
-          itemprop="itemListElement"
-          itemscope=""
-          itemtype="https://schema.org/ListItem">
-
-          <router-link
-            v-if="$route.name != 'home' "
-            itemprop="item"
-            :to="`/`">
-            <span itemprop="name">home</span>
-          </router-link>
-          <meta itemprop="position" content="1" />
-        </li>
-
-        <li
-          v-if="$route.name == 'tech' || $route.name == 'techtype' "
-          itemprop="itemListElement"
-          itemscope=""
-          itemtype="https://schema.org/ListItem">
-          <router-link
-            v-if="$route.name == 'techtype' "
-            itemprop="item"
-            :to="`/tech`">
-            <span itemprop="name">tech</span>
-          </router-link>
-          <span 
-            v-else 
-            itemprop="name">tech</span>
-          <meta
-            itemprop="position"
-            content="2">
-        </li>
-
-        <li
-          v-if="$route.params.type"
-          itemprop="itemListElement"
-          itemscope=""
-          itemtype="https://schema.org/ListItem">
-          <router-link
-            v-if="$route.params.project"
-            itemprop="item"
-            :to="`/${$route.params.type}`">
-            <span itemprop="name">{{ nameify( $route.params.type ) }}</span>
-          </router-link>
-          <span 
-            v-else 
-            itemprop="name">{{ nameify( $route.params.type ) }}</span>
-          <meta
-            itemprop="position"
-            :content="$route.name == 'techtype' ? 3 : 2">
-        </li>
-
-        <li
-          v-if="$route.params.project"
-          itemprop="itemListElement"
-          itemscope=""
-          itemtype="https://schema.org/ListItem">
-          <router-link
-            v-if="$route.query.imagelink"
-            itemprop="item"
-            :to="`/${$route.params.project}`">
-            <span itemprop="name">{{ nameify( $route.params.project ) }}</span>
-          </router-link>
-          <span 
-            v-else 
-            itemprop="name">{{ nameify( $route.params.project ) }}</span>
-          <meta
-            itemprop="position"
-            content="3">
-        </li>
-
-        <li
-          v-if="$route.query.imagelink"
-          itemprop="itemListElement"
-          itemscope=""
-          itemtype="https://schema.org/ListItem">
-          <span itemprop="name">{{ nameify( $route.query.imagelink ) }}</span>
-          <meta
-            itemprop="position"
-            content="4">
-        </li>
-
-      </ol>
-
-    </div>
+    <BreadCrumb></BreadCrumb>
 
   </div>
 </template>
@@ -214,6 +139,7 @@
 import github from "@/components/icons/github";
 import hamburger from "@/components/icons/hamburger";
 import external from "@/components/icons/external";
+import BreadCrumb from "@/components/BreadCrumb";
 import { mapGetters } from "vuex";
 import { debounce } from "lodash";
 import FocusLock from "vue-focus-lock";
@@ -224,6 +150,7 @@ String.prototype.capitalize = function() {
 
 export default {
   components: {
+    BreadCrumb,
     github,
     hamburger,
     external,
@@ -250,7 +177,6 @@ export default {
   watch: {
     $route() {
       if (this.$store.state.menuOpen) {
-        document.documentElement.scrollTop = document.body.scrollTop = 0;
         setTimeout(() => {
           this.toggleMenu();
         }, 150);
@@ -305,9 +231,6 @@ export default {
         }
       }, 300);
     },
-    nameify(a) {
-      return a;
-    },
     observe() {
       this.observer = new IntersectionObserver(entry => {
         entry.forEach(e => {
@@ -346,23 +269,16 @@ export default {
     click(path) {
       // console.log(!path, this.$route.path);
       if (!path || path == this.$route.path) {
-        this.setScrollAndToggle();
+        this.toggleMenu();
       }
     },
 
     keyPress() {
       window.onkeydown = event => {
         if (event.keyCode == 27) {
-          this.setScrollAndToggle();
+          this.toggleMenu();
         }
       };
-    },
-
-    setScrollAndToggle() {
-      this.toggleMenu();
-      setTimeout(() => {
-        document.documentElement.scrollTop = document.body.scrollTop = this.$store.state.lastScroll;
-      }, 100);
     },
 
     toggleMenu() {
@@ -380,41 +296,6 @@ export default {
     &:focus,
     &:active {
       border: 1px solid Purple;
-    }
-  }
-}
-.trackback {
-  position: absolute;
-  top: 3rem;
-  width: 100%;
-  text-align: left;
-  left: 16px;
-  @media only screen and (max-width: 1100px) {
-    left: 0;
-    top: 1rem;
-    text-align: center;
-  }
-  ol {
-    margin: 0;
-    padding: 0;
-    font-size: 12px;
-    li {
-      list-style: none;
-      display: inline;
-      margin: 0;
-      padding: 0;
-      span {
-        font-size: 14px;
-      }
-      a {
-        padding: 0;
-        font-size: 14px;
-      }
-
-      &:not(:nth-last-child(1)):after {
-        color: rgba(black, 0.5);
-        content: " > ";
-      }
     }
   }
 }

@@ -2,30 +2,31 @@
 
   <div
     id="app"
-    :class="[{['no-scroll']: $store.state.noScroll } ]" >
+    :class="" >
 
-    <Contact
-      :show-general-message="$store.state.showGeneralMessage"
-      :general-message="$store.state.generalMessage"
-      :aria-hidden="$store.state.modalOpen != 'contact'"
-      ref="contact" />
+    <transition
+      name="fade"
+    >
+
+      <HeaderMessage
+        :key="getMessage"
+        :message="getMessage"
+        :error="getMessageError"
+        v-if="getMessage"
+      ></HeaderMessage>
+
+    </transition>
 
     <transition name="fade" >
-      <div
-        :class="[ 'loader' ]"
+      <loader-page
         v-if="getLoading"
-        ref="background"
-        :style="{height:height}"
-        :aria-hidden="$store.state.modalOpen !== false" >
-        <p :class="[ 'paragraph' ]" >
-          <span v-if="getLoading" >Loading <Loader :go="getLoading" /></span>
-          <span v-else >Content Loaded!</span>
-        </p>
-      </div>
+      ></loader-page>
     </transition>
 
     <div
-      :class="'flex-column'" >
+      :class="'flex-column'"
+      v-if="$route.name != 'contact' && $route.name != 'Image' "
+    >
       <Nav />
       <Header
         :loaded="!getLoading"
@@ -61,21 +62,36 @@
 
     <aside
       :class="[ 'aside' ]"
-      :aria-hidden="$store.state.modalOpen !== false" >
+      :aria-hidden="$store.state.modalOpen !== false"
+      v-if="$route.name != 'contact' && $route.name != 'Image' "
+    >
 
       <div :class="['footer-buttons']" >
-        <button
+        <router-link
           name="Resumé"
           aria-label="Resumé"
           title="Resumé"
-          @click="openContact(true)"
-          :class="['external']">Resumé</button>
-        <button
+          :class="['external']"
+          :to="{
+            path:'/contact',
+            query:
+              Object.assign( {}, this.$route.query, {
+                subject: encodeURI('Resumé Request')
+              })
+          }"
+        >
+          Resumé
+        </router-link>
+
+        <router-link to="/contact"
           name="Contact"
           aria-label="Contact"
           title="Contact"
-          @click="openContact(false)"
-          :class="['external']">Contact</button>
+          :class="['external']"
+        >
+          Contact
+        </router-link>
+
         <button
           name="Install"
           aria-label="Install"
@@ -103,7 +119,7 @@
 
         <p>
 
-          Shawn is a Front-End developer focused on writing beautiful and maintainable <router-link to="/tech/javascript" name="JavaScript" aria-label="JavaScript">JavaScript</router-link>, <router-link to="/html" name="HTML" aria-label="HTML">HTML</router-link>, and <router-link to="/tech/css" name="CSS" aria-label="CSS">CSS</router-link> projects. More of his work can be found on <a href="https://github.com/shawnnaqion" rel="noopener" target="_blank">GitHub</a>. Some specialties include: <router-link to="/greensock" name="Greensock" aria-label="Greensock">Greensock</router-link>, <router-link to="/tech/svg" name="SVG" aria-label="SVG">SVG</router-link>, <router-link to="/tech/webpack" name="Webpack" aria-label="Webpack">Webpack</router-link>, <router-link to="/tech/vuejs" name="VueJS" aria-label="VueJS" >VueJS</router-link>, UX, performance testing, and accessibility.
+          Shawn is a Front-End developer focused on writing beautiful and maintainable JavaScript, HTML, CSS projects. More of his work can be found on <a href="https://github.com/shawnnaquin" rel="noopener" target="_blank">GitHub</a>. Some specialties include: <router-link to="/tech/greensock" name="Greensock" aria-label="Greensock">Greensock</router-link>, <router-link to="/tech/svg" name="SVG" aria-label="SVG">SVG</router-link>, <router-link to="/tech/webpack" name="Webpack" aria-label="Webpack">Webpack</router-link>, <router-link to="/tech/vuejs" name="VueJS" aria-label="VueJS" >VueJS</router-link>, UX, performance testing, and accessibility.
 
           <span v-if="$route.name != 'tech' " >
             Click below for <router-link
@@ -129,11 +145,13 @@
 
     <footer 
       :class="['footer']"
-      :aria-hidden="$store.state.modalOpen !== false" >
+      :aria-hidden="$store.state.modalOpen !== false"
+      v-if="$route.name != 'contact' && $route.name != 'Image' "
+    >
       <div :class="['footer-copy']" ><small>Shawn Naquin | Front-End Portfolio | &copy; {{ getDate }}</small></div>
       <div :class="['footer-icons']">
         <a
-          href="#"
+          href="https://github.com/shawnnaquin/"
           name="Github"
           aria-label="Github"
           title="Github"
@@ -143,7 +161,7 @@
         </a>
 
         <a
-          href="#"
+          href="https://www.linkedin.com/in/shawnnaquin/"
           name="LinkedIn"
           aria-label="LinkedIn"
           title="LinkedIn"
@@ -153,34 +171,34 @@
         </a>
 
         <a
-          href="#"
-          name="Youtube"
-          aria-label="Youtube"
-          title="Youtube"
+          href="https://www.upwork.com/freelancers/~01350c7cc22183580b"
+          name="UpWork"
+          aria-label="UpWork"
+          title="UpWork"
           :class="['footer-icon']"
           target="_blank">
-          <you />
+          <upwork />
         </a>
 
         <a
-          href="#"
-          name="Behance"
-          aria-label="Behance"
-          title="Behance"
+          href="https://codepen.io/shawn-naquin/"
+          name="CodePen"
+          aria-label="CodePen"
+          title="CodePen"
           :class="['footer-icon']"
           target="_blank">
-          <be />
+          <codepen />
         </a>
 
         <a
-          href="#"
+          href="mailto:shawn.naquin@gmail.com"
           name="Email"
           aria-label="Email"
           title="Email"
-          :class="['footer-icon']"
-          target="_blank">
+          :class="['footer-icon']">
           <mail />
         </a>
+
       </div>
     </footer>
 
@@ -190,10 +208,9 @@
 
 <script>
 // @ is an alias to /src
-import Loader from "@/components/Loader";
 import Nav from "@/components/Nav.vue";
 import Header from "@/components/Header.vue";
-import Contact from "@/components/Contact.vue";
+// import Contact from "@/components/Contact.vue";
 
 import up from "@/components/icons/up";
 
@@ -201,8 +218,13 @@ import git from "@/components/icons/gitcat";
 import lin from "@/components/icons/in";
 import you from "@/components/icons/youtube";
 import be from "@/components/icons/be";
+import upwork from "@/components/icons/upwork";
+import codepen from "@/components/icons/codepen";
 import mail from "@/components/icons/mail";
-import H from "@/mixins/height";
+import LoaderPage from "@/components/LoaderPage";
+import HeaderMessage from "@/components/HeaderMessage";
+
+
 import { mapGetters } from "vuex";
 
 String.prototype.capitalize = function() {
@@ -211,13 +233,14 @@ String.prototype.capitalize = function() {
 
 export default {
   name: "Home",
-  mixins: [H],
 
   computed: {
     ...mapGetters({
       getLoading: "getLoading",
       mainTrans: "getTrans",
-      getSticky: "getSticky"
+      getSticky: "getSticky",
+      getMessage: "getMessage",
+      getMessageError: "getMessageError"
     }),
     getDate() {
       let d = new Date();
@@ -231,6 +254,7 @@ export default {
       installBtn: false,
       installer: undefined,
       mod: "",
+      messageTimeout: false,
       monthNames: [
         "January",
         "February",
@@ -247,38 +271,19 @@ export default {
       ]
     };
   },
+
   watch: {
-    "$store.state.generalMessage"(m) {
-      // console.log('message');
-      if (!this.$store.state.loading && m.length) {
-        this.playMessage();
+
+    '$store.state.message'(message) {
+
+      if (message) {
+        clearTimeout(this.messageTimeout);
+        this.messageTimeout = setTimeout( ()=> {
+          this.$store.commit('setMessage', false );
+        }, 3000 );
       }
     },
-    "$store.state.modalOpen"(o) {
-      if (o) {
-        this.title = "contact";
-      } else {
-        this.title = "home";
-      }
-      this.$nextTick(() => {
-        this.$emit("updateHead");
-      });
-    },
-    getLoading(l) {
-      if (!l && this.$store.state.generalMessage.length) {
-        this.playMessage();
-      }
-      if (!l) {
-        //destroy
-        this.forceNoTouchMove = false;
-        this.heightTrigger = false;
-      } else {
-        this.forceNoTouchMove = false;
-        this.$nextTick(() => {
-          this.heightTrigger = true;
-        });
-      }
-    }
+
   },
 
   methods: {
@@ -292,73 +297,6 @@ export default {
         }
       }
 
-    },
-    playMessage() {
-      clearTimeout(this.timer1);
-      clearTimeout(this.timer2);
-
-      this.$store.state.showGeneralMessage = "true";
-
-      if ( this.$store.state.messageType == "registered" ) {
-
-        if ( !window.sessionStorage.getItem("registeredMessage") ) {
-          window.sessionStorage.setItem("registeredMessage", 1 );
-        } else {
-          window.sessionStorage.setItem( "registeredMessage", window.sessionStorage.getItem("registeredMessage") + 1 );
-        }
-
-        if (`navigator` in window ) {
-
-          if ( navigator.onLine ) {
-
-            if ( parseInt(window.sessionStorage.getItem("registeredMessage") || 0) > 1 ) {
-              this.$store.state.showGeneralMessage = "";
-              this.$store.state.generalMessage = "";
-              return;
-            }
-
-          } else {
-              this.$store.state.generalMessage = "Content Serving from offline!";
-          }
-
-
-        } else {
-          this.$store.state.showGeneralMessage = "";
-          this.$store.state.generalMessage = "";
-          return;
-        }
-
-      }
-      this.$store.state.messageType = "";
-
-      this.timer1 = setTimeout(() => {
-        this.$store.state.showGeneralMessage = "";
-      }, 2000);
-
-      this.timer2 = setTimeout(() => {
-        this.$store.state.generalMessage = "";
-      }, 3000);
-    },
-    openContact(p) {
-      const scrollTop = () => {
-        const el = document.scrollingElement || document.documentElement;
-        return el.scrollTop;
-      };
-
-      this.$store.commit("setLastScroll", {
-        last: scrollTop()
-      });
-
-      if (p) {
-        this.$router.push({
-          query: Object.assign({}, this.$route.query, {
-            subject: encodeURI("Resumé Request")
-          })
-        });
-      }
-      this.$nextTick(() => {
-        this.$store.dispatch("openContact", true);
-      });
     }
   },
   created() {
@@ -400,23 +338,13 @@ export default {
     }
 
   },
-  mounted() {
-    // window.sendDesktopNotification('hey');
-    if (this.$route.name == "contact") {
-      this.$store.dispatch("openContact", true);
-    }
 
-    if (this.getLoading) {
-      this.forceNoTouchMove = false;
-      this.$nextTick(() => {
-        this.heightTrigger = true;
-      });
-    }
-  },
+  mounted() {},
 
+    // Contact,
   components: {
-    Contact,
-    Loader,
+    HeaderMessage,
+    LoaderPage,
     Header,
     Nav,
     up,
@@ -424,6 +352,8 @@ export default {
     lin,
     you,
     be,
+    upwork,
+    codepen,
     mail
   }
 };
@@ -530,7 +460,7 @@ export default {
   svg {
     width: 32px;
     height: 32px;
-    pointer-event: none;
+    pointer-events: none;
   }
 
   @media only screen and (max-width: 1100px) {
@@ -541,7 +471,7 @@ export default {
     svg {
       width: 24px;
       height: 24px;
-      pointer-event: none;
+      pointer-events: none;
     }
   }
 }
@@ -555,37 +485,6 @@ export default {
   bottom: 0;
 }
 
-.paragraph {
-  color: white;
-  margin: 0 auto;
-}
-
-.loader {
-  background: black;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  height: 100%;
-  width: 100%;
-  color: white;
-  display: flex;
-  justify-content: center;
-  flex-flow: column;
-
-  p {
-    position: absolute;
-    left: 50%;
-    transform: translate3d(-60%, 0, 0);
-    font-size: 32px;
-    font-weight: bold;
-    span {
-      position: absolute;
-      right: -32px;
-      bottom: 0;
-    }
-  }
-}
 </style>
 
 <style lang="scss">

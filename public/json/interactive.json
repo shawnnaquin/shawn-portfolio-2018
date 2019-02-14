@@ -89,7 +89,7 @@
             "externalSite": "//tbg.l2.design/halloween",
             "code": false,
             "techList": [
-                "Vue",
+                "VueJS",
                 "Webpack",
                 "Babel|ES7",
                 "SVG",
@@ -171,7 +171,7 @@
             "externalSite": "//tbg.l2.design/servpro-preparedness/",
             "code": false,
             "techList": [
-                "Vue",
+                "VueJS",
                 "Webpack",
                 "Babel|ES7",
                 "SVG",
@@ -258,7 +258,7 @@
             "externalSite": false,
             "code": false,
             "techList": [
-                "Vue",
+                "VueJS",
                 "Webpack",
                 "Babel|ES7",
                 "SVG",

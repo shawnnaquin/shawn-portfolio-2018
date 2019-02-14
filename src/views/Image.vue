@@ -15,6 +15,8 @@
       :class="['close']"
       :to="routeBack" ><close/></router-link>
 
+    <BreadCrumb :dark="true" :class="['bread']" ></BreadCrumb>
+
     <button
       :class="['external']"
       @click="goToImage()" > &gt; </button>
@@ -53,39 +55,22 @@
 </template>
 
 <script>
+import BreadCrumb from '@/components/BreadCrumb';
 import Picture from "@/components/Picture";
 import close from "@/components/icons/close";
 import projects from "@/mixins/projects";
 import H from "@/mixins/height";
 
 export default {
-  props: [ 'imagelink' ],
   mixins: [projects, H],
 
   components: {
+    BreadCrumb,
     "picture-query": Picture,
     close: close
   },
 
   created() {
-
-  	// this.$router.beforeEach( (to,from,next)=> {
-  	// 	next();
-
-  		// if( !this.$refs.image ) return;
-
-  		// this.$refs.image.$el.style.transition = 'transform 0.2s ease-out 0s, opacity 0.2s ease-out';
-  		// this.$refs.image.$el.style.opacity = '0';
-
-  		// if ( from.params.image == this.prevImagePath ) {
-  		// 	this.$refs.image.$el.style.transform = 'translateX(-20%)';
-  		// 	this.trans = 'fade-left';
-  		// } else if ( from.params.image == this.nextImagePath  ) {
-  		// 	this.trans = 'fade-right';
-  		// 	this.$refs.image.$el.style.transform = 'translateX(20%)';
-  		// }
-
-  	// });
     this.$emit("updateHead");
   },
 
@@ -105,7 +90,7 @@ export default {
     },
     meta: function() {
       let base = this.imageBase.split('/')[1];
-      let image = `https://devnola.com/img/portfolio/${ base }/${this.image.path}-lg_1x.jpg`;
+      let image = `https://devnola.com/img/portfolio/${ base }/${ this.imagePath }-lg_1x.jpg`;
       let title = `${this.title}${window.metaTitle}`;
       return [
         {
@@ -126,27 +111,27 @@ export default {
         {
           id:'meta-description',
           name: 'description',
-          content: this.image.caption
+          content: this.imageCaption
         },
         {
           id: 'item-description',
           itemprop: 'description',
-          content: this.image.caption
+          content: this.imageCaption
         },
         {
           id:'twitter-description',
           name: 'twitter:description',
-          content: this.image.caption
+          content: this.imageCaption
         },
         {
           id: 'og-url',
           property:'og:url',
-          content: `https://devnola.com${this.$route.path}/?imagelink=${this.imagelink}`
+          content: `https://devnola.com${this.$route.path}/${this.imageLink}`
         },
         {
           id: 'og-description',
           property:'og:description',
-          content: this.image.caption
+          content: this.imageCaption
         },
         {
           id: 'item-image',
@@ -170,24 +155,27 @@ export default {
       return [
         {
           rel: "canonical",
-          href: `https://devnola.com${this.$route.path}/?imagelink=${this.imagelink}`,
+          href: `https://devnola.com${this.$route.path}/${this.imageLink}`,
           id: "canonical"
         }
       ];
     }
   },
   computed: {
+    imageLink() {
+      return this.$route.params.image;
+    },
     title() {
-      return this.$route.query.imagelink ? this.$route.query.imagelink : '';
+      return this.imageLink ? this.imageLink : '';
     },
     orientation() {
-      if (!this.$route.query.imagelink) return;
+      if (!this.imageLink) return;
 
       let h = ["mobile", "horiz"];
       let p = null;
 
       for (let v of h) {
-        if (this.$route.query.imagelink.includes(v)) {
+        if (this.imageLink.includes(v)) {
           p = v;
           break;
         }
@@ -201,12 +189,12 @@ export default {
     },
 
     getImageIndex() {
-      if (!this.images || !this.images[this.orientation]) return false;
+      if (!this.imageLink || !this.images || !this.images[this.orientation]) return false;
 
       let p = null;
 
       this.images[this.orientation].forEach((obj, i) => {
-        if (obj.path == this.$route.query.imagelink) {
+        if (obj.path == this.imageLink) {
           p = i;
         }
       });
@@ -214,7 +202,7 @@ export default {
     },
 
     nextImage() {
-      if (!this.images || !this.images[this.orientation]) return false;
+      if (!this.imageLink && !this.images || !this.images[this.orientation]) return false;
       return (
         (this.getImageIndex + 1) % (this.images[this.orientation].length + 1)
       );
@@ -248,10 +236,16 @@ export default {
     },
     image() {
       if ( !this.images ) return false;
-      console.log( this.images[this.orientation][this.getImageIndex] );
       return this.images[this.orientation][this.getImageIndex];
     },
-
+    imagePath() {
+      if( !this.image ) { return ''; }
+      return this.image.path;
+    },
+    imageCaption() {
+      if( !this.image ) { return ''; }
+      return this.image.caption;
+    },
     routeBack() {
       if (!this.project) return "";
       return `/${this.type}/${this.project.link}`;
@@ -259,7 +253,7 @@ export default {
   },
   watch: {
     'projects'(p) {
-      if(!this.image){
+      if ( this.image === undefined ) {
         this.$router.replace('/'+this.$route.params.type+'/'+this.$route.params.project);
       }
     },
@@ -268,10 +262,10 @@ export default {
     },
     $route(to, from) {
       if (!this.images) return;
-      this.title = to.query.imagelink;
-      if (from.query.imagelink == this.prevImagePath) {
+
+      if (from.params.image == this.prevImagePath) {
         this.trans = "fade-left";
-      } else if (from.query.imagelink == this.nextImagePath) {
+      } else if (from.params.image == this.nextImagePath) {
         this.trans = "fade-right";
       }
       this.$nextTick(() => {
@@ -342,8 +336,7 @@ export default {
     goToImage() {
       this.$router.replace(
         {
-          path: `${this.imageBase}image`,
-          query: { imagelink: `${this.nextImagePath}` }
+          path: `${this.imageBase}${this.nextImagePath}`
         }
       );
     },
@@ -351,8 +344,7 @@ export default {
     goToPrevImage() {
       this.$router.replace(
         {
-          path: `${this.imageBase}image`,
-          query: { imagelink: `${this.prevImagePath}` }
+          path: `${this.imageBase}${this.prevImagePath}`
         }
       );
     },
@@ -389,14 +381,12 @@ export default {
 
   beforeDestroy() {
     window.onkeydown = false;
-    this.$store.commit("toggleNoScroll");
     this.forceNoTouchMove = false;
     this.heightTrigger = false;
   },
 
   mounted() {
     this.keyPress();
-    this.$store.commit("toggleNoScroll");
     this.forceNoTouchMove = true;
     this.$nextTick(() => {
       this.heightTrigger = true;
@@ -409,6 +399,11 @@ export default {
 </style>
 
 <style lang="scss" scoped >
+
+.bread {
+
+}
+
 .external {
   position: absolute;
   top: 0;
@@ -460,8 +455,8 @@ export default {
 .close {
   cursor: pointer;
   position: fixed;
-  top: 16px;
-  left: 16px;
+  top: 24px;
+  right: 16px;
   opacity: 0;
   color: white;
   text-decoration: none;
@@ -511,8 +506,6 @@ export default {
   }
 
   @media only screen and (max-width: 630px) {
-    top: 0;
-    right: 0;
     // font-size:8px;
     // > svg {
     // 	width: 10px;
@@ -554,7 +547,7 @@ export default {
   display: block;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   grid-gap: 2rem;
-  margin-bottom: 10%;
+  margin-bottom: 0;
   transform: translate3d(-50%, -50%, 0);
 
   > div {

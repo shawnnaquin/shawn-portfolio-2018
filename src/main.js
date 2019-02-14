@@ -30,30 +30,12 @@ new Vue({
 }).$mount("#app");
 
 router.beforeEach((to, from, next) => {
-  store.commit("setResetScroll", false);
 
-  if (!store.state.menuOpen && !from.params.image && !store.state.openContact) {
-    const scrollTop = () => {
-      const el = document.scrollingElement || document.documentElement;
-      return el.scrollTop;
-    };
-
-    store.commit("setLastScroll", {
-      last: scrollTop()
-    });
-  }
-
-  if (from.params.image || from.name == "contact") {
-    store.commit("setResetScroll", true);
+  if ( to.name == 'contact' && from.name != 'contact' ) {
+    store.commit('setLastRoute', from.path );
   }
 
   store.commit("setTrans", { trans: "fade-up", mode: "out-in" });
-  // if ( to.params.image && !from.params.image ) {
-  // } else if (!to.params.image && from.params.image) {
-  // 	store.commit('setTrans', { trans: 'fade-o', mode: '' } );
-  // } else {
-  // 	store.commit('setTrans', { trans: 'fade-up' } );
-  // }
 
   next();
 });
