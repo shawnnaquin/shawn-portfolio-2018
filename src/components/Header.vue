@@ -30,7 +30,7 @@
           :video-id="'lDXqdw1hVN0'"
           :video-title="'Shawn Naquin'"
           :video-description="'Front-End Portfolio'"
-          :video-image="'https://www.noladev.com/img/portfolio/interactive/one.astec-lg_2x.jpg'"
+          :video-img="'https://www.devnola.com/img/portfolio/interactive/one.astec'"
         />
 
       </div>

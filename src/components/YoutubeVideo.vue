@@ -262,7 +262,7 @@ export default {
         playerVars: {
           rel: 0,
           host: "https://youtube.com",
-          origin: "https://devnola.com",
+          origin: "https://www.devnola.com",
           width: "100%",
           height: "100%",
           showinfo: 0,

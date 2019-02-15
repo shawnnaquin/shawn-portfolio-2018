@@ -31,7 +31,7 @@
       </h1>
     </transition>
 
-    <main :style="{position:'relative',minHeight: '500px'}">
+    <main :style="{position:'relative'}">
 
       <transition
         :name=" 'fade' "

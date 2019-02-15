@@ -315,7 +315,7 @@ export default {
 }
 
 #nav {
-  z-index: 1;
+  z-index: 2;
   order: 1;
   position: absolute;
   top: 0;
@@ -547,7 +547,7 @@ small {
     width: 100%;
     height: 100%;
     z-index: 100;
-    z-index: 1;
+    z-index: 2;
     background: rgba(gray, 1);
     filter: blur(10px);
     opacity: 0;

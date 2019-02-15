@@ -570,6 +570,7 @@ export default {
   width: 100%;
   background: rgba(black, 1);
   z-index: 100;
+  overflow-y:hidden;
 }
 
 .swipe {
