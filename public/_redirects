@@ -1,12 +1,3 @@
 
 http://competent-hopper-90284a.netlify.com/* http://www.devnola.com/:splat 301
-http://ads.devnola.com/* https://festive-leakey-7c74c0.netlify.com/:splat 200
-https://ads.devnola.com/* https://festive-leakey-7c74c0.netlify.com/:splat 200
-http://news.devnola.com/* https://festive-leakey-7c74c0.netlify.com/:splat 200
-https://news.devnola.com/* https://festive-leakey-7c74c0.netlify.com/:splat 200
-
-/index.html								/										200
-https://news.devnola.com/landing/*		https://news.devnola.com/:splat			200
-https://ads.devnola.com/landing/*		https://ads.devnola.com/:splat			200
-http://news.devnola.com/landing/*		http://news.devnola.com/:splat			200
-http://ads.devnola.com/landing/*		http://ads.devnola.com/:splat			200
+/* /index.html 200
