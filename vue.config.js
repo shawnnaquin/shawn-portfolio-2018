@@ -8,13 +8,13 @@ module.exports = {
     appleMobileWebAppStatusBarStyle: 'black',
     workboxOptions: {
       importWorkboxFrom: "local",
-      exclude: [/(.*?)/],
+      exclude: [/\.(webp|png|jpe?g)$/],
       importScripts: ['/js/extend-sw.js'],
       navigateFallback: '/',
       directoryIndex: "index.html",
       runtimeCaching: [{
           // Match any same-origin request that contains 'api'.
-          urlPattern: /(.*?)/,
+          urlPattern: /\.(webp|png|jpe?g)$/,
           handler: 'cacheFirst',
           options: {
             cacheName: '2019-portfolio-shawn'
