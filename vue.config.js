@@ -10,8 +10,7 @@ module.exports = {
       importWorkboxFrom: "local",
       exclude: [/\.(webp|png|jpe?g)$/],
       importScripts: ['/js/extend-sw.js'],
-      navigateFallback: '/',
-      directoryIndex: "index.html",
+      navigateFallback: '/index.html',
       runtimeCaching: [{
           // Match any same-origin request that contains 'api'.
           urlPattern: /\.(webp|png|jpe?g)$/,
