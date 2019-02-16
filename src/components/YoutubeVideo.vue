@@ -5,7 +5,7 @@
     @mouseenter="mouseenter"
     @mouseleave="mouseleave"
     :ref=" 'player' "
-    v-if="getOnline() || !getOnline() && videoImg.length"
+    v-if="videoImg.length"
   >
 
     <div class="background"></div>
@@ -31,7 +31,7 @@
             v-if="!getOnline() && videoImg.length" >
             <picture-query
               v-if="getImageName().length"
-              :type="$route.params.type"
+              :type="getType()"
               :path="getImageName()"
               alt="Video Image"
             />
@@ -223,8 +223,12 @@ export default {
 
     },
     getImageName() {
-      if (!this.videoImg || !this.$route.params.type) return "";
-      return this.videoImg.split(this.$route.params.type + "/")[1];
+      if (!this.videoImg ) return "";
+      return this.videoImg.split( this.getType() + '/' )[1];
+    },
+    getType() {
+      if (!this.videoImg ) return "";
+      return this.videoImg.split('/')[ this.videoImg.split('/').length - 2 ];
     },
     getMainImage() {
       if (!this.videoImg) {

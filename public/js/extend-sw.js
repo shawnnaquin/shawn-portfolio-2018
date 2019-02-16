@@ -1,4 +1,16 @@
 // self.addEventListener('activate', function(event) {});
+const FALLBACK_IMAGE_URL = '/img/meta/offline.png';
+
+workbox.routing.registerRoute(
+  new RegExp('/\.(png|webp|jpe?g)/'),
+  async ({event}) => {
+    try {
+      return await workbox.strategies.cacheFirst().handle({event});
+    } catch (error) {
+      return caches.match(FALLBACK_IMAGE_URL);
+    }
+  }
+);
 
 self.addEventListener('message', event => {
 

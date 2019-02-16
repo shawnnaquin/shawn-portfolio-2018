@@ -7,7 +7,7 @@
       <p 
         :class=" 'loader' " 
         :style="{ color: $route.query.imagelink ? 'white' : '' }" 
-        v-if="showLoader" >Loading <span><Loader :go=" showLoader " /></span></p>
+        v-if="showLoader && getOnline()" >Loading <span><Loader :go=" showLoader " /></span></p>
     </transition>
 
     <picture>
@@ -70,6 +70,9 @@ export default {
     }
   },
   methods: {
+    getOnline() {
+        return navigator.onLine;
+      },
     setShowLoader() {
       this.showLoader = false;
     }

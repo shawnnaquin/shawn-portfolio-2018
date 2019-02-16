@@ -144,7 +144,7 @@
 		},
 		watch: {
 			'$route'(to,from) {
-				if ( to.params.project ) {
+				if ( to.params.project && Object.keys( this.$store.state.projects ).length ) {
 					this.title =  this.$store.state.projects[to.params.type][to.params.project].title ? this.$store.state.projects[to.params.type][to.params.project].title : to.params.project;
 				} else {
 					this.title = '';
