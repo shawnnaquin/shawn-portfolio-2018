@@ -8,7 +8,7 @@ module.exports = {
     appleMobileWebAppStatusBarStyle: 'black',
     workboxOptions: {
       importWorkboxFrom: "local",
-      exclude: [/(.*?)/]
+      exclude: [/(.*?)/],
       importScripts: ['/js/extend-sw.js'],
       navigateFallback: '/',
       directoryIndex: "index.html",
@@ -17,8 +17,7 @@ module.exports = {
           urlPattern: /(.*?)/,
           handler: 'cacheFirst',
           options: {
-            networkTimeoutSeconds: 1,
-            cacheName: '2019-portfolio-shawn',
+            cacheName: '2019-portfolio-shawn'
           },
         }, {
           // To match cross-origin requests, use a RegExp that matches
