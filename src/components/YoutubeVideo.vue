@@ -24,7 +24,7 @@
           <div
             v-if="getOnline()"
             :class="['sub-loader', { ['offline']: !getOnline() } ]"
-            :style="{ backgroundImage: 'url(' + getMainImage() + '.jpg)', backgroundImage: 'url(' + getMainImage() + 'webp)' }" />
+            :style="{ backgroundImage: 'url(' + getMainImage() + '.jpg)', backgroundImage: 'url(' + getMainImage() + '.webp)' }" />
 
           <div
             :class="['sub-loader', { ['offline']: !getOnline() } ]"
