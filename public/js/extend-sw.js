@@ -2,7 +2,7 @@
 const FALLBACK_IMAGE_URL = '/img/meta/offline.png';
 
 workbox.routing.registerRoute(
-  new RegExp('/\.(png|webp|jpe?g)/'),
+  /\.(png|webp|jpe?g)/,
   async ({event}) => {
     try {
       return await workbox.strategies.cacheFirst().handle({event});
