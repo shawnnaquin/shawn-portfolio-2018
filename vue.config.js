@@ -7,12 +7,9 @@ module.exports = {
     appleMobileWebAppCapable: true,
     appleMobileWebAppStatusBarStyle: 'black',
     workboxOptions: {
-      importWorkboxFrom: "local",
       importScripts: ['/js/extend-sw.js'],
       navigateFallback: '/',
-      directoryIndex: "index.html",
-      skipWaiting: true,
-      clientsClaim: true
+      directoryIndex: "index.html"
     }
   }
 };
