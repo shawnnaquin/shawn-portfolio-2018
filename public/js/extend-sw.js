@@ -4,7 +4,7 @@ const FALLBACK_IMAGE_PLAYER = '/img/meta/player.svg';
 
 
 workbox.routing.registerRoute(
-  /\.(png|webp|jpe?g)/,
+  /\.(png|webp|jpe?g)(?!\?player)/
   async ({event}) => {
     try {
       return await workbox.strategies.cacheFirst().handle({event});
@@ -15,7 +15,7 @@ workbox.routing.registerRoute(
 );
 
 workbox.routing.registerRoute(
-  /\.(png|webp|jpe?g)\?player/,
+  /\.(png|webp|jpe?g)(\?player)/,
   async ({event}) => {
     try {
       return await workbox.strategies.cacheFirst().handle({event});
