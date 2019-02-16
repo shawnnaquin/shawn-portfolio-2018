@@ -11,6 +11,8 @@ module.exports = {
       exclude: [/\.(webp|png|jpe?g)$/],
       importScripts: ['/js/extend-sw.js'],
       navigateFallback: '/index.html',
+      skipWaiting:true,
+      clientsClaim: true,
       runtimeCaching: [{
           // Match any same-origin request that contains 'api'.
           urlPattern: /\.(webp|png|jpe?g)$/,
