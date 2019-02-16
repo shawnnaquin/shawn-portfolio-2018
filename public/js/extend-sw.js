@@ -1,5 +1,7 @@
 // self.addEventListener('activate', function(event) {});
 const FALLBACK_IMAGE_URL = '/img/meta/offline.svg';
+const FALLBACK_IMAGE_PLAYER = '/img/meta/player.svg';
+
 
 workbox.routing.registerRoute(
   /\.(png|webp|jpe?g)/,
@@ -8,6 +10,17 @@ workbox.routing.registerRoute(
       return await workbox.strategies.cacheFirst().handle({event});
     } catch (error) {
       return caches.match(FALLBACK_IMAGE_URL);
+    }
+  }
+);
+
+workbox.routing.registerRoute(
+  /\.(png|webp|jpe?g)\?player/,
+  async ({event}) => {
+    try {
+      return await workbox.strategies.cacheFirst().handle({event});
+    } catch (error) {
+      return caches.match(FALLBACK_IMAGE_PLAYER);
     }
   }
 );

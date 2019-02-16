@@ -33,6 +33,7 @@
               v-if="getImageName().length"
               :type="getType()"
               :path="getImageName()"
+              :from-player="true"
               alt="Video Image"
             />
           </div>

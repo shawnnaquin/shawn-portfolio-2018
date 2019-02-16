@@ -14,18 +14,18 @@
 
       <source
         media="(min-width: 1200px)"
-        :srcset=" `${ imgBase }-lg_2x.webp` "
+        :srcset=" `${ imgBase }-lg_2x.webp${getIsPlayer()}` "
         type="image/webp"
       >
 
       <source
         media="(min-width: 900px)"
-        :srcset=" `${ imgBase }-md_2x.webp, ${ imgBase }-lg_2x.webp 2x` "
+        :srcset=" `${ imgBase }-md_2x.webp${getIsPlayer()}, ${ imgBase }-lg_2x.webp${getIsPlayer()} 2x` "
         type="image/webp"
       >
 
       <source
-        :srcset=" `${ imgBase }-sm_2x.webp, ${ imgBase }-md_2x.webp 2x, ${ imgBase }-lg_2x.webp 3x` "
+        :srcset=" `${ imgBase }-sm_2x.webp${getIsPlayer()}, ${ imgBase }-md_2x.webp${getIsPlayer()} 2x, ${ imgBase }-lg_2x.webp${getIsPlayer()} 3x` "
         type="image/webp"
       >
 
@@ -66,10 +66,13 @@ export default {
       return `${this.getBase}${this.type}/${this.path}`;
     },
     imgSrc() {
-      return `-lg_2x.jpg`;
+      return `-lg_2x.jpg${this.getIsPlayer()}`;
     }
   },
   methods: {
+    getIsPlayer() {
+      return this.fromPlayer ? '?player' : '';
+    },
     getOnline() {
         return navigator.onLine;
       },
@@ -78,6 +81,11 @@ export default {
     }
   },
   props: {
+    fromPlayer: {
+      required:false,
+      type:Boolean,
+      default:false
+    },
     path: {
       required: true,
       type: String
