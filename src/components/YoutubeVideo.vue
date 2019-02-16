@@ -24,7 +24,7 @@
           <div
             v-if="getOnline()"
             :class="['sub-loader', { ['offline']: !getOnline() } ]"
-            :style="{ backgroundImage: 'url(' + getMainImage() + ')' }" />
+            :style="{ backgroundImage: 'url(' + getMainImage() + '.jpg)', backgroundImage: 'url(' + getMainImage() + 'webp)' }" />
 
           <div
             :class="['sub-loader', { ['offline']: !getOnline() } ]"
@@ -48,7 +48,7 @@
 
         <meta itemprop="name" :content="videoTitle" />
         <meta itemprop="duration" :content="videoDuration" />
-        <meta itemprop="thumbnailUrl" :content="getMainImage()" />
+        <meta itemprop="thumbnailUrl" :content="getMainImage()+'.jpg'" />
         <meta itemprop="contentURL" :content=" `https://www.youtube.com/watch?v=${videoId}` " />
         <meta itemprop="embedURL" :content="videoEmbed" />
         <meta itemprop="height" content="1080" />
@@ -236,7 +236,7 @@ export default {
       }
 
       let width = window.innerWidth;
-      let size = "-lg_2x.jpg";
+      let size = "-lg_2x";
       let image = this.videoImg;
 
       return `${image}${size}`;
