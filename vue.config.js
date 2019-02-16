@@ -9,7 +9,8 @@ module.exports = {
     workboxOptions: {
       importWorkboxFrom: "local",
       importScripts: ['/js/extend-sw.js'],
-      navigateFallback: '/index.html',
+      navigateFallback: '/',
+      directoryIndex: "index.html",
       skipWaiting: true,
       clientsClaim: true
     }
