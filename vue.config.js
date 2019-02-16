@@ -9,7 +9,6 @@ module.exports = {
     workboxOptions: {
       importWorkboxFrom: "local",
       include: [
-        /offline\.png$/,
         /\.(js|css|json|html|svg|ico|txt|xml|map)/,
         /_redirects/
       ],

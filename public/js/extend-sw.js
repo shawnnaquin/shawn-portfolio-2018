@@ -1,5 +1,5 @@
 // self.addEventListener('activate', function(event) {});
-const FALLBACK_IMAGE_URL = '/img/meta/offline.png';
+const FALLBACK_IMAGE_URL = '/img/meta/offline.svg';
 
 workbox.routing.registerRoute(
   /\.(png|webp|jpe?g)/,
