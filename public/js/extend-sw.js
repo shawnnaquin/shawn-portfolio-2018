@@ -3,27 +3,39 @@ const FALLBACK_IMAGE_URL = '/img/meta/offline.svg';
 const FALLBACK_IMAGE_PLAYER = '/img/meta/player.svg';
 
 
-workbox.routing.registerRoute(
-  /\.(png|webp|jpe?g)(?!\?player)/
-  async ({event}) => {
-    try {
-      return await workbox.strategies.cacheFirst().handle({event});
-    } catch (error) {
-      return caches.match(FALLBACK_IMAGE_URL);
-    }
-  }
+// workbox.routing.registerRoute(
+//   /\.(png|webp|jpe?g)(?!\?player)/
+//   async ({event}) => {
+//     try {
+//       return await workbox.strategies.cacheFirst().handle({event});
+//     } catch (error) {
+//       return caches.match(FALLBACK_IMAGE_URL);
+//     }
+//   }
+// );
+
+
+// Use a stale-while-revalidate strategy for all other requests.
+workbox.routing.setDefaultHandler(
+  workbox.strategies.cacheFirst()
 );
 
-workbox.routing.registerRoute(
-  /\.(png|webp|jpe?g)(\?player)/,
-  async ({event}) => {
-    try {
-      return await workbox.strategies.cacheFirst().handle({event});
-    } catch (error) {
-      return caches.match(FALLBACK_IMAGE_PLAYER);
-    }
+// This "catch" handler is triggered when any of the other routes fail to
+// generate a response.
+workbox.routing.setCatchHandler( ( {event} ) => {
+  // Use event, request, and url to figure out how to respond.
+  // One approach would be to use request.destination, see
+  // https://medium.com/dev-channel/service-worker-caching-strategies-based-on-request-types-57411dd7652c
+  console.log( event.request.destination );
+  switch (event.request.destination) {
+    default:
+      // If we don't have a fallback, just return an error response.
+      return Response.error();
   }
-);
+
+} );
+
+
 
 self.addEventListener('message', event => {
 
