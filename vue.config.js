@@ -3,13 +3,12 @@ module.exports = {
   lintOnSave: undefined,
   productionSourceMap: false,
   pwa: {
-    // configure the workbox plugin
     appleMobileWebAppCapable: true,
     appleMobileWebAppStatusBarStyle: 'black',
     workboxOptions: {
       importWorkboxFrom: "local",
       include: [
-        /\.(js|css|json|html|svg|ico|txt|xml|map)/,
+        /\.(js|css|json|html|svg|txt|xml|map|ico)/,
         /mobile\.horiz/,
         /mobile\.vert/,
         /_redirects/,
@@ -20,7 +19,6 @@ module.exports = {
       skipWaiting:true,
       clientsClaim: true,
       runtimeCaching: [{
-          // Match any same-origin request that contains 'api'.
           urlPattern: /^(?!(mobile|horiz)).*(png|webp|jpe?g)/,
           handler: 'cacheFirst',
           options: {
