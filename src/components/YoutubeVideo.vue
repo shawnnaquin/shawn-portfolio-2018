@@ -264,10 +264,9 @@ export default {
     createPlayer() {
       this.YTPlayer = new window.YT.Player("player", {
         videoId: this.videoId,
-        host: "https://youtube.com",
         playerVars: {
           rel: 0,
-          origin: "https://devnola.com",
+          origin: "https://www.devnola.com",
           width: "100%",
           height: "100%",
           showinfo: 0,
