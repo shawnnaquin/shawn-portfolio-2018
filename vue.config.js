@@ -9,14 +9,12 @@ module.exports = {
       importWorkboxFrom: "local",
       include: [
         /\.(js|css|json|html|svg|txt|xml|map|ico)/,
-        /mobile\.horiz/,
-        /mobile\.vert/,
-        /_redirects/,
-        /manifest\.json/
+        /(mobile|horiz).*(png)/,
+        /_redirects/
       ],
       importScripts: ['/js/extend-sw.js'],
       navigateFallback: '/index.html',
-      skipWaiting:true,
+      skipWaiting: true,
       clientsClaim: true,
       runtimeCaching: [{
           urlPattern: /^(?!(mobile|horiz)).*(png|webp|jpe?g)/,

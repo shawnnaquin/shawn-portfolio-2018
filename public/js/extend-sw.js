@@ -2,10 +2,6 @@
 const FALLBACK_IMAGE_URL = '/img/meta/offline.svg';
 const FALLBACK_IMAGE_PLAYER = '/img/meta/player.svg';
 
-const urlHandler = workbox.strategies.cacheFirst({
-    cacheName: '2019-portfolio-shawn'
-});
-
 workbox.googleAnalytics.initialize();
 
 self.addEventListener('message', event => {
