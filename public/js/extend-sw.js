@@ -27,15 +27,14 @@ workbox.routing.setCatchHandler( ( {event} ) => {
   // One approach would be to use request.destination, see
   // https://medium.com/dev-channel/service-worker-caching-strategies-based-on-request-types-57411dd7652c
 
-  let pattern = /\.(png|webp|jpe?g)(\?player)/;
+  let wide = event.request.url.match( /\.(png|webp|jpe?g)(\?player)/ );
+  let notWide = event.request.url.match( /\.(png|webp|jpe?g)(?!\?player)/ );
 
-  if ( event.request.url.match( pattern ).length ) {
-    console.log( event.request.url, event.request.url.match( pattern ) );
-  }
-
-  switch (event.request.url) {
-    default:
-      // If we don't have a fallback, just return an error response.
+  if (  wide ) {
+    return caches.match( FALLBACK_IMAGE_PLAYER );
+  } else if ( notWide ) {
+    return caches.match( FALLBACK_IMAGE_URL );
+  } else {
       return Response.error();
   }
 
