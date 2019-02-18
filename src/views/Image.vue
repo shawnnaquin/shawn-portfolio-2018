@@ -39,6 +39,7 @@
             :type="type"
             :path="image.path"
             :alt="image.alt ? image.alt : '' "
+            :from-player=" orientation == 'regular' ? true : false "
             ref="image"
           >
             <p>{{ image.caption }}</p>
