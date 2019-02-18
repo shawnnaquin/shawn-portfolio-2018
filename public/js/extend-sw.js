@@ -26,8 +26,14 @@ workbox.routing.setCatchHandler( ( {event} ) => {
   // Use event, request, and url to figure out how to respond.
   // One approach would be to use request.destination, see
   // https://medium.com/dev-channel/service-worker-caching-strategies-based-on-request-types-57411dd7652c
-  console.log( event.request.destination );
-  switch (event.request.destination) {
+
+  let pattern = /\.(png|webp|jpe?g)(\?player)/;
+
+  if ( event.request.url.match( pattern ).length ) {
+    console.log( event.request.url, event.request.url.match( pattern ) );
+  }
+
+  switch (event.request.url) {
     default:
       // If we don't have a fallback, just return an error response.
       return Response.error();
