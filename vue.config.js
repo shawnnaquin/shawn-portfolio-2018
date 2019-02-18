@@ -10,7 +10,8 @@ module.exports = {
       importWorkboxFrom: "local",
       include: [
         /\.(js|css|json|html|svg|ico|txt|xml|map)/,
-        /_redirects/
+        /_redirects/,
+        /manifest\.json/
       ],
       importScripts: ['/js/extend-sw.js'],
       navigateFallback: '/index.html',

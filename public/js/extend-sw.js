@@ -26,42 +26,7 @@ workbox.routing.registerRoute(
             .catch(() => caches.match(FALLBACK_IMAGE_PLAYER));
     });
 
-// workbox.routing.registerRoute(
-//   /\.(png|webp|jpe?g)(?!\?player)/
-//   async ({event}) => {
-//     try {
-//       return await workbox.strategies.cacheFirst().handle({event});
-//     } catch (error) {
-//       return caches.match(FALLBACK_IMAGE_URL);
-//     }
-//   }
-// );
-
-
-// // Use a stale-while-revalidate strategy for all other requests.
-// workbox.routing.setDefaultHandler(
-//   workbox.strategies.cacheFirst()
-// );
-
-// // This "catch" handler is triggered when any of the other routes fail to
-// // generate a response.
-// workbox.routing.setCatchHandler( ( {event} ) => {
-//   // Use event, request, and url to figure out how to respond.
-//   // One approach would be to use request.destination, see
-//   // https://medium.com/dev-channel/service-worker-caching-strategies-based-on-request-types-57411dd7652c
-
-//   let wide = event.request.url.match( /\.(png|webp|jpe?g)(\?player)/ );
-//   let notWide = event.request.url.match( /\.(png|webp|jpe?g)(?!\?player)/ );
-
-//   if (  wide ) {
-//     return caches.match( FALLBACK_IMAGE_PLAYER );
-//   } else if ( notWide ) {
-//     return caches.match( FALLBACK_IMAGE_URL );
-//   } else {
-//       return Response.error();
-//   }
-
-// } );
+workbox.googleAnalytics.initialize();
 
 self.addEventListener('message', event => {
 
