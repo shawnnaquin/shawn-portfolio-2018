@@ -21,7 +21,7 @@ module.exports = {
       clientsClaim: true,
       runtimeCaching: [{
           // Match any same-origin request that contains 'api'.
-          urlPattern: /\.(webp|png|jpe?g)$/,
+          urlPattern: /^(?!(mobile|horiz)).*(png|webp|jpe?g)/,
           handler: 'cacheFirst',
           options: {
             cacheName: '2019-portfolio-shawn'
