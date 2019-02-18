@@ -516,7 +516,7 @@ export default {
       setTimeout(() => {
         this.showBlurb = true;
         document.body.style.height = "";
-        this.$scrollTo(":root");
+        this.$scrollTo(":root", 0);
         done();
       }, 100);
     },
