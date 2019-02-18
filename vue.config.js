@@ -10,6 +10,8 @@ module.exports = {
       importWorkboxFrom: "local",
       include: [
         /\.(js|css|json|html|svg|ico|txt|xml|map)/,
+        /mobile\.horiz/,
+        /mobile\.vert/,
         /_redirects/,
         /manifest\.json/
       ],
