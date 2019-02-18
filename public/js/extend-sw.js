@@ -2,6 +2,29 @@
 const FALLBACK_IMAGE_URL = '/img/meta/offline.svg';
 const FALLBACK_IMAGE_PLAYER = '/img/meta/player.svg';
 
+const urlHandler = workbox.strategies.cacheFirst({
+    cacheName: '2019-portfolio-shawn'
+});
+
+workbox.routing.registerRoute(
+    /\.(png|webp|jpe?g)(?!\?player)/,
+    ({event}) => {
+        return urlHandler.handle({event})
+            .then((response) => {
+                return response || caches.match(FALLBACK_IMAGE_URL);
+            })
+            .catch(() => caches.match(FALLBACK_IMAGE_URL));
+    });
+
+workbox.routing.registerRoute(
+    /\.(png|webp|jpe?g)(\?player)/,
+    ({event}) => {
+        return urlHandler.handle({event})
+            .then((response) => {
+                return response || caches.match(FALLBACK_IMAGE_PLAYER);
+            })
+            .catch(() => caches.match(FALLBACK_IMAGE_PLAYER));
+    });
 
 // workbox.routing.registerRoute(
 //   /\.(png|webp|jpe?g)(?!\?player)/
@@ -15,32 +38,30 @@ const FALLBACK_IMAGE_PLAYER = '/img/meta/player.svg';
 // );
 
 
-// Use a stale-while-revalidate strategy for all other requests.
-workbox.routing.setDefaultHandler(
-  workbox.strategies.cacheFirst()
-);
+// // Use a stale-while-revalidate strategy for all other requests.
+// workbox.routing.setDefaultHandler(
+//   workbox.strategies.cacheFirst()
+// );
 
-// This "catch" handler is triggered when any of the other routes fail to
-// generate a response.
-workbox.routing.setCatchHandler( ( {event} ) => {
-  // Use event, request, and url to figure out how to respond.
-  // One approach would be to use request.destination, see
-  // https://medium.com/dev-channel/service-worker-caching-strategies-based-on-request-types-57411dd7652c
+// // This "catch" handler is triggered when any of the other routes fail to
+// // generate a response.
+// workbox.routing.setCatchHandler( ( {event} ) => {
+//   // Use event, request, and url to figure out how to respond.
+//   // One approach would be to use request.destination, see
+//   // https://medium.com/dev-channel/service-worker-caching-strategies-based-on-request-types-57411dd7652c
 
-  let wide = event.request.url.match( /\.(png|webp|jpe?g)(\?player)/ );
-  let notWide = event.request.url.match( /\.(png|webp|jpe?g)(?!\?player)/ );
+//   let wide = event.request.url.match( /\.(png|webp|jpe?g)(\?player)/ );
+//   let notWide = event.request.url.match( /\.(png|webp|jpe?g)(?!\?player)/ );
 
-  if (  wide ) {
-    return caches.match( FALLBACK_IMAGE_PLAYER );
-  } else if ( notWide ) {
-    return caches.match( FALLBACK_IMAGE_URL );
-  } else {
-      return Response.error();
-  }
+//   if (  wide ) {
+//     return caches.match( FALLBACK_IMAGE_PLAYER );
+//   } else if ( notWide ) {
+//     return caches.match( FALLBACK_IMAGE_URL );
+//   } else {
+//       return Response.error();
+//   }
 
-} );
-
-
+// } );
 
 self.addEventListener('message', event => {
 
