@@ -234,6 +234,7 @@
                   :type=" type "
                   :path=" image.path "
                   :alt="image.alt"
+                  :from-player="true"
                 >
                   {{ image.caption }}
                 </picture-query>
