@@ -17,7 +17,7 @@ module.exports = {
       skipWaiting: true,
       clientsClaim: true,
       runtimeCaching: [{
-          urlPattern: /^(?!(mobile|horiz)).*(png|webp|jpe?g)/,
+          urlPattern: /(?!(mobile|horiz)).*(png|webp|jpe?g)/,
           handler: 'cacheFirst',
           options: {
             cacheName: '2019-portfolio-shawn'
