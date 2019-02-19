@@ -7,7 +7,7 @@ const urlHandler = workbox.strategies.cacheFirst({
 });
 
 workbox.routing.registerRoute(
-    /^\/.*\/(?!(mobile|horiz)).*(png|jpe?g|webp)(?!(\?player))/,
+    /^\/.*\/(?!(mobile\.horiz|mobile\.vert)).*(png|jpe?g|webp)(?!(\?player))/,
     ({event}) => {
         return urlHandler.handle({event})
             .then((response) => {
