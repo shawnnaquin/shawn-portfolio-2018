@@ -2,6 +2,31 @@
 const FALLBACK_IMAGE_URL = '/img/meta/offline.svg';
 const FALLBACK_IMAGE_PLAYER = '/img/meta/player.svg';
 
+const urlHandler = workbox.strategies.cacheFirst({
+    cacheName: '2019-portfolio-shawn'
+});
+
+workbox.routing.registerRoute(
+    /\.(png|webp|jpe?g)(?!\?player)/,
+    ({event}) => {
+        return urlHandler.handle({event})
+            .then((response) => {
+                return response || caches.match(FALLBACK_IMAGE_URL);
+            })
+            .catch(() => caches.match(FALLBACK_IMAGE_URL));
+    });
+
+workbox.routing.registerRoute(
+    /\.(png|webp|jpe?g)(\?player)/,
+    ({event}) => {
+        return urlHandler.handle({event})
+            .then((response) => {
+                return response || caches.match(FALLBACK_IMAGE_PLAYER);
+            })
+            .catch(() => caches.match(FALLBACK_IMAGE_PLAYER));
+    });
+
+
 workbox.googleAnalytics.initialize();
 
 self.addEventListener('message', event => {
