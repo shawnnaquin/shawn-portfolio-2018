@@ -9,7 +9,7 @@ module.exports = {
       importWorkboxFrom: "local",
       include: [
         /\.(js|css|json|html|svg|txt|xml|map|ico)/,
-        /^\/.*\/((mobile\.horiz|mobile\.vert)).*(png)/,
+        /\?pre/,
         /_redirects/
       ],
       importScripts: ['/js/extend-sw.js'],
@@ -17,7 +17,7 @@ module.exports = {
       skipWaiting: true,
       clientsClaim: true,
       runtimeCaching: [{
-          urlPattern: /^\/.*\/(?!(mobile\.horiz|mobile\.vert)).*(png|jpe?g|webp)/,
+          urlPattern: /\.(png|jpe?g|webp)(?!(\?pre))/,
           handler: 'cacheFirst',
           options: {
             cacheName: '2019-portfolio-shawn'
