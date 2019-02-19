@@ -4,12 +4,6 @@ const FALLBACK_IMAGE_PLAYER = '/img/meta/player.svg';
 
 workbox.googleAnalytics.initialize();
 
-// Force development builds
-workbox.setConfig({ debug: true });
-
-// The most verbose - displays all logs.
-workbox.core.setLogLevel(workbox.core.LOG_LEVELS.debug);
-
 self.addEventListener('message', event => {
 
 	event.waitUntil(
