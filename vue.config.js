@@ -9,7 +9,7 @@ module.exports = {
       importWorkboxFrom: "local",
       include: [
         /\.(js|css|json|html|svg|txt|xml|map|ico)/,
-        /^\/.*\/((mobile\.horiz|mobile\.vert)).*(png)/
+        /^\/.*\/((mobile\.horiz|mobile\.vert)).*(png)/,
         /_redirects/
       ],
       importScripts: ['/js/extend-sw.js'],
