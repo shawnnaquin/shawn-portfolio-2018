@@ -2,6 +2,8 @@
 const FALLBACK_IMAGE_URL = '/img/meta/offline.svg';
 const FALLBACK_IMAGE_PLAYER = '/img/meta/player.svg';
 
+workbox.googleAnalytics.initialize();
+
 const urlHandler = workbox.strategies.cacheFirst({
     cacheName: '2019-portfolio-shawn'
 });
@@ -21,13 +23,12 @@ workbox.routing.registerRoute(
     ({event}) => {
         return urlHandler.handle({event})
             .then((response) => {
+                console.log(response);
                 return response || caches.match(FALLBACK_IMAGE_PLAYER);
             })
             .catch(() => caches.match(FALLBACK_IMAGE_PLAYER));
     });
 
-
-workbox.googleAnalytics.initialize();
 
 self.addEventListener('message', event => {
 
