@@ -684,7 +684,7 @@ enter-active         leave-active
 		padding-bottom: 56.1%;
 		@media only screen and (min-width: 630px) {
 			padding-bottom: 49.21%;
-			background-image: url("~@/assets/ui/mobile.horiz.png?pre");
+			background-image: url("~@/assets/ui/mobile.horiz.png");
 			background-size: cover;
 			background-position: center;
 			opacity: 0;
@@ -704,7 +704,7 @@ enter-active         leave-active
 		padding-bottom: 177%;
 		@media only screen and (min-width: 630px) {
 			padding-bottom: 202.9%;
-			background-image: url("~@/assets/ui/mobile.vert.png?pre");
+			background-image: url("~@/assets/ui/mobile.vert.png");
 			background-size: cover;
 			background-position: center;
 		}

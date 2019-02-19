@@ -294,8 +294,8 @@ import Picture from "@/components/Picture.vue";
 import Loader from "@/components/Loader.vue";
 import external from "@/components/icons/external";
 import techList from "@/components/techList";
-import PhoneVert from "@/assets/ui/mobile.vert.png?pre";
-import PhoneHoriz from "@/assets/ui/mobile.horiz.png?pre";
+import PhoneVert from "@/assets/ui/mobile.vert.png";
+import PhoneHoriz from "@/assets/ui/mobile.horiz.png";
 
 import animateIn from "@/mixins/animateIn";
 import projects from "@/mixins/projects";
